@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{f0090880-5f5f-436c-b4ab-f779610ca9fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Main">
+      <UniqueIdentifier>{ef3b6094-bc8e-4275-9a2d-74c7ae9a2216}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Main\Windows">
+      <UniqueIdentifier>{936d6351-f241-42ee-bec2-e466d2aa74c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Engine">
+      <UniqueIdentifier>{4e20d6d2-3b91-4def-acd5-03ffd520ccfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Core">
+      <UniqueIdentifier>{72974dcb-0dad-445a-930b-61cf9dfb642d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Platform">
+      <UniqueIdentifier>{4be43b49-eb50-4b5e-9a1d-0eb66ea35ecb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Platform\Windows">
+      <UniqueIdentifier>{f0dc8289-b67d-4735-88be-257422bc5bb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Platform\Base">
+      <UniqueIdentifier>{dac40e9e-b15b-45e0-a8fb-8b07c9dc6437}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Core\Collections">
+      <UniqueIdentifier>{e8704c5b-78b7-4dcd-96dc-746c23101f76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Core\Types">
+      <UniqueIdentifier>{108f383a-3e23-4565-af6e-55809fb4e900}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Graphics">
+      <UniqueIdentifier>{b5c6b1e0-8e17-4237-a564-7a690ad7fb75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GraphicsDevice">
+      <UniqueIdentifier>{c44eb78b-19f4-41f9-b7d1-64495de60a04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Core\Math">
+      <UniqueIdentifier>{f0007429-58f1-4f03-a015-31733d99b804}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Engine\Base">
+      <UniqueIdentifier>{cd5afede-a1a5-4c30-8ebb-269508917653}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Editor">
+      <UniqueIdentifier>{cfacdd52-dd7d-447e-9cc0-1f5d03aeb729}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{9e811bce-f888-415f-8e33-f0e3fde0989f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GraphicsDevice\DX12">
+      <UniqueIdentifier>{0a99337b-9674-438b-9758-49e60046a1e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Core\Memory">
+      <UniqueIdentifier>{054602e8-1897-45b7-9120-a84d0efbedc0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Engine\Core\Delegate.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Engine\Engine.h">
+      <Filter>Engine\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Platform\Define.h">
+      <Filter>Engine\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\NonCopyable.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\Log.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\Types\BaseTypes.h">
+      <Filter>Engine\Core\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Platform\Base\PlatformBase.h">
+      <Filter>Engine\Platform\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Platform\Platform.h">
+      <Filter>Engine\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Platform\Windows\WindowsPlatform.h">
+      <Filter>Engine\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Platform\Types.h">
+      <Filter>Engine\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Platform\Window.h">
+      <Filter>Engine\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Platform\WindowsManager.h">
+      <Filter>Engine\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Platform\Base\WindowBase.h">
+      <Filter>Engine\Platform\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Platform\Windows\WindowsWindow.h">
+      <Filter>Engine\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Platform\CreateWindowSettings.h">
+      <Filter>Engine\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\Math\Vector2.h">
+      <Filter>Engine\Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Engine\EngineService.h">
+      <Filter>Engine\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\Graphics.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\GPUDevice.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Engine\Base\ApplicationBase.h">
+      <Filter>Engine\Engine\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Editor\Editor.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Engine\Globals.h">
+      <Filter>Engine\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUDeviceDX12.h">
+      <Filter>Engine\GraphicsDevice\DX12</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\Memory\Allocator.h">
+      <Filter>Engine\Core\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\Memory\Memory.h">
+      <Filter>Engine\Core\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Platform\Windows\IncludeWindowsHeader.h">
+      <Filter>Engine\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\Templates.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Engine\Main\Windows\main.cpp">
+      <Filter>Engine\Main\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Core\Log.cpp">
+      <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Platform\Base\PlatformBase.cpp">
+      <Filter>Engine\Platform\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Engine\Engine.cpp">
+      <Filter>Engine\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Platform\Windows\WindowsPlatform.cpp">
+      <Filter>Engine\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Platform\WindowsManager.cpp">
+      <Filter>Engine\Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Platform\Base\WindowBase.cpp">
+      <Filter>Engine\Platform\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Engine\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Engine\EngineService.cpp">
+      <Filter>Engine\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\Graphics.cpp">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\GPUDevice.cpp">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Editor\Editor.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Engine\Globals.cpp">
+      <Filter>Engine\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUDeviceDx12.cpp">
+      <Filter>Engine\GraphicsDevice\DX12</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
