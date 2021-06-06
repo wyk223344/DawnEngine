@@ -54,7 +54,7 @@ public:
     /// </summary>
     /// <param name="settings">The window settings</param>
     /// <returns></returns>
-    static Window* CreateWindow(const CreateWindowSettings& settings) = delete;
+    //static Window* CreateWindow(const CreateWindowSettings& settings) = delete;
 
     /// <summary>
     /// Allocates memory on a specified alignment boundary.

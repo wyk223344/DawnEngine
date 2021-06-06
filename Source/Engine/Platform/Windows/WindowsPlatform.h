@@ -3,7 +3,7 @@
 #if PLATFORM_WINDOWS
 
 #include "Engine/Platform/Base/PlatformBase.h"
-
+#include "Engine/Platform/Windows/IncludeWindowsHeader.h"
 
 class WindowsPlatform : public PlatformBase
 {

@@ -2,6 +2,7 @@
 
 #include "IncludeWindowsHeader.h"
 #include "Engine/Platform/Platform.h"
+#include "Engine/Platform/Window.h"
 #include "Engine/Engine/Globals.h"
 #include "Engine/Core/Memory/Memory.h"
 
