@@ -8,6 +8,11 @@
 
 #include <string>
 
+
+void* WindowsPlatform::InstanceHandle = nullptr;
+
+
+
 LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	switch (msg)
@@ -24,7 +29,7 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 void WindowsPlatform::PreInit(void* hInstance)
 {
-
+	WindowsPlatform::InstanceHandle = hInstance;
 	// ×¢²á´°¿ÚÀà
 	HINSTANCE mhAppInst = (HINSTANCE)hInstance;
 	WNDCLASS windowsClass;
@@ -43,21 +48,6 @@ void WindowsPlatform::PreInit(void* hInstance)
 		MessageBox(0, L"RegisterClass Failed.", 0, 0);
 		return;
 	}
-	RECT R = { 0, 0, 800, 600 };
-	AdjustWindowRect(&R, WS_OVERLAPPEDWINDOW, false);
-	int width = R.right - R.left;
-	int height = R.bottom - R.top;
-	std::wstring mMainWndCaption = L"d3d App";
-	HWND handle = CreateWindowW(L"MainWnd", L"DawnEngine",
-		WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, width, height, 0, 0, mhAppInst, 0);
-	if (!handle)
-	{
-		MessageBox(0, L"CreateWindow Failed.", 0, 0);
-		return;
-	}
-
-	ShowWindow(handle, SW_SHOW);
-	UpdateWindow(handle);
 }
 
 

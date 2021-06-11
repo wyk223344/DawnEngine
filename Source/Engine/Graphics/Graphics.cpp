@@ -1,0 +1,62 @@
+
+#include "Engine/Platform/Define.h"
+#include "Engine/Engine/EngineService.h"
+#include "Engine/Graphics/Graphics.h"
+#include "Engine/Graphics/GPUDevice.h"
+
+
+#if GRAPHICS_API_DIRECTX12
+extern GPUDevice* CreateGPUDeviceDX12();
+#endif 
+
+
+
+class GraphicsService : public EngineService
+{
+public:
+	GraphicsService() : EngineService(TEXT("Graphics"), -40)
+	{
+	}
+
+	bool Init() override;
+	void Draw() override;
+	void BeforeExit() override;
+	void Dispose() override;
+};
+
+GraphicsService GraphicsServiceInstance;
+
+
+bool GraphicsService::Init()
+{
+	GPUDevice* device = nullptr;
+
+#if GRAPHICS_API_DIRECTX12
+	device = CreateGPUDeviceDX12();
+#endif
+
+	if (device == nullptr)
+	{
+		return false;
+	}
+	
+	GPUDevice::Instance = device;
+
+	return true;
+}
+
+void GraphicsService::Draw()
+{
+
+}
+
+void GraphicsService::BeforeExit()
+{
+
+}
+
+
+void GraphicsService::Dispose()
+{
+
+}

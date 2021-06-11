@@ -7,8 +7,11 @@
 
 class WindowsPlatform : public PlatformBase
 {
+public:
+    // windows平台的实例句柄
+    static void* InstanceHandle;
 
-public: // new public function
+public:
 
     /// <summary>
     /// Pre initialize platform.

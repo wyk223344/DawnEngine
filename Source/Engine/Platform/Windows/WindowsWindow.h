@@ -9,7 +9,10 @@
 class WindowsWindow : public WindowBase
 {
 private:
-    HWND__* _handle;
+    HWND__* m_Handle;
+
+    unsigned int m_Width;
+    unsigned int m_Height;
 
 public:
     /// <summary>
@@ -26,6 +29,10 @@ public:
 public:
 
     void* GetNativePtr() const override;
+
+    unsigned int GetWidth() const;
+
+    unsigned int GetHeight() const;
 };
 
 

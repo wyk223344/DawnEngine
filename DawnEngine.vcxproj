@@ -87,9 +87,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;PLATFORM_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;PLATFORM_WINDOWS;GRAPHICS_API_DIRECTX12;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -115,10 +117,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_WINDOWS;PLATFORM_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
+      <SDLCheck>
+      </SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;PLATFORM_WINDOWS;GRAPHICS_API_DIRECTX12;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>Default</ConformanceMode>
       <AdditionalIncludeDirectories>D:\Workspace\DawnEngine\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <SupportJustMyCode>false</SupportJustMyCode>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -155,7 +159,14 @@
     <ClInclude Include="Source\Engine\Engine\Engine.h" />
     <ClInclude Include="Source\Engine\Engine\EngineService.h" />
     <ClInclude Include="Source\Engine\Engine\Globals.h" />
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\d3dUtil.h" />
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\d3dx12.h" />
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUContextDX12.h" />
     <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUDeviceDX12.h" />
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\IncludeDX12Headers.h" />
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\MathHelper.h" />
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\UploadBuffer.h" />
+    <ClInclude Include="Source\Engine\Graphics\GPUContext.h" />
     <ClInclude Include="Source\Engine\Graphics\GPUDevice.h" />
     <ClInclude Include="Source\Engine\Graphics\Graphics.h" />
     <ClInclude Include="Source\Engine\Platform\Base\PlatformBase.h" />
@@ -177,7 +188,11 @@
     <ClCompile Include="Source\Engine\Engine\Engine.cpp" />
     <ClCompile Include="Source\Engine\Engine\EngineService.cpp" />
     <ClCompile Include="Source\Engine\Engine\Globals.cpp" />
-    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUDeviceDx12.cpp" />
+    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\d3dUtil.cpp" />
+    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUContextDX12.cpp" />
+    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUDeviceDX12.cpp" />
+    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\MathHelper.cpp" />
+    <ClCompile Include="Source\Engine\Graphics\GPUContext.cpp" />
     <ClCompile Include="Source\Engine\Graphics\GPUDevice.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Graphics.cpp" />
     <ClCompile Include="Source\Engine\Main\Windows\main.cpp" />
