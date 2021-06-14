@@ -10,7 +10,7 @@
 Window* Engine::MainWindow = nullptr;
 
 
-int32 Engine::Main(const Char* cmdLine)
+int32 Engine::Main()
 {
 	// Main message loop:
 	if (!Platform::Init())
@@ -18,6 +18,7 @@ int32 Engine::Main(const Char* cmdLine)
 		LOG_ERROR("Fail to init platform!!!");
 		return 0;
 	}
+
 	InitMainWindow();
 	EngineService::OnInit();
 	Platform::BeforeRun();

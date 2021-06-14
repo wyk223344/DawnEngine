@@ -9,6 +9,9 @@ protected:
 	virtual ~WindowBase();
 
 public:
-
+	/// <summary>
+	/// ªÒ»°œ‘ æ¥∞æ‰±˙
+	/// </summary>
+	/// <returns></returns>
 	virtual void* GetNativePtr() const = 0;
 };

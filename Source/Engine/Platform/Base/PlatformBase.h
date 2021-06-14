@@ -11,33 +11,33 @@ class PlatformBase
 
 public:
     /// <summary>
-    /// Initializes the runtime platform service. Called on very beginning pf the engine startup.
+    /// 初始化Platform
     /// </summary>
-    /// <returns>True if failed ot initialize platform, otherwise false.</returns>
+    /// <returns>true表示成功初始化，false表示初始化失败.</returns>
     static bool Init();
 
     /// <summary>
-    /// Writes the platform info to the log. Called after platform and logging service init but before engine services initialization.
+    /// 记录log到文件
     /// </summary>
     static void LogInfo();
 
     /// <summary>
-    /// Called just before main game loop start.
+    /// 在正式进入游戏主循环前调用
     /// </summary>
     static void BeforeRun();
 
     /// <summary>
-    /// Tick platform from game loop by main thread.
+    /// 在主线程游戏主循环中调用
     /// </summary>
     static void Tick();
 
     /// <summary>
-    /// Called before engine exit to pre dispose platform service.
+    /// 在引擎退出前(还未进行清理)调用
     /// </summary>
     static void BeforeExit();
 
     /// <summary>
-    /// Called after engine exit to shutdown platform service.
+    /// 在引擎退出后(已完成清理)调用
     /// </summary>
     static void Exit();
 
@@ -54,7 +54,7 @@ public:
     /// </summary>
     /// <param name="settings">The window settings</param>
     /// <returns></returns>
-    //static Window* CreateWindow(const CreateWindowSettings& settings) = delete;
+    static Window* CreateWindow(const CreateWindowSettings& settings) = delete;
 
     /// <summary>
     /// Allocates memory on a specified alignment boundary.

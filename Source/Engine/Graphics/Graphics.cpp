@@ -47,7 +47,10 @@ bool GraphicsService::Init()
 
 void GraphicsService::Draw()
 {
-
+	if (GPUDevice::Instance != nullptr)
+	{
+		GPUDevice::Instance->Draw();
+	}
 }
 
 void GraphicsService::BeforeExit()

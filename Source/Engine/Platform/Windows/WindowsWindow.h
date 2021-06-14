@@ -15,15 +15,7 @@ private:
     unsigned int m_Height;
 
 public:
-    /// <summary>
-    /// Initializes a new instance of the <see cref="WindowsWindow"/> class.
-    /// </summary>
-    /// <param name="settings">The initial window settings.</param>
     WindowsWindow(const CreateWindowSettings& settings);
-
-    /// <summary>
-    /// Finalizes an instance of the <see cref="WindowsWindow"/> class.
-    /// </summary>
     ~WindowsWindow();
 
 public:

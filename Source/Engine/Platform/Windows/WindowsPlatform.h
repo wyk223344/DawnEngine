@@ -14,7 +14,7 @@ public:
 public:
 
     /// <summary>
-    /// Pre initialize platform.
+    /// 预初始化Platform，在Init前调用
     /// </summary>
     /// <param name="hInstance">The Win32 application instance.</param>
     static void PreInit(void* hInstance);

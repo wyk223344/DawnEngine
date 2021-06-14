@@ -20,11 +20,15 @@ GPUDevice* GPUDeviceDX12::Create()
 
 bool GPUDeviceDX12::Init()
 {
+	
 	// Create DXGI Factory
 	ThrowIfFailed(CreateDXGIFactory1(IID_PPV_ARGS(&m_FactoryDXGI)));
 
 	// Create Device
 	ThrowIfFailed(D3D12CreateDevice(nullptr, D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS(&m_Device)));
+
+	// Create Fence
+	ThrowIfFailed(m_Device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&m_Fence)));
 
 	// Get Descriptor Size
 	m_RtvDescriptorSize = m_Device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
@@ -53,7 +57,7 @@ bool GPUDeviceDX12::Init()
 		D3D12_COMMAND_LIST_TYPE_DIRECT,
 		IID_PPV_ARGS(m_DirectCmdListAlloc.GetAddressOf())
 	));
-
+	
 	// Create Command List
 	ThrowIfFailed(m_Device->CreateCommandList(
 		0,
@@ -64,6 +68,33 @@ bool GPUDeviceDX12::Init()
 	));
 	m_CommandList->Close();
 
+	// Create swap chain
+	m_SwapChain.Reset();
+
+	Window* mainWindow = Engine::MainWindow;
+	DXGI_SWAP_CHAIN_DESC swapChainDesc;
+	swapChainDesc.BufferDesc.Width = 800;
+	swapChainDesc.BufferDesc.Height = 600;
+	swapChainDesc.BufferDesc.RefreshRate.Numerator = 60;
+	swapChainDesc.BufferDesc.RefreshRate.Denominator = 1;
+	swapChainDesc.BufferDesc.Format = BackBufferFormat;
+	swapChainDesc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
+	swapChainDesc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
+	swapChainDesc.SampleDesc.Count = m_MsaaState ? 4 : 1;
+	swapChainDesc.SampleDesc.Quality = m_MsaaState ? (m_MsaaQuality - 1) : 0;
+	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	swapChainDesc.BufferCount = SwapChainBufferCount;
+	swapChainDesc.OutputWindow = (HWND)mainWindow->GetNativePtr();
+	swapChainDesc.Windowed = true;
+	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
+	swapChainDesc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
+
+	ThrowIfFailed(m_FactoryDXGI->CreateSwapChain(
+		m_CommandQueue.Get(),
+		&swapChainDesc,
+		m_SwapChain.GetAddressOf()
+	));
+	// return false;
 	// Create Descriptor Heaps
 	D3D12_DESCRIPTOR_HEAP_DESC rtvHeapDesc;
 	rtvHeapDesc.NumDescriptors = SwapChainBufferCount;
@@ -85,12 +116,16 @@ bool GPUDeviceDX12::Init()
 		IID_PPV_ARGS(m_DsvHeap.GetAddressOf())
 	));
 
+	Resize(mainWindow->GetWidth(), mainWindow->GetHeight());
+
 	BuildTemp();
+
 	return GPUDevice::Init();
 }
 
 void GPUDeviceDX12::Draw()
 {
+	
 	// Update
 	// 球坐标转换为笛卡尔坐标
 	float x = m_Radius * sinf(m_Phi) * cosf(m_Theta);
@@ -114,7 +149,7 @@ void GPUDeviceDX12::Draw()
 	DirectX::XMStoreFloat4x4(&objConstants.WorldViewProj, DirectX::XMMatrixTranspose(worldViewProj));
 	objConstants.Time = 0.0;
 	m_ObjectCB->CopyData(0, objConstants);
-
+	//return;
 	// Do draw
 	// 复用记录命令所用的内存
 	// 只有当GPU中的命令列表执行完毕后，我们才可以对其进行重置
@@ -171,6 +206,7 @@ void GPUDeviceDX12::Draw()
 	// done for simplicity.  Later we will show how to organize our rendering code
 	// so we do not have to wait per frame.
 	FlushCommandQueue();
+
 }
 
 void GPUDeviceDX12::Dispose()
@@ -181,6 +217,10 @@ void GPUDeviceDX12::Dispose()
 
 void GPUDeviceDX12::Resize(int width, int height)
 {
+	assert(m_Device);
+	assert(m_SwapChain);
+	assert(m_DirectCmdListAlloc);
+
 	FlushCommandQueue();
 
 	ThrowIfFailed(m_CommandList->Reset(m_DirectCmdListAlloc.Get(), nullptr));
@@ -192,30 +232,6 @@ void GPUDeviceDX12::Resize(int width, int height)
 	}
 	m_DepthStencilBuffer.Reset();
 
-	// Create Swap Chain
-	if (m_SwapChain.Get() == nullptr)
-	{
-		Window* mainWindow = Engine::MainWindow;
-		DXGI_SWAP_CHAIN_DESC swapChainDesc;
-		swapChainDesc.BufferDesc.Width = width;
-		swapChainDesc.BufferDesc.Height = height;
-		swapChainDesc.BufferDesc.RefreshRate.Numerator = 60;
-		swapChainDesc.BufferDesc.RefreshRate.Denominator = 1;
-		swapChainDesc.BufferDesc.Format = BackBufferFormat;
-		swapChainDesc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
-		swapChainDesc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
-		swapChainDesc.SampleDesc.Count = m_MsaaState ? 4 : 1;
-		swapChainDesc.SampleDesc.Quality = m_MsaaState ? (m_MsaaQuality - 1) : 0;
-		swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-		swapChainDesc.BufferCount = SwapChainBufferCount;
-		swapChainDesc.OutputWindow = (HWND)mainWindow->GetNativePtr();
-		ThrowIfFailed(m_FactoryDXGI->CreateSwapChain(
-			m_CommandQueue.Get(),
-			&swapChainDesc,
-			m_SwapChain.GetAddressOf()
-		));
-	}
-	
 	// Resize the swap chain
 	ThrowIfFailed(m_SwapChain->ResizeBuffers(
 		SwapChainBufferCount,
@@ -298,11 +314,17 @@ void GPUDeviceDX12::Resize(int width, int height)
 	m_ScreenViewport.MaxDepth = 1.0f;
 
 	m_ScissorRect = { 0, 0, width, height };
+
+
+	// The window resized, so update the aspect ratio and recompute the projection matrix.
+	XMMATRIX P = XMMatrixPerspectiveFovLH(0.25f * MathHelper::Pi, 800.0f / 600.0f, 1.0f, 1000.0f);
+	XMStoreFloat4x4(&m_Proj, P);
 }
 
 
 void GPUDeviceDX12::FlushCommandQueue()
 {
+
 	// Advance the fence value to mark commands up to this fence point.
 	m_CurrentFence++;
 
@@ -319,6 +341,7 @@ void GPUDeviceDX12::FlushCommandQueue()
 		WaitForSingleObject(eventHandle, INFINITE);
 		CloseHandle(eventHandle);
 	}
+
 }
 
 
@@ -342,6 +365,7 @@ D3D12_CPU_DESCRIPTOR_HANDLE GPUDeviceDX12::DepthStencilView() const
 
 void GPUDeviceDX12::BuildTemp()
 {
+
 	ThrowIfFailed(m_CommandList->Reset(m_DirectCmdListAlloc.Get(), nullptr));
 
 	// Build Descriptor Heap
@@ -504,6 +528,15 @@ void GPUDeviceDX12::BuildTemp()
 	psoDesc.SampleDesc.Quality = m_MsaaState ? (m_MsaaQuality - 1) : 0;
 	psoDesc.DSVFormat = DepthStencilFormat;
 	ThrowIfFailed(m_Device->CreateGraphicsPipelineState(&psoDesc, IID_PPV_ARGS(&m_PSO)));
+
+	// Execute the initialization commands.
+	ThrowIfFailed(m_CommandList->Close());
+	ID3D12CommandList* cmdsLists[] = { m_CommandList.Get() };
+	m_CommandQueue->ExecuteCommandLists(_countof(cmdsLists), cmdsLists);
+
+	// Wait until initialization is complete.
+	FlushCommandQueue();
+
 }
 
 

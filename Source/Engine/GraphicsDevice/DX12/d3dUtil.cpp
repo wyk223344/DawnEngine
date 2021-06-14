@@ -2,6 +2,7 @@
 #include "d3dUtil.h"
 #include <comdef.h>
 #include <fstream>
+#include <d3d12.h>
 
 using Microsoft::WRL::ComPtr;
 
@@ -27,6 +28,7 @@ ComPtr<ID3DBlob> d3dUtil::LoadBinary(const std::wstring& filename)
     fin.seekg(0, std::ios_base::beg);
 
     ComPtr<ID3DBlob> blob;
+
     ThrowIfFailed(D3DCreateBlob(size, blob.GetAddressOf()));
 
     fin.read((char*)blob->GetBufferPointer(), size);
@@ -99,6 +101,7 @@ ComPtr<ID3DBlob> d3dUtil::CompileShader(
 	HRESULT hr = S_OK;
 
 	ComPtr<ID3DBlob> byteCode = nullptr;
+
 	ComPtr<ID3DBlob> errors;
 	hr = D3DCompileFromFile(filename.c_str(), defines, D3D_COMPILE_STANDARD_FILE_INCLUDE,
 		entrypoint.c_str(), target.c_str(), compileFlags, 0, &byteCode, &errors);

@@ -11,9 +11,8 @@ public:
 	/// <summary>
 	/// main function
 	/// </summary>
-	/// <param name="cmdLine"></param>
 	/// <returns></returns>
-	static int32 Main(const Char* cmdLine);
+	static int32 Main();
 
 public:
 	/// <summary>
