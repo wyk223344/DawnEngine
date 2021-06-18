@@ -3,18 +3,20 @@
 #include "Window.h"
 #include <vector>
 
-
-class WindowsManager
+namespace DawnEngine
 {
-public:
-	static std::vector<Window*> Windows;
+	class WindowsManager
+	{
+	public:
+		static std::vector<Window*> Windows;
 
-public:
+	public:
 
-	static Window* GetByNativePtr(void* handle);
+		static Window* GetByNativePtr(void* handle);
 
-public:
-	// Used by WindowBase
-	static void Register(Window* win);
-	static void Unregister(Window* win);
-};
+	public:
+		// Used by WindowBase
+		static void Register(Window* win);
+		static void Unregister(Window* win);
+	};
+}

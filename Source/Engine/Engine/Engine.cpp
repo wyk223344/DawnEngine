@@ -6,6 +6,7 @@
 #include "Engine/Platform/Platform.h"
 #include "Engine/Platform/CreateWindowSettings.h"
 
+using namespace DawnEngine;
 
 Window* Engine::MainWindow = nullptr;
 

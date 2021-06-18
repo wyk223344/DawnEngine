@@ -1,9 +1,13 @@
 #pragma once
 
-
-struct NonCopyable
+namespace DawnEngine
 {
-    NonCopyable() = default;
-    NonCopyable(const NonCopyable&) = delete;
-    NonCopyable& operator=(const NonCopyable&) = delete;
-};
+
+    struct NonCopyable
+    {
+        NonCopyable() = default;
+        NonCopyable(const NonCopyable&) = delete;
+        NonCopyable& operator=(const NonCopyable&) = delete;
+    };
+
+}

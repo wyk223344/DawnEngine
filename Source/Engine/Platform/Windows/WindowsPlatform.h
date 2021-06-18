@@ -5,28 +5,31 @@
 #include "Engine/Platform/Base/PlatformBase.h"
 #include "Engine/Platform/Windows/IncludeWindowsHeader.h"
 
-class WindowsPlatform : public PlatformBase
+namespace DawnEngine
 {
-public:
-    // windows平台的实例句柄
-    static void* InstanceHandle;
 
-public:
+    class WindowsPlatform : public PlatformBase
+    {
+    public:
+        // windows平台的实例句柄
+        static void* InstanceHandle;
 
-    /// <summary>
-    /// 预初始化Platform，在Init前调用
-    /// </summary>
-    /// <param name="hInstance">The Win32 application instance.</param>
-    static void PreInit(void* hInstance);
+    public:
 
-public: // override
+        /// <summary>
+        /// 预初始化Platform，在Init前调用
+        /// </summary>
+        /// <param name="hInstance">The Win32 application instance.</param>
+        static void PreInit(void* hInstance);
 
-    static void Tick();
-    static void* Allocate(uint64 size, uint64 alignment);
-    static void Free(void* ptr);
+    public: // override
 
-    static Window* CreateWindow(const CreateWindowSettings& settings);
-};
+        static void Tick();
+        static void* Allocate(uint64 size, uint64 alignment);
+        static void Free(void* ptr);
 
+        static Window* CreateWindow(const CreateWindowSettings& settings);
+    };
+}
 
 #endif

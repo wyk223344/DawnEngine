@@ -55,6 +55,9 @@
     <Filter Include="Engine\Core\Memory">
       <UniqueIdentifier>{054602e8-1897-45b7-9120-a84d0efbedc0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\GraphicsDevice\DX12\GPUResource">
+      <UniqueIdentifier>{aabd3a4f-c5af-4214-93ee-abdd8f71a928}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine\Core\Delegate.h">
@@ -162,6 +165,84 @@
     <ClInclude Include="Source\Engine\GraphicsDevice\DX12\UploadBuffer.h">
       <Filter>Engine\GraphicsDevice\DX12</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUResource\GPUResource.h">
+      <Filter>Engine\GraphicsDevice\DX12\GPUResource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUResource\GPUBuffer.h">
+      <Filter>Engine\GraphicsDevice\DX12\GPUResource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUResource\PixelBuffer.h">
+      <Filter>Engine\GraphicsDevice\DX12\GPUResource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUResource\DepthBuffer.h">
+      <Filter>Engine\GraphicsDevice\DX12\GPUResource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUResource\ColorBuffer.h">
+      <Filter>Engine\GraphicsDevice\DX12\GPUResource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\Math\Color.h">
+      <Filter>Engine\Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\Math\Vector3.h">
+      <Filter>Engine\Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\Math\Vector4.h">
+      <Filter>Engine\Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\Math\Matrix4x4.h">
+      <Filter>Engine\Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\Math\Matrix3x3.h">
+      <Filter>Engine\Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\Include.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\GPUBuffer.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\GPUAdapter.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\GPUResource.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\GPUSwapChain.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\GPUPipelineState.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\Enums.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\Core.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\CommandAllocatorPoolDX12.h">
+      <Filter>Engine\GraphicsDevice\DX12</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\CommandQueueDX12.h">
+      <Filter>Engine\GraphicsDevice\DX12</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\DescriptorHeapDX12.h">
+      <Filter>Engine\GraphicsDevice\DX12</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUBufferDX12.h">
+      <Filter>Engine\GraphicsDevice\DX12</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUPipelineStateDX12.h">
+      <Filter>Engine\GraphicsDevice\DX12</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUShaderDX12.h">
+      <Filter>Engine\GraphicsDevice\DX12</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUSwapChainDX12.h">
+      <Filter>Engine\GraphicsDevice\DX12</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\Types\Pair.h">
+      <Filter>Engine\Core\Types</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Main\Windows\main.cpp">
@@ -219,6 +300,42 @@
       <Filter>Engine\GraphicsDevice\DX12</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\GraphicsDevice\DX12\MathHelper.cpp">
+      <Filter>Engine\GraphicsDevice\DX12</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUResource\GPUResource.cpp">
+      <Filter>Engine\GraphicsDevice\DX12\GPUResource</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUResource\GPUBuffer.cpp">
+      <Filter>Engine\GraphicsDevice\DX12\GPUResource</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUResource\PixelBuffer.cpp">
+      <Filter>Engine\GraphicsDevice\DX12\GPUResource</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUResource\DepthBuffer.cpp">
+      <Filter>Engine\GraphicsDevice\DX12\GPUResource</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUResource\ColorBuffer.cpp">
+      <Filter>Engine\GraphicsDevice\DX12\GPUResource</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\CommandAllocatorPoolDX12.cpp">
+      <Filter>Engine\GraphicsDevice\DX12</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\CommandQueueDX12.cpp">
+      <Filter>Engine\GraphicsDevice\DX12</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\DescriptorHeapDX12.cpp">
+      <Filter>Engine\GraphicsDevice\DX12</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUBufferDX12.cpp">
+      <Filter>Engine\GraphicsDevice\DX12</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUPipelineStateDX12.cpp">
+      <Filter>Engine\GraphicsDevice\DX12</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUShaderDX12.cpp">
+      <Filter>Engine\GraphicsDevice\DX12</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUSwapChainDX12.cpp">
       <Filter>Engine\GraphicsDevice\DX12</Filter>
     </ClCompile>
   </ItemGroup>

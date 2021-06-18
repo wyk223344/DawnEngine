@@ -6,6 +6,10 @@
 
 #include <string>
 
+
+using namespace DawnEngine;
+
+
 WindowsWindow::WindowsWindow(const CreateWindowSettings& settings) : WindowBase(settings)
 {
     m_Width = settings.Width;

@@ -3,6 +3,7 @@
 #include "Engine/Platform/WindowsManager.h"
 #include "Engine/Engine/EngineService.h"
 
+using namespace DawnEngine;
 
 class WindowsManagerService : public EngineService
 {

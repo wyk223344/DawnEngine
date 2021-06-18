@@ -1,7 +1,11 @@
 #pragma once
 
-
-class GPUContext
+namespace DawnEngine
 {
 
-};
+	class GPUContext
+	{
+
+	};
+
+}

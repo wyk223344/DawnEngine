@@ -8,6 +8,7 @@
 #include <conio.h>
 #include <stdio.h>
 
+using namespace DawnEngine;
 
 //int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPTSTR cmdLine, int showCmd)
 //{

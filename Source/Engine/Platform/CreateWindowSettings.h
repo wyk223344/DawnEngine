@@ -1,11 +1,14 @@
 #pragma once
 
-
-
-struct CreateWindowSettings
+namespace DawnEngine
 {
-	bool Fullscreen = false;
 
-	unsigned int Width = 800;
-	unsigned int Height = 600;
-};
+	struct CreateWindowSettings
+	{
+		bool Fullscreen = false;
+
+		unsigned int Width = 800;
+		unsigned int Height = 600;
+	};
+
+}

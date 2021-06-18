@@ -4,6 +4,8 @@
 #include "Engine/Graphics/Graphics.h"
 #include "Engine/Graphics/GPUDevice.h"
 
+using namespace DawnEngine;
+
 
 #if GRAPHICS_API_DIRECTX12
 extern GPUDevice* CreateGPUDeviceDX12();

@@ -3,6 +3,7 @@
 #include "Engine/Engine/EngineService.h"
 #include <algorithm>
 
+using namespace DawnEngine;
 
 static bool CompareEngineServices(EngineService* const& a, EngineService* const& b)
 {

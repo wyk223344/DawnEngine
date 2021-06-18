@@ -8,6 +8,8 @@
 
 #include <string>
 
+using namespace DawnEngine;
+
 
 void* WindowsPlatform::InstanceHandle = nullptr;
 

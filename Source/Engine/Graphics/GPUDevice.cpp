@@ -2,6 +2,9 @@
 #include "Engine/Graphics/GPUDevice.h"
 
 
+using namespace DawnEngine;
+
+
 GPUDevice* GPUDevice::Instance = nullptr;
 
 

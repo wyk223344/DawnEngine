@@ -4,47 +4,50 @@
 #include "Engine/Core/Types/BaseTypes.h"
 #include <vector>
 
-
-class EngineService
+namespace DawnEngine
 {
-public:
-	typedef std::vector<EngineService*> EngineServicesArray;
 
-public:
+	class EngineService
+	{
+	public:
+		typedef std::vector<EngineService*> EngineServicesArray;
 
-	/// <summary>
-	/// 获取注册的Services
-	/// </summary>
-	/// <returns></returns>
-	static EngineServicesArray& GetServices();
+	public:
 
-	/// <summary>
-	/// 排序注册的Services
-	/// </summary>
-	static void Sort();
+		/// <summary>
+		/// 获取注册的Services
+		/// </summary>
+		/// <returns></returns>
+		static EngineServicesArray& GetServices();
 
-private:
-	
-	bool IsInitialized = false;
+		/// <summary>
+		/// 排序注册的Services
+		/// </summary>
+		static void Sort();
 
-protected:
-	
-	EngineService(const Char* name, int32 order = 0);
+	private:
 
-public:
+		bool IsInitialized = false;
 
-	virtual ~EngineService() = default;
+	protected:
 
-	const Char* Name;
-	int32 Order;
+		EngineService(const Char* name, int32 order = 0);
+
+	public:
+
+		virtual ~EngineService() = default;
+
+		const Char* Name;
+		int32 Order;
 
 #define DECLARE_ENGINE_SERVICE_EVENT(result, name) virtual result name(); static void On##name();
-	DECLARE_ENGINE_SERVICE_EVENT(bool, Init);
-	DECLARE_ENGINE_SERVICE_EVENT(void, FixedUpdate);
-	DECLARE_ENGINE_SERVICE_EVENT(void, Update);
-	DECLARE_ENGINE_SERVICE_EVENT(void, LateUpdate);
-	DECLARE_ENGINE_SERVICE_EVENT(void, Draw);
-	DECLARE_ENGINE_SERVICE_EVENT(void, BeforeExit);
-	DECLARE_ENGINE_SERVICE_EVENT(void, Dispose);
+		DECLARE_ENGINE_SERVICE_EVENT(bool, Init);
+		DECLARE_ENGINE_SERVICE_EVENT(void, FixedUpdate);
+		DECLARE_ENGINE_SERVICE_EVENT(void, Update);
+		DECLARE_ENGINE_SERVICE_EVENT(void, LateUpdate);
+		DECLARE_ENGINE_SERVICE_EVENT(void, Draw);
+		DECLARE_ENGINE_SERVICE_EVENT(void, BeforeExit);
+		DECLARE_ENGINE_SERVICE_EVENT(void, Dispose);
 #undef DECLARE_ENGINE_SERVICE_EVENT
-};
+	};
+}

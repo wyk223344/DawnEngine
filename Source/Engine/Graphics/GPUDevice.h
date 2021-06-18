@@ -3,56 +3,60 @@
 
 #include "Engine/Graphics/GPUContext.h"
 
-
-class GPUDevice
+namespace DawnEngine
 {
-public:
-	static GPUDevice* Instance;
 
-public:
-    // virtual GPUContext* GetMainContext() = 0;
-
-public:
-
-    /// <summary>
-    /// Init device resources
-    /// </summary>
-    /// <returns>True if cannot init, otherwise false.</returns>
-    virtual bool Init();
-
-    /// <summary>
-    /// Checks if GPU can render frame now (all data is ready), otherwise will skip frame rendering.
-    /// </summary>
-    /// <returns>True if skip rendering, otherwise false.</returns>
-   /* virtual bool CanDraw()
+    class GPUDevice
     {
-        return true;
-    }*/
+    public:
+        static GPUDevice* Instance;
 
-    /// <summary>
-    /// Call frame rendering and process data using GPU
-    /// </summary>
-    virtual void Draw();
+    public:
+        // virtual GPUContext* GetMainContext() = 0;
 
-    /// <summary>
-    /// Clean all allocated data by device
-    /// </summary>
-    virtual void Dispose();
+    public:
 
-    /// <summary>
-    /// Wait for GPU end doing submitted work
-    /// </summary>
-    // virtual void WaitForGPU() = 0;
+        /// <summary>
+        /// Init device resources
+        /// </summary>
+        /// <returns>True if cannot init, otherwise false.</returns>
+        virtual bool Init();
 
-protected:
+        /// <summary>
+        /// Checks if GPU can render frame now (all data is ready), otherwise will skip frame rendering.
+        /// </summary>
+        /// <returns>True if skip rendering, otherwise false.</returns>
+       /* virtual bool CanDraw()
+        {
+            return true;
+        }*/
 
-    ///// <summary>
-    ///// Called during Draw method before any frame rendering initialization. Cannot be used to submit commands to GPU.
-    ///// </summary>
-    //virtual void DrawBegin();
+        /// <summary>
+        /// Call frame rendering and process data using GPU
+        /// </summary>
+        virtual void Draw();
 
-    ///// <summary>
-    ///// Called during Draw method after rendering. Cannot be used to submit commands to GPU.
-    ///// </summary>
-    //virtual void DrawEnd();
-};
+        /// <summary>
+        /// Clean all allocated data by device
+        /// </summary>
+        virtual void Dispose();
+
+        /// <summary>
+        /// Wait for GPU end doing submitted work
+        /// </summary>
+        // virtual void WaitForGPU() = 0;
+
+    protected:
+
+        ///// <summary>
+        ///// Called during Draw method before any frame rendering initialization. Cannot be used to submit commands to GPU.
+        ///// </summary>
+        //virtual void DrawBegin();
+
+        ///// <summary>
+        ///// Called during Draw method after rendering. Cannot be used to submit commands to GPU.
+        ///// </summary>
+        //virtual void DrawEnd();
+    };
+
+}

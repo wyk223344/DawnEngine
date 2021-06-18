@@ -1,5 +1,7 @@
 #include "Engine/Platform/Base/PlatformBase.h"
 
+using namespace DawnEngine;
+
 bool PlatformBase::Init()
 {
 	return true;

@@ -1,7 +1,9 @@
 #pragma once
 
-
-class Graphics
+namespace DawnEngine
 {
+	class Graphics
+	{
 
-};
+	};
+}

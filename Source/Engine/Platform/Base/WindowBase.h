@@ -2,16 +2,21 @@
 
 #include "Engine/Platform/CreateWindowSettings.h"
 
-class WindowBase
+namespace DawnEngine
 {
-protected:
-	explicit WindowBase(const CreateWindowSettings& settings);
-	virtual ~WindowBase();
 
-public:
-	/// <summary>
-	/// 获取显示窗句柄
-	/// </summary>
-	/// <returns></returns>
-	virtual void* GetNativePtr() const = 0;
-};
+	class WindowBase
+	{
+	protected:
+		explicit WindowBase(const CreateWindowSettings& settings);
+		virtual ~WindowBase();
+
+	public:
+		/// <summary>
+		/// 获取显示窗句柄
+		/// </summary>
+		/// <returns></returns>
+		virtual void* GetNativePtr() const = 0;
+	};
+
+}
