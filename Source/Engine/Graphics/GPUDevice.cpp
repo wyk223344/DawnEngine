@@ -22,13 +22,3 @@ void GPUDevice::Dispose()
 {
 
 }
-
-//void GPUDevice::DrawBegin()
-//{
-//
-//}
-//
-//void GPUDevice::DrawEnd()
-//{
-//
-//}

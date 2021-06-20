@@ -10,23 +10,18 @@ namespace DawnEngine
 
     class WindowsWindow : public WindowBase
     {
-    private:
-        HWND__* m_Handle;
-
-        unsigned int m_Width;
-        unsigned int m_Height;
-
     public:
+
         WindowsWindow(const CreateWindowSettings& settings);
         ~WindowsWindow();
 
-    public:
+    public: // override
 
-        void* GetNativePtr() const override;
+        void* GetNativePtr() const override { return m_Handle; }
 
-        unsigned int GetWidth() const;
+    private:
 
-        unsigned int GetHeight() const;
+        HWND__* m_Handle;
     };
 }
 

@@ -11,15 +11,13 @@ namespace DawnEngine
     class WindowsPlatform : public PlatformBase
     {
     public:
+
         // windows平台的实例句柄
         static void* InstanceHandle;
 
     public:
 
-        /// <summary>
-        /// 预初始化Platform，在Init前调用
-        /// </summary>
-        /// <param name="hInstance">The Win32 application instance.</param>
+        // 预初始化Platform，在Init前调用
         static void PreInit(void* hInstance);
 
     public: // override

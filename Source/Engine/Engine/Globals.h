@@ -8,10 +8,11 @@ namespace DawnEngine
     class Globals
     {
     public:
-        // True if engine need to be closed
+
+        // 如果为true，则表示游戏要退出了
         static bool IsRequestingExit;
 
-        // Exit code
+        // 退出码，表示退出原因
         static int32 ExitCode;
     };
 

@@ -11,7 +11,7 @@ using namespace DawnEngine;
 extern GPUDevice* CreateGPUDeviceDX12();
 #endif 
 
-
+#pragma region GraphicsService
 
 class GraphicsService : public EngineService
 {
@@ -41,7 +41,7 @@ bool GraphicsService::Init()
 	{
 		return false;
 	}
-	
+
 	GPUDevice::Instance = device;
 
 	return true;
@@ -65,3 +65,7 @@ void GraphicsService::Dispose()
 {
 
 }
+
+#pragma endregion
+
+

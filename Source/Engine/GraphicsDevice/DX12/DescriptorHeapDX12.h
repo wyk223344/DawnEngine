@@ -37,7 +37,7 @@ namespace DawnEngine::DX12
 			}
 
 			D3D12_CPU_DESCRIPTOR_HANDLE CPU() const;
-			D3D12_CPU_DESCRIPTOR_HANDLE GPU() const;
+			D3D12_GPU_DESCRIPTOR_HANDLE GPU() const;
 
 			// Creates shader resource view
 			void CreateSRV(GPUDeviceDX12* device, ID3D12Resource* resource, D3D12_SHADER_RESOURCE_VIEW_DESC* desc = nullptr);
@@ -65,6 +65,7 @@ namespace DawnEngine::DX12
 		uint32 m_IncrementSize;
 		uint32 m_DescriptorsCount;
 		bool m_ShaderVisible;
+		std::vector<uint32> m_Usage;
 
 	public:
 

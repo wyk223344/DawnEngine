@@ -16,6 +16,13 @@ namespace DawnEngine
 	template<class DeviceType, class BaseType>
 	class GPUResourceBase : public BaseType
 	{
+	public:
+
+		GPUResourceBase(DeviceType* device)
+			: m_Device(device)
+		{
+		}
+
 	protected:
 		DeviceType* m_Device;
 	};

@@ -13,15 +13,14 @@ Window* Engine::MainWindow = nullptr;
 
 int32 Engine::Main()
 {
-	// Main message loop:
 	if (!Platform::Init())
 	{
 		LOG_ERROR("Fail to init platform!!!");
 		return 0;
 	}
 
-	InitMainWindow();
 	EngineService::OnInit();
+	InitMainWindow();
 	Platform::BeforeRun();
 
 	while (!Globals::IsRequestingExit)
@@ -41,4 +40,5 @@ void Engine::InitMainWindow()
 	settings.Width = 800;
 	settings.Height = 600;
 	Engine::MainWindow = Platform::CreateWindow(settings);
+	
 }

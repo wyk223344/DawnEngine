@@ -85,7 +85,4 @@ Window* WindowsPlatform::CreateWindow(const CreateWindowSettings& settings)
 
 
 
-
-
-
 #endif

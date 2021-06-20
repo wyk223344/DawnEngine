@@ -12,8 +12,6 @@ using namespace DawnEngine;
 
 WindowsWindow::WindowsWindow(const CreateWindowSettings& settings) : WindowBase(settings)
 {
-    m_Width = settings.Width;
-    m_Height = settings.Height;
 	m_Handle = nullptr;
 
 	RECT R = { 0, 0, m_Width, m_Height };
@@ -47,21 +45,6 @@ WindowsWindow::~WindowsWindow()
 {
 }
 
-
-void* WindowsWindow::GetNativePtr() const
-{
-    return m_Handle;
-}
-
-unsigned int WindowsWindow::GetWidth() const
-{
-    return m_Width;
-}
-
-unsigned int WindowsWindow::GetHeight() const
-{
-    return m_Height;
-}
 
 
 #endif

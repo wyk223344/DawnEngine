@@ -14,15 +14,10 @@ namespace DawnEngine
 
 	public:
 
-		/// <summary>
-		/// 获取注册的Services
-		/// </summary>
-		/// <returns></returns>
+		// 获取注册的Services
 		static EngineServicesArray& GetServices();
 
-		/// <summary>
-		/// 排序注册的Services
-		/// </summary>
+		// 排序注册的Services
 		static void Sort();
 
 	private:

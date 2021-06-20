@@ -2,7 +2,9 @@
 
 namespace DawnEngine
 {
-
+	/*
+		GPU Context
+	*/
 	class GPUContext
 	{
 

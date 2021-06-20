@@ -10,22 +10,17 @@ namespace DawnEngine
 	{
 	public:
 
-		/// <summary>
-		/// main function
-		/// </summary>
-		/// <returns></returns>
+		// 主函数
 		static int32 Main();
 
 	public:
-		/// <summary>
-		/// 主窗口
-		/// </summary>
+
+		// 主窗口
 		static Window* MainWindow;
 
 	private:
-		/// <summary>
-		/// 初始化主窗口
-		/// </summary>
+		
+		// 初始化主窗口
 		static void InitMainWindow();
 	};
 
