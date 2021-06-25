@@ -18,9 +18,6 @@
 #include <Windows.h>
 #include <DirectXMath.h>
 #include <cstdint>
-#include "d3dx12.h"
-#include "d3dUtil.h"
-#include "UploadBuffer.h"
 
 #pragma comment(lib,"d3dcompiler.lib")
 #pragma comment(lib, "D3D12.lib")
@@ -30,5 +27,17 @@
 #define D3D12_GPU_VIRTUAL_ADDRESS_UNKNOWN   ((D3D12_GPU_VIRTUAL_ADDRESS)-1)
 
 #define DX12_BACK_BUFFER_COUNT 2
+#define DX12_RB_BUFFER_SIZE 16
+
+#ifndef ThrowIfFailed
+#define ThrowIfFailed(x)                                              \
+{                                                                     \
+    HRESULT hr__ = (x);                                               \
+    if(FAILED(hr__))                                                  \
+    {                                                                 \
+        LOG_ERROR("ThrowIfFailed %s %d", __FILE__, __LINE__);         \
+    }                                                                 \
+}
+#endif
 
 #endif

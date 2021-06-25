@@ -12,8 +12,6 @@ WindowBase::WindowBase(const CreateWindowSettings& settings)
 	m_SwapChain = nullptr;
 
 	WindowsManager::Register((Window*)this);
-
-	InitSwapChain();
 }
 
 WindowBase::~WindowBase()
@@ -30,6 +28,6 @@ bool WindowBase::InitSwapChain()
 			return false;
 		}
 	}
-
+	m_SwapChain->Resize(m_Width, m_Height);
 	return true;
 }

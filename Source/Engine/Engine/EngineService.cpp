@@ -73,7 +73,7 @@ void EngineService::OnInit()
 	for (int32 i = 0; i < services.size(); i++)
 	{
 		const auto service = services[i];
-		LOG_INFO("Initialize %s...", service->Name);
+		LOG_INFO("Initialize %ls...", service->Name);
 		service->IsInitialized = true;
 		service->Init();
 	}

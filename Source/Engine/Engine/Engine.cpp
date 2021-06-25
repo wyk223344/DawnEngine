@@ -36,9 +36,14 @@ int32 Engine::Main()
 
 void Engine::InitMainWindow()
 {
+	LOG_INFO("Start init main window");
 	CreateWindowSettings settings;
 	settings.Width = 800;
 	settings.Height = 600;
 	Engine::MainWindow = Platform::CreateWindow(settings);
-	
+	if (!Engine::MainWindow->InitSwapChain())
+	{
+		LOG_ERROR("Fail init swap chain");
+	}
+	LOG_INFO("Finish init main window");
 }

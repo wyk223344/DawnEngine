@@ -141,7 +141,7 @@ DescriptorHeapPoolDX12::DescriptorHeapPoolDX12(GPUDeviceDX12* device, D3D12_DESC
 void DescriptorHeapPoolDX12::Init()
 {
     auto heap = New<DescriptorHeapWithSlotsDX12>(m_Device);
-    if (heap->Create(m_Type, m_DescriptorsCount, m_ShaderVisible))
+    if (!heap->Create(m_Type, m_DescriptorsCount, m_ShaderVisible))
     {
         LOG_ERROR("Failed to allocate descriptor heap.");
     }
@@ -160,7 +160,7 @@ void DescriptorHeapPoolDX12::AllocateSlot(DescriptorHeapWithSlotsDX12*& heap, ui
     }
 
     heap = New<DescriptorHeapWithSlotsDX12>(m_Device);
-    if (heap->Create(m_Type, m_DescriptorsCount, m_ShaderVisible))
+    if (!heap->Create(m_Type, m_DescriptorsCount, m_ShaderVisible))
     {
         LOG_ERROR("Failed to allocate descriptor heap.");
     }

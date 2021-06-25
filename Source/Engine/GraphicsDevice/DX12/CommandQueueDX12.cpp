@@ -97,10 +97,10 @@ CommandQueueDX12::~CommandQueueDX12()
 // Init resources
 bool CommandQueueDX12::Init()
 {
-	assert(m_Device != nullptr);
+	/*assert(m_Device != nullptr);
 	assert(!IsReady());
-	assert(m_AllocatorPool.Size() == 0);
-
+	assert(m_AllocatorPool.Size() == 0);*/
+	LOG_INFO("CommandQueueDX12 Start Init!");
 	D3D12_COMMAND_QUEUE_DESC queueDesc = {};
 	queueDesc.Type = m_Type;
 	queueDesc.Flags = D3D12_COMMAND_QUEUE_FLAG_NONE;

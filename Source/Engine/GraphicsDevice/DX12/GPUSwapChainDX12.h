@@ -4,18 +4,19 @@
 #if GRAPHICS_API_DIRECTX12
 
 #include "GPUDeviceDX12.h"
+#include "GPUResourceDX12.h"
 #include "IncludeDX12Headers.h"
 #include "Engine/Graphics/GPUSwapChain.h"
 #include "Engine/Platform/Window.h"
 
 namespace DawnEngine::DX12
 {
-	class GPUSwapChainDX12 : GPUResourceDX12<GPUSwapChain>
+	class GPUSwapChainDX12 : public GPUResourceDX12<GPUSwapChain>
 	{
 	public:
 
 		GPUSwapChainDX12(GPUDeviceDX12* device, Window* window)
-			: GPUResourceDX12(device)
+			: GPUResourceDX12<GPUSwapChain>(device)
 			, m_WindowHandle(static_cast<HWND>(window->GetNativePtr()))
 			, m_SwapChain(nullptr)
 			, m_CurrentFrameIndex(0)
@@ -26,15 +27,17 @@ namespace DawnEngine::DX12
 	public:
 
 		void Resize(uint32 width, uint32 height) override;
+		void Present(bool vsync) override;
 
-	private:
+	public:
 
 		HWND m_WindowHandle;
 		IDXGISwapChain3* m_SwapChain;
 		int32 m_CurrentFrameIndex;
 
 		// temp
-		Microsoft::WRL::ComPtr<ID3D12Resource> m_SwapChainBuffer[DX12_BACK_BUFFER_COUNT];
+		Microsoft::WRL::ComPtr<ID3D12Resource> m_SwapChainBuffers[DX12_BACK_BUFFER_COUNT];
+		DescriptorHeapWithSlotsDX12::Slot m_SwapChainSlots[DX12_BACK_BUFFER_COUNT];
 	};
 
 }

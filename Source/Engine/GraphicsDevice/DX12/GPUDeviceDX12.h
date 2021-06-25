@@ -15,7 +15,7 @@ namespace DawnEngine::DX12
 	class WindowsWindow;
 	class GPUContextDX12;
 	class GPUSwapChainDX12;
-	class UploadBufferDX12;
+	// class UploadBufferDX12;
 	class CommandQueueDX12;
 	class CommandSignatureDX12;
 
@@ -30,24 +30,31 @@ namespace DawnEngine::DX12
 		static GPUDevice* Create();
 
 	public:
-		
-		GPUContext* GetMainContext() override;
+
+		GPUDeviceDX12();
+
+		CommandQueueDX12* GetGraphicsQueue() const { return m_GraphicsQueue; }
 
 		ID3D12Device* GetDevice() const { return m_Device; }
 
 		IDXGIFactory4* GetDXGIFactory() const { return m_FactoryDXGI; }
 
-		ID3D12CommandQueue* GetCommandQueueDX12() const { return m_CommandQueue->GetCommandQueue(); }
+	public: // override
+
+		GPUContext* GetMainContext() override { return reinterpret_cast<GPUContext*>(m_MainContext); };
+
+		GPUSwapChain* CreateSwapChain(Window* window) override;
 
 	public: // override
+
 		bool Init() override;
-		void Draw() override;
+		// void Draw() override;
 		void Dispose() override;
 
 	private:
 
 	public:
-		UploadBufferDX12* UploadBuffer;
+		// UploadBufferDX12* UploadBuffer;
 
 		DescriptorHeapPoolDX12 Heap_CBV_SRV_UAV;
 		DescriptorHeapPoolDX12 Heap_RTV;
@@ -59,21 +66,10 @@ namespace DawnEngine::DX12
 		IDXGIFactory4* m_FactoryDXGI;
 		ID3D12RootSignature* m_RootSignature;
 
-		CommandQueueDX12* m_CommandQueue;
+		CommandQueueDX12* m_GraphicsQueue;
 		GPUContextDX12* m_MainContext;
 
 	};
-
-	template<class BaseType>
-	class GPUResourceDX12 : public GPUResourceBase<GPUDeviceDX12, BaseType>
-	{
-	public:
-		GPUResourceDX12(GPUDeviceDX12* device)
-			: GPUResourceBase(device)
-		{
-		}
-	};
-
 }
 
 #endif

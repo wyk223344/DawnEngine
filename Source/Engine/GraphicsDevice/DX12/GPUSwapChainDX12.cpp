@@ -1,6 +1,9 @@
 #if GRAPHICS_API_DIRECTX12
 
+#include "CommandQueueDX12.h"
 #include "GPUSwapChainDX12.h"
+#include "Engine/Core/Include.h"
+
 
 using namespace DawnEngine::DX12;
 
@@ -37,7 +40,7 @@ void GPUSwapChainDX12::Resize(uint32 width, uint32 height)
 		IDXGISwapChain1* swapChain;
 		auto dxgiFactory = m_Device->GetDXGIFactory();
 		ThrowIfFailed(dxgiFactory->CreateSwapChainForHwnd(
-			m_Device->GetCommandQueueDX12(),
+			m_Device->GetGraphicsQueue()->GetCommandQueue(),
 			m_WindowHandle,
 			&swapChainDesc,
 			&fullscreenDesc,
@@ -45,13 +48,35 @@ void GPUSwapChainDX12::Resize(uint32 width, uint32 height)
 			&swapChain)
 		);
 		m_SwapChain = static_cast<IDXGISwapChain3*>(swapChain);
+		m_SwapChain->SetBackgroundColor((const DXGI_RGBA*)Color::Black.Raw);
 	}
 	else
 	{
+		for (int32 i = 0; i < DX12_BACK_BUFFER_COUNT; i++)
+		{
+			m_SwapChainBuffers[i].Reset();
+		}
 
+		m_SwapChain->GetDesc1(&swapChainDesc);
+		ThrowIfFailed(m_SwapChain->ResizeBuffers(swapChainDesc.BufferCount, width, height, swapChainDesc.Format, swapChainDesc.Flags));
+	}
+	m_Width = width;
+	m_Height = height;
+	m_CurrentFrameIndex = m_SwapChain->GetCurrentBackBufferIndex();
+
+	// TODO£ºË¢ÐÂ»º´æ
+	for (int32 i = 0; i < DX12_BACK_BUFFER_COUNT; i++)
+	{
+		ThrowIfFailed(m_SwapChain->GetBuffer(i, IID_PPV_ARGS(&m_SwapChainBuffers[i])));
+		m_SwapChainSlots[i].CreateRTV(m_Device, m_SwapChainBuffers[i].Get(), nullptr);
 	}
 }
 
+void GPUSwapChainDX12::Present(bool vsync)
+{
+	ThrowIfFailed(m_SwapChain->Present(0, 0));
+	m_CurrentFrameIndex = m_SwapChain->GetCurrentBackBufferIndex();
+}
 
 
 #endif

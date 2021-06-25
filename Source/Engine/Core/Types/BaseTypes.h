@@ -46,3 +46,14 @@ typedef wchar_t Char;
 #define MAX_int64 ((int64)9223372036854775807)
 #define MAX_float (3.402823466e+38f)
 #define MAX_double (1.7976931348623158e+308)
+
+
+// Declares full set of operators for the enum type (using binary operation on integer values)
+#define DECLARE_ENUM_OPERATORS(T) \
+    inline T operator~ (T a) { return (T)~(int)a; } \
+    inline T operator| (T a, T b) { return (T)((int)a | (int)b); } \
+    inline int operator& (T a, T b) { return ((int)a & (int)b); } \
+    inline T operator^ (T a, T b) { return (T)((int)a ^ (int)b); } \
+    inline T& operator|= (T& a, T b) { return (T&)((int&)a |= (int)b); } \
+    inline T& operator&= (T& a, T b) { return (T&)((int&)a &= (int)b); } \
+    inline T& operator^= (T& a, T b) { return (T&)((int&)a ^= (int)b); }

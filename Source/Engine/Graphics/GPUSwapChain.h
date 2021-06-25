@@ -10,13 +10,6 @@ namespace DawnEngine
 	{
 	public:
 
-		//GPUSwapChain(Window* window)
-		//	: m_Width(window->GetWidth())
-		//	, m_Height(window->GetHeight())
-		//	, m_Window(window)
-		//{
-		//}
-
 		// 获取窗口宽度
 		unsigned int GetWidth() const { return m_Width; }
 
@@ -30,6 +23,9 @@ namespace DawnEngine
 
 		// 刷新交换链大小
 		virtual void Resize(uint32 width, uint32 height) = 0;
+
+		// 置换交换链缓冲区
+		virtual void Present(bool vsync) = 0;
 
 	protected:
 

@@ -15,6 +15,10 @@ bool GPUDevice::Init()
 
 void GPUDevice::Draw()
 {
+	auto context = GetMainContext();
+
+	context->FrameBegin();
+	context->FrameEnd();
 
 }
 

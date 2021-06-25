@@ -33,7 +33,7 @@ namespace DawnEngine
     public:
 
         // 创建窗口
-        static Window* CreateWindow(const CreateWindowSettings& settings) = delete;
+        // static Window* CreateWindow(const CreateWindowSettings& settings) = delete;
 
         // 根据大小和对齐方式分配内存
         static void* Allocate(uint64 size, uint64 alignment) = delete;

@@ -2,7 +2,9 @@
 
 #if GRAPHICS_API_DIRECTX12
 
+#include "IncludeDX12Headers.h"
 #include "Engine/Graphics/GPUContext.h"
+#include "Engine/Core/Include.h"
 
 /*
 	DX12执行命令流程:
@@ -35,21 +37,46 @@
 */
 
 
+
 namespace DawnEngine::DX12
 {
 	class GPUDeviceDX12;
-	class GPUPipelineStateDX12;
-	class GPUBufferDX12;
-	class GPUConstantBufferDX12;
-	class GPUTextureViewDX12;
 
 	class GPUContextDX12 : GPUContext
 	{
+	public:
+
+		GPUContextDX12(GPUDeviceDX12* device, D3D12_COMMAND_LIST_TYPE type);
+
+		~GPUContextDX12();
+
+	public:
+
+		// 重置CommandList并分配新的Allocator
+		void Reset();
+
+	public:  // override
+
+		void FrameBegin() override;
+		void FrameEnd() override;
+
 	private:
+
+		// 添加资源屏障
+		void addResourceBarrier(ID3D12Resource* resource, const D3D12_RESOURCE_STATES before, const D3D12_RESOURCE_STATES after);
+
+		// 设置资源屏障
+		void flushResourceBarriers();
+
+	private:
+
 		GPUDeviceDX12* m_Device;
 		ID3D12GraphicsCommandList* m_CommandList;
 		ID3D12CommandAllocator* m_CurrentAllocator;
-		GPUPipelineStateDX12* m_CurrentState;
+		// GPUPipelineStateDX12* m_CurrentState;
+
+		D3D12_RESOURCE_BARRIER m_ResourceBarrierBuffers[DX12_RB_BUFFER_SIZE];
+		int32 m_ResourceBarrierNum;
 	};
 
 }
