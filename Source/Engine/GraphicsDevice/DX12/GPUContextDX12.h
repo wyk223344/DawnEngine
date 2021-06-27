@@ -55,18 +55,48 @@ namespace DawnEngine::DX12
 		// 重置CommandList并分配新的Allocator
 		void Reset();
 
+		// 设置资源状态
+		void SetResourceState(GPUResourceOwnerDX12* resource, D3D12_RESOURCE_STATES after, int32 subresourceIndex = -1);
+
 	public:  // override
 
 		void FrameBegin() override;
 		void FrameEnd() override;
+		void SetViewport(const Math::Viewport& viewport) override;
+		void SetScissor(const Math::Rectangle& scissorRect) override;
+		void Clear(GPUTextureView* rt, const Color& color) override;
+		void SetRenderTarget(GPUTextureView* rt) override;
+		void BindVB(const Span<GPUBuffer*>& vertexBuffers, const uint32* vertexBuffersOffsets) override;
+		void BindIB(GPUBuffer* indexBuffer) override;
+		void DrawIndexedInstanced(uint32 indicesCount, uint32 instanceCount, int32 startIndex = 0, int32 startVertex = 0, int32 startInstance = 0) override;
+		void SetState(GPUPipelineState* state) override;
+		GPUPipelineState* GetState() const override;
+		void ClearState() override;
+		void FlushState() override;
+		void Flush() override;
 
 	private:
 
 		// 添加资源屏障
 		void addResourceBarrier(ID3D12Resource* resource, const D3D12_RESOURCE_STATES before, const D3D12_RESOURCE_STATES after);
 
-		// 设置资源屏障
-		void flushResourceBarriers();
+		// 设置着色器资源视图
+		void flushSRVs();
+
+		// 设置渲染目标视图
+		void flushRTVs();
+		
+		// 设置无序访问视图
+		void flushUAVs();
+
+		// 设置常量缓冲区, ConstantBuffer
+		void flushCBs();
+
+		// 设置资源屏障, ResourceBarrier
+		void flushRBs();
+
+		// 设置PipelineState
+		void flushPS();
 
 	private:
 

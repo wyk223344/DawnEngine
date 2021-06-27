@@ -264,12 +264,6 @@
     <ClInclude Include="Source\Engine\Engine\Scene.h">
       <Filter>Engine\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\Engine\Entity\CameraEntity.h">
-      <Filter>Engine\Engine\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Engine\Engine\Entity\LightEntity.h">
-      <Filter>Engine\Engine\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Engine\Core\Types\Node.h">
       <Filter>Engine\Core\Types</Filter>
     </ClInclude>
@@ -341,6 +335,21 @@
     </ClInclude>
     <ClInclude Include="Source\Engine\Core\Math\Rectangle.h">
       <Filter>Engine\Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\Types\Span.h">
+      <Filter>Engine\Core\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Engine\Entities\CameraEntity.h">
+      <Filter>Engine\Engine\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Engine\Entities\LightEntity.h">
+      <Filter>Engine\Engine\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\Shaders\GPUShader.h">
+      <Filter>Engine\Graphics\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\Shaders\GPUShaderProgram.h">
+      <Filter>Engine\Graphics\Shaders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

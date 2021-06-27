@@ -5,6 +5,7 @@
 #include "Types/Pair.h"
 #include "Types/Color.h"
 #include "Types/Node.h"
+#include "Types/Span.h"
 
 // math
 #include "Math/Common.h"

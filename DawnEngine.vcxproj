@@ -173,6 +173,7 @@
     <ClInclude Include="Source\Engine\Core\Types\BaseTypes.h" />
     <ClInclude Include="Source\Engine\Core\Types\Node.h" />
     <ClInclude Include="Source\Engine\Core\Types\Pair.h" />
+    <ClInclude Include="Source\Engine\Core\Types\Span.h" />
     <ClInclude Include="Source\Engine\Engine\Base\ApplicationBase.h" />
     <ClInclude Include="Source\Engine\Engine\Base\ComponentBase.h" />
     <ClInclude Include="Source\Engine\Engine\Base\EntityBase.h" />
@@ -182,8 +183,8 @@
     <ClInclude Include="Source\Engine\Engine\Components\TransformComponent.h" />
     <ClInclude Include="Source\Engine\Engine\Engine.h" />
     <ClInclude Include="Source\Engine\Engine\EngineService.h" />
-    <ClInclude Include="Source\Engine\Engine\Entity\CameraEntity.h" />
-    <ClInclude Include="Source\Engine\Engine\Entity\LightEntity.h" />
+    <ClInclude Include="Source\Engine\Engine\Entities\CameraEntity.h" />
+    <ClInclude Include="Source\Engine\Engine\Entities\LightEntity.h" />
     <ClInclude Include="Source\Engine\Engine\Globals.h" />
     <ClInclude Include="Source\Engine\Engine\Scene.h" />
     <ClInclude Include="Source\Engine\GraphicsDevice\DX12\CommandAllocatorPoolDX12.h" />
@@ -218,6 +219,8 @@
     <ClInclude Include="Source\Engine\Graphics\Graphics.h" />
     <ClInclude Include="Source\Engine\Graphics\Models\Mesh.h" />
     <ClInclude Include="Source\Engine\Graphics\PixelFormat.h" />
+    <ClInclude Include="Source\Engine\Graphics\Shaders\GPUShader.h" />
+    <ClInclude Include="Source\Engine\Graphics\Shaders\GPUShaderProgram.h" />
     <ClInclude Include="Source\Engine\Graphics\Textures\GPUTexture.h" />
     <ClInclude Include="Source\Engine\Graphics\Textures\GPUTextureDescription.h" />
     <ClInclude Include="Source\Engine\Platform\Base\PlatformBase.h" />

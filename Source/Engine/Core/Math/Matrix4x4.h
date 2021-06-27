@@ -112,7 +112,6 @@ namespace DawnEngine::Math
             result.M44 = left.M44 + right.M44;
         }
 
-        // Calculates the difference between two matrices.
         static void Subtract(const Matrix4x4& left, const Matrix4x4& right, Matrix4x4& result)
         {
             result.M11 = left.M11 - right.M11;
@@ -133,7 +132,6 @@ namespace DawnEngine::Math
             result.M44 = left.M44 - right.M44;
         }
 
-        // Scales a matrix by the given value.
         static void Multiply(const Matrix4x4& left, float right, Matrix4x4& result)
         {
             result.M11 = left.M11 * right;
@@ -154,7 +152,6 @@ namespace DawnEngine::Math
             result.M44 = left.M44 * right;
         }
 
-        // Calculates the product of two matrices.
         static Matrix4x4 Multiply(const Matrix4x4& left, const Matrix4x4& right)
         {
             Matrix4x4 result;
@@ -162,7 +159,6 @@ namespace DawnEngine::Math
             return result;
         }
 
-        // Calculates the product of two matrices.
         static void Multiply(const Matrix4x4& left, const Matrix4x4& right, Matrix4x4& result)
         {
             result.M11 = left.M11 * right.M11 + left.M12 * right.M21 + left.M13 * right.M31 + left.M14 * right.M41;
@@ -183,7 +179,6 @@ namespace DawnEngine::Math
             result.M44 = left.M41 * right.M14 + left.M42 * right.M24 + left.M43 * right.M34 + left.M44 * right.M44;
         }
 
-        // Scales a matrix by the given value.
         static void Divide(const Matrix4x4& left, float right, Matrix4x4& result)
         {
             assert(!Math::IsZero(right));
@@ -207,7 +202,6 @@ namespace DawnEngine::Math
             result.M44 = left.M44 * inv;
         }
 
-        // Calculates the quotient of two matrices.
         static void Divide(const Matrix4x4& left, const Matrix4x4& right, Matrix4x4& result)
         {
             result.M11 = left.M11 / right.M11;
@@ -228,7 +222,6 @@ namespace DawnEngine::Math
             result.M44 = left.M44 / right.M44;
         }
 
-        // Negates a matrix.
         static void Negate(const Matrix4x4& value, Matrix4x4& result)
         {
             result.M11 = -value.M11;
@@ -249,7 +242,6 @@ namespace DawnEngine::Math
             result.M44 = -value.M44;
         }
 
-        // Performs a linear interpolation between two matrices.
         static void Lerp(const Matrix4x4& start, const Matrix4x4& end, float amount, Matrix4x4& result)
         {
             result.M11 = Math::Lerp(start.M11, end.M11, amount);

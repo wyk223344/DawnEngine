@@ -52,7 +52,7 @@ void GPUContextDX12::FrameEnd()
 	ID3D12Resource* resource = swapChain->m_SwapChainBuffers[swapChain->m_CurrentFrameIndex].Get();
 	auto slot = &swapChain->m_SwapChainSlots[swapChain->m_CurrentFrameIndex];
 	addResourceBarrier(resource, D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
-	flushResourceBarriers();
+	flushRBs();
 
 	D3D12_VIEWPORT viewport;
 	viewport.TopLeftX = 0;
@@ -73,7 +73,7 @@ void GPUContextDX12::FrameEnd()
 	m_CommandList->OMSetRenderTargets(1, &slot->CPU(), true, nullptr);
 
 	addResourceBarrier(resource, D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
-	flushResourceBarriers();
+	flushRBs();
 
 	GPUContext::FrameEnd();
 	auto queue = m_Device->GetGraphicsQueue();
@@ -98,7 +98,7 @@ void GPUContextDX12::addResourceBarrier(ID3D12Resource* resource, const D3D12_RE
 	m_ResourceBarrierNum++;
 }
 
-void GPUContextDX12::flushResourceBarriers()
+void GPUContextDX12::flushRBs()
 {
 	if (m_ResourceBarrierNum > 0)
 	{
