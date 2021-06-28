@@ -9,11 +9,8 @@ namespace DawnEngine
 	struct Vector4;
 	class GPUDevice;
 	class GPUBuffer;
-	class GPUBufferView;
 	class GPUTexture;
-	class GPUTextureView;
 	class GPUResource;
-	class GPUResourceView;
 	class GPUPipelineState;
 
 	/*
@@ -49,13 +46,16 @@ namespace DawnEngine
 	public:
 
 		// 用指定的颜色Clear纹理
-		virtual void Clear(GPUTextureView* rt, const Color& color) = 0;
+		virtual void Clear(GPUTexture* rt, const Color& color) = 0;
 
 		// 设置渲染目标
-		virtual void SetRenderTarget(GPUTextureView* rt) = 0;
+		virtual void SetRenderTarget(GPUTexture* rt) = 0;
+
+		// 设置渲染目标和深度缓冲区
+		virtual void SetRenderTarget(GPUTexture* rt, GPUTexture* depthBuffer) = 0;
 
 		// 绑定顶点缓冲区, vertex buffer
-		virtual void BindVB(const Span<GPUBuffer*>& vertexBuffers, const uint32* vertexBuffersOffsets) = 0;
+		virtual void BindVB(GPUBuffer* vertexBuffer) = 0;
 
 		// 绑定索引缓冲区, index buffer
 		virtual void BindIB(GPUBuffer* indexBuffer) = 0;

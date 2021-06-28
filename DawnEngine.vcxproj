@@ -210,6 +210,7 @@
     <ClInclude Include="Source\Engine\Graphics\Enums.h" />
     <ClInclude Include="Source\Engine\Graphics\GPUAdapter.h" />
     <ClInclude Include="Source\Engine\Graphics\GPUBuffer.h" />
+    <ClInclude Include="Source\Engine\Graphics\GPUBufferDescription.h" />
     <ClInclude Include="Source\Engine\Graphics\GPUContext.h" />
     <ClInclude Include="Source\Engine\Graphics\GPUDevice.h" />
     <ClInclude Include="Source\Engine\Graphics\GPUPipelineState.h" />
@@ -277,6 +278,8 @@
     <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUSwapChainDX12.cpp" />
     <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUTextureDX12.cpp" />
     <ClCompile Include="Source\Engine\GraphicsDevice\DX12\UploadBufferDX12.cpp" />
+    <ClCompile Include="Source\Engine\Graphics\GPUBuffer.cpp" />
+    <ClCompile Include="Source\Engine\Graphics\GPUBufferDescription.cpp" />
     <ClCompile Include="Source\Engine\Graphics\GPUContext.cpp" />
     <ClCompile Include="Source\Engine\Graphics\GPUDevice.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Graphics.cpp" />

@@ -351,6 +351,9 @@
     <ClInclude Include="Source\Engine\Graphics\Shaders\GPUShaderProgram.h">
       <Filter>Engine\Graphics\Shaders</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\GPUBufferDescription.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Main\Windows\main.cpp">
@@ -505,6 +508,12 @@
     </ClCompile>
     <ClCompile Include="Source\Engine\Graphics\Textures\GPUTextureDescription.cpp">
       <Filter>Engine\Graphics\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\GPUBuffer.cpp">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\GPUBufferDescription.cpp">
+      <Filter>Engine\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -13,6 +13,8 @@ namespace DawnEngine
 		{
 		}
 
+		StateType GetState() { return m_ResourceState; }
+
 	private:
 
 		StateType m_ResourceState;

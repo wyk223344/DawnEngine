@@ -65,6 +65,9 @@ namespace DawnEngine
         // Texture format.
         PixelFormat Format;
 
+        // Structure that specifies multisampling parameters for the texture.
+        MSAALevel MultiSampleLevel;
+
         // Flags for binding to pipeline stages. The flags can be combined by a logical OR.
         GPUTextureFlags Flags;
 

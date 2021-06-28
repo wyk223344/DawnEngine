@@ -2,10 +2,16 @@
 
 #include "GPUContextDX12.h"
 #include "GPUDeviceDX12.h"
+#include "GPUResourceDX12.h"
+#include "GPUResourceStateDX12.h"
+#include "GPUTextureDX12.h"
 #include "CommandQueueDX12.h"
 #include "Engine/Engine/Engine.h"
 #include "GPUSwapChainDX12.h"
+#include "IncludeDX12Headers.h"
+#include "Engine/Core/Include.h"
 
+using namespace DawnEngine;
 using namespace DawnEngine::DX12;
 
 
@@ -34,6 +40,21 @@ void GPUContextDX12::Reset()
 	{
 		m_CurrentAllocator = m_Device->GetGraphicsQueue()->RequestAllocator();
 		m_CommandList->Reset(m_CurrentAllocator, nullptr);
+	}
+}
+
+void GPUContextDX12::SetResourceState(GPUResourceOwnerDX12* resource, D3D12_RESOURCE_STATES after, int32 subresourceIndex = -1)
+{
+	auto nativeResource = resource->GetResource();
+	if (nativeResource == nullptr)
+	{
+		return;
+	}
+	auto& state = resource->State;
+	const D3D12_RESOURCE_STATES before = state.GetState();
+	if (GPUResourceStateDX12::IsTransitionNeeded(before, after))
+	{
+		addResourceBarrier(resource->GetResource(), before, after);
 	}
 }
 
@@ -86,6 +107,95 @@ void GPUContextDX12::FrameEnd()
 	swapChain->Present(false);
 }
 
+void GPUContextDX12::SetViewport(const Math::Viewport& viewport)
+{
+	m_CommandList->RSSetViewports(1, (D3D12_VIEWPORT*)&viewport);
+}
+
+void GPUContextDX12::SetScissor(const Math::Rectangle& scissorRect)
+{
+	D3D12_RECT rect;
+	rect.left = (LONG)scissorRect.GetLeft();
+	rect.right = (LONG)scissorRect.GetRight();
+	rect.top = (LONG)scissorRect.GetTop();
+	rect.bottom = (LONG)scissorRect.GetBottom();
+	m_CommandList->RSSetScissorRects(1, &rect);
+}
+
+void GPUContextDX12::Clear(GPUTexture* rt, const Color& color)
+{
+	auto rtDX12 = static_cast<GPUTextureDX12*>(rt);
+	if (rtDX12)
+	{
+		SetResourceState(rtDX12, D3D12_RESOURCE_STATE_RENDER_TARGET);
+		flushRBs();
+		m_CommandList->ClearRenderTargetView(rtDX12->RTV(), color.Raw, 0, nullptr);
+	}
+}
+
+void GPUContextDX12::SetRenderTarget(GPUTexture* rt)
+{
+	GPUTextureDX12* rtDX12 = static_cast<GPUTextureDX12*>(rt);
+	if (m_RenderTargetTexture != rtDX12 || m_DepthTexture != nullptr)
+	{
+		m_RTDirtyFlag = true;
+		m_RenderTargetTexture = rtDX12;
+		m_DepthTexture = nullptr;
+	}
+}
+
+void GPUContextDX12::SetRenderTarget(GPUTexture* rt, GPUTexture* depthBuffer)
+{
+	GPUTextureDX12* rtDX12 = static_cast<GPUTextureDX12*>(rt);
+	auto depthBufferDX12 = static_cast<GPUTextureDX12*>(depthBuffer);
+	if (m_RenderTargetTexture != rtDX12 || m_DepthTexture != depthBuffer)
+	{
+		m_RTDirtyFlag = true;
+		m_RenderTargetTexture = rtDX12;
+		m_DepthTexture = depthBufferDX12;
+	}
+}
+
+void GPUContextDX12::BindVB(GPUBuffer* vertexBuffer)
+{
+
+}
+
+void GPUContextDX12::BindIB(GPUBuffer* indexBuffer)
+{
+
+}
+
+void GPUContextDX12::DrawIndexedInstanced(uint32 indicesCount, uint32 instanceCount, int32 startIndex = 0, int32 startVertex = 0, int32 startInstance = 0)
+{
+
+}
+
+void GPUContextDX12::SetState(GPUPipelineState* state)
+{
+
+}
+
+GPUPipelineState* GPUContextDX12::GetState() const
+{
+
+}
+
+void GPUContextDX12::ClearState()
+{
+
+}
+
+void GPUContextDX12::FlushState()
+{
+
+}
+
+void GPUContextDX12::Flush()
+{
+
+}
+
 void GPUContextDX12::addResourceBarrier(ID3D12Resource* resource, const D3D12_RESOURCE_STATES before, const D3D12_RESOURCE_STATES after)
 {
 	D3D12_RESOURCE_BARRIER& barrier = m_ResourceBarrierBuffers[m_ResourceBarrierNum];
@@ -98,6 +208,45 @@ void GPUContextDX12::addResourceBarrier(ID3D12Resource* resource, const D3D12_RE
 	m_ResourceBarrierNum++;
 }
 
+void GPUContextDX12::flushSRVs()
+{
+
+}
+
+void GPUContextDX12::flushRTVs()
+{
+	if (m_RTDirtyFlag)
+	{
+		m_RTDirtyFlag = false;
+		// Render Target
+		D3D12_CPU_DESCRIPTOR_HANDLE renderTargetCPU = m_RenderTargetTexture->RTV();
+		SetResourceState(m_RenderTargetTexture, D3D12_RESOURCE_STATE_RENDER_TARGET);
+		// Depth Buffer
+		D3D12_CPU_DESCRIPTOR_HANDLE depthBufferCPU;
+		if (m_DepthTexture)
+		{
+			depthBufferCPU = m_DepthTexture->DSV();
+			SetResourceState(m_DepthTexture, D3D12_RESOURCE_STATE_DEPTH_WRITE);
+		}
+		else
+		{
+			depthBufferCPU.ptr = 0;
+		}
+		// Sumbit command
+		m_CommandList->OMSetRenderTargets(1, &renderTargetCPU, true, depthBufferCPU.ptr != 0 ? &depthBufferCPU : nullptr);
+	}
+}
+
+void GPUContextDX12::flushUAVs()
+{
+
+}
+
+void GPUContextDX12::flushCBs()
+{
+
+}
+
 void GPUContextDX12::flushRBs()
 {
 	if (m_ResourceBarrierNum > 0)
@@ -105,6 +254,11 @@ void GPUContextDX12::flushRBs()
 		m_CommandList->ResourceBarrier(m_ResourceBarrierNum, m_ResourceBarrierBuffers);
 		m_ResourceBarrierNum = 0;
 	}
+}
+
+void GPUContextDX12::flushPS()
+{
+
 }
 
 #endif

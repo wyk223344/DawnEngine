@@ -12,7 +12,11 @@ namespace DawnEngine::DX12
 {
 	class GPUResourceStateDX12 : public GPUResourceState<D3D12_RESOURCE_STATES, D3D12_RESOURCE_STATE_CORRUPT>
 	{
-
+	public:
+		static bool IsTransitionNeeded(D3D12_RESOURCE_STATES currentState, D3D12_RESOURCE_STATES targetState)
+		{
+			return currentState != targetState && ((currentState | targetState) != currentState || targetState == D3D12_RESOURCE_STATE_COMMON);
+		}
 	};
 }
 

@@ -23,5 +23,25 @@ namespace DawnEngine::Math
 			, Size(width, height)
 		{
 		}
+
+		float GetLeft() const
+		{
+			return Location.X;
+		}
+
+		float GetRight() const
+		{
+			return Location.X + Size.X;
+		}
+
+		float GetTop() const
+		{
+			return Location.Y;
+		}
+
+		float GetBottom() const
+		{
+			return Location.Y + Size.Y;
+		}
 	};
 }

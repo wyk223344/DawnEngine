@@ -40,6 +40,32 @@ namespace DawnEngine
 
         // 释放一块分配的内存
         static void Free(void* ptr) = delete;
+
+    public:
+
+        // 拷贝内存
+        static void MemoryCopy(void* dst, const void* src, uint64 size)
+        {
+            memcpy(dst, src, static_cast<size_t>(size));
+        }
+
+        // 设置内存值
+        static void MemorySet(void* dst, uint64 size, int32 value)
+        {
+            memset(dst, value, static_cast<size_t>(size));
+        }
+
+        // 清理内存
+        static void MemoryClear(void* dst, uint64 size)
+        {
+            memset(dst, 0, static_cast<size_t>(size));
+        }
+
+        // 比较内存
+        static int32 MemoryCompare(const void* buf1, const void* buf2, uint64 size)
+        {
+            return memcmp(buf1, buf2, static_cast<size_t>(size));
+        }
     };
 
 }

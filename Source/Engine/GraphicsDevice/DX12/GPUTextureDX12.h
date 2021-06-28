@@ -11,25 +11,11 @@
 
 namespace DawnEngine::DX12
 {
-	class GPUTextureViewDX12 : public GPUTextureView, public IShaderResourceDX12
+
+	class GPUTextureDX12 : public GPUResourceDX12<GPUTexture>, public GPUResourceOwnerDX12
 	{
 	public:
 
-		GPUTextureViewDX12()
-		{
-		}
-
-	public:
-
-		void Init(GPUResource* parent, GPUDeviceDX12* device, GPUResourceOwnerDX12* owner, PixelFormat format, MSAALevel msaa, int32 subresourceIndex = D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES)
-		{
-			GPUTextureView::Init(parent, format, msaa);
-			SubresourceIndex = subresourceIndex;
-			m_Device = device;
-			m_Owner = owner;
-		}
-
-		// Release the view
 		void Release()
 		{
 			m_RTV.Release();
@@ -42,7 +28,7 @@ namespace DawnEngine::DX12
 		{
 			if (rtvDesc)
 			{
-				m_RTV.CreateRTV(m_Device, m_Owner->GetResource(), rtvDesc);
+				m_RTV.CreateRTV(m_Device, GetResource(), rtvDesc);
 			}
 			else
 			{
@@ -54,7 +40,7 @@ namespace DawnEngine::DX12
 		{
 			if (srvDesc)
 			{
-				m_SRV.CreateSRV(m_Device, m_Owner->GetResource(), srvDesc);
+				m_SRV.CreateSRV(m_Device, GetResource(), srvDesc);
 			}
 			else
 			{
@@ -66,7 +52,7 @@ namespace DawnEngine::DX12
 		{
 			if (dsvDesc)
 			{
-				m_DSV.CreateDSV(m_Device, m_Owner->GetResource(), dsvDesc);
+				m_DSV.CreateDSV(m_Device, GetResource(), dsvDesc);
 			}
 			else
 			{
@@ -78,7 +64,7 @@ namespace DawnEngine::DX12
 		{
 			if (uavDesc)
 			{
-				m_UAV.CreateUAV(m_Device, m_Owner->GetResource(), uavDesc, counterResource);
+				m_UAV.CreateUAV(m_Device, GetResource(), uavDesc, counterResource);
 			}
 			else
 			{
@@ -86,37 +72,21 @@ namespace DawnEngine::DX12
 			}
 		}
 
-	public:  // override IShaderResourceDX12
-
-		D3D12_CPU_DESCRIPTOR_HANDLE RTV() const override { return m_RTV.CPU(); }
-
-		D3D12_CPU_DESCRIPTOR_HANDLE SRV() const override { return m_SRV.CPU(); }
-
-		D3D12_CPU_DESCRIPTOR_HANDLE DSV() const override { return m_DSV.CPU(); }
-
-		D3D12_CPU_DESCRIPTOR_HANDLE UAV() const override { return m_UAV.CPU(); }
-
-		bool IsDepthStencilResource() const override { return m_DSV.IsValid(); }
-
-		GPUResourceOwnerDX12* GetResourceOwner() const override { return m_Owner; }
-
-	private:
-
-		GPUDeviceDX12* m_Device = nullptr;
-		GPUResourceOwnerDX12* m_Owner = nullptr;
-		DescriptorHeapWithSlotsDX12::Slot m_RTV, m_SRV, m_DSV, m_UAV;
-	};
-
-
-	class GPUTextureDX12 : public GPUResourceDX12<GPUTexture>, public GPUResourceOwnerDX12
-	{
 	public:
 
-		GPUTextureView* View() const override { return (GPUTextureView*)m_View; }
+		D3D12_CPU_DESCRIPTOR_HANDLE RTV() const { return m_RTV.CPU(); }
+
+		D3D12_CPU_DESCRIPTOR_HANDLE SRV() const { return m_SRV.CPU(); }
+
+		D3D12_CPU_DESCRIPTOR_HANDLE DSV() const { return m_DSV.CPU(); }
+
+		D3D12_CPU_DESCRIPTOR_HANDLE UAV() const { return m_UAV.CPU(); }
+
+		bool IsDepthStencilResource() const { return m_DSV.IsValid(); }
 
 	private:
 
-		GPUTextureViewDX12* m_View;
+		DescriptorHeapWithSlotsDX12::Slot m_RTV, m_SRV, m_DSV, m_UAV;
 	};
 
 }

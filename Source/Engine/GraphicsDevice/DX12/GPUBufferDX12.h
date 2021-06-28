@@ -11,26 +11,10 @@
 
 namespace DawnEngine::DX12
 {
-	class GPUBufferViewDX12 : public GPUBufferView, public IShaderResourceDX12
+
+	class GPUBufferDX12 : public GPUResourceDX12<GPUBuffer>, public GPUResourceOwnerDX12
 	{
 	public:
-
-		GPUBufferViewDX12()
-		{
-		}
-
-		~GPUBufferViewDX12()
-		{
-			Release();
-		}
-
-	public:
-
-		void Init(GPUDeviceDX12* device, GPUResourceOwnerDX12* owner)
-		{
-			m_Device = device;
-			m_Owner = owner;
-		}
 
 		void Release()
 		{
@@ -38,13 +22,11 @@ namespace DawnEngine::DX12
 			m_UAV.Release();
 		}
 
-	public:
-
 		void SetSRV(D3D12_SHADER_RESOURCE_VIEW_DESC* srvDesc)
 		{
 			if (srvDesc)
 			{
-				m_SRV.CreateSRV(m_Device, m_Owner->GetResource(), srvDesc);
+				m_SRV.CreateSRV(m_Device, GetResource(), srvDesc);
 			}
 			else
 			{
@@ -56,7 +38,7 @@ namespace DawnEngine::DX12
 		{
 			if (uavDesc)
 			{
-				m_UAV.CreateUAV(m_Device, m_Owner->GetResource(), uavDesc, counterResource);
+				m_UAV.CreateUAV(m_Device, GetResource(), uavDesc, counterResource);
 			}
 			else
 			{
@@ -64,33 +46,15 @@ namespace DawnEngine::DX12
 			}
 		}
 
-	public:  // override
+	public:
 
-		D3D12_CPU_DESCRIPTOR_HANDLE RTV() const override { return; }
+		D3D12_CPU_DESCRIPTOR_HANDLE SRV() const { return m_SRV.CPU(); }
 
-		D3D12_CPU_DESCRIPTOR_HANDLE SRV() const override { return m_SRV.CPU(); }
-
-		D3D12_CPU_DESCRIPTOR_HANDLE DSV() const override { return; }
-
-		D3D12_CPU_DESCRIPTOR_HANDLE UAV() const override { return m_UAV.CPU(); }
-
-		bool IsDepthStencilResource() const override { return false; }
-
-		GPUResourceOwnerDX12* GetResourceOwner() const override { return m_Owner; }
+		D3D12_CPU_DESCRIPTOR_HANDLE UAV() const { return m_UAV.CPU(); }
 
 	private:
 
-		GPUDeviceDX12* m_Device = nullptr;
-		GPUResourceOwnerDX12* m_Owner = nullptr;
 		DescriptorHeapWithSlotsDX12::Slot m_SRV, m_UAV;
-
-	};
-
-	class GPUBuffer : public GPUResourceDX12<GPUBuffer>, public GPUResourceOwnerDX12
-	{
-	private:
-
-		GPUBufferViewDX12 m_View;
 	};
 }
 

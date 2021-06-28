@@ -12,13 +12,13 @@ namespace DawnEngine
 	public:
 	};
 
-	/*
-		资源视图
-	*/
-	class GPUResourceView : Object
-	{
-	public:
-	};
+	///*
+	//	资源视图
+	//*/
+	//class GPUResourceView : Object
+	//{
+	//public:
+	//};
 
 	/*
 		持有device引用的资源。主要为图形api层使用

@@ -38,6 +38,8 @@ namespace DawnEngine::DX12
 
 		ID3D12Resource* GetResource() const { return m_Resource; }
 
+		D3D12_GPU_VIRTUAL_ADDRESS GetLocation() const { return m_Resource->GetGPUVirtualAddress(); }
+
 	public:
 
 		GPUResourceStateDX12 State;
@@ -48,43 +50,43 @@ namespace DawnEngine::DX12
 
 	};
 
-	class IShaderResourceDX12
-	{
-	public:
-	
-		IShaderResourceDX12()
-			: SubresourceIndex(D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES)
-		{
-		}
+	//class IShaderResourceDX12
+	//{
+	//public:
+	//
+	//	IShaderResourceDX12()
+	//		: SubresourceIndex(D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES)
+	//	{
+	//	}
 
-		IShaderResourceDX12(int32 subresourceIndex)
-			: SubresourceIndex(subresourceIndex)
-		{
-		}
+	//	IShaderResourceDX12(int32 subresourceIndex)
+	//		: SubresourceIndex(subresourceIndex)
+	//	{
+	//	}
 
-		// Gets CPU handle to the render target view descriptor.
-		virtual D3D12_CPU_DESCRIPTOR_HANDLE RTV() const = 0;
+	//	// Gets CPU handle to the render target view descriptor.
+	//	virtual D3D12_CPU_DESCRIPTOR_HANDLE RTV() const = 0;
 
-		// Gets CPU handle to the shader resource view descriptor.
-		virtual D3D12_CPU_DESCRIPTOR_HANDLE SRV() const = 0;
+	//	// Gets CPU handle to the shader resource view descriptor.
+	//	virtual D3D12_CPU_DESCRIPTOR_HANDLE SRV() const = 0;
 
-		// Gets CPU handle to the depth stencil view descriptor.
-		virtual D3D12_CPU_DESCRIPTOR_HANDLE DSV() const = 0;
+	//	// Gets CPU handle to the depth stencil view descriptor.
+	//	virtual D3D12_CPU_DESCRIPTOR_HANDLE DSV() const = 0;
 
-		// Gets CPU handle to the unordered access view descriptor.
-		virtual D3D12_CPU_DESCRIPTOR_HANDLE UAV() const = 0;
+	//	// Gets CPU handle to the unordered access view descriptor.
+	//	virtual D3D12_CPU_DESCRIPTOR_HANDLE UAV() const = 0;
 
-		// Determines whether this resource is depth/stencil buffer.
-		virtual bool IsDepthStencilResource() const = 0;
+	//	// Determines whether this resource is depth/stencil buffer.
+	//	virtual bool IsDepthStencilResource() const = 0;
 
-		// Gets the resource owner.
-		virtual GPUResourceOwnerDX12* GetResourceOwner() const = 0;
+	//	// Gets the resource owner.
+	//	virtual GPUResourceOwnerDX12* GetResourceOwner() const = 0;
 
-	public:
+	//public:
 
-		// Affected subresource index or -1 if use whole resource.
-		int32 SubresourceIndex;
-	};
+	//	// Affected subresource index or -1 if use whole resource.
+	//	int32 SubresourceIndex;
+	//};
 
 }
 
