@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Engine/Core/Include.h"
-
+#include "Engine/Graphics/Enums.h"
 #include "Engine/Graphics/PixelFormat.h"
 
 

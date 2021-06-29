@@ -16,8 +16,19 @@ namespace DawnEngine::DX12
 	{
 	public:
 
+		GPUTextureDX12()
+			: GPUResourceDX12<GPUTexture>(nullptr)
+		{
+		}
+
+		GPUTextureDX12(GPUDeviceDX12* device)
+			: GPUResourceDX12<GPUTexture>(device)
+		{
+		}
+
 		void Release()
 		{
+			ReleaseResource();
 			m_RTV.Release();
 			m_SRV.Release();
 			m_DSV.Release();
@@ -26,50 +37,22 @@ namespace DawnEngine::DX12
 
 		void SetRTV(D3D12_RENDER_TARGET_VIEW_DESC* rtvDesc)
 		{
-			if (rtvDesc)
-			{
-				m_RTV.CreateRTV(m_Device, GetResource(), rtvDesc);
-			}
-			else
-			{
-				m_RTV.Release();
-			}
+			m_RTV.CreateRTV(m_Device, GetResource(), rtvDesc);
 		}
 
 		void SetSRV(D3D12_SHADER_RESOURCE_VIEW_DESC* srvDesc)
 		{
-			if (srvDesc)
-			{
-				m_SRV.CreateSRV(m_Device, GetResource(), srvDesc);
-			}
-			else
-			{
-				m_SRV.Release();
-			}
+			m_SRV.CreateSRV(m_Device, GetResource(), srvDesc);
 		}
 
 		void SetDSV(D3D12_DEPTH_STENCIL_VIEW_DESC* dsvDesc)
 		{
-			if (dsvDesc)
-			{
-				m_DSV.CreateDSV(m_Device, GetResource(), dsvDesc);
-			}
-			else
-			{
-				m_DSV.Release();
-			}
+			m_DSV.CreateDSV(m_Device, GetResource(), dsvDesc);
 		}
 
 		void SetUAV(D3D12_UNORDERED_ACCESS_VIEW_DESC* uavDesc, ID3D12Resource* counterResource = nullptr)
 		{
-			if (uavDesc)
-			{
-				m_UAV.CreateUAV(m_Device, GetResource(), uavDesc, counterResource);
-			}
-			else
-			{
-				m_UAV.Release();
-			}
+			m_UAV.CreateUAV(m_Device, GetResource(), uavDesc, counterResource);
 		}
 
 	public:

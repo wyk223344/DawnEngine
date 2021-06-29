@@ -17,7 +17,9 @@ namespace DawnEngine
 
 	public:
 
-		EntityBase(EntityBase* parent = nullptr);
+		EntityBase();
+
+		EntityBase(EntityBase* parent);
 
 	public:
 

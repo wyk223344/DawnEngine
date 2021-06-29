@@ -3,6 +3,7 @@
 #include "Engine/Core/Types/BaseTypes.h"
 #include "Engine/Platform/CreateWindowSettings.h"
 #include "Engine/Platform/Types.h"
+#include <string.h>
 
 namespace DawnEngine
 {

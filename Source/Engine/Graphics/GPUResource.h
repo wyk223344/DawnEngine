@@ -33,6 +33,11 @@ namespace DawnEngine
 		{
 		}
 
+		void InitDevice(DeviceType* device)
+		{
+			m_Device = device;
+		}
+
 	protected:
 
 		DeviceType* m_Device;

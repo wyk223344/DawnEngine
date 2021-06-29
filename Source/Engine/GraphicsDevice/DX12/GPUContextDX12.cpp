@@ -43,7 +43,7 @@ void GPUContextDX12::Reset()
 	}
 }
 
-void GPUContextDX12::SetResourceState(GPUResourceOwnerDX12* resource, D3D12_RESOURCE_STATES after, int32 subresourceIndex = -1)
+void GPUContextDX12::SetResourceState(GPUResourceOwnerDX12* resource, D3D12_RESOURCE_STATES after, int32 subresourceIndex)
 {
 	auto nativeResource = resource->GetResource();
 	if (nativeResource == nullptr)
@@ -70,8 +70,9 @@ void GPUContextDX12::FrameEnd()
 	DawnEngine::Window* window = DawnEngine::Engine::MainWindow;
 	// auto temp = static_cast<GPUSwapChainDX12*>(window->GetSwapChain());
 	auto swapChain = static_cast<GPUSwapChainDX12*>(window->GetSwapChain());
-	ID3D12Resource* resource = swapChain->m_SwapChainBuffers[swapChain->m_CurrentFrameIndex].Get();
-	auto slot = &swapChain->m_SwapChainSlots[swapChain->m_CurrentFrameIndex];
+	auto swapChainBuffer = &swapChain->m_SwapChainBuffers[swapChain->m_CurrentFrameIndex];
+	ID3D12Resource* resource = swapChainBuffer->GetResource();
+	// auto slot = &swapChain->m_SwapChainSlots[swapChain->m_CurrentFrameIndex];
 	addResourceBarrier(resource, D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
 	flushRBs();
 
@@ -88,10 +89,10 @@ void GPUContextDX12::FrameEnd()
 	m_CommandList->RSSetScissorRects(1, &rect);
 
 	// Clear the back buffer and depth buffer.
-	m_CommandList->ClearRenderTargetView(slot->CPU(), Color::Blue.Raw, 0, nullptr);
+	m_CommandList->ClearRenderTargetView(swapChainBuffer->RTV(), Color::Blue.Raw, 0, nullptr);
 
 	// Specify the buffers we are going to render to.
-	m_CommandList->OMSetRenderTargets(1, &slot->CPU(), true, nullptr);
+	m_CommandList->OMSetRenderTargets(1, &swapChainBuffer->RTV(), true, nullptr);
 
 	addResourceBarrier(resource, D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
 	flushRBs();
@@ -166,7 +167,7 @@ void GPUContextDX12::BindIB(GPUBuffer* indexBuffer)
 
 }
 
-void GPUContextDX12::DrawIndexedInstanced(uint32 indicesCount, uint32 instanceCount, int32 startIndex = 0, int32 startVertex = 0, int32 startInstance = 0)
+void GPUContextDX12::DrawIndexedInstanced(uint32 indicesCount, uint32 instanceCount, int32 startIndex, int32 startVertex, int32 startInstance)
 {
 
 }
@@ -178,7 +179,7 @@ void GPUContextDX12::SetState(GPUPipelineState* state)
 
 GPUPipelineState* GPUContextDX12::GetState() const
 {
-
+	return nullptr;
 }
 
 void GPUContextDX12::ClearState()

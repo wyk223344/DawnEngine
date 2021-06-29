@@ -54,7 +54,8 @@ void GPUSwapChainDX12::Resize(uint32 width, uint32 height)
 	{
 		for (int32 i = 0; i < DX12_BACK_BUFFER_COUNT; i++)
 		{
-			m_SwapChainBuffers[i].Reset();
+			//m_SwapChainBuffers[i].GetResource().Reset();
+			m_SwapChainBuffers[i].Release();
 		}
 
 		m_SwapChain->GetDesc1(&swapChainDesc);
@@ -67,8 +68,12 @@ void GPUSwapChainDX12::Resize(uint32 width, uint32 height)
 	// TODO£ºË¢ÐÂ»º´æ
 	for (int32 i = 0; i < DX12_BACK_BUFFER_COUNT; i++)
 	{
-		ThrowIfFailed(m_SwapChain->GetBuffer(i, IID_PPV_ARGS(&m_SwapChainBuffers[i])));
-		m_SwapChainSlots[i].CreateRTV(m_Device, m_SwapChainBuffers[i].Get(), nullptr);
+		ID3D12Resource* backbuffer;
+		m_SwapChain->GetBuffer(i, IID_PPV_ARGS(&backbuffer));
+		m_SwapChainBuffers[i].InitResource(backbuffer, D3D12_RESOURCE_STATE_PRESENT);
+		m_SwapChainBuffers[i].SetRTV(nullptr);
+		//ThrowIfFailed(m_SwapChain->GetBuffer(i, IID_PPV_ARGS(&(backBuffer.GetResource()))));
+		// m_SwapChainSlots[i].CreateRTV(m_Device, m_SwapChainBuffers[i].Get(), nullptr);
 	}
 }
 

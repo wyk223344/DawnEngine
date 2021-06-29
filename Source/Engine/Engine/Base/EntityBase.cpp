@@ -6,15 +6,15 @@
 
 using namespace DawnEngine;
 
+EntityBase::EntityBase()
+{
+	//SetParent(Engine::MainScene->GetRootEntity());
+}
 
-EntityBase::EntityBase(EntityBase* parent = nullptr)
+
+EntityBase::EntityBase(EntityBase* parent)
 	: Node(parent)
 {
-	if (parent == nullptr)
-	{
-		SetParent(Engine::MainScene->GetRootEntity());
-	}
-
 }
 
 template<typename T, typename ...Args, typename>

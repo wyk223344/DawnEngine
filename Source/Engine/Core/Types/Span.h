@@ -32,7 +32,7 @@ namespace DawnEngine
 
 		bool IsValid() const { return m_Data != nullptr; }
 
-		bool IsValid() const { return m_Data == nullptr; }
+		bool IsInvalid() const { return m_Data == nullptr; }
 
 		int32 Lenght() const { return m_Length; }
 

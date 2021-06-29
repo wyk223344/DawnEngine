@@ -10,9 +10,14 @@ namespace DawnEngine
 	{
 	public:
 
-		Node(Node* parent = nullptr)
-			: m_Parent(parent)
+		Node()
+			: m_Parent(nullptr)
 		{
+		}
+
+		Node(Node* parent)
+		{
+			SetParent(parent);
 		}
 
 		void SetParent(Node* parent)

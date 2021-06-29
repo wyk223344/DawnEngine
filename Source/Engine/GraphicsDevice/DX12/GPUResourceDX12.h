@@ -40,6 +40,21 @@ namespace DawnEngine::DX12
 
 		D3D12_GPU_VIRTUAL_ADDRESS GetLocation() const { return m_Resource->GetGPUVirtualAddress(); }
 
+		void InitResource(ID3D12Resource* resource, const D3D12_RESOURCE_STATES initialState)
+		{
+			m_Resource = resource;
+			State.Initialize(initialState);
+		}
+
+		void ReleaseResource()
+		{
+			if (m_Resource)
+			{
+				m_Resource->Release();
+				m_Resource = nullptr;
+			}
+		}
+
 	public:
 
 		GPUResourceStateDX12 State;
@@ -49,44 +64,6 @@ namespace DawnEngine::DX12
 		ID3D12Resource* m_Resource;
 
 	};
-
-	//class IShaderResourceDX12
-	//{
-	//public:
-	//
-	//	IShaderResourceDX12()
-	//		: SubresourceIndex(D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES)
-	//	{
-	//	}
-
-	//	IShaderResourceDX12(int32 subresourceIndex)
-	//		: SubresourceIndex(subresourceIndex)
-	//	{
-	//	}
-
-	//	// Gets CPU handle to the render target view descriptor.
-	//	virtual D3D12_CPU_DESCRIPTOR_HANDLE RTV() const = 0;
-
-	//	// Gets CPU handle to the shader resource view descriptor.
-	//	virtual D3D12_CPU_DESCRIPTOR_HANDLE SRV() const = 0;
-
-	//	// Gets CPU handle to the depth stencil view descriptor.
-	//	virtual D3D12_CPU_DESCRIPTOR_HANDLE DSV() const = 0;
-
-	//	// Gets CPU handle to the unordered access view descriptor.
-	//	virtual D3D12_CPU_DESCRIPTOR_HANDLE UAV() const = 0;
-
-	//	// Determines whether this resource is depth/stencil buffer.
-	//	virtual bool IsDepthStencilResource() const = 0;
-
-	//	// Gets the resource owner.
-	//	virtual GPUResourceOwnerDX12* GetResourceOwner() const = 0;
-
-	//public:
-
-	//	// Affected subresource index or -1 if use whole resource.
-	//	int32 SubresourceIndex;
-	//};
 
 }
 
