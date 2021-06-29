@@ -7,10 +7,11 @@
 #include "CommandQueueDX12.h"
 #include "GPUSwapChainDX12.h"
 #include "DescriptorHeapDX12.h"
+#include "IncludeDX12Headers.h"
 
 using namespace DawnEngine;
 using namespace DawnEngine::DX12;
-
+using Microsoft::WRL::ComPtr;
 
 GPUDevice* GPUDeviceDX12::Create()
 {
@@ -25,7 +26,9 @@ GPUDevice* GPUDeviceDX12::Create()
 GPUDeviceDX12::GPUDeviceDX12()
 	: m_Device(nullptr)
 	, m_FactoryDXGI(nullptr)
+	, m_RootSignature(nullptr)
 	, m_GraphicsQueue(nullptr)
+	, m_MainContext(nullptr)
 	, Heap_CBV_SRV_UAV(this, D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, 4 * 1024, false)
 	, Heap_RTV(this, D3D12_DESCRIPTOR_HEAP_TYPE_RTV, 1 * 1024, false)
 	, Heap_DSV(this, D3D12_DESCRIPTOR_HEAP_TYPE_DSV, 64, false)
@@ -43,11 +46,6 @@ bool GPUDeviceDX12::Init()
 	// Spawn some info about the hardware
 	D3D12_FEATURE_DATA_D3D12_OPTIONS options = {};
 	ThrowIfFailed(m_Device->CheckFeatureSupport(D3D12_FEATURE_D3D12_OPTIONS, &options, sizeof(options)));
-	//LOG_INFO("Tiled Resources Tier: %s", options.TiledResourcesTier);
-	//LOG_INFO("Resource Binding Tier: %s", options.ResourceBindingTier);
-	//LOG_INFO("Conservative Rasterization Tier: %s", options.ConservativeRasterizationTier);
-	//LOG_INFO("Resource Heap Tier: %s", options.ResourceHeapTier);
-	//LOG_INFO("ROVs Supported: %s", options.ROVsSupported != 0);
 
 	// Create Command Queue
 	m_GraphicsQueue = New<CommandQueueDX12>(this, D3D12_COMMAND_LIST_TYPE_DIRECT);
@@ -64,7 +62,38 @@ bool GPUDeviceDX12::Init()
 	Heap_RTV.Init();
 	Heap_DSV.Init();
 
-	// TODO£ºCreate root signature
+	// Create root signature
+	{
+		// root parameters
+		D3D12_ROOT_PARAMETER rootParameters[2];
+		{
+			D3D12_ROOT_PARAMETER& rootParam = rootParameters[0];
+			rootParam.ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
+			rootParam.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+			rootParam.Descriptor.ShaderRegister = 0;
+			rootParam.Descriptor.RegisterSpace = 0;
+		}
+		{
+			D3D12_ROOT_PARAMETER& rootParam = rootParameters[1];
+			rootParam.ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
+			rootParam.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+			rootParam.Descriptor.ShaderRegister = 1;
+			rootParam.Descriptor.RegisterSpace = 0;
+		}
+
+		D3D12_ROOT_SIGNATURE_DESC rootSignatureDesc;
+		rootSignatureDesc.NumParameters = ARRAY_COUNT(rootParameters);
+		rootSignatureDesc.pParameters = rootParameters;
+		rootSignatureDesc.NumStaticSamplers = 0;
+		rootSignatureDesc.pStaticSamplers = nullptr;
+		rootSignatureDesc.Flags = D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
+
+		ComPtr<ID3DBlob> signature;
+		ComPtr<ID3DBlob> error;
+		ThrowIfFailed(D3D12SerializeRootSignature(&rootSignatureDesc, D3D_ROOT_SIGNATURE_VERSION_1, &signature, &error));
+		ThrowIfFailed(m_Device->CreateRootSignature(0, signature->GetBufferPointer(), signature->GetBufferSize(), IID_PPV_ARGS(&m_RootSignature)));
+	}
+
 	LOG_INFO("Finish Init GPUDeviceDX12");
 
 	return GPUDevice::Init();

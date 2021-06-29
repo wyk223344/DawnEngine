@@ -6,6 +6,8 @@
 
 namespace DawnEngine
 {
+	class GPUTexture;
+
 	class GPUSwapChain : GPUResource
 	{
 	public:
@@ -25,7 +27,10 @@ namespace DawnEngine
 		virtual void Resize(uint32 width, uint32 height) = 0;
 
 		// 置换交换链缓冲区
-		virtual void Present(bool vsync) = 0;
+		virtual void Present(bool vsync = false) = 0;
+
+		// 获取后台缓冲区
+		virtual GPUTexture* GetBackBuffer() = 0;
 
 	protected:
 

@@ -32,7 +32,8 @@ namespace DawnEngine::DX12
 	public:
 
 		void Resize(uint32 width, uint32 height) override;
-		void Present(bool vsync) override;
+		void Present(bool vsync = false) override;
+		GPUTexture* GetBackBuffer() override;
 
 	public:
 

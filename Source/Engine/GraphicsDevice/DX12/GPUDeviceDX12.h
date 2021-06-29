@@ -15,7 +15,7 @@ namespace DawnEngine::DX12
 	class WindowsWindow;
 	class GPUContextDX12;
 	class GPUSwapChainDX12;
-	// class UploadBufferDX12;
+	class UploadBufferDX12;
 	class CommandQueueDX12;
 	class CommandSignatureDX12;
 
@@ -33,11 +33,15 @@ namespace DawnEngine::DX12
 
 		GPUDeviceDX12();
 
-		CommandQueueDX12* GetGraphicsQueue() const { return m_GraphicsQueue; }
-
 		ID3D12Device* GetDevice() const { return m_Device; }
 
 		IDXGIFactory4* GetDXGIFactory() const { return m_FactoryDXGI; }
+
+		ID3D12RootSignature* GetRootSignature() const { return m_RootSignature; }
+
+		CommandQueueDX12* GetGraphicsQueue() const { return m_GraphicsQueue; }
+
+		UploadBufferDX12* GetUploadBuffer() const { return m_UploadBuffer; }
 
 	public: // override
 
@@ -54,7 +58,6 @@ namespace DawnEngine::DX12
 	private:
 
 	public:
-		// UploadBufferDX12* UploadBuffer;
 
 		DescriptorHeapPoolDX12 Heap_CBV_SRV_UAV;
 		DescriptorHeapPoolDX12 Heap_RTV;
@@ -68,7 +71,7 @@ namespace DawnEngine::DX12
 
 		CommandQueueDX12* m_GraphicsQueue;
 		GPUContextDX12* m_MainContext;
-
+		UploadBufferDX12* m_UploadBuffer;
 	};
 }
 

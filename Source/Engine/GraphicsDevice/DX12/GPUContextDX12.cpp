@@ -41,6 +41,9 @@ void GPUContextDX12::Reset()
 		m_CurrentAllocator = m_Device->GetGraphicsQueue()->RequestAllocator();
 		m_CommandList->Reset(m_CurrentAllocator, nullptr);
 	}
+	m_RTDirtyFlag = false;
+	m_RenderTargetTexture = nullptr;
+	m_DepthTexture = nullptr;
 }
 
 void GPUContextDX12::SetResourceState(GPUResourceOwnerDX12* resource, D3D12_RESOURCE_STATES after, int32 subresourceIndex)
@@ -58,6 +61,22 @@ void GPUContextDX12::SetResourceState(GPUResourceOwnerDX12* resource, D3D12_RESO
 	}
 }
 
+uint64 GPUContextDX12::Execute(bool waitForCompletion)
+{
+	auto queue = m_Device->GetGraphicsQueue();
+	// 执行指令
+	const uint64 fenceValue = queue->ExecuteCommandList(m_CommandList);
+	// 释放对当前allocator的引用
+	queue->DiscardAllocator(fenceValue, m_CurrentAllocator);
+	m_CurrentAllocator = nullptr;
+	// 等待GPU
+	if (waitForCompletion)
+	{
+		queue->WaitForFence(fenceValue);
+	}
+	return fenceValue;
+}
+
 void GPUContextDX12::FrameBegin()
 {
 	GPUContext::FrameBegin();
@@ -66,46 +85,8 @@ void GPUContextDX12::FrameBegin()
 
 void GPUContextDX12::FrameEnd()
 {
-	// TODO: temp
-	DawnEngine::Window* window = DawnEngine::Engine::MainWindow;
-	// auto temp = static_cast<GPUSwapChainDX12*>(window->GetSwapChain());
-	auto swapChain = static_cast<GPUSwapChainDX12*>(window->GetSwapChain());
-	auto swapChainBuffer = &swapChain->m_SwapChainBuffers[swapChain->m_CurrentFrameIndex];
-	ID3D12Resource* resource = swapChainBuffer->GetResource();
-	// auto slot = &swapChain->m_SwapChainSlots[swapChain->m_CurrentFrameIndex];
-	addResourceBarrier(resource, D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
-	flushRBs();
-
-	D3D12_VIEWPORT viewport;
-	viewport.TopLeftX = 0;
-	viewport.TopLeftY = 0;
-	viewport.Width = static_cast<float>(800);
-	viewport.Height = static_cast<float>(600);
-	viewport.MinDepth = 0.0f;
-	viewport.MaxDepth = 1.0f;
-	m_CommandList->RSSetViewports(1, &viewport);
-
-	D3D12_RECT rect = { 0, 0, 800, 600 };
-	m_CommandList->RSSetScissorRects(1, &rect);
-
-	// Clear the back buffer and depth buffer.
-	m_CommandList->ClearRenderTargetView(swapChainBuffer->RTV(), Color::Blue.Raw, 0, nullptr);
-
-	// Specify the buffers we are going to render to.
-	m_CommandList->OMSetRenderTargets(1, &swapChainBuffer->RTV(), true, nullptr);
-
-	addResourceBarrier(resource, D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
-	flushRBs();
-
 	GPUContext::FrameEnd();
-	auto queue = m_Device->GetGraphicsQueue();
-	// 执行指令
-	const uint64 fenceValue = queue->ExecuteCommandList(m_CommandList);
-	// 释放对当前allocator的引用
-	queue->DiscardAllocator(fenceValue, m_CurrentAllocator);
-	m_CurrentAllocator = nullptr;
-
-	swapChain->Present(false);
+	Execute();
 }
 
 void GPUContextDX12::SetViewport(const Math::Viewport& viewport)
@@ -189,12 +170,18 @@ void GPUContextDX12::ClearState()
 
 void GPUContextDX12::FlushState()
 {
-
+	flushRTVs();
+	flushRBs();
 }
 
 void GPUContextDX12::Flush()
 {
-
+	if (!m_CurrentAllocator)
+	{
+		return;
+	}
+	Execute();
+	Reset();
 }
 
 void GPUContextDX12::addResourceBarrier(ID3D12Resource* resource, const D3D12_RESOURCE_STATES before, const D3D12_RESOURCE_STATES after)

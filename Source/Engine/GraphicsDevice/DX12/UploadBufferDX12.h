@@ -6,7 +6,10 @@
 
 namespace DawnEngine::DX12
 {
+	class UploadBufferDX12
+	{
 
+	};
 }
 
 

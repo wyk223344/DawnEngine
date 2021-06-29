@@ -159,6 +159,7 @@
     <ClInclude Include="Source\Engine\Core\Math\Transform.h" />
     <ClInclude Include="Source\Engine\Core\Math\Viewport.h" />
     <ClInclude Include="Source\Engine\Core\Object.h" />
+    <ClInclude Include="Source\Engine\Core\Singleton.h" />
     <ClInclude Include="Source\Engine\Core\Types\Color.h" />
     <ClInclude Include="Source\Engine\Core\Math\Common.h" />
     <ClInclude Include="Source\Engine\Core\Math\Matrix3x3.h" />
@@ -293,6 +294,7 @@
     <ClCompile Include="Source\Engine\Platform\Windows\WindowsPlatform.cpp" />
     <ClCompile Include="Source\Engine\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="Source\Engine\Renderer\ForwardPass.cpp" />
+    <ClCompile Include="Source\Engine\Renderer\Renderer.cpp" />
     <ClCompile Include="Source\Game\Game.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

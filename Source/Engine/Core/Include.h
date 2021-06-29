@@ -29,3 +29,4 @@
 #include "Enums.h"
 #include "Log.h"
 #include "Templates.h"
+#include "Singleton.h"

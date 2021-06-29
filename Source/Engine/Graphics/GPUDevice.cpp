@@ -1,6 +1,7 @@
 
 #include "Engine/Graphics/GPUDevice.h"
-
+#include "Engine/Renderer/Renderer.h"
+#include "Engine/Engine/Engine.h"
 
 using namespace DawnEngine;
 
@@ -16,9 +17,18 @@ bool GPUDevice::Init()
 void GPUDevice::Draw()
 {
 	auto context = GetMainContext();
+	Window* window = Engine::MainWindow;
+	auto swapChain = window->GetSwapChain();
 
 	context->FrameBegin();
+
+	Renderer::Render(context);
+
+
+
 	context->FrameEnd();
+
+	swapChain->Present();
 
 }
 

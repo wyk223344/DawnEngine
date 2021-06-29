@@ -3,8 +3,10 @@
 #include "CommandQueueDX12.h"
 #include "GPUSwapChainDX12.h"
 #include "Engine/Core/Include.h"
+#include "GPUTextureDX12.h"
+#include "Engine/Graphics/Textures/GPUTexture.h"
 
-
+using namespace DawnEngine;
 using namespace DawnEngine::DX12;
 
 
@@ -81,6 +83,12 @@ void GPUSwapChainDX12::Present(bool vsync)
 {
 	ThrowIfFailed(m_SwapChain->Present(0, 0));
 	m_CurrentFrameIndex = m_SwapChain->GetCurrentBackBufferIndex();
+}
+
+
+GPUTexture* GPUSwapChainDX12::GetBackBuffer()
+{
+	return &m_SwapChainBuffers[m_CurrentFrameIndex];
 }
 
 

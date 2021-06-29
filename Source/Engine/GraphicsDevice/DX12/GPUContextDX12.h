@@ -61,6 +61,9 @@ namespace DawnEngine::DX12
 		// 设置资源状态
 		void SetResourceState(GPUResourceOwnerDX12* resource, D3D12_RESOURCE_STATES after, int32 subresourceIndex = -1);
 
+		// 执行指令
+		uint64 Execute(bool waitForCompletion = false);
+
 	public:  // override
 
 		void FrameBegin() override;
@@ -107,7 +110,7 @@ namespace DawnEngine::DX12
 		GPUDeviceDX12* m_Device;
 		ID3D12GraphicsCommandList* m_CommandList;
 		ID3D12CommandAllocator* m_CurrentAllocator;
-		// GPUPipelineStateDX12* m_CurrentState;
+		GPUPipelineStateDX12* m_CurrentState;
 
 		D3D12_RESOURCE_BARRIER m_ResourceBarrierBuffers[DX12_RB_BUFFER_SIZE];
 		int32 m_ResourceBarrierNum;
