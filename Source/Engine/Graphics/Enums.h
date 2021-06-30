@@ -79,4 +79,123 @@ namespace DawnEngine
         /// </summary>
         X8 = 8,
     };
+
+    DECLARE_ENUM_EX_6(ShaderStage, int32, 0, Vertex, Hull, Domain, Geometry, Pixel, Compute);
+
+    /// <summary>
+    /// Describes how a mapped GPU resource will be accessed.
+    /// </summary>
+    enum class GPUResourceMapMode
+    {
+        /// <summary>
+        /// The resource is mapped for reading.
+        /// </summary>
+        Read = 0x01,
+
+        /// <summary>
+        /// The resource is mapped for writing.
+        /// </summary>
+        Write = 0x02,
+
+        /// <summary>
+        /// The resource is mapped for reading and writing.
+        /// </summary>
+        ReadWrite = Read | Write,
+    };
+
+    /// <summary>
+    /// Primitives types.
+    /// </summary>
+    enum class PrimitiveTopologyType
+    {
+        /// <summary>
+        /// Unknown topology.
+        /// </summary>
+        Undefined = 0,
+
+        /// <summary>
+        /// Points list.
+        /// </summary>
+        Point = 1,
+
+        /// <summary>
+        /// Line list.
+        /// </summary>
+        Line = 2,
+
+        /// <summary>
+        /// Triangle list.
+        /// </summary>
+        Triangle = 3,
+    };
+
+    /// <summary>
+    /// Primitives culling mode.
+    /// </summary>
+    enum class CullMode : byte
+    {
+        /// <summary>
+        /// Cull back-facing primitives only.
+        /// </summary>
+        Normal = 0,
+
+        /// <summary>
+        /// Cull front-facing primitives only.
+        /// </summary>
+        Inverted = 1,
+
+        /// <summary>
+        /// Disable face culling.
+        /// </summary>
+        TwoSided = 2,
+    };
+
+    /// <summary>
+    /// Comparison function modes
+    /// </summary>
+    enum class ComparisonFunc : byte
+    {
+        // Never pass the comparison.
+        Never = 1,
+        // If the source data is less than the destination data, the comparison passes.
+        Less = 2,
+        // If the source data is equal to the destination data, the comparison passes.
+        Equal = 3,
+        // If the source data is less than or equal to the destination data, the comparison passes.
+        LessEqual = 4,
+        // If the source data is greater than the destination data, the comparison passes.
+        Greater = 5,
+        // If the source data is not equal to the destination data, the comparison passes.
+        NotEqual = 6,
+        // If the source data is greater than or equal to the destination data, the comparison passes.
+        GreaterEqual = 7,
+        // Always pass the comparison.
+        Always = 8,
+    };
+
+    /// <summary>
+    /// Rendering quality levels.
+    /// </summary>
+    enum class Quality : byte
+    {
+        /// <summary>
+        /// The low quality.
+        /// </summary>
+        Low = 0,
+
+        /// <summary>
+        /// The medium quality.
+        /// </summary>
+        Medium = 1,
+
+        /// <summary>
+        /// The high quality.
+        /// </summary>
+        High = 2,
+
+        /// <summary>
+        /// The ultra, mega, fantastic quality!
+        /// </summary>
+        Ultra = 3,
+    };
 }
