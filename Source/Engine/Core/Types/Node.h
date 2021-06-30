@@ -52,7 +52,6 @@ namespace DawnEngine
 				return;
 			}
 			InternalDelChild(child);
-			DeleteObject();
 		}
 
 	private:

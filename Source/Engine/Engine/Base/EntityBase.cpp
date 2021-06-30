@@ -37,7 +37,7 @@ void EntityBase::DelComponent()
 	{
 		m_Components.erase(iter);
 	}
-	iter->second->DeleteObject();
+	iter->second->DeleteSelf();
 }
 
 template<typename T, typename>

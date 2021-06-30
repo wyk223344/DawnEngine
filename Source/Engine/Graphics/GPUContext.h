@@ -60,6 +60,9 @@ namespace DawnEngine
 		// 绑定索引缓冲区, index buffer
 		virtual void BindIB(GPUBuffer* indexBuffer) = 0;
 
+		// 更新buffer数据
+		virtual void UpdateBuffer(GPUBuffer* buffer, const void* data, uint32 size, uint32 offset = 0) = 0;
+
 		/// <summary>
 		/// 通过索引来绘制实例
 		/// </summary>

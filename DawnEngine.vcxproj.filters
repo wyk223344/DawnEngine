@@ -357,6 +357,9 @@
     <ClInclude Include="Source\Engine\Core\Singleton.h">
       <Filter>Engine\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\PixelFormatExtensions.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Main\Windows\main.cpp">
@@ -520,6 +523,12 @@
     </ClCompile>
     <ClCompile Include="Source\Engine\Renderer\Renderer.cpp">
       <Filter>Engine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\PixelFormatExtensions.cpp">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\GPUPipelineState.cpp">
+      <Filter>Engine\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

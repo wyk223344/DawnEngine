@@ -8,7 +8,7 @@ namespace DawnEngine
 	{
 	public:
 
-		void DeleteObject()
+		void DeleteSelf()
 		{
 			Delete(this);
 		}

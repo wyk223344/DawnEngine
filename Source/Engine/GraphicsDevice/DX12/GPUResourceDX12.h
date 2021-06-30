@@ -59,7 +59,7 @@ namespace DawnEngine::DX12
 
 		GPUResourceStateDX12 State;
 
-	private:
+	protected:
 
 		ID3D12Resource* m_Resource;
 

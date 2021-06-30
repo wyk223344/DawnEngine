@@ -1,9 +1,9 @@
-#include "GPUBuffer.h"
+#include "GPUPipelineState.h"
 
 using namespace DawnEngine;
 
 
-bool GPUBuffer::Init(const GPUBufferDescription& desc)
+bool GPUPipelineState::Init(Description& desc)
 {
 	ReleaseGPU();
 	m_Desc = desc;
@@ -13,9 +13,4 @@ bool GPUBuffer::Init(const GPUBufferDescription& desc)
 		return false;
 	}
 	return true;
-}
-
-void GPUBuffer::OnReleaseGPU()
-{
-	
 }

@@ -5,6 +5,8 @@
 #include "GPUResourceDX12.h"
 #include "GPUResourceStateDX12.h"
 #include "GPUTextureDX12.h"
+#include "GPUBufferDX12.h"
+#include "UploadBufferDX12.h"
 #include "CommandQueueDX12.h"
 #include "Engine/Engine/Engine.h"
 #include "GPUSwapChainDX12.h"
@@ -13,6 +15,16 @@
 
 using namespace DawnEngine;
 using namespace DawnEngine::DX12;
+
+inline bool operator!=(const D3D12_VERTEX_BUFFER_VIEW& l, const D3D12_VERTEX_BUFFER_VIEW& r)
+{
+	return l.SizeInBytes != r.SizeInBytes || l.StrideInBytes != r.StrideInBytes || l.BufferLocation != r.BufferLocation;
+}
+
+inline bool operator!=(const D3D12_INDEX_BUFFER_VIEW& l, const D3D12_INDEX_BUFFER_VIEW& r)
+{
+	return l.SizeInBytes != r.SizeInBytes || l.Format != r.Format || l.BufferLocation != r.BufferLocation;
+}
 
 
 GPUContextDX12::GPUContextDX12(GPUDeviceDX12* device, D3D12_COMMAND_LIST_TYPE type)
@@ -140,12 +152,34 @@ void GPUContextDX12::SetRenderTarget(GPUTexture* rt, GPUTexture* depthBuffer)
 
 void GPUContextDX12::BindVB(GPUBuffer* vertexBuffer)
 {
-
+	const auto vbDX12 = static_cast<GPUBufferDX12*>(vertexBuffer);
+	D3D12_VERTEX_BUFFER_VIEW view;
+	vbDX12->GetVBView(view);
+	if (m_VertexBufferView != view)
+	{
+		m_CommandList->IASetVertexBuffers(0, 1, &view);
+		m_VertexBufferView = view;
+	}
 }
 
 void GPUContextDX12::BindIB(GPUBuffer* indexBuffer)
 {
+	const auto ibDX12 = static_cast<GPUBufferDX12*>(indexBuffer);
+	D3D12_INDEX_BUFFER_VIEW view;
+	ibDX12->GetIBView(view);
+	if (m_IndexBufferView != view)
+	{
+		m_CommandList->IASetIndexBuffer(&view);
+		m_IndexBufferView = view;
+	}
+}
 
+void GPUContextDX12::UpdateBuffer(GPUBuffer* buffer, const void* data, uint32 size, uint32 offset)
+{
+	GPUBufferDX12* bufferDX12 = static_cast<GPUBufferDX12*>(buffer);
+	SetResourceState(bufferDX12, D3D12_RESOURCE_STATE_COPY_DEST);
+	flushRBs();
+	m_Device->UploadBuffer->UploadBuffer(this, bufferDX12->GetResource(), offset, data, size);
 }
 
 void GPUContextDX12::DrawIndexedInstanced(uint32 indicesCount, uint32 instanceCount, int32 startIndex, int32 startVertex, int32 startInstance)

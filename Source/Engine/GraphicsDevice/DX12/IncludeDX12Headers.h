@@ -40,4 +40,22 @@
 }
 #endif
 
+
+namespace DawnEngine::DX12
+{
+    class RenderToolsDX12
+    {
+    public:
+        static PixelFormat ToPixelFormat(const DXGI_FORMAT format)
+        {
+            return static_cast<PixelFormat>(format);
+        }
+
+        static DXGI_FORMAT ToDxgiFormat(const PixelFormat format)
+        {
+            return static_cast<DXGI_FORMAT>(format);
+        }
+    };
+}
+
 #endif

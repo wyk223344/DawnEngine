@@ -10,6 +10,25 @@ namespace DawnEngine
 	class GPUResource : Object
 	{
 	public:
+
+		void ReleaseGPU()
+		{
+			if (m_MemoryUsage != 0)
+			{
+				OnReleaseGPU();
+				m_MemoryUsage = 0;
+			}
+		}
+
+	protected:
+
+		virtual void OnReleaseGPU()
+		{
+		}
+
+	protected:
+
+		uint64 m_MemoryUsage = 0;
 	};
 
 	///*
@@ -46,7 +65,7 @@ namespace DawnEngine
 	/*
 		图形api资源的实际持有者，如：ID3D12Resource。 主要为图形api层使用
 	*/
-	class GPUResourceOwner : Object
+	class GPUResourceOwner
 	{
 
 	};

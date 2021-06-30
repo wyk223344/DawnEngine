@@ -41,8 +41,6 @@ namespace DawnEngine::DX12
 
 		CommandQueueDX12* GetGraphicsQueue() const { return m_GraphicsQueue; }
 
-		UploadBufferDX12* GetUploadBuffer() const { return m_UploadBuffer; }
-
 	public: // override
 
 		GPUContext* GetMainContext() override { return reinterpret_cast<GPUContext*>(m_MainContext); };
@@ -63,6 +61,8 @@ namespace DawnEngine::DX12
 		DescriptorHeapPoolDX12 Heap_RTV;
 		DescriptorHeapPoolDX12 Heap_DSV;
 
+		UploadBufferDX12* UploadBuffer;
+
 	private:
 
 		ID3D12Device* m_Device;
@@ -71,7 +71,7 @@ namespace DawnEngine::DX12
 
 		CommandQueueDX12* m_GraphicsQueue;
 		GPUContextDX12* m_MainContext;
-		UploadBufferDX12* m_UploadBuffer;
+		
 	};
 }
 

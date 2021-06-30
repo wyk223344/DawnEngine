@@ -64,6 +64,12 @@ namespace DawnEngine::DX12
 		// 执行指令
 		uint64 Execute(bool waitForCompletion = false);
 
+		// 获取CommandList
+		ID3D12GraphicsCommandList* GetCommandList() const
+		{
+			return m_CommandList;
+		}
+
 	public:  // override
 
 		void FrameBegin() override;
@@ -75,6 +81,7 @@ namespace DawnEngine::DX12
 		void SetRenderTarget(GPUTexture* rt, GPUTexture* depthBuffer) override;
 		void BindVB(GPUBuffer* vertexBuffer) override;
 		void BindIB(GPUBuffer* indexBuffer) override;
+		void UpdateBuffer(GPUBuffer* buffer, const void* data, uint32 size, uint32 offset) override;
 		void DrawIndexedInstanced(uint32 indicesCount, uint32 instanceCount, int32 startIndex = 0, int32 startVertex = 0, int32 startInstance = 0) override;
 		void SetState(GPUPipelineState* state) override;
 		GPUPipelineState* GetState() const override;
@@ -114,6 +121,9 @@ namespace DawnEngine::DX12
 
 		D3D12_RESOURCE_BARRIER m_ResourceBarrierBuffers[DX12_RB_BUFFER_SIZE];
 		int32 m_ResourceBarrierNum;
+
+		D3D12_VERTEX_BUFFER_VIEW m_VertexBufferView;
+		D3D12_INDEX_BUFFER_VIEW m_IndexBufferView;
 
 		GPUTextureDX12* m_RenderTargetTexture;
 		GPUTextureDX12* m_DepthTexture;

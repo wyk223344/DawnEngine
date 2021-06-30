@@ -221,6 +221,7 @@
     <ClInclude Include="Source\Engine\Graphics\Graphics.h" />
     <ClInclude Include="Source\Engine\Graphics\Models\Mesh.h" />
     <ClInclude Include="Source\Engine\Graphics\PixelFormat.h" />
+    <ClInclude Include="Source\Engine\Graphics\PixelFormatExtensions.h" />
     <ClInclude Include="Source\Engine\Graphics\Shaders\GPUShader.h" />
     <ClInclude Include="Source\Engine\Graphics\Shaders\GPUShaderProgram.h" />
     <ClInclude Include="Source\Engine\Graphics\Textures\GPUTexture.h" />
@@ -283,8 +284,10 @@
     <ClCompile Include="Source\Engine\Graphics\GPUBufferDescription.cpp" />
     <ClCompile Include="Source\Engine\Graphics\GPUContext.cpp" />
     <ClCompile Include="Source\Engine\Graphics\GPUDevice.cpp" />
+    <ClCompile Include="Source\Engine\Graphics\GPUPipelineState.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Graphics.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Models\Mesh.cpp" />
+    <ClCompile Include="Source\Engine\Graphics\PixelFormatExtensions.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Textures\GPUTexture.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Textures\GPUTextureDescription.cpp" />
     <ClCompile Include="Source\Engine\Main\Windows\main.cpp" />

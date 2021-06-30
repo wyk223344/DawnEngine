@@ -253,4 +253,16 @@ namespace DawnEngine::Math
     {
         return IsZero(a - 1.0f);
     }
+
+    template<typename T>
+    static T AlignUpWithMask(T value, T mask)
+    {
+        return (T)(value + mask & ~mask);
+    }
+
+    template<typename T>
+    static T AlignDownWithMask(T value, T mask)
+    {
+        return (T)(value & ~mask);
+    }
 }
