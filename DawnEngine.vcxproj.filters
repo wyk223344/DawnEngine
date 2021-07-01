@@ -360,6 +360,12 @@
     <ClInclude Include="Source\Engine\Graphics\PixelFormatExtensions.h">
       <Filter>Engine\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine\Core\Collections\HashFunctions.h">
+      <Filter>Engine\Core\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUShaderProgramDX12.h">
+      <Filter>Engine\GraphicsDevice\DX12</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Main\Windows\main.cpp">
@@ -529,6 +535,9 @@
     </ClCompile>
     <ClCompile Include="Source\Engine\Graphics\GPUPipelineState.cpp">
       <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUShaderProgramDX12.cpp">
+      <Filter>Engine\GraphicsDevice\DX12</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

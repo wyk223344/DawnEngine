@@ -60,3 +60,19 @@ PixelFormat PixelFormatExtensions::FindShaderResourceFormat(const PixelFormat fo
     }
     return format;
 }
+
+
+PixelFormat PixelFormatExtensions::FindDepthStencilFormat(const PixelFormat format)
+{
+    switch (format)
+    {
+    case PixelFormat::R24G8_Typeless:
+    case PixelFormat::R24_UNorm_X8_Typeless:
+        return PixelFormat::D24_UNorm_S8_UInt;
+    case PixelFormat::R32_Typeless:
+        return PixelFormat::D32_Float;
+    case PixelFormat::R16_Typeless:
+        return PixelFormat::D16_UNorm;
+    }
+    return format;
+}

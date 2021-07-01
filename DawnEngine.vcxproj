@@ -149,6 +149,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Source\Editor\Editor.h" />
+    <ClInclude Include="Source\Engine\Core\Collections\HashFunctions.h" />
     <ClInclude Include="Source\Engine\Core\Core.h" />
     <ClInclude Include="Source\Engine\Core\Delegate.h" />
     <ClInclude Include="Source\Engine\Core\Enums.h" />
@@ -204,6 +205,7 @@
     <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUResource\GPUResource.h" />
     <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUResource\PixelBuffer.h" />
     <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUShaderDX12.h" />
+    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUShaderProgramDX12.h" />
     <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUSwapChainDX12.h" />
     <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUTextureDX12.h" />
     <ClInclude Include="Source\Engine\GraphicsDevice\DX12\IncludeDX12Headers.h" />
@@ -277,6 +279,7 @@
     <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUResource\GPUResource.cpp" />
     <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUResource\PixelBuffer.cpp" />
     <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUShaderDX12.cpp" />
+    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUShaderProgramDX12.cpp" />
     <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUSwapChainDX12.cpp" />
     <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUTextureDX12.cpp" />
     <ClCompile Include="Source\Engine\GraphicsDevice\DX12\UploadBufferDX12.cpp" />

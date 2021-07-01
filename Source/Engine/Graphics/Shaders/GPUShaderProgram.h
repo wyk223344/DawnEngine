@@ -32,7 +32,7 @@ namespace DawnEngine
 	public:
 
 		// 获取输入布局
-		virtual void* GetInputLayout() const = 0;
+		virtual void* GetInputLayoutData() const = 0;
 
 		// 获取输入布局的大小
 		virtual byte GetInputLayoutSize() const = 0;

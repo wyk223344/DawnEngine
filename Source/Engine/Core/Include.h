@@ -23,6 +23,9 @@
 #include "Memory/Allocator.h"
 #include "Memory/Memory.h"
 
+// collections
+#include "Collections/HashFunctions.h"
+
 
 #include "Core.h"
 #include "Object.h"
