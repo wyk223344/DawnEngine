@@ -56,7 +56,6 @@ void GPUSwapChainDX12::Resize(uint32 width, uint32 height)
 	{
 		for (int32 i = 0; i < DX12_BACK_BUFFER_COUNT; i++)
 		{
-			//m_SwapChainBuffers[i].GetResource().Reset();
 			m_SwapChainBuffers[i].Release();
 		}
 
@@ -67,7 +66,7 @@ void GPUSwapChainDX12::Resize(uint32 width, uint32 height)
 	m_Height = height;
 	m_CurrentFrameIndex = m_SwapChain->GetCurrentBackBufferIndex();
 
-	// TODO£ºË¢ÐÂ»º´æ
+	// Ë¢ÐÂ»º´æ
 	for (int32 i = 0; i < DX12_BACK_BUFFER_COUNT; i++)
 	{
 		ID3D12Resource* backbuffer;

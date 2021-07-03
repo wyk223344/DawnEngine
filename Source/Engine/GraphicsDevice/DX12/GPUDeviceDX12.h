@@ -47,6 +47,8 @@ namespace DawnEngine::DX12
 
 		GPUSwapChain* CreateSwapChain(Window* window) override;
 
+		GPUBuffer* CreateBuffer() override;
+
 	public: // override
 
 		bool Init() override;

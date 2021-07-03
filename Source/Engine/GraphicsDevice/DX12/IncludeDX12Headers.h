@@ -43,9 +43,8 @@
 
 namespace DawnEngine::DX12
 {
-    class RenderToolsDX12
+    namespace RenderToolsDX12
     {
-    public:
         static PixelFormat ToPixelFormat(const DXGI_FORMAT format)
         {
             return static_cast<PixelFormat>(format);
@@ -55,6 +54,17 @@ namespace DawnEngine::DX12
         {
             return static_cast<DXGI_FORMAT>(format);
         }
+    };
+
+    namespace InputLayoutDX12
+    {
+        static D3D12_INPUT_ELEMENT_DESC DefaultLayout[] =
+        {
+            { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
+            { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
+            { "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 20, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
+            { "TANGENT", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 32, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 }
+        };
     };
 }
 

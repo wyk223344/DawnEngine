@@ -4,6 +4,7 @@
 #include "Engine/Core/Include.h"
 #include "GPUDeviceDX12.h"
 #include "GPUContextDX12.h"
+#include "GPUBufferDX12.h"
 #include "CommandQueueDX12.h"
 #include "GPUSwapChainDX12.h"
 #include "DescriptorHeapDX12.h"
@@ -104,12 +105,15 @@ void GPUDeviceDX12::Dispose()
 
 }
 
-
 GPUSwapChain* GPUDeviceDX12::CreateSwapChain(Window* window)
 {
 	return New<GPUSwapChainDX12>(this, window);
 }
 
+GPUBuffer* GPUDeviceDX12::CreateBuffer()
+{
+	return New<GPUBufferDX12>(this);
+}
 
 GPUDevice* CreateGPUDeviceDX12()
 {

@@ -41,6 +41,9 @@ bool GPUPipelineStateDX12::OnInit()
 {
 	D3D12_GRAPHICS_PIPELINE_STATE_DESC psDesc;
 	psDesc.pRootSignature = m_Device->GetRootSignature();
+    psDesc.VS = { m_Desc.VS->GetBufferHandle(), m_Desc.VS->GetBufferSize() };
+    psDesc.PS = { m_Desc.PS->GetBufferHandle(), m_Desc.PS->GetBufferSize() };
+    psDesc.InputLayout = { static_cast<D3D12_INPUT_ELEMENT_DESC*>(m_Desc.VS->GetInputLayoutData()), m_Desc.VS->GetInputLayoutSize() };
     psDesc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
     psDesc.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT);
     psDesc.DepthStencilState = CD3DX12_DEPTH_STENCIL_DESC(D3D12_DEFAULT);

@@ -3,6 +3,7 @@
 
 #include "Engine/Graphics/GPUContext.h"
 #include "Engine/Graphics/GPUSwapChain.h"
+#include "Engine/Graphics/GPUBuffer.h"
 #include "Engine/Platform/Platform.h"
 
 namespace DawnEngine
@@ -23,6 +24,9 @@ namespace DawnEngine
 
         // 创建交换链
         virtual GPUSwapChain* CreateSwapChain(Window* window) = 0;
+
+        // 创建Buffer
+        virtual GPUBuffer* CreateBuffer() = 0;
 
     public: // 声明周期相关虚函数
 

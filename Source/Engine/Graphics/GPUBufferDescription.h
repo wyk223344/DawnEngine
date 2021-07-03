@@ -70,6 +70,31 @@ namespace DawnEngine
 
     public:
 
+        static GPUBufferDescription Create(uint32 size, GPUBufferFlags flags, PixelFormat format = PixelFormat::Unknown, const void* initData = nullptr, uint32 stride = 0, GPUResourceUsage usage = GPUResourceUsage::Default)
+        {
+            GPUBufferDescription desc;
+            desc.Size = size;
+            desc.Stride = stride;
+            desc.Flags = flags;
+            desc.Format = format;
+            desc.InitData = initData;
+            desc.Usage = usage;
+            return desc;
+        }
+
+        static GPUBufferDescription CreateVertexBufferDesc(int32 elementStride, int32 elementsCount, void* data)
+        {
+            return Create(elementStride * elementsCount, GPUBufferFlags::VertexBuffer, PixelFormat::Unknown, data, elementStride, GPUResourceUsage::Default);
+        }
+
+        static GPUBufferDescription CreateIndexBufferDesc(int32 elementStride, int32 elementsCount, void* data)
+        {
+            const auto format = elementStride == 4 ? PixelFormat::R32_UInt : PixelFormat::R16_UInt;
+            return Create(elementsCount * elementStride, GPUBufferFlags::IndexBuffer, format, data, elementStride, GPUResourceUsage::Default);
+        }
+
+    public:
+
         // Gets the number elements in the buffer.
         uint32 GetElementsCount() const
         {
