@@ -6,6 +6,7 @@
 #include "GPUResourceStateDX12.h"
 #include "GPUTextureDX12.h"
 #include "GPUBufferDX12.h"
+#include "GPUPipelineStateDX12.h"
 #include "UploadBufferDX12.h"
 #include "CommandQueueDX12.h"
 #include "Engine/Engine/Engine.h"
@@ -56,6 +57,8 @@ void GPUContextDX12::Reset()
 	m_RTDirtyFlag = false;
 	m_RenderTargetTexture = nullptr;
 	m_DepthTexture = nullptr;
+
+	m_CommandList->SetGraphicsRootSignature(m_Device->GetRootSignature());
 }
 
 void GPUContextDX12::SetResourceState(GPUResourceOwnerDX12* resource, D3D12_RESOURCE_STATES after, int32 subresourceIndex)
@@ -133,6 +136,7 @@ void GPUContextDX12::SetRenderTarget(GPUTexture* rt)
 	if (m_RenderTargetTexture != rtDX12 || m_DepthTexture != nullptr)
 	{
 		m_RTDirtyFlag = true;
+		m_PSDirtyFlag = true;
 		m_RenderTargetTexture = rtDX12;
 		m_DepthTexture = nullptr;
 	}
@@ -145,6 +149,7 @@ void GPUContextDX12::SetRenderTarget(GPUTexture* rt, GPUTexture* depthBuffer)
 	if (m_RenderTargetTexture != rtDX12 || m_DepthTexture != depthBuffer)
 	{
 		m_RTDirtyFlag = true;
+		m_PSDirtyFlag = true;
 		m_RenderTargetTexture = rtDX12;
 		m_DepthTexture = depthBufferDX12;
 	}
@@ -184,12 +189,18 @@ void GPUContextDX12::UpdateBuffer(GPUBuffer* buffer, const void* data, uint32 si
 
 void GPUContextDX12::DrawIndexedInstanced(uint32 indicesCount, uint32 instanceCount, int32 startIndex, int32 startVertex, int32 startInstance)
 {
-
+	onDrawCall();
+	m_CommandList->DrawIndexedInstanced(indicesCount, instanceCount, startIndex, startVertex, startInstance);
 }
 
 void GPUContextDX12::SetState(GPUPipelineState* state)
 {
-
+	if (m_CurrentState != state)
+	{
+		m_CurrentState = static_cast<GPUPipelineStateDX12*>(state);
+		m_PSDirtyFlag = true;
+	}
+	
 }
 
 GPUPipelineState* GPUContextDX12::GetState() const
@@ -228,6 +239,15 @@ void GPUContextDX12::addResourceBarrier(ID3D12Resource* resource, const D3D12_RE
 	barrier.Transition.StateAfter = after;
 	barrier.Transition.Subresource = D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES;
 	m_ResourceBarrierNum++;
+}
+
+void GPUContextDX12::onDrawCall()
+{
+	flushSRVs();
+	flushRTVs();
+	flushRBs();
+	flushPS();
+	flushCBs();
 }
 
 void GPUContextDX12::flushSRVs()
@@ -280,7 +300,13 @@ void GPUContextDX12::flushRBs()
 
 void GPUContextDX12::flushPS()
 {
+	if (m_PSDirtyFlag && m_CurrentState)
+	{
+		m_PSDirtyFlag = false;
 
+		m_CommandList->SetPipelineState(m_CurrentState->GetState(m_DepthTexture, m_RenderTargetTexture));
+		m_CommandList->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	}
 }
 
 #endif

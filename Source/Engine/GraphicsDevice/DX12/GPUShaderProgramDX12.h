@@ -4,7 +4,7 @@
 
 #include "Engine/Graphics/Shaders/GPUShaderProgram.h"
 #include "IncludeDX12Headers.h"
-
+#include <string>
 
 namespace DawnEngine::DX12
 {
@@ -27,6 +27,8 @@ namespace DawnEngine::DX12
 	{
 	public:
 
+		bool Init(std::string filePath) override;
+
 		void* GetInputLayoutData() const override { return InputLayoutDX12::DefaultLayout; }
 
 		byte GetInputLayoutSize() const override { return _countof(InputLayoutDX12::DefaultLayout); }
@@ -34,7 +36,9 @@ namespace DawnEngine::DX12
 
 	class GPUShaderProgramPSDX12 : public GPUShaderProgramDX12<GPUShaderProgramPS>
 	{
+	public:
 
+		bool Init(std::string filePath) override;
 	};
 	
 }

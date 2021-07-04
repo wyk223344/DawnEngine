@@ -5,8 +5,11 @@
 #include "GPUDeviceDX12.h"
 #include "GPUContextDX12.h"
 #include "GPUBufferDX12.h"
+#include "GPUShaderDX12.h"
+#include "UploadBufferDX12.h"
 #include "CommandQueueDX12.h"
 #include "GPUSwapChainDX12.h"
+#include "GPUPipelineStateDX12.h"
 #include "DescriptorHeapDX12.h"
 #include "IncludeDX12Headers.h"
 
@@ -95,6 +98,9 @@ bool GPUDeviceDX12::Init()
 		ThrowIfFailed(m_Device->CreateRootSignature(0, signature->GetBufferPointer(), signature->GetBufferSize(), IID_PPV_ARGS(&m_RootSignature)));
 	}
 
+	// Upload buffer
+	UploadBuffer = New<UploadBufferDX12>(this);
+
 	LOG_INFO("Finish Init GPUDeviceDX12");
 
 	return GPUDevice::Init();
@@ -113,6 +119,16 @@ GPUSwapChain* GPUDeviceDX12::CreateSwapChain(Window* window)
 GPUBuffer* GPUDeviceDX12::CreateBuffer()
 {
 	return New<GPUBufferDX12>(this);
+}
+
+GPUShader* GPUDeviceDX12::CreateShader()
+{
+	return New<GPUShaderDX12>(this);
+}
+
+GPUPipelineState* GPUDeviceDX12::CreatePipelineState()
+{
+	return New<GPUPipelineStateDX12>(this);
 }
 
 GPUDevice* CreateGPUDeviceDX12()

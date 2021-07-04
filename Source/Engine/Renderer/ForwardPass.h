@@ -10,6 +10,10 @@ namespace DawnEngine
 	{
 	public:
 
+		void Init();
+		
 		void Render(GPUContext* context);
+
+		void Dispose();
 	};
 }

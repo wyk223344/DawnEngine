@@ -44,6 +44,10 @@ namespace DawnEngine
 
 	public:
 
+		GPUPipelineState()
+		{
+		}
+
 		bool Init(Description& desc);
 
 	protected:

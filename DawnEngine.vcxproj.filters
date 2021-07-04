@@ -366,6 +366,15 @@
     <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUShaderProgramDX12.h">
       <Filter>Engine\GraphicsDevice\DX12</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\Models\GeometryGenerator.h">
+      <Filter>Engine\Graphics\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\Models\MeshData.h">
+      <Filter>Engine\Graphics\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\Models\Vertex.h">
+      <Filter>Engine\Graphics\Models</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Main\Windows\main.cpp">
@@ -538,6 +547,9 @@
     </ClCompile>
     <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUShaderProgramDX12.cpp">
       <Filter>Engine\GraphicsDevice\DX12</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\Models\GeometryGenerator.cpp">
+      <Filter>Engine\Graphics\Models</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

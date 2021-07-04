@@ -62,6 +62,18 @@ PixelFormat PixelFormatExtensions::FindShaderResourceFormat(const PixelFormat fo
 }
 
 
+PixelFormat PixelFormatExtensions::FindUnorderedAccessFormat(const PixelFormat format)
+{
+    switch (format)
+    {
+    case PixelFormat::B8G8R8A8_Typeless:
+        return PixelFormat::B8G8R8A8_UNorm;
+    case PixelFormat::R8G8B8A8_Typeless:
+        return PixelFormat::R8G8B8A8_UNorm;
+    }
+    return format;
+}
+
 PixelFormat PixelFormatExtensions::FindDepthStencilFormat(const PixelFormat format)
 {
     switch (format)

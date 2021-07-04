@@ -94,6 +94,9 @@ namespace DawnEngine::DX12
 		// 添加资源屏障
 		void addResourceBarrier(ID3D12Resource* resource, const D3D12_RESOURCE_STATES before, const D3D12_RESOURCE_STATES after);
 
+		// 当要调用绘制指令时
+		void onDrawCall();
+
 		// 设置着色器资源视图
 		void flushSRVs();
 
@@ -127,7 +130,9 @@ namespace DawnEngine::DX12
 
 		GPUTextureDX12* m_RenderTargetTexture;
 		GPUTextureDX12* m_DepthTexture;
+
 		bool m_RTDirtyFlag = false;
+		bool m_PSDirtyFlag = false;
 	};
 
 }

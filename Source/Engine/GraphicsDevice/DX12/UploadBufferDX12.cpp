@@ -132,6 +132,7 @@ bool UploadBufferDX12::UploadBuffer(GPUContextDX12* context, ID3D12Resource* buf
 
 bool UploadBufferDX12::UploadTexture(GPUContextDX12* context, ID3D12Resource* texture, const void* srcData, uint32 srcRowPitch, uint32 srcSlicePitch, int32 mipIndex, int32 arrayIndex)
 {
+    return true;
 }
 
 void UploadBufferDX12::BeginGeneration(uint64 generation)

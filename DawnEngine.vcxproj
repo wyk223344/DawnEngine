@@ -221,7 +221,10 @@
     <ClInclude Include="Source\Engine\Graphics\GPUResourceState.h" />
     <ClInclude Include="Source\Engine\Graphics\GPUSwapChain.h" />
     <ClInclude Include="Source\Engine\Graphics\Graphics.h" />
+    <ClInclude Include="Source\Engine\Graphics\Models\GeometryGenerator.h" />
     <ClInclude Include="Source\Engine\Graphics\Models\Mesh.h" />
+    <ClInclude Include="Source\Engine\Graphics\Models\MeshData.h" />
+    <ClInclude Include="Source\Engine\Graphics\Models\Vertex.h" />
     <ClInclude Include="Source\Engine\Graphics\PixelFormat.h" />
     <ClInclude Include="Source\Engine\Graphics\PixelFormatExtensions.h" />
     <ClInclude Include="Source\Engine\Graphics\Shaders\GPUShader.h" />
@@ -289,6 +292,7 @@
     <ClCompile Include="Source\Engine\Graphics\GPUDevice.cpp" />
     <ClCompile Include="Source\Engine\Graphics\GPUPipelineState.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Graphics.cpp" />
+    <ClCompile Include="Source\Engine\Graphics\Models\GeometryGenerator.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Models\Mesh.cpp" />
     <ClCompile Include="Source\Engine\Graphics\PixelFormatExtensions.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Textures\GPUTexture.cpp" />

@@ -12,6 +12,8 @@ namespace DawnEngine
 	{
 	public:
 
+		virtual bool Init(std::string filePath) = 0;
+
 		// 获取shader阶段类型
 		virtual ShaderStage GetStage() const = 0;
 

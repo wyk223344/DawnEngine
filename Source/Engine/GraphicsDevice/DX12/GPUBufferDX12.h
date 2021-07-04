@@ -16,6 +16,11 @@ namespace DawnEngine::DX12
 	{
 	public:
 
+		GPUBufferDX12(GPUDeviceDX12* device)
+			: GPUResourceDX12<GPUBuffer>(device)
+		{
+		}
+
 		void ReleaseView()
 		{
 			m_SRV.Release();

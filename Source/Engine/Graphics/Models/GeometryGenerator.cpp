@@ -88,6 +88,8 @@ MeshData GeometryGenerator::CreateBox(float width, float height, float depth, ui
 	i[33] = 20; i[34] = 22; i[35] = 23;
 
 	meshData.Indices.assign(&i[0], &i[36]);
+
+	return meshData;
 }
 
 

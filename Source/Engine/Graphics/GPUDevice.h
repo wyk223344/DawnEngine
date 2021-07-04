@@ -8,6 +8,9 @@
 
 namespace DawnEngine
 {
+    class GPUShader;
+    class GPUPipelineState;
+
     /*
         GPU Device
     */
@@ -27,6 +30,12 @@ namespace DawnEngine
 
         // 创建Buffer
         virtual GPUBuffer* CreateBuffer() = 0;
+
+        // 创建shader
+        virtual GPUShader* CreateShader() = 0;
+
+        // 创建pipeline state
+        virtual GPUPipelineState* CreatePipelineState() = 0;
 
     public: // 声明周期相关虚函数
 

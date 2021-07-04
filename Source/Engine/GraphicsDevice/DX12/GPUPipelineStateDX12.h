@@ -38,6 +38,11 @@ namespace DawnEngine::DX12
 	{
 	public:
 
+		GPUPipelineStateDX12(GPUDeviceDX12* device)
+			: GPUResourceDX12<GPUPipelineState>(device)
+		{
+		}
+
 		ID3D12PipelineState* GetState(GPUTextureDX12* depthHandle, GPUTextureDX12* rtHandle);
 
 	protected:
