@@ -118,6 +118,7 @@ DynamicAllocation UploadBufferDX12::Allocate(uint64 size, uint64 align)
     return result;
 }
 
+// 数据通过上传缓冲区上传到GPU，再拷到指定Buffer区域
 bool UploadBufferDX12::UploadBuffer(GPUContextDX12* context, ID3D12Resource* buffer, uint32 bufferOffset, const void* data, uint64 size)
 {
     const DynamicAllocation allocation = Allocate(size, 4);
@@ -157,7 +158,6 @@ void UploadBufferDX12::BeginGeneration(uint64 generation)
         }
     }
 }
-
 
 UploadBufferPageDX12* UploadBufferDX12::requestPage(uint64 size)
 {

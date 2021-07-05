@@ -14,8 +14,15 @@ bool GPUDevice::Init()
 	return true;
 }
 
+void GPUDevice::DrawBegin()
+{
+	m_IsRendering = true;
+}
+
 void GPUDevice::Draw()
 {
+	DrawBegin();
+
 	auto context = GetMainContext();
 	Window* window = Engine::MainWindow;
 	auto swapChain = window->GetSwapChain();
@@ -24,12 +31,16 @@ void GPUDevice::Draw()
 
 	Renderer::Render(context);
 
-
-
 	context->FrameEnd();
 
 	swapChain->Present();
 
+	DrawEnd();
+}
+
+void GPUDevice::DrawEnd()
+{
+	m_IsRendering = false;
 }
 
 void GPUDevice::Dispose()

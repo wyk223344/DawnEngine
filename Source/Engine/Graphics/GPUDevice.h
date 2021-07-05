@@ -20,6 +20,11 @@ namespace DawnEngine
 
         static GPUDevice* Instance;
 
+    public:
+
+        // 是否正在绘制中
+        bool IsRendering() const { return m_IsRendering; }
+
     public: // 对外接口虚函数
         
         // 获取渲染Context
@@ -42,13 +47,21 @@ namespace DawnEngine
         // 初始化
         virtual bool Init();
 
+        // 绘制执行前
+        virtual void DrawBegin();
+
         // 进行绘制
         virtual void Draw();
+
+        // 绘制执行后
+        virtual void DrawEnd();
 
         // 销毁
         virtual void Dispose();
 
     protected:
+
+        bool m_IsRendering;
     };
 
 }

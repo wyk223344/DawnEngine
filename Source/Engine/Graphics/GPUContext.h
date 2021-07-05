@@ -12,6 +12,7 @@ namespace DawnEngine
 	class GPUTexture;
 	class GPUResource;
 	class GPUPipelineState;
+	class GPUConstantBuffer;
 
 	/*
 		GPU Context
@@ -59,6 +60,15 @@ namespace DawnEngine
 
 		// 绑定索引缓冲区, index buffer
 		virtual void BindIB(GPUBuffer* indexBuffer) = 0;
+
+		// 绑定常量缓冲区
+		virtual void BindCB(int32 slot, GPUConstantBuffer* cb) = 0;
+
+		// 解绑常量缓冲区
+		void UnBindCB(int32 slot) { BindCB(slot, nullptr); }
+
+		// 更新常量缓冲区数据
+		virtual void UpdateCB(GPUConstantBuffer* cb, const void* data) = 0;
 
 		// 更新buffer数据
 		virtual void UpdateBuffer(GPUBuffer* buffer, const void* data, uint32 size, uint32 offset = 0) = 0;

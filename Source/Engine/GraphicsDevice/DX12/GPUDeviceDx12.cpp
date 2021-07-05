@@ -1,6 +1,7 @@
 
 #if GRAPHICS_API_DIRECTX12
 
+#include "Engine/Engine/Engine.h"
 #include "Engine/Core/Include.h"
 #include "GPUDeviceDX12.h"
 #include "GPUContextDX12.h"
@@ -13,8 +14,8 @@
 #include "DescriptorHeapDX12.h"
 #include "IncludeDX12Headers.h"
 
-using namespace DawnEngine;
 using namespace DawnEngine::DX12;
+using namespace DawnEngine;
 using Microsoft::WRL::ComPtr;
 
 GPUDevice* GPUDeviceDX12::Create()
@@ -104,6 +105,12 @@ bool GPUDeviceDX12::Init()
 	LOG_INFO("Finish Init GPUDeviceDX12");
 
 	return GPUDevice::Init();
+}
+
+void GPUDeviceDX12::DrawBegin()
+{
+	GPUDevice::DrawBegin();
+	UploadBuffer->BeginGeneration(DawnEngine::Engine::FrameCount);
 }
 
 void GPUDeviceDX12::Dispose()

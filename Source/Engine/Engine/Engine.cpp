@@ -9,7 +9,7 @@
 using namespace DawnEngine;
 
 Window* Engine::MainWindow = nullptr;
-
+uint64 Engine::FrameCount = 0;
 
 int32 Engine::Main()
 {
@@ -29,6 +29,7 @@ int32 Engine::Main()
 		EngineService::OnUpdate();
 		EngineService::OnLateUpdate();
 		EngineService::OnDraw();
+		FrameCount++;
 	}
 	return 0;
 }

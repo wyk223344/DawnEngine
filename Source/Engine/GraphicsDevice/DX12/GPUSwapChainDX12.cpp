@@ -71,8 +71,7 @@ void GPUSwapChainDX12::Resize(uint32 width, uint32 height)
 	{
 		ID3D12Resource* backbuffer;
 		m_SwapChain->GetBuffer(i, IID_PPV_ARGS(&backbuffer));
-		m_SwapChainBuffers[i].InitResource(backbuffer, D3D12_RESOURCE_STATE_PRESENT);
-		m_SwapChainBuffers[i].SetRTV(nullptr);
+		m_SwapChainBuffers[i].CreateFromSwapChain(backbuffer, this);
 		//ThrowIfFailed(m_SwapChain->GetBuffer(i, IID_PPV_ARGS(&(backBuffer.GetResource()))));
 		// m_SwapChainSlots[i].CreateRTV(m_Device, m_SwapChainBuffers[i].Get(), nullptr);
 	}

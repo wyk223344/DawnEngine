@@ -29,6 +29,7 @@
 
 #define DX12_BACK_BUFFER_COUNT 2
 #define DX12_RB_BUFFER_SIZE 16
+#define DX12_MAX_CB_BINDED 4
 
 #ifndef ThrowIfFailed
 #define ThrowIfFailed(x)                                              \
@@ -36,7 +37,7 @@
     HRESULT hr__ = (x);                                               \
     if(FAILED(hr__))                                                  \
     {                                                                 \
-        LOG_ERROR("ThrowIfFailed %s %d", __FILE__, __LINE__);         \
+        LOG_ERROR("ThrowIfFailed %d %s %d", hr__, __FILE__, __LINE__);         \
     }                                                                 \
 }
 #endif

@@ -23,6 +23,9 @@ namespace DawnEngine
 		// 主场景
 		static Scene* MainScene;
 
+		// 从游戏开始后的第几帧
+		static uint64 FrameCount;
+
 	private:
 		
 		// 初始化主窗口

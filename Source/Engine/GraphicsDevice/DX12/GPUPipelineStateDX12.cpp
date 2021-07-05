@@ -15,10 +15,11 @@ ID3D12PipelineState* GPUPipelineStateDX12::GetState(GPUTextureDX12* depthHandle,
 {
     GPUPipelineStateKeyDX12 key;
     key.RenderTargetFormat = rtHandle->Format();
-    key.DepthFormat = depthHandle->Format();
+    key.DepthFormat = depthHandle ? depthHandle->Format() : PixelFormat::Unknown;
     key.MSAA = rtHandle->MultiSampleLevel();
 
-    auto iter = m_PSOCache.find(GetHash(key));
+    uint32 hashKey = GetHash(key);
+    auto iter = m_PSOCache.find(hashKey);
     if (iter != m_PSOCache.end())
     {
         return iter->second;
@@ -32,7 +33,7 @@ ID3D12PipelineState* GPUPipelineStateDX12::GetState(GPUTextureDX12* depthHandle,
 
     ID3D12PipelineState* state = nullptr;
     ThrowIfFailed(m_Device->GetDevice()->CreateGraphicsPipelineState(&m_PipelineStateDescDX12, IID_PPV_ARGS(&state)));
-    m_PSOCache[GetHash(key)] = state;
+    m_PSOCache[hashKey] = state;
     return state;
 }
 
@@ -40,6 +41,7 @@ ID3D12PipelineState* GPUPipelineStateDX12::GetState(GPUTextureDX12* depthHandle,
 bool GPUPipelineStateDX12::OnInit()
 {
 	D3D12_GRAPHICS_PIPELINE_STATE_DESC psDesc;
+    Platform::MemoryClear(&psDesc, sizeof(D3D12_GRAPHICS_PIPELINE_STATE_DESC));
 	psDesc.pRootSignature = m_Device->GetRootSignature();
     psDesc.VS = { m_Desc.VS->GetBufferHandle(), m_Desc.VS->GetBufferSize() };
     psDesc.PS = { m_Desc.PS->GetBufferHandle(), m_Desc.PS->GetBufferSize() };

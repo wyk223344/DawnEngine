@@ -48,9 +48,10 @@ void ForwardPass::Render(GPUContext* context)
 	//context->SetState(ForwardPassImpl::PipelineState);
 	context->SetViewportAndScissors(800.0f, 600.0f);
 	context->Clear(backBuffer, Color::Gray);
-	context->SetRenderTarget(backBuffer);
 	context->BindVB(ForwardPassImpl::BoxMesh->GetVertexBuffer());
 	context->BindIB(ForwardPassImpl::BoxMesh->GetIndexBuffer());
+	context->SetRenderTarget(backBuffer);
+	context->SetState(ForwardPassImpl::PipelineState);
 	context->DrawIndexedInstanced(36, 1);
 	context->FlushState();
 }

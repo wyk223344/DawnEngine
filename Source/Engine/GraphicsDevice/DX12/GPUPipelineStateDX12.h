@@ -41,6 +41,7 @@ namespace DawnEngine::DX12
 		GPUPipelineStateDX12(GPUDeviceDX12* device)
 			: GPUResourceDX12<GPUPipelineState>(device)
 		{
+			m_PSOCache.clear();
 		}
 
 		ID3D12PipelineState* GetState(GPUTextureDX12* depthHandle, GPUTextureDX12* rtHandle);

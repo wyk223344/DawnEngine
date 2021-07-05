@@ -11,6 +11,7 @@
 
 namespace DawnEngine::DX12
 {
+	class GPUSwapChainDX12;
 
 	class GPUTextureDX12 : public GPUResourceDX12<GPUTexture>, public GPUResourceOwnerDX12
 	{
@@ -66,6 +67,12 @@ namespace DawnEngine::DX12
 		D3D12_CPU_DESCRIPTOR_HANDLE UAV() const { return m_UAV.CPU(); }
 
 		bool IsDepthStencilResource() const { return m_DSV.IsValid(); }
+
+		void CreateFromSwapChain(ID3D12Resource* resource, GPUSwapChainDX12* swapChain);
+
+	protected:
+
+		bool OnInit() override;
 
 	private:
 

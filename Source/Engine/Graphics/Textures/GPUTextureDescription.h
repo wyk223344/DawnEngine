@@ -83,7 +83,15 @@ namespace DawnEngine
 
     public:
 
-
         void Clear();
+
+    public:
+
+        static GPUTextureDescription New2D(int32 width, int32 height, PixelFormat format, GPUTextureFlags textureFlags = GPUTextureFlags::ShaderResource | GPUTextureFlags::RenderTarget)
+        {
+            return New2D(width, height, format, textureFlags, 1, 1);
+        }
+
+        static GPUTextureDescription New2D(int32 width, int32 height, PixelFormat format, GPUTextureFlags textureFlags, int32 mipCount, int32 arraySize, MSAALevel msaaLevel = MSAALevel::None);
     };
 }

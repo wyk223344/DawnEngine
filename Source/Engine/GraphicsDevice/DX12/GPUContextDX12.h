@@ -44,6 +44,8 @@ namespace DawnEngine::DX12
 	class GPUTextureDX12;
 	class GPUPipelineStateDX12;
 	class GPUResourceOwnerDX12;
+	class GPUConstantBufferDX12;
+	class GPUBufferDX12;
 
 	class GPUContextDX12 : GPUContext
 	{
@@ -81,6 +83,8 @@ namespace DawnEngine::DX12
 		void SetRenderTarget(GPUTexture* rt, GPUTexture* depthBuffer) override;
 		void BindVB(GPUBuffer* vertexBuffer) override;
 		void BindIB(GPUBuffer* indexBuffer) override;
+		void BindCB(int32 slot, GPUConstantBuffer* cb) override;
+		void UpdateCB(GPUConstantBuffer* cb, const void* data) override;
 		void UpdateBuffer(GPUBuffer* buffer, const void* data, uint32 size, uint32 offset) override;
 		void DrawIndexedInstanced(uint32 indicesCount, uint32 instanceCount, int32 startIndex = 0, int32 startVertex = 0, int32 startInstance = 0) override;
 		void SetState(GPUPipelineState* state) override;
@@ -125,14 +129,17 @@ namespace DawnEngine::DX12
 		D3D12_RESOURCE_BARRIER m_ResourceBarrierBuffers[DX12_RB_BUFFER_SIZE];
 		int32 m_ResourceBarrierNum;
 
-		D3D12_VERTEX_BUFFER_VIEW m_VertexBufferView;
-		D3D12_INDEX_BUFFER_VIEW m_IndexBufferView;
+		GPUConstantBufferDX12* m_ConstantBufferHandles[DX12_MAX_CB_BINDED];
+
+		GPUBufferDX12* m_VertexBufferHandle;
+		GPUBufferDX12* m_IndexBufferHandle;
 
 		GPUTextureDX12* m_RenderTargetTexture;
 		GPUTextureDX12* m_DepthTexture;
 
 		bool m_RTDirtyFlag = false;
 		bool m_PSDirtyFlag = false;
+		bool m_CBDirtyFlag = false;
 	};
 
 }

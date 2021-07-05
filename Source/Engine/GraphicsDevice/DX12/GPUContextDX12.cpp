@@ -7,6 +7,7 @@
 #include "GPUTextureDX12.h"
 #include "GPUBufferDX12.h"
 #include "GPUPipelineStateDX12.h"
+#include "GPUConstantBufferDX12.h"
 #include "UploadBufferDX12.h"
 #include "CommandQueueDX12.h"
 #include "Engine/Engine/Engine.h"
@@ -55,8 +56,13 @@ void GPUContextDX12::Reset()
 		m_CommandList->Reset(m_CurrentAllocator, nullptr);
 	}
 	m_RTDirtyFlag = false;
+	m_PSDirtyFlag = false;
+	m_CBDirtyFlag = false;
 	m_RenderTargetTexture = nullptr;
 	m_DepthTexture = nullptr;
+	m_VertexBufferHandle = nullptr;
+	m_IndexBufferHandle = nullptr;
+	Platform::MemoryClear(&m_ConstantBufferHandles, sizeof(m_ConstantBufferHandles));
 
 	m_CommandList->SetGraphicsRootSignature(m_Device->GetRootSignature());
 }
@@ -160,10 +166,10 @@ void GPUContextDX12::BindVB(GPUBuffer* vertexBuffer)
 	const auto vbDX12 = static_cast<GPUBufferDX12*>(vertexBuffer);
 	D3D12_VERTEX_BUFFER_VIEW view;
 	vbDX12->GetVBView(view);
-	if (m_VertexBufferView != view)
+	if (m_VertexBufferHandle != vbDX12)
 	{
 		m_CommandList->IASetVertexBuffers(0, 1, &view);
-		m_VertexBufferView = view;
+		m_VertexBufferHandle = vbDX12;
 	}
 }
 
@@ -172,10 +178,43 @@ void GPUContextDX12::BindIB(GPUBuffer* indexBuffer)
 	const auto ibDX12 = static_cast<GPUBufferDX12*>(indexBuffer);
 	D3D12_INDEX_BUFFER_VIEW view;
 	ibDX12->GetIBView(view);
-	if (m_IndexBufferView != view)
+	if (m_IndexBufferHandle != ibDX12)
 	{
 		m_CommandList->IASetIndexBuffer(&view);
-		m_IndexBufferView = view;
+		m_IndexBufferHandle = ibDX12;
+	}
+}
+
+void GPUContextDX12::BindCB(int32 slot, GPUConstantBuffer* cb)
+{
+	assert(slot >= 0 && slot < DX12_MAX_CB_BINDED);
+	auto cbDX12 = static_cast<GPUConstantBufferDX12*>(cb);
+	if (m_ConstantBufferHandles[slot] != cbDX12)
+	{
+		m_CBDirtyFlag = true;
+		m_ConstantBufferHandles[slot] = cbDX12;
+	}
+}
+
+void GPUContextDX12::UpdateCB(GPUConstantBuffer* cb, const void* data)
+{
+	assert(data && cb);
+	auto cbDX12 = static_cast<GPUConstantBufferDX12*>(cb);
+	const uint32 size = cbDX12->GetSize();
+	if (size == 0)
+	{
+		return;
+	}
+	DynamicAllocation allocation = m_Device->UploadBuffer->Allocate(size, D3D12_CONSTANT_BUFFER_DATA_PLACEMENT_ALIGNMENT);
+	Platform::MemoryCopy(allocation.CPUAddress, data, allocation.Size);
+	cbDX12->GPUAddress = allocation.GPUAddress;
+	for (uint32 i = 0; i < ARRAY_COUNT(m_ConstantBufferHandles); i++)
+	{
+		if (m_ConstantBufferHandles[i] == cbDX12)
+		{
+			m_CBDirtyFlag = true;
+			break;
+		}
 	}
 }
 
@@ -286,7 +325,19 @@ void GPUContextDX12::flushUAVs()
 
 void GPUContextDX12::flushCBs()
 {
-
+	if (m_CBDirtyFlag)
+	{
+		m_CBDirtyFlag = false;
+		for (uint32 i = 0; i < ARRAY_COUNT(m_ConstantBufferHandles); i++)
+		{
+			auto cb = m_ConstantBufferHandles[i];
+			if (cb)
+			{
+				assert(cb->GPUAddress != 0);
+				m_CommandList->SetGraphicsRootConstantBufferView(i, cb->GPUAddress);
+			}
+		}
+	}
 }
 
 void GPUContextDX12::flushRBs()

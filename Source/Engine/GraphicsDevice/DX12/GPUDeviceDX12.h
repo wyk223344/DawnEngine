@@ -56,7 +56,7 @@ namespace DawnEngine::DX12
 	public: // override
 
 		bool Init() override;
-		// void Draw() override;
+		void DrawBegin() override;
 		void Dispose() override;
 
 	private:

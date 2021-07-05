@@ -38,9 +38,7 @@ namespace DawnEngine
 	{
 	public:
 
-		GPUTexture()
-		{
-		}
+		GPUTexture();
 
 	public:
 
@@ -53,6 +51,14 @@ namespace DawnEngine
 		PixelFormat Format() const { return m_Desc.Format; }
 
 		MSAALevel MultiSampleLevel() const { return m_Desc.MultiSampleLevel; }
+
+	public:
+
+		bool Init(const GPUTextureDescription& desc);
+
+	protected:
+
+		virtual bool OnInit() = 0;
 
 	protected:
 
