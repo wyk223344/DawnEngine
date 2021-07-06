@@ -50,6 +50,8 @@ namespace DawnEngine::Math
 
 	public:
 
+		void LookAt(const Vector3& target);
+
 		Matrix4x4 Transform::GetWorldMatrix() const;
 
 	};

@@ -3,7 +3,7 @@
 
 #if GRAPHICS_API_DIRECTX12
 
-
+#include "Engine/Graphics/GPUResource.h"
 #include "Engine/Core/Include.h"
 #include "IncludeDX12Headers.h"
 
@@ -17,7 +17,7 @@ namespace DawnEngine::DX12
 	/// <summary>
 	/// 
 	/// </summary>
-	class DescriptorHeapWithSlotsDX12
+	class DescriptorHeapWithSlotsDX12 : public GPUResource
 	{
 	public:
 
@@ -126,6 +126,47 @@ namespace DawnEngine::DX12
 		void AllocateSlot(DescriptorHeapWithSlotsDX12*& heap, uint32& slot);
 
 		void ReleaseGPU();
+	};
+
+	class DescriptorHeapRingBufferDX12 : public GPUResource
+	{
+	public:
+
+		struct Allocation
+		{
+			D3D12_CPU_DESCRIPTOR_HANDLE CPU;
+			D3D12_GPU_DESCRIPTOR_HANDLE GPU;
+		};
+
+	private:
+
+		GPUDeviceDX12* m_Device;
+		ID3D12DescriptorHeap* m_Heap;
+		D3D12_CPU_DESCRIPTOR_HANDLE m_BeginCPU;
+		D3D12_GPU_DESCRIPTOR_HANDLE m_BeginGPU;
+		D3D12_DESCRIPTOR_HEAP_TYPE m_Type;
+		uint32 m_IncrementSize;
+		uint32 m_DescriptorsCount;
+		uint32 m_FirstFree;
+		bool m_ShaderVisible;
+
+	public:
+
+		DescriptorHeapRingBufferDX12(GPUDeviceDX12* device, D3D12_DESCRIPTOR_HEAP_TYPE type, uint32 descriptorsCount, bool shaderVisible);
+
+	public:
+
+		ID3D12DescriptorHeap* GetHeap() const { return m_Heap; }
+
+	public:
+
+		bool Init();
+
+		Allocation AllocateTable(uint32 numDesc);
+
+	protected:
+
+		void OnReleaseGPU() override;
 	};
 }
 

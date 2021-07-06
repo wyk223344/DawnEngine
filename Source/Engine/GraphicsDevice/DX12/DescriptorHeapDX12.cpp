@@ -2,6 +2,7 @@
 
 #include "DescriptorHeapDX12.h"
 #include "GPUDeviceDX12.h"
+#include "IncludeDX12Headers.h"
 #include "Engine/Core/Include.h"
 
 using namespace DawnEngine::DX12;
@@ -174,6 +175,69 @@ void DescriptorHeapPoolDX12::ReleaseGPU()
 }
 
 #pragma endregion
+
+#pragma region DescriptorHeapRingBufferDX12
+
+DescriptorHeapRingBufferDX12::DescriptorHeapRingBufferDX12(GPUDeviceDX12* device, D3D12_DESCRIPTOR_HEAP_TYPE type, uint32 descriptorsCount, bool shaderVisible)
+    : m_Device(device)
+    , m_Heap(nullptr)
+    , m_Type(type)
+    , m_DescriptorsCount(descriptorsCount)
+    , m_ShaderVisible(shaderVisible)
+{
+}
+
+bool DescriptorHeapRingBufferDX12::Init()
+{
+    D3D12_DESCRIPTOR_HEAP_DESC desc;
+    desc.Type = m_Type;
+    desc.NumDescriptors = m_DescriptorsCount;
+    desc.Flags = m_ShaderVisible ? D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE : D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
+    desc.NodeMask = 0;
+
+    const HRESULT result = m_Device->GetDevice()->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&m_Heap));
+    ThrowIfFailed(result);
+
+    m_FirstFree = 0;
+    m_BeginCPU = m_Heap->GetCPUDescriptorHandleForHeapStart();
+    if (m_ShaderVisible)
+    {
+        m_BeginGPU = m_Heap->GetGPUDescriptorHandleForHeapStart();
+    }
+    else
+    {
+        m_BeginGPU.ptr = 0;
+    }
+    m_IncrementSize = m_Device->GetDevice()->GetDescriptorHandleIncrementSize(desc.Type);
+
+    m_MemoryUsage = 1;
+    return true;
+}
+
+DescriptorHeapRingBufferDX12::Allocation DescriptorHeapRingBufferDX12::AllocateTable(uint32 numDesc)
+{
+    Allocation result;
+    uint32 index = m_FirstFree;
+    m_FirstFree += numDesc;
+    if (m_FirstFree >= m_DescriptorsCount)
+    {
+        index = 0;
+        m_FirstFree = numDesc;
+    }
+    result.CPU.ptr = m_BeginCPU.ptr + static_cast<SIZE_T>(index * m_IncrementSize);
+    result.GPU.ptr = m_ShaderVisible ? m_BeginGPU.ptr + index * m_IncrementSize : 0;
+    return result;
+}
+
+void DescriptorHeapRingBufferDX12::OnReleaseGPU()
+{
+    m_Heap->Release();
+    m_Heap = nullptr;
+    m_FirstFree = 0;
+}
+
+#pragma endregion
+
 
 
 #endif

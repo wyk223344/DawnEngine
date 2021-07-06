@@ -7,6 +7,10 @@ namespace DawnEngine
 {
 	class CameraComponent : ComponentBase
 	{
+	public:
+
+
+
 	private:
 
 		float m_FOV;

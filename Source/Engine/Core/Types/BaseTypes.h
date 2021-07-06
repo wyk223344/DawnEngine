@@ -24,6 +24,10 @@ typedef char16_t Char;
 typedef wchar_t Char;
 #endif
 
+template<typename>
+class Function;
+template<typename... Params>
+class Delegate;
 
 // Limits
 #define MIN_uint8 ((uint8)0x00)

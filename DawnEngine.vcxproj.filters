@@ -79,6 +79,9 @@
     <Filter Include="Engine\Graphics\Shaders">
       <UniqueIdentifier>{e8e4b3c0-fd6e-4739-941e-a8998325750c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Input">
+      <UniqueIdentifier>{e9f53b45-4d8f-45b2-9fb8-cf159309719e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine\Core\Delegate.h">
@@ -387,6 +390,15 @@
     <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUConstantBufferDX12.h">
       <Filter>Engine\GraphicsDevice\DX12</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\Materials\DefaultMaterial.h">
+      <Filter>Engine\Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\Materials\MaterialBase.h">
+      <Filter>Engine\Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Input\Input.h">
+      <Filter>Engine\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Main\Windows\main.cpp">
@@ -562,6 +574,9 @@
     </ClCompile>
     <ClCompile Include="Source\Engine\Graphics\Models\GeometryGenerator.cpp">
       <Filter>Engine\Graphics\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Input\Input.cpp">
+      <Filter>Engine\Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

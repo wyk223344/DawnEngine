@@ -9,7 +9,7 @@ namespace DawnEngine
 {
 	class ComponentBase;
 
-	class EntityBase : Node
+	class EntityBase : Node<EntityBase>
 	{
 	private:
 		template<typename T>
@@ -31,6 +31,14 @@ namespace DawnEngine
 
 		template<typename T, typename = enable_if_is_component_t<T>>
 		T* GetComponent();
+
+	public: // 生命周期相关
+
+		virtual bool Init();
+
+		virtual void Update();
+
+		virtual void Dispose();
 
 	private:
 

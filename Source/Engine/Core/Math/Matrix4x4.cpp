@@ -1,5 +1,5 @@
 #include "Matrix4x4.h"
-
+#include "Vector3.h"
 
 using namespace DawnEngine::Math;
 
@@ -46,4 +46,32 @@ void Matrix4x4::Transformation(const Vector3& translation, const Quaternion& rot
     result.M24 = 0.0f;
     result.M34 = 0.0f;
     result.M44 = 1.0f;
+}
+
+void Matrix4x4::LookAt(const Vector3& eye, const Vector3& target, const Vector3& up, Matrix4x4& result)
+{
+    Vector3 xaxis, yaxis, zaxis;
+    Vector3::Subtract(target, eye, zaxis);
+    zaxis.Normalize();
+    Vector3::Cross(up, zaxis, xaxis);
+    xaxis.Normalize();
+    Vector3::Cross(zaxis, xaxis, yaxis);
+
+    result = Identity;
+
+    result.M11 = xaxis.X;
+    result.M21 = xaxis.Y;
+    result.M31 = xaxis.Z;
+
+    result.M12 = yaxis.X;
+    result.M22 = yaxis.Y;
+    result.M32 = yaxis.Z;
+
+    result.M13 = zaxis.X;
+    result.M23 = zaxis.Y;
+    result.M33 = zaxis.Z;
+
+    result.M41 = -Vector3::Dot(xaxis, eye);
+    result.M42 = -Vector3::Dot(yaxis, eye);
+    result.M43 = -Vector3::Dot(zaxis, eye);
 }

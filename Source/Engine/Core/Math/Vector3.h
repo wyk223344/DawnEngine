@@ -244,6 +244,14 @@ namespace DawnEngine::Math
                 a.X * b.Y - a.Y * b.X);
         }
 
+        static void Cross(const Vector3& a, const Vector3& b, Vector3& result)
+        {
+            result = Vector3(
+                a.Y * b.Z - a.Z * b.Y,
+                a.Z * b.X - a.X * b.Z,
+                a.X * b.Y - a.Y * b.X);
+        }
+
         static void Add(const Vector3& a, const Vector3& b, Vector3& result)
         {
             result.X = a.X + b.X;
@@ -306,5 +314,11 @@ namespace DawnEngine::Math
 
 		static const Vector3 Zero;
 		static const Vector3 One;
+        static const Vector3 Up;
+        static const Vector3 Down;
+        static const Vector3 Left;
+        static const Vector3 Right;
+        static const Vector3 Forward;
+        static const Vector3 Backward;
 	};
 }

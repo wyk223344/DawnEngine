@@ -8,6 +8,7 @@ namespace DawnEngine
 {
 	class MeshRendererComponent : ComponentBase
 	{
+	public:
 	private:
 	};
 }

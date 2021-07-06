@@ -64,7 +64,12 @@ void GPUContextDX12::Reset()
 	m_IndexBufferHandle = nullptr;
 	Platform::MemoryClear(&m_ConstantBufferHandles, sizeof(m_ConstantBufferHandles));
 
+	// 设置根签名
 	m_CommandList->SetGraphicsRootSignature(m_Device->GetRootSignature());
+
+	// TODO: RingHeap_CBV_SRV_UAV并没有使用
+	//ID3D12DescriptorHeap* heaps[] = { m_Device->RingHeap_CBV_SRV_UAV.GetHeap() };
+	//m_CommandList->SetDescriptorHeaps(ARRAY_COUNT(heaps), heaps);
 }
 
 void GPUContextDX12::SetResourceState(GPUResourceOwnerDX12* resource, D3D12_RESOURCE_STATES after, int32 subresourceIndex)

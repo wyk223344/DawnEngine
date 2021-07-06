@@ -66,6 +66,7 @@ namespace DawnEngine::DX12
 		DescriptorHeapPoolDX12 Heap_CBV_SRV_UAV;
 		DescriptorHeapPoolDX12 Heap_RTV;
 		DescriptorHeapPoolDX12 Heap_DSV;
+		DescriptorHeapRingBufferDX12 RingHeap_CBV_SRV_UAV;
 
 		UploadBufferDX12* UploadBuffer;
 

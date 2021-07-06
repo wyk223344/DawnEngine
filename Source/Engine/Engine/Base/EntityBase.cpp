@@ -8,7 +8,6 @@ using namespace DawnEngine;
 
 EntityBase::EntityBase()
 {
-	//SetParent(Engine::MainScene->GetRootEntity());
 }
 
 

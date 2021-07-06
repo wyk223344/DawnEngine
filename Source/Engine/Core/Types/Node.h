@@ -6,6 +6,7 @@
 
 namespace DawnEngine
 {
+	template<typename T>
 	class Node : Object
 	{
 	public:
@@ -15,12 +16,12 @@ namespace DawnEngine
 		{
 		}
 
-		Node(Node* parent)
+		Node(T* parent)
 		{
 			SetParent(parent);
 		}
 
-		void SetParent(Node* parent)
+		void SetParent(T* parent)
 		{
 			if (parent == m_Parent)
 			{
@@ -34,9 +35,9 @@ namespace DawnEngine
 			m_Parent = parent;
 		}
 
-		Node* GetParent() const { return m_Parent; }
+		T* GetParent() const { return m_Parent; }
 
-		void AddChild(Node* child)
+		void AddChild(T* child)
 		{
 			if (child->GetParent() == this)
 			{
@@ -45,7 +46,7 @@ namespace DawnEngine
 			child->SetParent(this);
 		}
 
-		void DelChild(Node* child)
+		void DelChild(T* child)
 		{
 			if (child->GetParent() != this)
 			{
@@ -56,19 +57,19 @@ namespace DawnEngine
 
 	private:
 
-		void InternalAddChild(Node* child)
+		void InternalAddChild(T* child)
 		{
 			m_Children.insert(child);
 		}
 
-		void InternalDelChild(Node* child)
+		void InternalDelChild(T* child)
 		{
 			m_Children.erase(child);
 		}
 
 	private:
 
-		Node* m_Parent;
-		std::set<Node*> m_Children;
+		T* m_Parent;
+		std::set<T*> m_Children;
 	};
 }

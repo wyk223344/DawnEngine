@@ -5,6 +5,18 @@
 
 namespace DawnEngine
 {
+
+	__declspec(align(256)) struct MeshConstants
+	{
+		Math::Matrix4x4 WorldMatrix;
+	};
+
+	__declspec(align(256)) struct GlobalConstants
+	{
+		Math::Matrix4x4 ViewProjMatrix;
+	};
+
+
 	class GPUConstantBuffer : public GPUResource
 	{
 	public:

@@ -1,8 +1,11 @@
 #pragma once
 
+#include "Common.h"
 
 namespace DawnEngine::Math
 {
+	struct Matrix4x4;
+
 	struct Quaternion
 	{
 	public:
@@ -51,5 +54,29 @@ namespace DawnEngine::Math
             , W(w)
         {
         }
+
+	public:
+
+		void Normalize()
+		{
+			const float length = Length();
+			if (!Math::IsZero(length))
+			{
+				const float inv = 1.0f / length;
+				X *= inv;
+				Y *= inv;
+				Z *= inv;
+				W *= inv;
+			}
+		}
+
+		float Length() const
+		{
+			return Math::Sqrt(X * X + Y * Y + Z * Z + W * W);
+		}
+
+	public:
+
+		static void RotationMatrix(const Matrix4x4& matrix, Quaternion& result);
 	};
 }

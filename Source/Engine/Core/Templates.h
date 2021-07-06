@@ -10,6 +10,16 @@ namespace DawnEngine
 
     ////////////////////////////////////////////////////////////////////////////////////
 
+    template<typename T>                           struct TIsFunction { enum { Value = false }; };
+    template<typename RetType, typename... Params> struct TIsFunction<RetType(Params...)> { enum { Value = true }; };
+
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    template<typename X, typename Y> struct TAreTypesEqual { enum { Value = false }; };
+    template<typename T> struct TAreTypesEqual<T, T> { enum { Value = true }; };
+
+    ////////////////////////////////////////////////////////////////////////////////////
+
     // Removes any reference qualifiers from a type.
 
     template<typename T> struct TRemoveReference { typedef T Type; };

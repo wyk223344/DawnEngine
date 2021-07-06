@@ -267,5 +267,7 @@ namespace DawnEngine::Math
 		// 通过transform中的坐标、角度、缩放构建转换矩阵
 		static void Transformation(const Vector3& translation, const Quaternion& rotation, const Vector3& scale, Matrix4x4& result);
 
+        // 根据Look At信息构建矩阵
+        static void LookAt(const Vector3& eye, const Vector3& target, const Vector3& up, Matrix4x4& result);
 	};
 }
