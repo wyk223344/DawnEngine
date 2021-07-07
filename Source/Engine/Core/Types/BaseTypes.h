@@ -14,6 +14,16 @@ typedef signed short int16; // 16-bit signed
 typedef signed int int32; // 32-bit signed
 typedef long long int64; // 64-bit signed
 
+// Pointer as integer and pointer size
+#ifdef _WIN64
+typedef uint64 uintptr;
+typedef int64 intptr;
+#define POINTER_SIZE 8
+#else
+typedef uint32 uintptr;
+typedef int32 intptr;
+#define POINTER_SIZE 4
+#endif
 
 /// <summary>
 /// Defines 16-bit Unicode character for UTF-16 Little Endian.
@@ -51,6 +61,11 @@ class Delegate;
 #define MAX_float (3.402823466e+38f)
 #define MAX_double (1.7976931348623158e+308)
 
+
+#include <assert.h>
+
+#define ASSERT(expression) \
+    assert(expression)
 
 // Declares full set of operators for the enum type (using binary operation on integer values)
 #define DECLARE_ENUM_OPERATORS(T) \

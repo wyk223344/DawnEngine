@@ -42,6 +42,34 @@ namespace DawnEngine
         // 释放一块分配的内存
         static void Free(void* ptr) = delete;
 
+        /// <summary>
+        /// Performs an atomic 32-bit variable read operation on the specified values.
+        /// </summary>
+        /// <param name="dst">A pointer to the destination value.</param>
+        /// <returns>The function returns the value of the destination parameter.</returns>
+        static int32 AtomicRead(int32 volatile* dst) = delete;
+
+        /// <summary>
+        /// Performs an atomic 64-bit variable read operation on the specified values.
+        /// </summary>
+        /// <param name="dst">A pointer to the destination value.</param>
+        /// <returns>The function returns the value of the destination parameter.</returns>
+        static int64 AtomicRead(int64 volatile* dst) = delete;
+
+        /// <summary>
+        /// Sets a 32-bit variable to the specified value as an atomic operation.
+        /// </summary>
+        /// <param name="dst">A pointer to the value to be exchanged.</param>
+        /// <param name="value">The value to be set.</param>
+        static void AtomicStore(int32 volatile* dst, int32 value) = delete;
+
+        /// <summary>
+        /// Sets a 64-bit variable to the specified value as an atomic operation.
+        /// </summary>
+        /// <param name="dst">A pointer to the value to be exchanged.</param>
+        /// <param name="value">The value to be set.</param>
+        static void AtomicStore(int64 volatile* dst, int64 value) = delete;
+
     public:
 
         // 拷贝内存

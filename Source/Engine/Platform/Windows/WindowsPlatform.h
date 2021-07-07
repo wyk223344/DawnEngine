@@ -27,6 +27,11 @@ namespace DawnEngine
         static void Free(void* ptr);
 
         static Window* CreateWindow(const CreateWindowSettings& settings);
+
+        static int32 AtomicRead(int32 volatile* dst);
+        static int64 AtomicRead(int64 volatile* dst);
+        static void AtomicStore(int32 volatile* dst, int32 value);
+        static void AtomicStore(int64 volatile* dst, int64 value);
     };
 }
 
