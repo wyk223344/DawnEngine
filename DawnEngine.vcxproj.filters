@@ -399,6 +399,24 @@
     <ClInclude Include="Source\Engine\Input\Input.h">
       <Filter>Engine\Input</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine\Input\Keyboard.h">
+      <Filter>Engine\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Input\Mouse.h">
+      <Filter>Engine\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Engine\Components\InputComponent.h">
+      <Filter>Engine\Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Input\Enums.h">
+      <Filter>Engine\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Input\InputDevice.h">
+      <Filter>Engine\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Platform\Windows\WindowsInput.h">
+      <Filter>Engine\Platform\Windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Main\Windows\main.cpp">
@@ -577,6 +595,18 @@
     </ClCompile>
     <ClCompile Include="Source\Engine\Input\Input.cpp">
       <Filter>Engine\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Engine\Components\InputComponent.cpp">
+      <Filter>Engine\Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Input\Mouse.cpp">
+      <Filter>Engine\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Input\Keyboard.cpp">
+      <Filter>Engine\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Platform\Windows\WindowsInput.cpp">
+      <Filter>Engine\Platform\Windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

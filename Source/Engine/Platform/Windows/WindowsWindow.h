@@ -15,6 +15,10 @@ namespace DawnEngine
         WindowsWindow(const CreateWindowSettings& settings);
         ~WindowsWindow();
 
+    public:
+
+        LRESULT WndProc(UINT msg, WPARAM wParam, LPARAM lParam);
+
     public: // override
 
         void* GetNativePtr() const override { return m_Handle; }

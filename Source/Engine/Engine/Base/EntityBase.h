@@ -2,6 +2,7 @@
 
 #include <typeinfo>
 #include <map>
+#include <vector>
 
 #include "Engine/Core/Types/Node.h"
 
@@ -32,13 +33,17 @@ namespace DawnEngine
 		template<typename T, typename = enable_if_is_component_t<T>>
 		T* GetComponent();
 
-	public: // 生命周期相关
+		template<typename T, typename = enable_if_is_component_t<T>>
+		T* GetComponentInChildren();
 
-		virtual bool Init();
+		template<typename T, typename = enable_if_is_component_t<T>>
+		std::vector<T*> GetComponentsInChildren();
+
+	public: // 生命周期相关
 
 		virtual void Update();
 
-		virtual void Dispose();
+		virtual void LateUpdate();
 
 	private:
 

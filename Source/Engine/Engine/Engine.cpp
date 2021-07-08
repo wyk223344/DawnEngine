@@ -19,6 +19,7 @@ int32 Engine::Main()
 		return 0;
 	}
 
+	InitMainScene();
 	EngineService::OnInit();
 	InitMainWindow();
 	Platform::BeforeRun();
@@ -34,6 +35,11 @@ int32 Engine::Main()
 	return 0;
 }
 
+
+void Engine::InitMainScene()
+{
+	Engine::MainScene = Scene::CreateScene();
+}
 
 void Engine::InitMainWindow()
 {

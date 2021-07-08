@@ -3,6 +3,7 @@
 #include "Engine/Platform/Platform.h"
 #include "Engine/Platform/Windows/IncludeWindowsHeader.h"
 #include "Engine/Platform/Windows/WindowsWindow.h"
+#include "WindowsInput.h"
 
 #include <string>
 
@@ -10,7 +11,8 @@
 using namespace DawnEngine;
 
 
-WindowsWindow::WindowsWindow(const CreateWindowSettings& settings) : WindowBase(settings)
+WindowsWindow::WindowsWindow(const CreateWindowSettings& settings) 
+	: WindowBase(settings)
 {
 	m_Handle = nullptr;
 
@@ -45,6 +47,12 @@ WindowsWindow::~WindowsWindow()
 {
 }
 
+LRESULT WindowsWindow::WndProc(UINT msg, WPARAM wParam, LPARAM lParam)
+{
+	WindowsInput::WndProc(this, msg, wParam, lParam);
+
+	return DefWindowProc(m_Handle, msg, wParam, lParam);
+}
 
 
 #endif

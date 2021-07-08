@@ -22,6 +22,7 @@ namespace DawnEngine
 
     public: // override
 
+        static bool Init();
         static void Tick();
         static void* Allocate(uint64 size, uint64 alignment);
         static void Free(void* ptr);

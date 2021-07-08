@@ -38,6 +38,7 @@
 //#undef GetEnvironmentVariable
 //#undef SetEnvironmentVariable
 
-
+#define WINDOWS_GET_X_LPARAM(lp) ((int)(short)LOWORD(lp))
+#define WINDOWS_GET_Y_LPARAM(lp) ((int)(short)HIWORD(lp))
 
 #endif

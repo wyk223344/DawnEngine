@@ -5,6 +5,8 @@
 #include "Engine/Platform/Window.h"
 #include "Engine/Engine/Globals.h"
 #include "Engine/Core/Memory/Memory.h"
+#include "WindowsInput.h"
+#include "Engine/Platform/WindowsManager.h"
 
 #include <string>
 
@@ -17,13 +19,14 @@ void* WindowsPlatform::InstanceHandle = nullptr;
 
 LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	switch (msg)
+	if (hwnd != nullptr)
 	{
-	case WM_DESTROY:
-		PostQuitMessage(0);
-		return 0;
-	default:
-		break;
+		// Find window by handle
+		const auto win = WindowsManager::GetByNativePtr(hwnd);
+		if (win)
+		{
+			return static_cast<WindowsWindow*>(win)->WndProc(msg, wParam, lParam);
+		}
 	}
 	return DefWindowProc(hwnd, msg, wParam, lParam);
 }
@@ -52,6 +55,11 @@ void WindowsPlatform::PreInit(void* hInstance)
 	}
 }
 
+bool WindowsPlatform::Init()
+{
+	WindowsInput::Init();
+	return true;
+}
 
 void WindowsPlatform::Tick()
 {

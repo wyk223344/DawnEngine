@@ -30,6 +30,9 @@ namespace DawnEngine
 		
 		// 初始化主窗口
 		static void InitMainWindow();
+
+		// 初始化主场景
+		static void InitMainScene();
 	};
 
 }

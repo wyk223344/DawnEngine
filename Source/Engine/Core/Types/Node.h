@@ -37,6 +37,8 @@ namespace DawnEngine
 
 		T* GetParent() const { return m_Parent; }
 
+		std::set<T*>& GetChildren() const { return m_Children; }
+
 		void AddChild(T* child)
 		{
 			if (child->GetParent() == this)
@@ -55,7 +57,7 @@ namespace DawnEngine
 			InternalDelChild(child);
 		}
 
-	private:
+	protected:
 
 		void InternalAddChild(T* child)
 		{
@@ -67,7 +69,7 @@ namespace DawnEngine
 			m_Children.erase(child);
 		}
 
-	private:
+	protected:
 
 		T* m_Parent;
 		std::set<T*> m_Children;

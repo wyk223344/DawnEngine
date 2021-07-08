@@ -25,7 +25,8 @@
 
 // collections
 #include "Collections/HashFunctions.h"
-
+#include "Collections/Array.h"
+#include "Collections/Dictionary.h"
 
 #include "Core.h"
 #include "Object.h"
@@ -33,3 +34,4 @@
 #include "Log.h"
 #include "Templates.h"
 #include "Singleton.h"
+#include "Delegate.h"

@@ -182,6 +182,7 @@
     <ClInclude Include="Source\Engine\Engine\Base\ComponentBase.h" />
     <ClInclude Include="Source\Engine\Engine\Base\EntityBase.h" />
     <ClInclude Include="Source\Engine\Engine\Components\CameraComponent.h" />
+    <ClInclude Include="Source\Engine\Engine\Components\InputComponent.h" />
     <ClInclude Include="Source\Engine\Engine\Components\LightComponent.h" />
     <ClInclude Include="Source\Engine\Engine\Components\MeshRendererComponent.h" />
     <ClInclude Include="Source\Engine\Engine\Components\TransformComponent.h" />
@@ -237,7 +238,11 @@
     <ClInclude Include="Source\Engine\Graphics\Shaders\GPUShaderProgram.h" />
     <ClInclude Include="Source\Engine\Graphics\Textures\GPUTexture.h" />
     <ClInclude Include="Source\Engine\Graphics\Textures\GPUTextureDescription.h" />
+    <ClInclude Include="Source\Engine\Input\Enums.h" />
     <ClInclude Include="Source\Engine\Input\Input.h" />
+    <ClInclude Include="Source\Engine\Input\InputDevice.h" />
+    <ClInclude Include="Source\Engine\Input\Keyboard.h" />
+    <ClInclude Include="Source\Engine\Input\Mouse.h" />
     <ClInclude Include="Source\Engine\Platform\Base\PlatformBase.h" />
     <ClInclude Include="Source\Engine\Platform\Base\WindowBase.h" />
     <ClInclude Include="Source\Engine\Platform\CreateWindowSettings.h" />
@@ -247,6 +252,7 @@
     <ClInclude Include="Source\Engine\Platform\Window.h" />
     <ClInclude Include="Source\Engine\Platform\WindowsManager.h" />
     <ClInclude Include="Source\Engine\Platform\Windows\IncludeWindowsHeader.h" />
+    <ClInclude Include="Source\Engine\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="Source\Engine\Platform\Windows\WindowsPlatform.h" />
     <ClInclude Include="Source\Engine\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="Source\Engine\Renderer\ForwardPass.h" />
@@ -269,6 +275,7 @@
     <ClCompile Include="Source\Engine\Engine\Base\ComponentBase.cpp" />
     <ClCompile Include="Source\Engine\Engine\Base\EntityBase.cpp" />
     <ClCompile Include="Source\Engine\Engine\Components\CameraComponent.cpp" />
+    <ClCompile Include="Source\Engine\Engine\Components\InputComponent.cpp" />
     <ClCompile Include="Source\Engine\Engine\Components\LightComponent.cpp" />
     <ClCompile Include="Source\Engine\Engine\Components\MeshRendererComponent.cpp" />
     <ClCompile Include="Source\Engine\Engine\Components\TransformComponent.cpp" />
@@ -305,10 +312,13 @@
     <ClCompile Include="Source\Engine\Graphics\Textures\GPUTexture.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Textures\GPUTextureDescription.cpp" />
     <ClCompile Include="Source\Engine\Input\Input.cpp" />
+    <ClCompile Include="Source\Engine\Input\Keyboard.cpp" />
+    <ClCompile Include="Source\Engine\Input\Mouse.cpp" />
     <ClCompile Include="Source\Engine\Main\Windows\main.cpp" />
     <ClCompile Include="Source\Engine\Platform\Base\PlatformBase.cpp" />
     <ClCompile Include="Source\Engine\Platform\Base\WindowBase.cpp" />
     <ClCompile Include="Source\Engine\Platform\WindowsManager.cpp" />
+    <ClCompile Include="Source\Engine\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="Source\Engine\Platform\Windows\WindowsPlatform.cpp" />
     <ClCompile Include="Source\Engine\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="Source\Engine\Renderer\ForwardPass.cpp" />
