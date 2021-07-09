@@ -244,6 +244,11 @@ namespace DawnEngine::Math
         return (T)(a + alpha * (b - a));
     }
 
+    static float SmoothStep(float amount)
+    {
+        return amount <= 0 ? 0 : amount >= 1 ? 1 : amount * amount * (3 - 2 * amount);
+    }
+
     inline bool IsZero(float a)
     {
         return Abs(a) < ZeroTolerance;
@@ -264,5 +269,34 @@ namespace DawnEngine::Math
     static T AlignDownWithMask(T value, T mask)
     {
         return (T)(value & ~mask);
+    }
+
+    /// <summary>
+    /// Checks if a and b are not even almost equal, taking into account the magnitude of floating point numbers
+    /// </summary>
+    /// <param name="a">The left value to compare</param>
+    /// <param name="b">The right value to compare</param>
+    /// <returns>False if a almost equal to b, otherwise true</returns>
+    static bool NotNearEqual(float a, float b)
+    {
+        // Check if the numbers are really close - needed when comparing numbers near zero
+        if (IsZero(a - b))
+            return false;
+
+        // Original from Bruce Dawson: http://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/
+        const int32 aInt = *(int32*)&a;
+        const int32 bInt = *(int32*)&b;
+
+        // Different signs means they do not match
+        if (aInt < 0 != bInt < 0)
+            return true;
+
+        // Find the difference in ULPs
+        const int ulp = Abs(aInt - bInt);
+
+        // Choose of maxUlp = 4
+        // according to http://code.google.com/p/googletest/source/browse/trunk/include/gtest/internal/gtest-internal.h
+        const int maxUlp = 4;
+        return ulp > maxUlp;
     }
 }

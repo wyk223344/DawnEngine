@@ -3,6 +3,7 @@
 #include "ComponentBase.h"
 #include "Engine/Engine/Engine.h"
 #include "Engine/Core/Include.h"
+#include <functional>
 
 using namespace DawnEngine;
 
@@ -78,7 +79,19 @@ template<typename T, typename>
 std::vector<T*> EntityBase::GetComponentsInChildren()
 {
 	std::vector<T*> result;
-
+	std::function<T*(EntityBase*)> getComponents;
+	getComponents = [&result, &getComponents](EntityBase* entity)
+	{
+		auto component = entity->GetComponent<T>();
+		if (component)
+		{
+			result.push_back(component);
+		}
+		for (auto child : entity.GetChildren())
+		{
+			getComponents(result);
+		}
+	};
 	return result;
 }
 

@@ -58,5 +58,9 @@ namespace DawnEngine
 
 		void OnKeyUp(KeyboardKeys key, Window* target = nullptr);
 
+	public:
+
+		void ResetState() override;
+		void Update(EventQueue& queue) override;
 	};
 }

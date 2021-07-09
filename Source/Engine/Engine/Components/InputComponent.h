@@ -5,8 +5,16 @@
 
 namespace DawnEngine
 {
-	class InputComponent
-	{
+	using namespace Math;
 
+	class InputComponent : public ComponentBase
+	{
+	protected:
+		
+		void Update() override;
+
+	private:
+
+		Vector2 m_PrePosition;
 	};
 }

@@ -35,7 +35,7 @@ namespace DawnEngine
 
 		virtual void OnDestroy() {}
 
-	private:
+	protected:
 
 		EntityBase* m_Owner;
 		bool m_IsStarted;

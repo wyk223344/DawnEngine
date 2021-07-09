@@ -16,7 +16,6 @@ namespace DawnEngine
 		Math::Matrix4x4 ViewProjMatrix;
 	};
 
-
 	class GPUConstantBuffer : public GPUResource
 	{
 	public:

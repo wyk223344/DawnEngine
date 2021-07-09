@@ -89,6 +89,79 @@ namespace DawnEngine::Math
 			, M44(m44)
 		{
 		}
+    
+    public:
+
+        void Invert()
+        {
+            Invert(*this, *this);
+        }
+
+        void Transpose()
+        {
+            Transpose(*this, *this);
+        }
+
+    public:
+
+        Matrix4x4 operator*(const float scale) const
+        {
+            Matrix4x4 result;
+            Multiply(*this, scale, result);
+            return result;
+        }
+
+        Matrix4x4 operator*(const Matrix4x4& other) const
+        {
+            Matrix4x4 result;
+            Multiply(*this, other, result);
+            return result;
+        }
+
+        Matrix4x4& operator+=(const Matrix4x4& other)
+        {
+            Add(*this, other, *this);
+            return *this;
+        }
+
+        Matrix4x4& operator-=(const Matrix4x4& other)
+        {
+            Subtract(*this, other, *this);
+            return *this;
+        }
+
+        Matrix4x4& operator*=(const Matrix4x4& other)
+        {
+            const Matrix4x4 tmp = *this;
+            Multiply(tmp, other, *this);
+            return *this;
+        }
+
+        Matrix4x4& operator*=(const float scale)
+        {
+            Multiply(*this, scale, *this);
+            return *this;
+        }
+
+        bool operator==(const Matrix4x4& other) const
+        {
+            for (int32 i = 0; i < 16; i++)
+            {
+                if (Math::NotNearEqual(other.Raw[i], Raw[i]))
+                    return false;
+            }
+            return true;
+        }
+
+        bool operator!=(const Matrix4x4& other) const
+        {
+            for (int32 i = 0; i < 16; i++)
+            {
+                if (Math::NotNearEqual(other.Raw[i], Raw[i]))
+                    return true;
+            }
+            return false;
+        }
 
 	public:
 
@@ -262,6 +335,25 @@ namespace DawnEngine::Math
             result.M44 = Math::Lerp(start.M44, end.M44, amount);
         }
 
+        static void SmoothStep(const Matrix4x4& start, const Matrix4x4& end, float amount, Matrix4x4& result)
+        {
+            amount = Math::SmoothStep(amount);
+            Lerp(start, end, amount, result);
+        }
+
+        static Matrix4x4 Transpose(const Matrix4x4& value);
+
+        static void Transpose(const Matrix4x4& value, Matrix4x4& result);
+
+        static Matrix4x4 Invert(const Matrix4x4& value)
+        {
+            Matrix4x4 result;
+            Invert(value, result);
+            return result;
+        }
+
+        static void Invert(const Matrix4x4& value, Matrix4x4& result);
+
 	public:
 
 		// 通过transform中的坐标、角度、缩放构建转换矩阵
@@ -269,5 +361,11 @@ namespace DawnEngine::Math
 
         // 根据Look At信息构建矩阵
         static void LookAt(const Vector3& eye, const Vector3& target, const Vector3& up, Matrix4x4& result);
-	};
+	
+        // 构建透视矩阵
+        static void PerspectiveFov(float fov, float aspect, float zNear, float zFar, Matrix4x4& result);
+    
+        // 构建透视矩阵
+        static void PerspectiveOffCenter(float left, float right, float bottom, float top, float zNear, float zFar, Matrix4x4& result);
+    };
 }

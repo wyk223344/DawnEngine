@@ -6,22 +6,37 @@ using namespace DawnEngine;
 
 void Mouse::OnMouseDown(const Vector2& position, const MouseButton button, Window* target = nullptr)
 {
-
+	Event& e = m_EventQueue.AddOne();
+	e.Type = InputEventType::MouseDown;
+	e.Target = target;
+	e.MouseData.Position = position;
+	e.MouseData.Button = button;
 }
 
 void Mouse::OnMouseUp(const Vector2& position, const MouseButton button, Window* target = nullptr)
 {
-
+	Event& e = m_EventQueue.AddOne();
+	e.Type = InputEventType::MouseUp;
+	e.Target = target;
+	e.MouseData.Position = position;
+	e.MouseData.Button = button;
 }
 
 void Mouse::OnMouseMove(const Vector2& position, Window* target = nullptr)
 {
-
+	Event& e = m_EventQueue.AddOne();
+	e.Type = InputEventType::MouseMove;
+	e.Target = target;
+	e.MouseData.Position = position;
 }
 
 void Mouse::OnMouseWheel(const Vector2& position, float delta, Window* target = nullptr)
 {
-
+	Event& e = m_EventQueue.AddOne();
+	e.Type = InputEventType::MouseWheel;
+	e.Target = target;
+	e.MouseWheelData.Position = position;
+	e.MouseWheelData.WheelDelta = delta;
 }
 
 void Mouse::ResetState()
@@ -60,6 +75,7 @@ void Mouse::Update(EventQueue& queue)
 		case InputEventType::MouseWheel:
 		{
 			m_CurState.MouseWheelDelta += e.MouseWheelData.WheelDelta;
+			break;
 		}
 		default:
 			break;

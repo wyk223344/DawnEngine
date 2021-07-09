@@ -14,6 +14,10 @@ namespace DawnEngine
 
         // 退出码，表示退出原因
         static int32 ExitCode;
+
+        static int32 Width;
+
+        static int32 Height;
     };
 
 }

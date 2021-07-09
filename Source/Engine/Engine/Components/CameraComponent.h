@@ -5,11 +5,19 @@
 
 namespace DawnEngine
 {
+	using namespace Math;
+
+	class EntityBase;
+
 	class CameraComponent : ComponentBase
 	{
 	public:
 
+		CameraComponent(EntityBase* entity, float fov, float aspect, float zNear = 0.1f, float zFar = 10000.0f);
 
+		Matrix4x4& GetProjectionMatrix();
+
+		Matrix4x4& GetViewMatrix();
 
 	private:
 
@@ -17,8 +25,5 @@ namespace DawnEngine
 		float m_AspectRatio;
 		float m_NearClip;
 		float m_FarClip;
-
-		Math::Matrix4x4 m_ViewMatrix;
-		Math::Matrix4x4 m_ProjMatrix;
 	};
 }
