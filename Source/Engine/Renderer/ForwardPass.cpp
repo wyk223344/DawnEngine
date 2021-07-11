@@ -40,10 +40,10 @@ void ForwardPass::Init()
 	psoDesc.PS = shader->CreateShaderProgramPS("Shaders\\TempShader.hlsl");
 	pipelineState->Init(psoDesc);
 	auto cameraEntity = New<CameraEntity>(45.0f, (float)Globals::Width / Globals::Height);
-	Vector3 startPosition(0.0f, 0.0f, 10.0f);
+	Vector3 startPosition(0.0f, 0.0f, -3.0f);
 	LOG_WARNING("Init CameraPos: X: %f  Y: %f  Z:  %f", startPosition.X, startPosition.Y, startPosition.Z);
 	cameraEntity->GetComponent<TransformComponent>()->SetPosition(startPosition);
-	// cameraEntity->GetComponent<TransformComponent>()->LookAt(Vector3::Zero);
+	cameraEntity->GetComponent<TransformComponent>()->LookAt(Vector3::Zero);
 	auto cameraPosition = cameraEntity->GetComponent<TransformComponent>()->Transform.Translation;
 	auto constantBuffer = GPUDevice::Instance->CreateConstantBuffer(sizeof(GlobalConstants));
 	ForwardPassImpl::BoxMesh = boxMesh;
@@ -63,21 +63,33 @@ void ForwardPass::Render(GPUContext* context)
 	auto cameraComponent = ForwardPassImpl::Camera->GetComponent<CameraComponent>();
 	Matrix4x4 viewMatrix = cameraComponent->GetViewMatrix();
 	Matrix4x4 projMatrix = cameraComponent->GetProjectionMatrix();
-	ForwardPassImpl::ConstanInfo.ViewProjMatrix = projMatrix * viewMatrix;
-
+	ForwardPassImpl::ConstanInfo.ViewProjMatrix = viewMatrix * projMatrix;
+	// ForwardPassImpl::ConstanInfo.ViewProjMatrix.Transpose();
 	auto transformComponent = ForwardPassImpl::Camera->GetComponent<TransformComponent>();
 	auto cameraPosition = transformComponent->Transform.Translation;
+
+	/*ForwardPassImpl::ConstanInfo.ViewProjMatrix = Matrix4x4(\
+		1.0f, 0.0f, 0.0f, 0.0f,\
+		0.0f, 1.0f, 0.0f, 0.0f,\
+		0.0f, 0.0f, 1.0f, 0.0f,\
+		0.0f, 0.0f, 0.5f, 1.0f\
+	);*/
+
+	context->SetViewportAndScissors(Globals::Width, Globals::Height);
+	context->Clear(backBuffer, Color::Gray);
+	
+	context->BindVB(ForwardPassImpl::BoxMesh->GetVertexBuffer());
+	context->BindIB(ForwardPassImpl::BoxMesh->GetIndexBuffer());
+
+	context->SetRenderTarget(backBuffer);
+	context->SetState(ForwardPassImpl::PipelineState);
 
 	context->UpdateCB(ForwardPassImpl::ConstantBuffer, &ForwardPassImpl::ConstanInfo);
 	context->BindCB(0, ForwardPassImpl::ConstantBuffer);
 
-	context->SetViewportAndScissors(Globals::Width, Globals::Height);
-	context->Clear(backBuffer, Color::Gray);
-	context->BindVB(ForwardPassImpl::BoxMesh->GetVertexBuffer());
-	context->BindIB(ForwardPassImpl::BoxMesh->GetIndexBuffer());
-	context->SetRenderTarget(backBuffer);
-	context->SetState(ForwardPassImpl::PipelineState);
-	context->DrawIndexedInstanced(72, 1);
+	
+	
+	context->DrawIndexedInstanced(36, 1);
 	context->FlushState();
 }
 

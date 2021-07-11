@@ -159,6 +159,7 @@ void Matrix4x4::Transformation(const Vector3& translation, const Quaternion& rot
     result.M24 = 0.0f;
     result.M34 = 0.0f;
     result.M44 = 1.0f;
+
 }
 
 void Matrix4x4::LookAt(const Vector3& eye, const Vector3& target, const Vector3& up, Matrix4x4& result)
@@ -211,5 +212,20 @@ void Matrix4x4::PerspectiveOffCenter(float left, float right, float bottom, floa
     result.M32 = (top + bottom) / (bottom - top);
     result.M33 = zRange;
     result.M34 = 1.0f;
+    result.M43 = -zNear * zRange;
+
+}
+
+
+void Matrix4x4::OrthoOffCenter(float left, float right, float bottom, float top, float zNear, float zFar, Matrix4x4& result)
+{
+    const float zRange = 1.0f / (zFar - zNear);
+
+    result = Identity;
+    result.M11 = 2.0f / (right - left);
+    result.M22 = 2.0f / (top - bottom);
+    result.M33 = zRange;
+    result.M41 = (left + right) / (left - right);
+    result.M42 = (top + bottom) / (bottom - top);
     result.M43 = -zNear * zRange;
 }

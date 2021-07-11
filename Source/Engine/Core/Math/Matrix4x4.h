@@ -367,5 +367,16 @@ namespace DawnEngine::Math
     
         // 构建透视矩阵
         static void PerspectiveOffCenter(float left, float right, float bottom, float top, float zNear, float zFar, Matrix4x4& result);
+    
+        // 构建正交矩阵
+        static void Ortho(float width, float height, float zNear, float zFar, Matrix4x4& result)
+        {
+            const float halfWidth = width * 0.5f;
+            const float halfHeight = height * 0.5f;
+            OrthoOffCenter(-halfWidth, halfWidth, -halfHeight, halfHeight, zNear, zFar, result);
+        }
+
+        // 构建正交矩阵
+        static void OrthoOffCenter(float left, float right, float bottom, float top, float zNear, float zFar, Matrix4x4& result);
     };
 }
