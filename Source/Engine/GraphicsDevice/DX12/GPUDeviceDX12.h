@@ -53,6 +53,8 @@ namespace DawnEngine::DX12
 
 		GPUPipelineState* CreatePipelineState() override;
 
+		GPUConstantBuffer* CreateConstantBuffer(uint32 size) override;
+
 	public: // override
 
 		bool Init() override;

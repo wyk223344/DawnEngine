@@ -6,7 +6,7 @@
 
 namespace DawnEngine
 {
-	class LightComponent : ComponentBase
+	class LightComponent : public ComponentBase
 	{
 	private:
 	};

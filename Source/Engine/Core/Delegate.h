@@ -5,6 +5,11 @@
 
 namespace DawnEngine
 {
+    template<typename>
+    class Function;
+    template<typename... Params>
+    class Delegate;
+
 	template<typename ReturnType, typename... Params>
 	class Function<ReturnType(Params ...)>
 	{

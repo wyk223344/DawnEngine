@@ -4,7 +4,7 @@
 using namespace DawnEngine;
 
 
-void Keyboard::OnKeyDown(KeyboardKeys key, Window* target = nullptr)
+void Keyboard::OnKeyDown(KeyboardKeys key, Window* target)
 {
 	Event& e = m_EventQueue.AddOne();
 	e.Type = InputEventType::KeyDown;
@@ -12,7 +12,7 @@ void Keyboard::OnKeyDown(KeyboardKeys key, Window* target = nullptr)
 	e.KeyData.Key = key;
 }
 
-void Keyboard::OnKeyUp(KeyboardKeys key, Window* target = nullptr)
+void Keyboard::OnKeyUp(KeyboardKeys key, Window* target)
 {
 	Event& e = m_EventQueue.AddOne();
 	e.Type = InputEventType::KeyUp;

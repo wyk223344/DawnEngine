@@ -50,7 +50,8 @@ namespace DawnEngine
 
 		T& AddOne()
 		{
-			m_Data.push_back(new T());
+			T temp;
+			m_Data.push_back(temp);
 			return m_Data[Count() - 1];
 		}
 

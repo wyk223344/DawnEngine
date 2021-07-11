@@ -7,6 +7,7 @@
 #include "GPUContextDX12.h"
 #include "GPUBufferDX12.h"
 #include "GPUShaderDX12.h"
+#include "GPUConstantBufferDX12.h"
 #include "UploadBufferDX12.h"
 #include "CommandQueueDX12.h"
 #include "GPUSwapChainDX12.h"
@@ -141,6 +142,11 @@ GPUShader* GPUDeviceDX12::CreateShader()
 GPUPipelineState* GPUDeviceDX12::CreatePipelineState()
 {
 	return New<GPUPipelineStateDX12>(this);
+}
+
+GPUConstantBuffer* GPUDeviceDX12::CreateConstantBuffer(uint32 size)
+{
+	return New<GPUConstantBufferDX12>(this, size);
 }
 
 GPUDevice* CreateGPUDeviceDX12()

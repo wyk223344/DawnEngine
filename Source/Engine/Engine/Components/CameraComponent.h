@@ -9,7 +9,7 @@ namespace DawnEngine
 
 	class EntityBase;
 
-	class CameraComponent : ComponentBase
+	class CameraComponent : public ComponentBase
 	{
 	public:
 

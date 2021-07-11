@@ -102,6 +102,9 @@ namespace DawnEngine::DX12
 		// Release descriptor slot
 		void ReleaseSlot(uint32 index);
 
+	protected:
+
+		void OnReleaseGPU() override;
 	};
 
 	/// <summary>

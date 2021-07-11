@@ -1,9 +1,12 @@
 #pragma once
 
+#include "Engine/Core/Include.h"
 #include "Enums.h"
 
 namespace DawnEngine
 {
+    using namespace Math;
+
 	class InputDevice
 	{
 	public:

@@ -82,6 +82,9 @@
     <Filter Include="Engine\Input">
       <UniqueIdentifier>{e9f53b45-4d8f-45b2-9fb8-cf159309719e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{7d617ba6-8e6c-4840-8fad-576d4589971d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine\Core\Delegate.h">
@@ -416,6 +419,9 @@
     </ClInclude>
     <ClInclude Include="Source\Engine\Platform\Windows\WindowsInput.h">
       <Filter>Engine\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Core\Types\TypeMap.h">
+      <Filter>Engine\Core\Types</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -24,6 +24,9 @@ namespace DawnEngine::Math
 	public:
 
 		Transform()
+			: Translation(0.0f)
+			, Rotation(0.0f, 0.0f, 0.0f, 1.0f)
+			, Scale(1.0f)
 		{
 		}
 

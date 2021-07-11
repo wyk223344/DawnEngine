@@ -29,9 +29,9 @@ namespace DawnEngine
 			}
 			if (m_Parent != nullptr)
 			{
-				m_Parent->InternalDelChild(this);
+				m_Parent->InternalDelChild(static_cast<T*>(this));
 			}
-			parent->InternalAddChild(this);
+			parent->InternalAddChild(static_cast<T*>(this));
 			m_Parent = parent;
 		}
 

@@ -97,6 +97,9 @@ namespace DawnEngine
 
 		// 执行渲染相关指令
 		virtual void Flush() = 0;
+
+		// 测试函数
+		// virtual void DoTestDraw() = 0;
 	};
 
 }

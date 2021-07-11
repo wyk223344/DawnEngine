@@ -1,5 +1,7 @@
 
 #include "CameraComponent.h"
+#include "TransformComponent.h"
+#include "Engine/Engine/Base/EntityBase.h"
 
 using namespace DawnEngine;
 using namespace DawnEngine::Math;
@@ -23,4 +25,8 @@ Matrix4x4& CameraComponent::GetProjectionMatrix()
 
 Matrix4x4& CameraComponent::GetViewMatrix()
 {
+	auto transformComponent = GetEntity()->GetComponent<TransformComponent>();
+	auto result = transformComponent->Transform.GetWorldMatrix();
+	result.Invert();
+	return result;
 }

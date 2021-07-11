@@ -1,9 +1,10 @@
 #pragma once
 
-#include "Engine/Engine/Base/EntityBase.h"
+
 
 namespace DawnEngine
 {
+	class EntityBase;
 
 	class Scene
 	{

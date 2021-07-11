@@ -7,14 +7,20 @@ namespace DawnEngine
 {
 	using namespace Math;
 
+	class EntityBase;
+
 	class InputComponent : public ComponentBase
 	{
-	protected:
+	public:
+
+		InputComponent(EntityBase* entity);
 		
 		void Update() override;
 
 	private:
 
 		Vector2 m_PrePosition;
+		float m_Pitch = 0.0f;
+		float m_Yaw = 0.0f;
 	};
 }

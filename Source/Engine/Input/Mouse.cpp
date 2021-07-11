@@ -4,7 +4,7 @@
 using namespace DawnEngine;
 
 
-void Mouse::OnMouseDown(const Vector2& position, const MouseButton button, Window* target = nullptr)
+void Mouse::OnMouseDown(const Vector2& position, const MouseButton button, Window* target)
 {
 	Event& e = m_EventQueue.AddOne();
 	e.Type = InputEventType::MouseDown;
@@ -13,7 +13,7 @@ void Mouse::OnMouseDown(const Vector2& position, const MouseButton button, Windo
 	e.MouseData.Button = button;
 }
 
-void Mouse::OnMouseUp(const Vector2& position, const MouseButton button, Window* target = nullptr)
+void Mouse::OnMouseUp(const Vector2& position, const MouseButton button, Window* target)
 {
 	Event& e = m_EventQueue.AddOne();
 	e.Type = InputEventType::MouseUp;
@@ -22,7 +22,7 @@ void Mouse::OnMouseUp(const Vector2& position, const MouseButton button, Window*
 	e.MouseData.Button = button;
 }
 
-void Mouse::OnMouseMove(const Vector2& position, Window* target = nullptr)
+void Mouse::OnMouseMove(const Vector2& position, Window* target)
 {
 	Event& e = m_EventQueue.AddOne();
 	e.Type = InputEventType::MouseMove;
@@ -30,7 +30,7 @@ void Mouse::OnMouseMove(const Vector2& position, Window* target = nullptr)
 	e.MouseData.Position = position;
 }
 
-void Mouse::OnMouseWheel(const Vector2& position, float delta, Window* target = nullptr)
+void Mouse::OnMouseWheel(const Vector2& position, float delta, Window* target)
 {
 	Event& e = m_EventQueue.AddOne();
 	e.Type = InputEventType::MouseWheel;

@@ -2,15 +2,20 @@
 #include "EntityBase.h"
 #include "ComponentBase.h"
 #include "Engine/Engine/Engine.h"
+#include "Engine/Engine/Scene.h"
 #include "Engine/Core/Include.h"
-#include <functional>
+
 
 using namespace DawnEngine;
 
 EntityBase::EntityBase()
 {
+	if (Engine::MainScene == nullptr)
+	{
+		return;
+	}
 	auto rootEntity = Engine::MainScene->GetRootEntity();
-	if (rootEntity && rootEntity != this)
+	if (rootEntity != nullptr && rootEntity != this)
 	{
 		SetParent(rootEntity);
 	}
@@ -19,80 +24,6 @@ EntityBase::EntityBase()
 EntityBase::EntityBase(EntityBase* parent)
 	: Node(parent)
 {
-}
-
-template<typename T, typename ...Args, typename>
-T* EntityBase::AddComponent(Args&&...args)
-{
-	if (GetComponent<T>() != nullptr)
-	{
-		return;
-	}
-	T* component = New<T>(this, Forward<Args>(args)...);
-	m_Components[typeid(T)] = component;
-	component->Awake();
-	return componet;
-}
-
-template<typename T, typename>
-void EntityBase::DelComponent()
-{
-	auto iter = m_Components.find(typeid(T));
-	if (iter != m_Components.end())
-	{
-		m_Components.erase(iter);
-	}
-	iter->second->DeleteSelf();
-}
-
-template<typename T, typename>
-T* EntityBase::GetComponent()
-{
-	auto iter = m_Components.find(typeid(T));
-	if (iter == m_Components.end())
-	{
-		return nullptr;
-	}
-	return iter->second;
-}
-
-template<typename T, typename>
-T* EntityBase::GetComponentInChildren()
-{
-	T* result = GetComponent<T>();
-	if (result)
-	{
-		return result;
-	}
-	for (auto child : GetChildren())
-	{
-		result = child->GetComponent();
-		if (result)
-		{
-			return result;
-		}
-	}
-	return nullptr;
-}
-
-template<typename T, typename>
-std::vector<T*> EntityBase::GetComponentsInChildren()
-{
-	std::vector<T*> result;
-	std::function<T*(EntityBase*)> getComponents;
-	getComponents = [&result, &getComponents](EntityBase* entity)
-	{
-		auto component = entity->GetComponent<T>();
-		if (component)
-		{
-			result.push_back(component);
-		}
-		for (auto child : entity.GetChildren())
-		{
-			getComponents(result);
-		}
-	};
-	return result;
 }
 
 void EntityBase::Update()

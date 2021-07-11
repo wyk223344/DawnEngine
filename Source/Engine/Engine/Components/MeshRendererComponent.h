@@ -10,7 +10,7 @@ namespace DawnEngine
 {
 	class GPUContext;
 
-	class MeshRendererComponent : ComponentBase
+	class MeshRendererComponent : public ComponentBase
 	{
 	public:
 

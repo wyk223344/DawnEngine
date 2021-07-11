@@ -3,14 +3,14 @@
 #include <typeinfo>
 #include <map>
 #include <vector>
-
-#include "Engine/Core/Types/Node.h"
+#include <functional>
+#include "Engine/Core/Include.h"
 
 namespace DawnEngine
 {
 	class ComponentBase;
 
-	class EntityBase : Node<EntityBase>
+	class EntityBase : public Node<EntityBase>
 	{
 	private:
 		template<typename T>
@@ -47,7 +47,83 @@ namespace DawnEngine
 
 	private:
 
-		std::map<std::type_info, ComponentBase*> m_Components;
+		TypeMap<ComponentBase*> m_Components;
 
 	};
+
+	/*模板的声明和定义要放到一个文件里*/
+	
+	template<typename T, typename ...Args, typename>
+	T* EntityBase::AddComponent(Args&&...args)
+	{
+		if (GetComponent<T>() != nullptr)
+		{
+			return nullptr;
+		}
+		T* component = New<T>(this, Forward<Args>(args)...);
+		m_Components[typeid(T)] = component;
+		component->Awake();
+		return component;
+	}
+
+	template<typename T, typename>
+	void EntityBase::DelComponent()
+	{
+		auto iter = m_Components.find(typeid(T));
+		if (iter != m_Components.end())
+		{
+			m_Components.erase(iter);
+		}
+		iter->second->DeleteSelf();
+	}
+
+	template<typename T, typename>
+	T* EntityBase::GetComponent()
+	{
+		auto iter = m_Components.find(typeid(T));
+		if (iter == m_Components.end())
+		{
+			return nullptr;
+		}
+		return static_cast<T*>(iter->second);
+	}
+
+	template<typename T, typename>
+	T* EntityBase::GetComponentInChildren()
+	{
+		T* result = GetComponent<T>();
+		if (result)
+		{
+			return result;
+		}
+		for (auto child : GetChildren())
+		{
+			result = child->GetComponent();
+			if (result)
+			{
+				return result;
+			}
+		}
+		return nullptr;
+	}
+
+	template<typename T, typename>
+	std::vector<T*> EntityBase::GetComponentsInChildren()
+	{
+		std::vector<T*> result;
+		std::function<T* (EntityBase*)> getComponents;
+		getComponents = [&result, &getComponents](EntityBase* entity)
+		{
+			auto component = entity->GetComponent<T>();
+			if (component)
+			{
+				result.push_back(component);
+			}
+			for (auto child : entity.GetChildren())
+			{
+				getComponents(result);
+			}
+		};
+		return result;
+	}
 }

@@ -5,10 +5,12 @@
 #include "Engine/Engine/Globals.h"
 #include "Engine/Platform/Platform.h"
 #include "Engine/Platform/CreateWindowSettings.h"
+#include "Engine/Engine/Scene.h"
 
 using namespace DawnEngine;
 
 Window* Engine::MainWindow = nullptr;
+Scene* Engine::MainScene = nullptr;
 uint64 Engine::FrameCount = 0;
 
 int32 Engine::Main()
@@ -45,8 +47,8 @@ void Engine::InitMainWindow()
 {
 	LOG_INFO("Start init main window");
 	CreateWindowSettings settings;
-	settings.Width = 800;
-	settings.Height = 600;
+	settings.Width = Globals::Width;
+	settings.Height = Globals::Height;
 	Engine::MainWindow = Platform::CreateWindow(settings);
 	if (!Engine::MainWindow->InitSwapChain())
 	{

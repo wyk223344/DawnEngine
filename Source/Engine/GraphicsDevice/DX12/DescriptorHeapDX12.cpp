@@ -127,6 +127,17 @@ void DescriptorHeapWithSlotsDX12::ReleaseSlot(uint32 index)
     value &= ~mask;
 }
 
+void DescriptorHeapWithSlotsDX12::OnReleaseGPU()
+{
+    m_Usage.clear();
+    if (m_Heap != nullptr)
+    {
+        m_Heap->Release();
+        m_Heap = nullptr;
+    }
+    m_DescriptorsCount = 0;
+}
+
 #pragma endregion
 
 #pragma region DescriptorHeapPoolDX12
@@ -171,7 +182,11 @@ void DescriptorHeapPoolDX12::AllocateSlot(DescriptorHeapWithSlotsDX12*& heap, ui
 
 void DescriptorHeapPoolDX12::ReleaseGPU()
 {
-    
+    for (int32 i = 0; i < m_Heaps.size(); i++)
+    {
+        m_Heaps[i]->ReleaseGPU();
+    }
+    m_Heaps.clear();
 }
 
 #pragma endregion

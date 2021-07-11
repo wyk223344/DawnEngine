@@ -115,6 +115,8 @@ DynamicAllocation UploadBufferDX12::Allocate(uint64 size, uint64 align)
 
     m_CurrentOffset += size;
 
+    //LOG_WARNING("[UploadBufferDX12] Allocate CurPage CPUAddress %u Offset %u Size %u PageSize %u AlignSize %u", m_CurrentPage->CPUAddress, m_CurrentOffset, size, m_CurrentPage->Size, alignedSize);
+
     return result;
 }
 
@@ -141,6 +143,10 @@ void UploadBufferDX12::BeginGeneration(uint64 generation)
     for (int32 i = m_UsedPages.size() - 1; i >= 0; i--)
     {
         auto page = m_UsedPages[i];
+        if (page == m_CurrentPage)
+        {
+            continue;
+        }
         if (page->LastGen + DX12_UPLOAD_PAGE_GEN_TIMEOUT < generation)
         {
             m_UsedPages.erase(m_UsedPages.begin() + i);

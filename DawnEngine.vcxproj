@@ -178,6 +178,7 @@
     <ClInclude Include="Source\Engine\Core\Types\Node.h" />
     <ClInclude Include="Source\Engine\Core\Types\Pair.h" />
     <ClInclude Include="Source\Engine\Core\Types\Span.h" />
+    <ClInclude Include="Source\Engine\Core\Types\TypeMap.h" />
     <ClInclude Include="Source\Engine\Engine\Base\ApplicationBase.h" />
     <ClInclude Include="Source\Engine\Engine\Base\ComponentBase.h" />
     <ClInclude Include="Source\Engine\Engine\Base\EntityBase.h" />

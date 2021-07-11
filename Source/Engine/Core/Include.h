@@ -6,6 +6,7 @@
 #include "Types/Color.h"
 #include "Types/Node.h"
 #include "Types/Span.h"
+#include "Types/TypeMap.h"
 
 // math
 #include "Math/Common.h"
