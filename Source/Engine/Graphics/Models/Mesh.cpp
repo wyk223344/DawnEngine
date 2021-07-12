@@ -33,6 +33,7 @@ bool Mesh::Init(MeshData& meshData)
 
 	m_VertexBuffer = vertexBuffer;
 	m_IndexBuffer = indexBuffer;
+	m_IndicesCount = meshData.Indices.size();
 	return true;
 }
 

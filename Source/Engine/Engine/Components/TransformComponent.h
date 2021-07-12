@@ -18,7 +18,6 @@ namespace DawnEngine
 		void SetPosition(Vector3& position)
 		{
 			Transform.Translation = position;
-			LOG_INFO("SetPosition: (%d,%d,%d)", position.X, position.Y, position.Z);
 		}
 
 		void LookAt(const Vector3& target)

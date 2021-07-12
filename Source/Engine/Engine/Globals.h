@@ -20,6 +20,11 @@ namespace DawnEngine
 
         // 屏幕高度
         static int32 Height;
+
+    public:  // 测试用数据
+
+        // 摄像机到中心点距离
+        static float Distance2Center;
     };
 
 }

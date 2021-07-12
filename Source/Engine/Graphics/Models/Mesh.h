@@ -18,6 +18,7 @@ namespace DawnEngine
 		Mesh()
 			: m_VertexBuffer(nullptr)
 			, m_IndexBuffer(nullptr)
+			, m_IndicesCount(0)
 		{
 		}
 
@@ -33,10 +34,14 @@ namespace DawnEngine
 
 		GPUBuffer* GetIndexBuffer() const { return m_IndexBuffer; }
 
+		uint32 GetIndicesCount() const { return m_IndicesCount; }
+
 	private:
 
 		GPUBuffer* m_VertexBuffer;
 		GPUBuffer* m_IndexBuffer;
+
+		uint32 m_IndicesCount;
 
 	};
 }

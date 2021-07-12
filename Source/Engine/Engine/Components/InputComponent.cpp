@@ -6,7 +6,7 @@
 #include "Engine/Input/Mouse.h"
 #include "Engine/Input/Keyboard.h"
 #include "Engine/Input/Enums.h"
-
+#include "Engine/Engine/Globals.h"
 
 using namespace DawnEngine;
 using namespace DawnEngine::Math;
@@ -32,13 +32,13 @@ void InputComponent::Update()
 		m_PrePosition = curPosition;
 
 		m_Pitch += deltaPosition.X * 0.01;
-		m_Yaw += -deltaPosition.Y * 0.01;
+		m_Yaw += deltaPosition.Y * 0.01;
 
 		auto transformComp = GetEntity()->GetComponent<TransformComponent>();
 		Vector3 newPosition(
-			Math::Sin(m_Pitch) * 10.0f,
-			Math::Sin(m_Yaw) * Math::Cos(m_Pitch) * 10.0f,
-			Math::Cos(m_Yaw) * Math::Cos(m_Pitch) * 10.0f
+			Math::Sin(m_Pitch) * Globals::Distance2Center,
+			Math::Sin(m_Yaw) * Math::Cos(m_Pitch) * Globals::Distance2Center,
+			Math::Cos(m_Yaw) * Math::Cos(m_Pitch) * Globals::Distance2Center
 		);
 		transformComp->SetPosition(newPosition);
 		transformComp->LookAt(Vector3::Zero);

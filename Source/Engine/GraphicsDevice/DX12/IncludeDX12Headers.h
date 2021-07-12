@@ -30,6 +30,7 @@
 #define DX12_BACK_BUFFER_COUNT 2
 #define DX12_RB_BUFFER_SIZE 16
 #define DX12_MAX_CB_BINDED 4
+#define DX12_MAX_SR_BINDED 32
 
 #ifndef ThrowIfFailed
 #define ThrowIfFailed(x)                                              \

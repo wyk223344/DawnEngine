@@ -6,3 +6,5 @@ bool Globals::IsRequestingExit = false;
 int32 Globals::ExitCode = 0;
 int32 Globals::Width = 800;
 int32 Globals::Height = 600;
+
+float Globals::Distance2Center = 3.0f;

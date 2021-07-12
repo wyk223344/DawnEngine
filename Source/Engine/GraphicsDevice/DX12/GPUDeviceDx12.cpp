@@ -75,8 +75,19 @@ bool GPUDeviceDX12::Init()
 
 	// Create root signature
 	{
+		// descriptor tables
+		D3D12_DESCRIPTOR_RANGE r[1];
+		{
+			D3D12_DESCRIPTOR_RANGE& range = r[0];
+			range.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
+			range.NumDescriptors = DX12_MAX_SR_BINDED;
+			range.BaseShaderRegister = 0;
+			range.RegisterSpace = 0;
+			range.OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
+		}
+		
 		// root parameters
-		D3D12_ROOT_PARAMETER rootParameters[2];
+		D3D12_ROOT_PARAMETER rootParameters[3];
 		{
 			D3D12_ROOT_PARAMETER& rootParam = rootParameters[0];
 			rootParam.ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
@@ -91,12 +102,114 @@ bool GPUDeviceDX12::Init()
 			rootParam.Descriptor.ShaderRegister = 1;
 			rootParam.Descriptor.RegisterSpace = 0;
 		}
+		{
+			D3D12_ROOT_PARAMETER& rootParam = rootParameters[2];
+			rootParam.ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
+			rootParam.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+			rootParam.DescriptorTable.NumDescriptorRanges = 1;
+			rootParam.DescriptorTable.pDescriptorRanges = &r[0];
+		}
+
+		// Static Samplers
+		D3D12_STATIC_SAMPLER_DESC staticSamplers[6];
+		// Linear Clamp
+		{
+			staticSamplers[0].Filter = D3D12_FILTER_MIN_MAG_MIP_LINEAR;
+			staticSamplers[0].AddressU = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+			staticSamplers[0].AddressV = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+			staticSamplers[0].AddressW = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+			staticSamplers[0].MipLODBias = 0.0f;
+			staticSamplers[0].MaxAnisotropy = 1;
+			staticSamplers[0].BorderColor = D3D12_STATIC_BORDER_COLOR_OPAQUE_BLACK;
+			staticSamplers[0].MinLOD = 0;
+			staticSamplers[0].MaxLOD = D3D12_FLOAT32_MAX;
+			staticSamplers[0].ShaderRegister = 0;
+			staticSamplers[0].RegisterSpace = 0;
+			staticSamplers[0].ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+		}
+		// Point Clamp
+		{
+			staticSamplers[1].Filter = D3D12_FILTER_MIN_MAG_MIP_POINT;
+			staticSamplers[1].AddressU = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+			staticSamplers[1].AddressV = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+			staticSamplers[1].AddressW = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+			staticSamplers[1].MipLODBias = 0.0f;
+			staticSamplers[1].MaxAnisotropy = 1;
+			staticSamplers[1].BorderColor = D3D12_STATIC_BORDER_COLOR_OPAQUE_BLACK;
+			staticSamplers[1].MinLOD = 0;
+			staticSamplers[1].MaxLOD = D3D12_FLOAT32_MAX;
+			staticSamplers[1].ShaderRegister = 1;
+			staticSamplers[1].RegisterSpace = 0;
+			staticSamplers[1].ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+		}
+		// Linear Wrap
+		{
+			staticSamplers[2].Filter = D3D12_FILTER_MIN_MAG_MIP_LINEAR;
+			staticSamplers[2].AddressU = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+			staticSamplers[2].AddressV = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+			staticSamplers[2].AddressW = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+			staticSamplers[2].MipLODBias = 0.0f;
+			staticSamplers[2].MaxAnisotropy = 1;
+			staticSamplers[2].BorderColor = D3D12_STATIC_BORDER_COLOR_OPAQUE_BLACK;
+			staticSamplers[2].MinLOD = 0;
+			staticSamplers[2].MaxLOD = D3D12_FLOAT32_MAX;
+			staticSamplers[2].ShaderRegister = 2;
+			staticSamplers[2].RegisterSpace = 0;
+			staticSamplers[2].ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+		}
+		// Point Wrap
+		{
+			staticSamplers[3].Filter = D3D12_FILTER_MIN_MAG_MIP_POINT;
+			staticSamplers[3].AddressU = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+			staticSamplers[3].AddressV = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+			staticSamplers[3].AddressW = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+			staticSamplers[3].MipLODBias = 0.0f;
+			staticSamplers[3].MaxAnisotropy = 1;
+			staticSamplers[3].BorderColor = D3D12_STATIC_BORDER_COLOR_OPAQUE_BLACK;
+			staticSamplers[3].MinLOD = 0;
+			staticSamplers[3].MaxLOD = D3D12_FLOAT32_MAX;
+			staticSamplers[3].ShaderRegister = 3;
+			staticSamplers[3].RegisterSpace = 0;
+			staticSamplers[3].ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+		}
+		// Shadow
+		{
+			staticSamplers[4].Filter = D3D12_FILTER_COMPARISON_MIN_MAG_MIP_POINT;
+			staticSamplers[4].AddressU = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+			staticSamplers[4].AddressV = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+			staticSamplers[4].AddressW = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+			staticSamplers[4].MipLODBias = 0.0f;
+			staticSamplers[4].MaxAnisotropy = 1;
+			staticSamplers[4].ComparisonFunc = D3D12_COMPARISON_FUNC_LESS_EQUAL;
+			staticSamplers[4].BorderColor = D3D12_STATIC_BORDER_COLOR_OPAQUE_BLACK;
+			staticSamplers[4].MinLOD = 0;
+			staticSamplers[4].MaxLOD = D3D12_FLOAT32_MAX;
+			staticSamplers[4].ShaderRegister = 4;
+			staticSamplers[4].RegisterSpace = 0;
+			staticSamplers[4].ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+		}
+		// Shadow PCF
+		{
+			staticSamplers[5].Filter = D3D12_FILTER_COMPARISON_MIN_MAG_MIP_LINEAR;
+			staticSamplers[5].AddressU = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+			staticSamplers[5].AddressV = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+			staticSamplers[5].AddressW = D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+			staticSamplers[5].MipLODBias = 0.0f;
+			staticSamplers[5].MaxAnisotropy = 1;
+			staticSamplers[5].ComparisonFunc = D3D12_COMPARISON_FUNC_LESS_EQUAL;
+			staticSamplers[5].BorderColor = D3D12_STATIC_BORDER_COLOR_OPAQUE_BLACK;
+			staticSamplers[5].MinLOD = 0;
+			staticSamplers[5].MaxLOD = D3D12_FLOAT32_MAX;
+			staticSamplers[5].ShaderRegister = 5;
+			staticSamplers[5].RegisterSpace = 0;
+			staticSamplers[5].ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+		}
 
 		D3D12_ROOT_SIGNATURE_DESC rootSignatureDesc;
 		rootSignatureDesc.NumParameters = ARRAY_COUNT(rootParameters);
 		rootSignatureDesc.pParameters = rootParameters;
-		rootSignatureDesc.NumStaticSamplers = 0;
-		rootSignatureDesc.pStaticSamplers = nullptr;
+		rootSignatureDesc.NumStaticSamplers = ARRAY_COUNT(staticSamplers);
+		rootSignatureDesc.pStaticSamplers = staticSamplers;
 		rootSignatureDesc.Flags = D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
 
 		ComPtr<ID3DBlob> signature;

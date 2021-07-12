@@ -20,7 +20,7 @@ namespace DawnEngine
 			float u, float v,
 			float normalX = 0.0f, float normalY = 1.0f, float normalZ = 0.0f,
 			float tangentX = 1.0f, float tangentY = 0.0f, float tangentZ = 0.0f)
-			: Position(positionX, positionY, positionY)
+			: Position(positionX, positionY, positionZ)
 			, UV(u, v)
 			, Normal(normalX, normalY, normalZ)
 			, Tangent(tangentX, tangentY, tangentZ)
