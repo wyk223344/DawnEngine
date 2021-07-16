@@ -85,6 +85,15 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{7d617ba6-8e6c-4840-8fad-576d4589971d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Resource">
+      <UniqueIdentifier>{ded9d36f-5695-4a10-bc26-9fb94ac01b24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{3162784c-31b5-48eb-8d28-69f1f2ccdbf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\stb_image">
+      <UniqueIdentifier>{e57ea186-d32c-46b7-a2d2-c3c1f06b5b33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine\Core\Delegate.h">
@@ -423,6 +432,15 @@
     <ClInclude Include="Source\Engine\Core\Types\TypeMap.h">
       <Filter>Engine\Core\Types</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine\Engine\Entities\RenderEntity.h">
+      <Filter>Engine\Engine\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ThirdParty\stb_image\stb_image.h">
+      <Filter>ThirdParty\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Resource\Resource.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Main\Windows\main.cpp">
@@ -613,6 +631,12 @@
     </ClCompile>
     <ClCompile Include="Source\Engine\Platform\Windows\WindowsInput.cpp">
       <Filter>Engine\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThirdParty\stb_image\stb_image.cpp">
+      <Filter>ThirdParty\stb_image</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Resource\Resource.cpp">
+      <Filter>Engine\Resource</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

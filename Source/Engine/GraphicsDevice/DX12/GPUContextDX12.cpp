@@ -18,15 +18,6 @@
 using namespace DawnEngine;
 using namespace DawnEngine::DX12;
 
-inline bool operator!=(const D3D12_VERTEX_BUFFER_VIEW& l, const D3D12_VERTEX_BUFFER_VIEW& r)
-{
-	return l.SizeInBytes != r.SizeInBytes || l.StrideInBytes != r.StrideInBytes || l.BufferLocation != r.BufferLocation;
-}
-
-inline bool operator!=(const D3D12_INDEX_BUFFER_VIEW& l, const D3D12_INDEX_BUFFER_VIEW& r)
-{
-	return l.SizeInBytes != r.SizeInBytes || l.Format != r.Format || l.BufferLocation != r.BufferLocation;
-}
 
 
 GPUContextDX12::GPUContextDX12(GPUDeviceDX12* device, D3D12_COMMAND_LIST_TYPE type)
@@ -58,12 +49,13 @@ void GPUContextDX12::Reset()
 	m_RTDirtyFlag = false;
 	m_PSDirtyFlag = false;
 	m_CBDirtyFlag = false;
+	m_SRDirtyMask = 0;
 	m_RenderTargetTexture = nullptr;
 	m_DepthTexture = nullptr;
 	m_VertexBufferHandle = nullptr;
 	m_IndexBufferHandle = nullptr;
 	Platform::MemoryClear(&m_ConstantBufferHandles, sizeof(m_ConstantBufferHandles));
-
+	Platform::MemoryClear(&m_ShaderResourceHandles, sizeof(m_ShaderResourceHandles));
 	// ÉèÖÃ¸ùÇ©Ãû
 	m_CommandList->SetGraphicsRootSignature(m_Device->GetRootSignature());
 
@@ -166,6 +158,17 @@ void GPUContextDX12::SetRenderTarget(GPUTexture* rt, GPUTexture* depthBuffer)
 	}
 }
 
+void GPUContextDX12::BindSR(int32 slot, GPUTexture* texture)
+{
+	ASSERT(slot >= 0 && slot < DX12_MAX_SR_BINDED);
+	const auto texDX12 = static_cast<GPUTextureDX12*>(texture);
+	if (m_ShaderResourceHandles[slot] != texDX12)
+	{
+		m_SRDirtyMask |= 1 << slot;
+		m_ShaderResourceHandles[slot] = texDX12;
+	}
+}
+
 void GPUContextDX12::BindVB(GPUBuffer* vertexBuffer)
 {
 	const auto vbDX12 = static_cast<GPUBufferDX12*>(vertexBuffer);
@@ -229,6 +232,11 @@ void GPUContextDX12::UpdateBuffer(GPUBuffer* buffer, const void* data, uint32 si
 	SetResourceState(bufferDX12, D3D12_RESOURCE_STATE_COPY_DEST);
 	flushRBs();
 	m_Device->UploadBuffer->UploadBuffer(this, bufferDX12->GetResource(), offset, data, size);
+}
+
+void GPUContextDX12::UpdateTexture(GPUTexture* texture, int32 arrayIndex, int32 mipIndex, const void* data, uint32 rowPitch, uint32 slicePitch)
+{
+
 }
 
 void GPUContextDX12::DrawIndexedInstanced(uint32 indicesCount, uint32 instanceCount, int32 startIndex, int32 startVertex, int32 startInstance)
@@ -296,7 +304,41 @@ void GPUContextDX12::onDrawCall()
 
 void GPUContextDX12::flushSRVs()
 {
+	if (m_SRDirtyMask == 0) { return; }
 
+	const uint32 srCount = Math::FloorLog2(m_SRDirtyMask) + 1;
+
+	D3D12_CPU_DESCRIPTOR_HANDLE srcDescriptorRangeStarts[DX12_MAX_SR_BINDED];
+
+	for (uint32 i = 0; i < srCount; i++)
+	{
+		const auto handle = m_ShaderResourceHandles[i];
+		if (handle != nullptr)
+		{
+			srcDescriptorRangeStarts[i] = handle->SRV();
+			D3D12_RESOURCE_STATES state = D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE | D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE;
+
+			SetResourceState(handle->GetResourceOwner(), state);
+		}
+		else
+		{
+			srcDescriptorRangeStarts[i] = m_Device->Null_SRV.CPU();
+		}
+	}
+
+	auto allocation = m_Device->RingHeap_CBV_SRV_UAV.AllocateTable(srCount);
+	allocation.CPU;
+	m_Device->GetDevice()->CopyDescriptors(
+		1,
+		&allocation.CPU,
+		&srCount,
+		srCount,
+		srcDescriptorRangeStarts,
+		nullptr,
+		D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV
+	);
+
+	m_CommandList->SetGraphicsRootDescriptorTable(2, allocation.GPU);
 }
 
 void GPUContextDX12::flushRTVs()

@@ -135,6 +135,52 @@ bool UploadBufferDX12::UploadBuffer(GPUContextDX12* context, ID3D12Resource* buf
 
 bool UploadBufferDX12::UploadTexture(GPUContextDX12* context, ID3D12Resource* texture, const void* srcData, uint32 srcRowPitch, uint32 srcSlicePitch, int32 mipIndex, int32 arrayIndex)
 {
+    // TODO: 这部分。。。没搞懂
+
+    D3D12_RESOURCE_DESC resourceDesc = texture->GetDesc();
+
+    D3D12_PLACED_SUBRESOURCE_FOOTPRINT footPrint;
+    uint32 numRows;
+    uint64 rowPitchAligned, mipSizeAligned;
+    m_Device->GetDevice()->GetCopyableFootprints(
+        &resourceDesc,
+        0,
+        1,
+        0,
+        &footPrint,
+        &numRows,
+        &rowPitchAligned,
+        &mipSizeAligned);
+
+    rowPitchAligned = footPrint.Footprint.RowPitch;
+    mipSizeAligned = rowPitchAligned * footPrint.Footprint.Height;
+
+    const DynamicAllocation allocation = Allocate(mipSizeAligned, D3D12_TEXTURE_DATA_PLACEMENT_ALIGNMENT);
+
+    byte* ptr = (byte*)srcData;
+    byte* dst = static_cast<byte*>(allocation.CPUAddress);
+    ASSERT(srcRowPitch <= rowPitchAligned);
+    for (uint32 i = 0; i < numRows; i++)
+    {
+        Platform::MemoryCopy(dst, ptr, srcRowPitch);
+
+        dst += rowPitchAligned;
+        ptr += srcRowPitch;
+    }
+
+    D3D12_TEXTURE_COPY_LOCATION dstLocation;
+    dstLocation.pResource = texture;
+    dstLocation.Type = D3D12_TEXTURE_COPY_TYPE_SUBRESOURCE_INDEX;
+    dstLocation.SubresourceIndex = 0;
+
+    D3D12_TEXTURE_COPY_LOCATION srcLocation;
+    srcLocation.pResource = allocation.Page->GetResource();
+    srcLocation.Type = D3D12_TEXTURE_COPY_TYPE_PLACED_FOOTPRINT;
+    srcLocation.PlacedFootprint.Offset = allocation.Offset;
+    srcLocation.PlacedFootprint.Footprint = footPrint.Footprint;
+
+    context->GetCommandList()->CopyTextureRegion(&dstLocation, 0, 0, 0, &srcLocation, nullptr);
+
     return true;
 }
 

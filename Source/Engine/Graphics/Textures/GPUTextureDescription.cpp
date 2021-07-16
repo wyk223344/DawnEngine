@@ -21,5 +21,6 @@ GPUTextureDescription GPUTextureDescription::New2D(int32 width, int32 height, Pi
     desc.Format = format;
     desc.MultiSampleLevel = msaaLevel;
     desc.Flags = textureFlags;
+    desc.DefaultClearColor = Color::Black;
     return desc;
 }

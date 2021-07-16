@@ -12,7 +12,7 @@
 namespace DawnEngine::DX12
 {
 
-	class GPUBufferDX12 : public GPUResourceDX12<GPUBuffer>, public GPUResourceOwnerDX12
+	class GPUBufferDX12 : public GPUResourceDX12<GPUBuffer>, public GPUResourceOwnerDX12, public IShaderResourceDX12
 	{
 	public:
 
@@ -53,9 +53,11 @@ namespace DawnEngine::DX12
 
 	public:
 
-		D3D12_CPU_DESCRIPTOR_HANDLE SRV() const { return m_SRV.CPU(); }
+		D3D12_CPU_DESCRIPTOR_HANDLE SRV() const override { return m_SRV.CPU(); }
 
-		D3D12_CPU_DESCRIPTOR_HANDLE UAV() const { return m_UAV.CPU(); }
+		D3D12_CPU_DESCRIPTOR_HANDLE UAV() const override { return m_UAV.CPU(); }
+
+		GPUResourceOwnerDX12* GetResourceOwner() const override { return (GPUResourceOwnerDX12*)this; }
 
 	protected:
 

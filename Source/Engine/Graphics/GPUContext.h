@@ -55,6 +55,9 @@ namespace DawnEngine
 		// 设置渲染目标和深度缓冲区
 		virtual void SetRenderTarget(GPUTexture* rt, GPUTexture* depthBuffer) = 0;
 
+		// 绑定纹理到着色器资源
+		virtual void BindSR(int32 slot, GPUTexture* texture) = 0;
+
 		// 绑定顶点缓冲区, vertex buffer
 		virtual void BindVB(GPUBuffer* vertexBuffer) = 0;
 
@@ -72,6 +75,9 @@ namespace DawnEngine
 
 		// 更新buffer数据
 		virtual void UpdateBuffer(GPUBuffer* buffer, const void* data, uint32 size, uint32 offset = 0) = 0;
+
+		// 更新纹理数据
+		virtual void UpdateTexture(GPUTexture* texture, int32 arrayIndex, int32 mipIndex, const void* data, uint32 rowPitch, uint32 slicePitch) = 0;
 
 		/// <summary>
 		/// 通过索引来绘制实例

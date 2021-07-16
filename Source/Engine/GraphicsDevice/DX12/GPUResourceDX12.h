@@ -65,6 +65,23 @@ namespace DawnEngine::DX12
 
 	};
 
+	class IShaderResourceDX12
+	{
+	public:
+
+		IShaderResourceDX12()
+		{
+		}
+
+	public:
+
+		virtual D3D12_CPU_DESCRIPTOR_HANDLE SRV() const = 0;
+
+		virtual D3D12_CPU_DESCRIPTOR_HANDLE UAV() const = 0;
+
+		virtual GPUResourceOwnerDX12* GetResourceOwner() const = 0;
+
+	};
 }
 
 #endif

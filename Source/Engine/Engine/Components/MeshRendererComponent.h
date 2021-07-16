@@ -14,6 +14,13 @@ namespace DawnEngine
 	{
 	public:
 
+		MeshRendererComponent(EntityBase* entity, Mesh* mesh, MaterialBase* material)
+			: ComponentBase(entity)
+			, m_Mesh(mesh)
+			, m_Material(material)
+		{
+		}
+
 		void Render(GPUContext* context);
 
 	private:

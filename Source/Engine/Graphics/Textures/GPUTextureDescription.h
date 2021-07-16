@@ -71,6 +71,9 @@ namespace DawnEngine
         // Flags for binding to pipeline stages. The flags can be combined by a logical OR.
         GPUTextureFlags Flags;
 
+        // Default clear color for render targets
+        Color DefaultClearColor;
+
     public:
 
         bool IsRenderTarget() const { return (Flags & GPUTextureFlags::RenderTarget) != 0; }
@@ -80,6 +83,12 @@ namespace DawnEngine
         bool IsShaderResource() const { return (Flags & GPUTextureFlags::ShaderResource) != 0; }
 
         bool IsUnorderedAccess() const { return (Flags & GPUTextureFlags::UnorderedAccess) != 0; }
+
+        bool IsVolume() const { return Dimensions == TextureDimensions::VolumeTexture; }
+
+        bool IsMultiSample() const { return MultiSampleLevel > MSAALevel::None; }
+
+        bool IsRegularTexture() const { return Flags == GPUTextureFlags::ShaderResource; }
 
     public:
 

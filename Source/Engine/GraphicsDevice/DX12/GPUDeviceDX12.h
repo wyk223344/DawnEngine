@@ -72,6 +72,9 @@ namespace DawnEngine::DX12
 
 		UploadBufferDX12* UploadBuffer;
 
+		// Null Descriptor
+		DescriptorHeapWithSlotsDX12::Slot Null_SRV;
+
 	private:
 
 		ID3D12Device* m_Device;

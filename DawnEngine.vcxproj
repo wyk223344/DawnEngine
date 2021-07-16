@@ -191,6 +191,7 @@
     <ClInclude Include="Source\Engine\Engine\EngineService.h" />
     <ClInclude Include="Source\Engine\Engine\Entities\CameraEntity.h" />
     <ClInclude Include="Source\Engine\Engine\Entities\LightEntity.h" />
+    <ClInclude Include="Source\Engine\Engine\Entities\RenderEntity.h" />
     <ClInclude Include="Source\Engine\Engine\Globals.h" />
     <ClInclude Include="Source\Engine\Engine\Scene.h" />
     <ClInclude Include="Source\Engine\GraphicsDevice\DX12\CommandAllocatorPoolDX12.h" />
@@ -259,7 +260,9 @@
     <ClInclude Include="Source\Engine\Renderer\ForwardPass.h" />
     <ClInclude Include="Source\Engine\Renderer\Renderer.h" />
     <ClInclude Include="Source\Engine\Renderer\RendererPassBase.h" />
+    <ClInclude Include="Source\Engine\Resource\Resource.h" />
     <ClInclude Include="Source\Game\Game.h" />
+    <ClInclude Include="Source\ThirdParty\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Editor\Editor.cpp" />
@@ -324,7 +327,9 @@
     <ClCompile Include="Source\Engine\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="Source\Engine\Renderer\ForwardPass.cpp" />
     <ClCompile Include="Source\Engine\Renderer\Renderer.cpp" />
+    <ClCompile Include="Source\Engine\Resource\Resource.cpp" />
     <ClCompile Include="Source\Game\Game.cpp" />
+    <ClCompile Include="Source\ThirdParty\stb_image\stb_image.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -21,6 +21,14 @@ namespace DawnEngine
 		};
 	public:
 
+        Color()
+            : R(0.0f)
+            , G(0.0f)
+            , B(0.0f)
+            , A(1.0f)
+        {
+        }
+
         Color(float r, float g, float b, float a = 1)
             : R(r)
             , G(g)
