@@ -9,6 +9,9 @@ cbuffer GlobalConstants : register(b0)
 	float4x4 ViewProjMatrix;
 };
 
+Texture2D    DiffuseMap		: register(t0);
+SamplerState SamplerLinear  : register(s0);
+
 struct VertexIn
 {
 	float3 positionOS  : POSITION;
@@ -20,7 +23,8 @@ struct VertexIn
 struct VertexOut
 {
 	float4 positionCS  : SV_POSITION;
-	float3 color	   : TEXCOORD;
+	float2 uv		   : TEXCOORD0;
+	float3 color	   : TEXCOORD1;
 };
 
 VertexOut VS(VertexIn input)
@@ -28,7 +32,7 @@ VertexOut VS(VertexIn input)
 	VertexOut output;
 
 	output.positionCS = mul(ViewProjMatrix, float4(input.positionOS, 1.0f));
-
+	output.uv = input.uv;
 	output.color = input.positionOS.xyz + 0.5f;
     return output;
 }

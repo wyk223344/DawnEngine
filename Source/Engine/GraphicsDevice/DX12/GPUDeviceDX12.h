@@ -49,6 +49,8 @@ namespace DawnEngine::DX12
 
 		GPUBuffer* CreateBuffer() override;
 
+		GPUTexture* CreateTexture() override;
+
 		GPUShader* CreateShader() override;
 
 		GPUPipelineState* CreatePipelineState() override;

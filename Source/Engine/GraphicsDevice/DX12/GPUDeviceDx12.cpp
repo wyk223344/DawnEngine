@@ -260,6 +260,11 @@ GPUBuffer* GPUDeviceDX12::CreateBuffer()
 	return New<GPUBufferDX12>(this);
 }
 
+GPUTexture* GPUDeviceDX12::CreateTexture()
+{
+	return New<GPUTextureDX12>(this);
+}
+
 GPUShader* GPUDeviceDX12::CreateShader()
 {
 	return New<GPUShaderDX12>(this);

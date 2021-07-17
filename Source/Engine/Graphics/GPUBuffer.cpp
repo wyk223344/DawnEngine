@@ -17,5 +17,4 @@ bool GPUBuffer::Init(const GPUBufferDescription& desc)
 
 void GPUBuffer::OnReleaseGPU()
 {
-	
 }

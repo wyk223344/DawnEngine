@@ -112,5 +112,9 @@ namespace DawnEngine
         {
             return (Flags & GPUBufferFlags::UnorderedAccess) != 0;
         }
+
+    public:
+
+        void Clear();
     };
 }

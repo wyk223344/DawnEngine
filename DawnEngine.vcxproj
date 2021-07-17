@@ -205,11 +205,6 @@
     <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUPipelineStateDX12.h" />
     <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUResourceDX12.h" />
     <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUResourceStateDX12.h" />
-    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUResource\ColorBuffer.h" />
-    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUResource\DepthBuffer.h" />
-    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUResource\GPUBuffer.h" />
-    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUResource\GPUResource.h" />
-    <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUResource\PixelBuffer.h" />
     <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUShaderDX12.h" />
     <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUShaderProgramDX12.h" />
     <ClInclude Include="Source\Engine\GraphicsDevice\DX12\GPUSwapChainDX12.h" />
@@ -294,11 +289,6 @@
     <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUContextDX12.cpp" />
     <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUDeviceDX12.cpp" />
     <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUPipelineStateDX12.cpp" />
-    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUResource\ColorBuffer.cpp" />
-    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUResource\DepthBuffer.cpp" />
-    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUResource\GPUBuffer.cpp" />
-    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUResource\GPUResource.cpp" />
-    <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUResource\PixelBuffer.cpp" />
     <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUShaderDX12.cpp" />
     <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUShaderProgramDX12.cpp" />
     <ClCompile Include="Source\Engine\GraphicsDevice\DX12\GPUSwapChainDX12.cpp" />

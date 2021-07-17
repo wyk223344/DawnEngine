@@ -25,7 +25,7 @@ RendererService RendererServiceInstance;
 
 bool RendererService::Init()
 {
-    ForwardPass::Instance()->Init();
+    // ForwardPass::Instance()->Init();
     return true;
 }
 

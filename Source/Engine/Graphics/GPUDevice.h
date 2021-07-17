@@ -37,6 +37,9 @@ namespace DawnEngine
         // 创建Buffer
         virtual GPUBuffer* CreateBuffer() = 0;
 
+        // 创建纹理
+        virtual GPUTexture* CreateTexture() = 0;
+
         // 创建shader
         virtual GPUShader* CreateShader() = 0;
 
