@@ -60,8 +60,8 @@ void GPUContextDX12::Reset()
 	m_CommandList->SetGraphicsRootSignature(m_Device->GetRootSignature());
 
 	// TODO: RingHeap_CBV_SRV_UAV并没有使用
-	//ID3D12DescriptorHeap* heaps[] = { m_Device->RingHeap_CBV_SRV_UAV.GetHeap() };
-	//m_CommandList->SetDescriptorHeaps(ARRAY_COUNT(heaps), heaps);
+	ID3D12DescriptorHeap* heaps[] = { m_Device->RingHeap_CBV_SRV_UAV.GetHeap() };
+	m_CommandList->SetDescriptorHeaps(ARRAY_COUNT(heaps), heaps);
 }
 
 void GPUContextDX12::SetResourceState(GPUResourceOwnerDX12* resource, D3D12_RESOURCE_STATES after, int32 subresourceIndex)
@@ -236,7 +236,12 @@ void GPUContextDX12::UpdateBuffer(GPUBuffer* buffer, const void* data, uint32 si
 
 void GPUContextDX12::UpdateTexture(GPUTexture* texture, int32 arrayIndex, int32 mipIndex, const void* data, uint32 rowPitch, uint32 slicePitch)
 {
+	auto textureDX12 = static_cast<GPUTextureDX12*>(texture);
 
+	SetResourceState(textureDX12, D3D12_RESOURCE_STATE_COPY_DEST);
+	flushRBs();
+
+	m_Device->UploadBuffer->UploadTexture(this, textureDX12->GetResource(), data, rowPitch, slicePitch, mipIndex, arrayIndex);
 }
 
 void GPUContextDX12::DrawIndexedInstanced(uint32 indicesCount, uint32 instanceCount, int32 startIndex, int32 startVertex, int32 startInstance)

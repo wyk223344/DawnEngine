@@ -44,6 +44,10 @@ GPUDeviceDX12::GPUDeviceDX12()
 
 bool GPUDeviceDX12::Init()
 {
+	ComPtr<ID3D12Debug> debugController;
+	ThrowIfFailed(D3D12GetDebugInterface(IID_PPV_ARGS(&debugController)));
+	debugController->EnableDebugLayer();
+
 	// Create DXGI Factory
 	ThrowIfFailed(CreateDXGIFactory1(IID_PPV_ARGS(&m_FactoryDXGI)));
 

@@ -156,16 +156,16 @@ bool UploadBufferDX12::UploadTexture(GPUContextDX12* context, ID3D12Resource* te
     mipSizeAligned = rowPitchAligned * footPrint.Footprint.Height;
 
     const DynamicAllocation allocation = Allocate(mipSizeAligned, D3D12_TEXTURE_DATA_PLACEMENT_ALIGNMENT);
-
+    LOG_ERROR("UploadTexture %d %d %d", numRows, rowPitchAligned, mipSizeAligned);
     byte* ptr = (byte*)srcData;
     byte* dst = static_cast<byte*>(allocation.CPUAddress);
     ASSERT(srcRowPitch <= rowPitchAligned);
     for (uint32 i = 0; i < numRows; i++)
     {
-        Platform::MemoryCopy(dst, ptr, srcRowPitch);
+        Platform::MemoryCopy(dst, ptr, rowPitchAligned);
 
         dst += rowPitchAligned;
-        ptr += srcRowPitch;
+        ptr += rowPitchAligned;
     }
 
     D3D12_TEXTURE_COPY_LOCATION dstLocation;

@@ -51,9 +51,10 @@ void ForwardPass::Init()
 	auto texture = GPUDevice::Instance->CreateTexture();
 	int texWidth, texHeight, texChannels;
 	unsigned char* data = stbi_load("Assets/Textures/Crate.png", &texWidth, &texHeight, &texChannels, 0);
-	auto texDesc = GPUTextureDescription::New2D(texWidth, texHeight, PixelFormat::R8G8B8A8_Typeless);
+	LOG_WARNING("Load Texture %d %d %d", texWidth, texHeight, texChannels);
+	auto texDesc = GPUTextureDescription::New2D(texWidth, texHeight, PixelFormat::R8G8B8A8_UNorm_sRGB);
 	texture->Init(texDesc);
-	// GPUDevice::Instance->GetMainContext()->UpdateTexture(texture, 1, 1, data, 0, 0);
+	GPUDevice::Instance->GetMainContext()->UpdateTexture(texture, 1, 1, data, 0, 0);
 	// camera
 	auto cameraEntity = New<CameraEntity>(45.0f, (float)Globals::Width / Globals::Height);
 	Vector3 startPosition(0.0f, 0.0f, Globals::Distance2Center);
@@ -97,7 +98,7 @@ void ForwardPass::Render(GPUContext* context)
 	context->UpdateCB(ForwardPassImpl::ConstantBuffer, &ForwardPassImpl::ConstanInfo);
 	context->BindCB(0, ForwardPassImpl::ConstantBuffer);
 
-	// context->BindSR(0, ForwardPassImpl::Texture);
+	context->BindSR(0, ForwardPassImpl::Texture);
 
 	context->DrawIndexedInstanced(ForwardPassImpl::BoxMesh->GetIndicesCount(), 1);
 	context->FlushState();
