@@ -1,6 +1,6 @@
 
 #include "Vertex.h"
-#include "Mesh.h"
+#include "GPUMesh.h"
 #include "Engine/Graphics/GPUBuffer.h"
 #include "Engine/Graphics/GPUDevice.h"
 #include "Engine/Graphics/GPUBufferDescription.h"
@@ -8,7 +8,7 @@
 using namespace DawnEngine;
 
 
-bool Mesh::Init(MeshData& meshData)
+bool GPUMesh::Init(MeshData& meshData)
 {
 	GPUBuffer* vertexBuffer = nullptr;
 	GPUBuffer* indexBuffer = nullptr;
@@ -37,7 +37,7 @@ bool Mesh::Init(MeshData& meshData)
 	return true;
 }
 
-void Mesh::Release()
+void GPUMesh::Release()
 {
 	if (m_VertexBuffer != nullptr)
 	{

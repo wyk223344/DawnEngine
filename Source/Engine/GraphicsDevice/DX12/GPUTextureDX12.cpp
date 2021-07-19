@@ -25,7 +25,7 @@ bool GPUTextureDX12::OnInit()
 
 	D3D12_RESOURCE_DESC resourceDesc;
 	resourceDesc.MipLevels = m_Desc.MipLevels;
-	resourceDesc.Format = format;
+	resourceDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	resourceDesc.Width = Width();
 	resourceDesc.Height = Height();
 	resourceDesc.Flags = D3D12_RESOURCE_FLAG_NONE;
@@ -80,7 +80,7 @@ bool GPUTextureDX12::OnInit()
 	if (useSRV)
 	{
 		D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc;
-		srvDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+		srvDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 		srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
 		srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
 		srvDesc.Texture2D.MostDetailedMip = 0;

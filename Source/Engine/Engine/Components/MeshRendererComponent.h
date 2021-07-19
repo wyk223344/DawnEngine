@@ -4,7 +4,7 @@
 #include "Engine/Core/Include.h"
 #include "Engine/Engine/Base/ComponentBase.h"
 #include "Engine/Graphics/Materials/MaterialBase.h"
-#include "Engine/Graphics/Models/Mesh.h"
+#include "Engine/Graphics/Models/GPUMesh.h"
 
 namespace DawnEngine
 {
@@ -14,7 +14,7 @@ namespace DawnEngine
 	{
 	public:
 
-		MeshRendererComponent(EntityBase* entity, Mesh* mesh, MaterialBase* material)
+		MeshRendererComponent(EntityBase* entity, GPUMesh* mesh, MaterialBase* material)
 			: ComponentBase(entity)
 			, m_Mesh(mesh)
 			, m_Material(material)
@@ -25,7 +25,7 @@ namespace DawnEngine
 
 	private:
 
-		Mesh* m_Mesh;
+		GPUMesh* m_Mesh;
 		MaterialBase* m_Material;
 	};
 }

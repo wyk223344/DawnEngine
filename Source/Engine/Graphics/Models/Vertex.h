@@ -9,6 +9,10 @@ namespace DawnEngine
 	public:
 
 		Vertex()
+			: Position(0.0f, 0.0f, 0.0f)
+			, UV(0.0f, 0.0f)
+			, Normal(0.0f, 1.0f, 0.0f)
+			, Tangent(1.0f, 0.0f, 0.0f)
 		{
 		}
 

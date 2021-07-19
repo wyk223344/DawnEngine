@@ -91,6 +91,9 @@
     <Filter Include="ThirdParty\stb_image">
       <UniqueIdentifier>{e57ea186-d32c-46b7-a2d2-c3c1f06b5b33}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty\tiny_obj_loader">
+      <UniqueIdentifier>{0340a843-4908-445d-8adc-bfd3ce8548dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine\Core\Delegate.h">
@@ -288,7 +291,7 @@
     <ClInclude Include="Source\Engine\Engine\Components\TransformComponent.h">
       <Filter>Engine\Engine\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\Graphics\Models\Mesh.h">
+    <ClInclude Include="Source\Engine\Graphics\Models\GPUMesh.h">
       <Filter>Engine\Graphics\Models</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Renderer\Renderer.h">
@@ -423,6 +426,18 @@
     <ClInclude Include="Source\Engine\Resource\Resource.h">
       <Filter>Engine\Resource</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\Textures\TextureData.h">
+      <Filter>Engine\Graphics\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ThirdParty\tiny_obj_loader\tiny_obj_loader.h">
+      <Filter>ThirdParty\tiny_obj_loader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\Models\Model.h">
+      <Filter>Engine\Graphics\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\Materials\PBRMaterial.h">
+      <Filter>Engine\Graphics\Materials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Main\Windows\main.cpp">
@@ -545,7 +560,7 @@
     <ClCompile Include="Source\Engine\Engine\Components\TransformComponent.cpp">
       <Filter>Engine\Engine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\Graphics\Models\Mesh.cpp">
+    <ClCompile Include="Source\Engine\Graphics\Models\GPUMesh.cpp">
       <Filter>Engine\Graphics\Models</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\Renderer\ForwardPass.cpp">
@@ -604,6 +619,18 @@
     </ClCompile>
     <ClCompile Include="Source\Engine\Resource\Resource.cpp">
       <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\Textures\TextureData.cpp">
+      <Filter>Engine\Graphics\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\Models\Model.cpp">
+      <Filter>Engine\Graphics\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\Materials\PBRMaterial.cpp">
+      <Filter>Engine\Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\Materials\DefaultMaterial.cpp">
+      <Filter>Engine\Graphics\Materials</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

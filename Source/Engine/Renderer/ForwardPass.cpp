@@ -4,7 +4,7 @@
 #include "Engine/Graphics/GPUSwapChain.h"
 #include "Engine/Graphics/GPUDevice.h"
 #include "Engine/Graphics/GPUContext.h"
-#include "Engine/Graphics/Models/Mesh.h"
+#include "Engine/Graphics/Models/GPUMesh.h"
 #include "Engine/Graphics/Models/MeshData.h"
 #include "Engine/Graphics/Models/GeometryGenerator.h"
 #include "Engine/Graphics/Shaders/GPUShader.h"
@@ -24,7 +24,7 @@ using namespace DawnEngine;
 
 namespace ForwardPassImpl
 {
-	Mesh* BoxMesh = nullptr;
+	GPUMesh* BoxMesh = nullptr;
 	GPUPipelineState* PipelineState = nullptr;
 	GPUShader* Shader = nullptr;
 	GPUConstantBuffer* ConstantBuffer = nullptr;
@@ -37,8 +37,8 @@ namespace ForwardPassImpl
 void ForwardPass::Init()
 {
 	// mesh
-	auto boxMesh = New<Mesh>();
-	boxMesh->Init(GeometryGenerator::CreateBox(1, 1, 1));
+	auto boxMesh = New<GPUMesh>();
+	boxMesh->Init(GeometryGenerator::CreateBox(1, 1, 1, 3));
 	// shader
 	auto shader = GPUDevice::Instance->CreateShader();
 	// pso

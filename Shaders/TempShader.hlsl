@@ -40,6 +40,7 @@ VertexOut VS(VertexIn input)
 float4 PS(VertexOut input) : SV_Target
 {
 	float4 diffuseAlbedo = DiffuseMap.Sample(SamplerLinear, input.uv);
+	// return float4(input.uv, 1.0f, 1.0f);
 	return float4(diffuseAlbedo.xyz, 1.0f);
 	// return float4(1.0f, 0.0f, 0.0f, 1.0f);
     //return float4(input.uv.x, input.uv.y, 0.0f, 1.0f);

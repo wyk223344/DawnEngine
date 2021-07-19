@@ -11,18 +11,18 @@ namespace DawnEngine
 {
 	class GPUBuffer;
 
-	class Mesh : public Object
+	class GPUMesh : public Object
 	{
 	public:
 
-		Mesh()
+		GPUMesh()
 			: m_VertexBuffer(nullptr)
 			, m_IndexBuffer(nullptr)
 			, m_IndicesCount(0)
 		{
 		}
 
-		~Mesh()
+		~GPUMesh()
 		{
 		}
 

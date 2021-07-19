@@ -5,6 +5,7 @@
 // Include Windows headers
 #include <Windows.h>
 
+#undef max
 // Remove some Windows definitions
 //#undef MemoryBarrier
 //#undef DeleteFile
