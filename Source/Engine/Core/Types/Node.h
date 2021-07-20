@@ -37,7 +37,7 @@ namespace DawnEngine
 
 		T* GetParent() const { return m_Parent; }
 
-		std::set<T*>& GetChildren() const { return m_Children; }
+		const std::set<T*>& GetChildren() const { return m_Children; }
 
 		void AddChild(T* child)
 		{

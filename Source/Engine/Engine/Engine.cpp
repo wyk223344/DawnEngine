@@ -7,6 +7,7 @@
 #include "Engine/Platform/CreateWindowSettings.h"
 #include "Engine/Engine/Scene.h"
 #include "Engine/Renderer/ForwardPass.h"
+#include "Application.h"
 
 using namespace DawnEngine;
 
@@ -27,7 +28,7 @@ int32 Engine::Main()
 	InitMainWindow();
 	Platform::BeforeRun();
 
-	ForwardPass::Instance()->Init();
+	Application::Init();
 
 	while (!Globals::IsRequestingExit)
 	{

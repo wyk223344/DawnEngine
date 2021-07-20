@@ -21,7 +21,7 @@ InputComponent::InputComponent(EntityBase* entity)
 
 void InputComponent::Update()
 {
-	if (Input::Mouse->GetButtonDown(MouseButton::Left))
+	/*if (Input::Mouse->GetButtonDown(MouseButton::Left))
 	{
 		m_PrePosition = Input::GetMousePosition();
 	}
@@ -42,5 +42,37 @@ void InputComponent::Update()
 		);
 		transformComp->SetPosition(newPosition);
 		transformComp->LookAt(Vector3::Zero);
+	}*/
+
+	if (Input::Mouse->GetButtonDown(MouseButton::Middle))
+	{
+		m_PrePosition = Input::GetMousePosition();
+	}
+	else if (Input::Mouse->GetButton(MouseButton::Middle))
+	{
+		Vector2 curPosition = Input::GetMousePosition();
+		Vector2 deltaPosition = curPosition - m_PrePosition;
+		m_PrePosition = curPosition;
+
+		Transform& transform = GetEntity()->GetComponent<TransformComponent>()->Transform;
+		transform.Translation += transform.GetRight() * deltaPosition.X * -0.01f;
+		transform.Translation += transform.GetUp() * deltaPosition.Y * 0.01f;
+	}
+
+	if (Input::Mouse->GetButtonDown(MouseButton::Right))
+	{
+		m_PrePosition = Input::GetMousePosition();
+	}
+	else if (Input::Mouse->GetButton(MouseButton::Right))
+	{
+		Vector2 curPosition = Input::GetMousePosition();
+		Vector2 deltaPosition = curPosition - m_PrePosition;
+		m_PrePosition = curPosition;
+
+		Transform& transform = GetEntity()->GetComponent<TransformComponent>()->Transform;
+		Vector3 lookAtPos = transform.Translation + transform.GetForward();
+		lookAtPos += transform.GetRight() * deltaPosition.X * 0.003f;
+		lookAtPos += transform.GetUp() * deltaPosition.Y * -0.003f;
+		transform.LookAt(lookAtPos);
 	}
 }

@@ -98,7 +98,7 @@ namespace DawnEngine
 		}
 		for (auto child : GetChildren())
 		{
-			result = child->GetComponent();
+			result = child->GetComponent<T>();
 			if (result)
 			{
 				return result;
@@ -111,7 +111,7 @@ namespace DawnEngine
 	std::vector<T*> EntityBase::GetComponentsInChildren()
 	{
 		std::vector<T*> result;
-		std::function<T* (EntityBase*)> getComponents;
+		std::function<void(EntityBase*)> getComponents;
 		getComponents = [&result, &getComponents](EntityBase* entity)
 		{
 			auto component = entity->GetComponent<T>();
@@ -119,11 +119,12 @@ namespace DawnEngine
 			{
 				result.push_back(component);
 			}
-			for (auto child : entity.GetChildren())
+			for (auto child : entity->GetChildren())
 			{
-				getComponents(result);
+				getComponents(child);
 			}
 		};
+		getComponents(this);
 		return result;
 	}
 }

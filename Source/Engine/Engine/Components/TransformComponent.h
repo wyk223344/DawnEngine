@@ -5,7 +5,7 @@
 
 namespace DawnEngine
 {
-	using namespace DawnEngine::Math;
+	using namespace Math;
 
 	class EntityBase;
 

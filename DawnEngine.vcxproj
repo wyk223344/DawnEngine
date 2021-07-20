@@ -121,7 +121,7 @@
       </SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;PLATFORM_WINDOWS;GRAPHICS_API_DIRECTX12;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>Default</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Workspace\DawnEngine\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)$(Platform)\$(Configuration)\Output;$(SolutionDir)Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <SupportJustMyCode>false</SupportJustMyCode>
       <PrecompiledHeader />
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -130,6 +130,17 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <FxCompile>
+      <VariableName>g_Shader%(Filename)</VariableName>
+    </FxCompile>
+    <FxCompile>
+      <HeaderFileOutput>$(SolutionDir)$(Platform)\$(Configuration)\Output\CompiledShaders\%(Filename).h</HeaderFileOutput>
+    </FxCompile>
+    <FxCompile>
+      <ObjectFileOutput />
+      <DisableOptimizations>false</DisableOptimizations>
+      <ShaderModel>6.2</ShaderModel>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -179,6 +190,7 @@
     <ClInclude Include="Source\Engine\Core\Types\Pair.h" />
     <ClInclude Include="Source\Engine\Core\Types\Span.h" />
     <ClInclude Include="Source\Engine\Core\Types\TypeMap.h" />
+    <ClInclude Include="Source\Engine\Engine\Application.h" />
     <ClInclude Include="Source\Engine\Engine\Base\ApplicationBase.h" />
     <ClInclude Include="Source\Engine\Engine\Base\ComponentBase.h" />
     <ClInclude Include="Source\Engine\Engine\Base\EntityBase.h" />
@@ -227,7 +239,7 @@
     <ClInclude Include="Source\Engine\Graphics\Materials\MaterialBase.h" />
     <ClInclude Include="Source\Engine\Graphics\Materials\PBRMaterial.h" />
     <ClInclude Include="Source\Engine\Graphics\Models\GeometryGenerator.h" />
-    <ClInclude Include="Source\Engine\Graphics\Models\GPUMesh.h" />
+    <ClInclude Include="Source\Engine\Graphics\Models\Mesh.h" />
     <ClInclude Include="Source\Engine\Graphics\Models\MeshData.h" />
     <ClInclude Include="Source\Engine\Graphics\Models\Model.h" />
     <ClInclude Include="Source\Engine\Graphics\Models\Vertex.h" />
@@ -307,9 +319,10 @@
     <ClCompile Include="Source\Engine\Graphics\Materials\DefaultMaterial.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Materials\PBRMaterial.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Models\GeometryGenerator.cpp" />
-    <ClCompile Include="Source\Engine\Graphics\Models\GPUMesh.cpp" />
+    <ClCompile Include="Source\Engine\Graphics\Models\Mesh.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Models\Model.cpp" />
     <ClCompile Include="Source\Engine\Graphics\PixelFormatExtensions.cpp" />
+    <ClCompile Include="Source\Engine\Graphics\Shaders\GPUShaderProgram.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Textures\GPUTexture.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Textures\GPUTextureDescription.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Textures\TextureData.cpp" />
@@ -328,6 +341,23 @@
     <ClCompile Include="Source\Engine\Resource\Resource.cpp" />
     <ClCompile Include="Source\Game\Game.cpp" />
     <ClCompile Include="Source\ThirdParty\stb_image\stb_image.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Shaders\Common.hlsli" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Assets\Shaders\DefaultPS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Assets\Shaders\DefaultVS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

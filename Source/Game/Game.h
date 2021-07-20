@@ -6,5 +6,7 @@
 
 class Game : public ApplicationBase
 {
+public:
 
+	static bool Init();
 };

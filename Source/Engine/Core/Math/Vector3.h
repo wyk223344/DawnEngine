@@ -7,6 +7,8 @@ namespace DawnEngine::Math
 {
 	struct Vector2;
 	struct Vector4;
+    struct Quaternion;
+    struct Matrix4x4;
 
 	struct Vector3
 	{
@@ -309,6 +311,14 @@ namespace DawnEngine::Math
         {
             return Vector3(a.X / b, a.Y / b, a.Z / b);
         }
+
+    public:
+
+        // Transforms a 3D vector by the given Quaternion rotation
+        // @param vector The vector to rotate
+        // @param rotation The Quaternion rotation to apply
+        // @returns The transformed Vector4
+        static Vector3 Transform(const Vector3& vector, const Quaternion& rotation);
 
 	public:
 

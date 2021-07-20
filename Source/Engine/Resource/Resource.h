@@ -16,6 +16,6 @@ namespace DawnEngine
 
 		static TextureData& LoadTexture(std::string& filePath);
 
-		static Model* LoadModel(std::string& filePath);
+		static Model* LoadModel(const char* filePath);
 	};
 }

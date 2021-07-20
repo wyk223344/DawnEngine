@@ -5,15 +5,26 @@
 
 namespace DawnEngine
 {
+	using namespace Math;
+
+	__declspec(align(256)) struct DefaultMaterialConstants
+	{
+		Color Color;
+	};
+
+	__declspec(align(256)) struct PBRMaterialConstants
+	{
+		Color Color;
+	};
 
 	__declspec(align(256)) struct MeshConstants
 	{
-		Math::Matrix4x4 WorldMatrix;
+		Matrix4x4 WorldMatrix;
 	};
 
 	__declspec(align(256)) struct GlobalConstants
 	{
-		Math::Matrix4x4 ViewProjMatrix;
+		Matrix4x4 ViewProjMatrix;
 	};
 
 	class GPUConstantBuffer : public GPUResource

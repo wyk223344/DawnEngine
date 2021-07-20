@@ -1,14 +1,15 @@
 
 #include "Vertex.h"
-#include "GPUMesh.h"
+#include "Mesh.h"
 #include "Engine/Graphics/GPUBuffer.h"
 #include "Engine/Graphics/GPUDevice.h"
 #include "Engine/Graphics/GPUBufferDescription.h"
+#include "Engine/Graphics/GPUContext.h"
 
 using namespace DawnEngine;
 
 
-bool GPUMesh::Init(MeshData& meshData)
+bool Mesh::Init(MeshData& meshData)
 {
 	GPUBuffer* vertexBuffer = nullptr;
 	GPUBuffer* indexBuffer = nullptr;
@@ -37,7 +38,15 @@ bool GPUMesh::Init(MeshData& meshData)
 	return true;
 }
 
-void GPUMesh::Release()
+void Mesh::Draw(GPUContext* context)
+{
+	context->BindVB(GetVertexBuffer());
+	context->BindIB(GetIndexBuffer());
+
+	context->DrawIndexedInstanced(GetIndicesCount(), 1);
+}
+
+void Mesh::Release()
 {
 	if (m_VertexBuffer != nullptr)
 	{

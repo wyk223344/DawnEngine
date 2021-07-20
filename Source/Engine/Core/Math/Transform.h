@@ -57,5 +57,36 @@ namespace DawnEngine::Math
 
 		Matrix4x4 Transform::GetWorldMatrix() const;
 
+	public:
+
+		Vector3 GetRight() const
+		{
+			return Vector3::Transform(Vector3::Right, Rotation);
+		}
+
+		Vector3 GetLeft() const
+		{
+			return Vector3::Transform(Vector3::Left, Rotation);
+		}
+
+		Vector3 GetUp() const
+		{
+			return Vector3::Transform(Vector3::Up, Rotation);
+		}
+
+		Vector3 GetDown() const
+		{
+			return Vector3::Transform(Vector3::Down, Rotation);
+		}
+
+		Vector3 GetForward() const
+		{
+			return Vector3::Transform(Vector3::Forward, Rotation);
+		}
+
+		Vector3 GetBackward() const
+		{
+			return Vector3::Transform(Vector3::Backward, Rotation);
+		}
 	};
 }

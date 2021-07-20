@@ -12,20 +12,43 @@ namespace DawnEngine
 	{
 	public:
 
-		virtual bool Init(std::string filePath) = 0;
+		GPUShaderProgram()
+			: m_ShaderBinary(nullptr)
+			, m_Size(0)
+		{
+		}
+
+		// 初始化
+		bool Init(const void* binary, uint64 size)
+		{
+			m_ShaderBinary = const_cast<void*>(binary);
+			m_Size = size;
+			return true;
+		}
+
+		// 获取shader数据
+		void* GetBufferHandle() const
+		{
+			return m_ShaderBinary;
+		}
+
+		// 获取shader数据长度
+		uint64 GetBufferSize() const
+		{
+			return m_Size;
+		}
+
+	public:
 
 		// 获取shader阶段类型
 		virtual ShaderStage GetStage() const = 0;
 
-		// 获取shader数据
-		virtual void* GetBufferHandle() const = 0;
-
-		// 获取shader数据长度
-		virtual uint32 GetBufferSize() const = 0;
-
-	private:
+	protected:
 
 		std::string m_Name;
+
+		void* m_ShaderBinary;
+		uint64 m_Size;
 	};
 
 	// vertex shader

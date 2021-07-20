@@ -291,7 +291,7 @@
     <ClInclude Include="Source\Engine\Engine\Components\TransformComponent.h">
       <Filter>Engine\Engine\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\Graphics\Models\GPUMesh.h">
+    <ClInclude Include="Source\Engine\Graphics\Models\Mesh.h">
       <Filter>Engine\Graphics\Models</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Renderer\Renderer.h">
@@ -438,6 +438,9 @@
     <ClInclude Include="Source\Engine\Graphics\Materials\PBRMaterial.h">
       <Filter>Engine\Graphics\Materials</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine\Engine\Application.h">
+      <Filter>Engine\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Main\Windows\main.cpp">
@@ -560,7 +563,7 @@
     <ClCompile Include="Source\Engine\Engine\Components\TransformComponent.cpp">
       <Filter>Engine\Engine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\Graphics\Models\GPUMesh.cpp">
+    <ClCompile Include="Source\Engine\Graphics\Models\Mesh.cpp">
       <Filter>Engine\Graphics\Models</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\Renderer\ForwardPass.cpp">
@@ -632,5 +635,21 @@
     <ClCompile Include="Source\Engine\Graphics\Materials\DefaultMaterial.cpp">
       <Filter>Engine\Graphics\Materials</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\Shaders\GPUShaderProgram.cpp">
+      <Filter>Engine\Graphics\Shaders</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Shaders\Common.hlsli">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Assets\Shaders\DefaultVS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Assets\Shaders\DefaultPS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

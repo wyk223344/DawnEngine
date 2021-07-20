@@ -6,7 +6,16 @@
 
 namespace DawnEngine
 {
+	class Model;
+
 	class RenderEntity : public EntityBase
 	{
+	public:
+		RenderEntity(Model* model)
+			: EntityBase()
+		{
+			AddComponent<TransformComponent>();
+			AddComponent<MeshRendererComponent>(model);
+		}
 	};
 }

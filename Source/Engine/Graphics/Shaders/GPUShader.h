@@ -15,18 +15,18 @@ namespace DawnEngine
 	public:
 
 		// ´´½¨shader³ÌÐò
-		virtual GPUShaderProgram* CreateShaderProgram(ShaderStage stage, std::string filePath) = 0;
+		virtual GPUShaderProgram* CreateShaderProgram(ShaderStage stage, const void* binary, uint64 size) = 0;
 
 	public:
 
-		GPUShaderProgramVS* CreateShaderProgramVS(std::string filePath)
+		GPUShaderProgramVS* CreateShaderProgramVS(const void* binary, uint64 size)
 		{
-			return static_cast<GPUShaderProgramVS*>(CreateShaderProgram(ShaderStage::Vertex, filePath));
+			return static_cast<GPUShaderProgramVS*>(CreateShaderProgram(ShaderStage::Vertex, binary, size));
 		}
 
-		GPUShaderProgramPS* CreateShaderProgramPS(std::string filePath)
+		GPUShaderProgramPS* CreateShaderProgramPS(const void* binary, uint64 size)
 		{
-			return static_cast<GPUShaderProgramPS*>(CreateShaderProgram(ShaderStage::Pixel, filePath));
+			return static_cast<GPUShaderProgramPS*>(CreateShaderProgram(ShaderStage::Pixel, binary, size));
 		}
 
 	protected:

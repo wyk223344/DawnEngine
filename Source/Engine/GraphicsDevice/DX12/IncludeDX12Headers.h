@@ -38,7 +38,7 @@
     HRESULT hr__ = (x);                                               \
     if(FAILED(hr__))                                                  \
     {                                                                 \
-        LOG_ERROR("ThrowIfFailed %d %s %d", hr__, __FILE__, __LINE__);         \
+        LOG_ERROR("ThrowIfFailed %x %s %d", hr__, __FILE__, __LINE__);         \
     }                                                                 \
 }
 #endif

@@ -16,7 +16,7 @@ namespace DawnEngine::DX12
 		}
 
 	public:
-		GPUShaderProgram* CreateShaderProgram(ShaderStage stage, std::string filePath) override;
+		GPUShaderProgram* CreateShaderProgram(ShaderStage stage, const void* binary, uint64 size) override;
 	};
 
 }

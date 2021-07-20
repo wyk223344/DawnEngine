@@ -3,29 +3,30 @@
 
 #include "Engine/Core/Include.h"
 #include "Engine/Engine/Base/ComponentBase.h"
-#include "Engine/Graphics/Materials/MaterialBase.h"
-#include "Engine/Graphics/Models/GPUMesh.h"
+
 
 namespace DawnEngine
 {
 	class GPUContext;
+	class Model;
 
 	class MeshRendererComponent : public ComponentBase
 	{
 	public:
 
-		MeshRendererComponent(EntityBase* entity, GPUMesh* mesh, MaterialBase* material)
+		MeshRendererComponent(EntityBase* entity, Model* model)
 			: ComponentBase(entity)
-			, m_Mesh(mesh)
-			, m_Material(material)
+			, m_Model(model)
 		{
 		}
+
+		void Start() override;
 
 		void Render(GPUContext* context);
 
 	private:
 
-		GPUMesh* m_Mesh;
-		MaterialBase* m_Material;
+		Model* m_Model;
+
 	};
 }

@@ -10,23 +10,26 @@
 namespace DawnEngine
 {
 	class GPUBuffer;
+	class GPUContext;
 
-	class GPUMesh : public Object
+	class Mesh : public Object
 	{
 	public:
 
-		GPUMesh()
+		Mesh()
 			: m_VertexBuffer(nullptr)
 			, m_IndexBuffer(nullptr)
 			, m_IndicesCount(0)
 		{
 		}
 
-		~GPUMesh()
+		~Mesh()
 		{
 		}
 
 		bool Init(MeshData& meshData);
+
+		void Draw(GPUContext* context);
 
 		void Release();
 
