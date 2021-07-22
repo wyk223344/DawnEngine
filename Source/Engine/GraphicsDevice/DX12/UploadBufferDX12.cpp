@@ -135,16 +135,15 @@ bool UploadBufferDX12::UploadBuffer(GPUContextDX12* context, ID3D12Resource* buf
 
 bool UploadBufferDX12::UploadTexture(GPUContextDX12* context, ID3D12Resource* texture, const void* srcData, uint32 srcRowPitch, uint32 srcSlicePitch, int32 mipIndex, int32 arrayIndex)
 {
-    // TODO: 这部分。。。没搞懂
-
     D3D12_RESOURCE_DESC resourceDesc = texture->GetDesc();
+    const UINT subresourceIndex = RenderToolsDX12::CalcsubresourceIndex(mipIndex, arrayIndex, resourceDesc.MipLevels);
 
     D3D12_PLACED_SUBRESOURCE_FOOTPRINT footPrint;
     uint32 numRows;
     uint64 rowPitchAligned, mipSizeAligned;
     m_Device->GetDevice()->GetCopyableFootprints(
         &resourceDesc,
-        0,
+        subresourceIndex,
         1,
         0,
         &footPrint,
@@ -156,22 +155,31 @@ bool UploadBufferDX12::UploadTexture(GPUContextDX12* context, ID3D12Resource* te
     mipSizeAligned = rowPitchAligned * footPrint.Footprint.Height;
 
     const DynamicAllocation allocation = Allocate(mipSizeAligned, D3D12_TEXTURE_DATA_PLACEMENT_ALIGNMENT);
-    LOG_ERROR("UploadTexture %d %d %d", numRows, rowPitchAligned, mipSizeAligned);
+    LOG_ERROR("UploadTexture %d %d %d %d %d", numRows, rowPitchAligned, mipSizeAligned, srcRowPitch, srcSlicePitch);
     byte* ptr = (byte*)srcData;
     byte* dst = static_cast<byte*>(allocation.CPUAddress);
-    ASSERT(srcRowPitch <= rowPitchAligned);
-    for (uint32 i = 0; i < numRows; i++)
+    ASSERT(srcSlicePitch <= mipSizeAligned);
+    if (srcRowPitch == rowPitchAligned)
     {
-        Platform::MemoryCopy(dst, ptr, rowPitchAligned);
+        // Copy data at once
+        Platform::MemoryCopy(allocation.CPUAddress, ptr, srcSlicePitch);
+    }
+    else
+    {
+        ASSERT(srcRowPitch <= rowPitchAligned);
+        for (uint32 i = 0; i < numRows; i++)
+        {
+            Platform::MemoryCopy(dst, ptr, srcRowPitch);
 
-        dst += rowPitchAligned;
-        ptr += rowPitchAligned;
+            dst += rowPitchAligned;
+            ptr += srcRowPitch;
+        }
     }
 
     D3D12_TEXTURE_COPY_LOCATION dstLocation;
     dstLocation.pResource = texture;
     dstLocation.Type = D3D12_TEXTURE_COPY_TYPE_SUBRESOURCE_INDEX;
-    dstLocation.SubresourceIndex = 0;
+    dstLocation.SubresourceIndex = subresourceIndex;
 
     D3D12_TEXTURE_COPY_LOCATION srcLocation;
     srcLocation.pResource = allocation.Page->GetResource();

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <map>
+
 
 namespace DawnEngine
 {
@@ -7,6 +9,8 @@ namespace DawnEngine
 	class GPUShader;
 	class GPUPipelineState;
 	class GPUConstantBuffer;
+	class GPUTexture;
+	class TextureData;
 
 	class MaterialBase
 	{
@@ -18,8 +22,17 @@ namespace DawnEngine
 
 	protected:
 
+
+
+	protected:
+
+		bool m_CBDirtyFlag = true;
+
 		GPUShader* m_Shader;
 		GPUPipelineState* m_PipelineState;
 		GPUConstantBuffer* m_ConstantBuffer;
+		
+		// 待上传的纹理
+		std::map<GPUTexture*, TextureData*> m_ReadyUpdateTexture;
 	};
 }

@@ -17,6 +17,11 @@ namespace DawnEngine
 		Color Color;
 	};
 
+	__declspec(align(256)) struct SkyboxMaterialConstants
+	{
+		Vector3 CameraPosition;
+	};
+
 	__declspec(align(256)) struct MeshConstants
 	{
 		Matrix4x4 WorldMatrix;

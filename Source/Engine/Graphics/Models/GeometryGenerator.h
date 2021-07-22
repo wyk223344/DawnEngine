@@ -12,9 +12,11 @@ namespace DawnEngine
 	{
 	public:
 
-		static MeshData CreateBox(float width, float height, float depth, uint32 numSubdivisions = 0);
+		static MeshData* CreateBox(float width, float height, float depth, uint32 numSubdivisions = 0);
 
-		static MeshData CreateBox2(float width, float height, float depth);
+		static MeshData* CreateSphere(float radius, uint32 sliceCount, uint32 stackCount);
+
+		static MeshData* CreatePlane(float width, float depth, uint32 m, uint32 n);
 
 		static void Subdivide(MeshData& meshData);
 

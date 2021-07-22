@@ -238,6 +238,7 @@
     <ClInclude Include="Source\Engine\Graphics\Materials\DefaultMaterial.h" />
     <ClInclude Include="Source\Engine\Graphics\Materials\MaterialBase.h" />
     <ClInclude Include="Source\Engine\Graphics\Materials\PBRMaterial.h" />
+    <ClInclude Include="Source\Engine\Graphics\Materials\SkyboxMaterial.h" />
     <ClInclude Include="Source\Engine\Graphics\Models\GeometryGenerator.h" />
     <ClInclude Include="Source\Engine\Graphics\Models\Mesh.h" />
     <ClInclude Include="Source\Engine\Graphics\Models\MeshData.h" />
@@ -245,6 +246,7 @@
     <ClInclude Include="Source\Engine\Graphics\Models\Vertex.h" />
     <ClInclude Include="Source\Engine\Graphics\PixelFormat.h" />
     <ClInclude Include="Source\Engine\Graphics\PixelFormatExtensions.h" />
+    <ClInclude Include="Source\Engine\Graphics\RenderBuffers.h" />
     <ClInclude Include="Source\Engine\Graphics\Shaders\GPUShader.h" />
     <ClInclude Include="Source\Engine\Graphics\Shaders\GPUShaderProgram.h" />
     <ClInclude Include="Source\Engine\Graphics\Textures\GPUTexture.h" />
@@ -317,11 +319,14 @@
     <ClCompile Include="Source\Engine\Graphics\GPUPipelineState.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Graphics.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Materials\DefaultMaterial.cpp" />
+    <ClCompile Include="Source\Engine\Graphics\Materials\MaterialBase.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Materials\PBRMaterial.cpp" />
+    <ClCompile Include="Source\Engine\Graphics\Materials\SkyboxMaterial.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Models\GeometryGenerator.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Models\Mesh.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Models\Model.cpp" />
     <ClCompile Include="Source\Engine\Graphics\PixelFormatExtensions.cpp" />
+    <ClCompile Include="Source\Engine\Graphics\RenderBuffers.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Shaders\GPUShaderProgram.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Textures\GPUTexture.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Textures\GPUTextureDescription.cpp" />
@@ -353,6 +358,30 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
     <FxCompile Include="Assets\Shaders\DefaultVS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Assets\Shaders\PBRPS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Assets\Shaders\PBRVS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Assets\Shaders\SkyboxPS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Assets\Shaders\SkyboxVS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>

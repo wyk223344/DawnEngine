@@ -4,6 +4,16 @@
 
 namespace DawnEngine
 {
+    // 常量缓冲区槽位
+    enum class GPUConstantBufferSlot
+    {
+        Global = 0,
+
+        Mesh = 1,
+
+        Material = 2,
+    };
+
     enum class GPUResourceUsage
     {
         /// <summary>

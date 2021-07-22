@@ -3,11 +3,11 @@
 #include "MeshData.h"
 
 using namespace DawnEngine;
+using namespace DawnEngine::Math;
 
-
-MeshData GeometryGenerator::CreateBox(float width, float height, float depth, uint32 numSubdivisions)
+MeshData* GeometryGenerator::CreateBox(float width, float height, float depth, uint32 numSubdivisions)
 {
-	MeshData meshData;
+	MeshData* meshData = New<MeshData>();
 
 	//
 	// Create the vertices.
@@ -55,7 +55,7 @@ MeshData GeometryGenerator::CreateBox(float width, float height, float depth, ui
 	v[22] = Vertex(+w2, +h2, +d2, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
 	v[23] = Vertex(+w2, -h2, +d2, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
 
-	meshData.Vertices.assign(&v[0], &v[24]);
+	meshData->Vertices.assign(&v[0], &v[24]);
 
 	//
 	// Create the indices.
@@ -87,71 +87,182 @@ MeshData GeometryGenerator::CreateBox(float width, float height, float depth, ui
 	i[30] = 20; i[31] = 21; i[32] = 22;
 	i[33] = 20; i[34] = 22; i[35] = 23;
 
-	meshData.Indices.assign(&i[0], &i[36]);
+	meshData->Indices.assign(&i[0], &i[36]);
 
 	return meshData;
 }
 
-MeshData GeometryGenerator::CreateBox2(float width, float height, float depth)
+MeshData* GeometryGenerator::CreateSphere(float radius, uint32 sliceCount, uint32 stackCount)
 {
-	MeshData meshData;
+	MeshData* meshData = New<MeshData>();
+
+	//
+	// Compute the vertices stating at the top pole and moving down the stacks.
+	//
+
+	// Poles: note that there will be texture coordinate distortion as there is
+	// not a unique point on the texture map to assign to the pole when mapping
+	// a rectangular texture onto a sphere.
+	Vertex topVertex(0.0f, +radius, 0.0f, 0.0f, +1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+	Vertex bottomVertex(0.0f, -radius, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+
+	meshData->Vertices.push_back(topVertex);
+
+	float phiStep = PI / stackCount;
+	float thetaStep = 2.0f * PI / sliceCount;
+
+	// Compute vertices for each stack ring (do not count the poles as rings).
+	for (uint32 i = 1; i <= stackCount - 1; ++i)
+	{
+		float phi = i * phiStep;
+
+		// Vertices of ring.
+		for (uint32 j = 0; j <= sliceCount; ++j)
+		{
+			float theta = j * thetaStep;
+
+			Vertex v;
+
+			// spherical to cartesian
+			v.Position.X = radius * sinf(phi) * cosf(theta);
+			v.Position.Y = radius * cosf(phi);
+			v.Position.Z = radius * sinf(phi) * sinf(theta);
+
+			// Partial derivative of P with respect to theta
+			v.Tangent.X = -radius * sinf(phi) * sinf(theta);
+			v.Tangent.Y = 0.0f;
+			v.Tangent.Z = +radius * sinf(phi) * cosf(theta);
+
+			v.Tangent.Normalize();
+			v.Normal = v.Position;
+			v.Normal.Normalize();
+
+			v.UV.X = theta / TWO_PI;
+			v.UV.Y = phi / PI;
+
+			meshData->Vertices.push_back(v);
+		}
+	}
+
+	meshData->Vertices.push_back(bottomVertex);
+
+	//
+	// Compute indices for top stack.  The top stack was written first to the vertex buffer
+	// and connects the top pole to the first ring.
+	//
+
+	for (uint32 i = 1; i <= sliceCount; ++i)
+	{
+		meshData->Indices.push_back(0);
+		meshData->Indices.push_back(i + 1);
+		meshData->Indices.push_back(i);
+	}
+
+	//
+	// Compute indices for inner stacks (not connected to poles).
+	//
+
+	// Offset the indices to the index of the first vertex in the first ring.
+	// This is just skipping the top pole vertex.
+	uint32 baseIndex = 1;
+	uint32 ringVertexCount = sliceCount + 1;
+	for (uint32 i = 0; i < stackCount - 2; ++i)
+	{
+		for (uint32 j = 0; j < sliceCount; ++j)
+		{
+			meshData->Indices.push_back(baseIndex + i * ringVertexCount + j);
+			meshData->Indices.push_back(baseIndex + i * ringVertexCount + j + 1);
+			meshData->Indices.push_back(baseIndex + (i + 1) * ringVertexCount + j);
+
+			meshData->Indices.push_back(baseIndex + (i + 1) * ringVertexCount + j);
+			meshData->Indices.push_back(baseIndex + i * ringVertexCount + j + 1);
+			meshData->Indices.push_back(baseIndex + (i + 1) * ringVertexCount + j + 1);
+		}
+	}
+
+	//
+	// Compute indices for bottom stack.  The bottom stack was written last to the vertex buffer
+	// and connects the bottom pole to the bottom ring.
+	//
+
+	// South pole vertex was added last.
+	uint32 southPoleIndex = (uint32)meshData->Vertices.size() - 1;
+
+	// Offset the indices to the index of the first vertex in the last ring.
+	baseIndex = southPoleIndex - ringVertexCount;
+
+	for (uint32 i = 0; i < sliceCount; ++i)
+	{
+		meshData->Indices.push_back(southPoleIndex);
+		meshData->Indices.push_back(baseIndex + i);
+		meshData->Indices.push_back(baseIndex + i + 1);
+	}
+
+	return meshData;
+}
+
+
+MeshData* GeometryGenerator::CreatePlane(float width, float depth, uint32 m, uint32 n)
+{
+	MeshData* meshData = New<MeshData>();
+
+	uint32 vertexCount = m * n;
+	uint32 faceCount = (m - 1) * (n - 1) * 2;
 
 	//
 	// Create the vertices.
 	//
 
-	Vertex v[8];
+	float halfWidth = 0.5f * width;
+	float halfDepth = 0.5f * depth;
 
-	float w2 = 0.5f * width;
-	float h2 = 0.5f * height;
-	float d2 = 0.5f * depth;
+	float dx = width / (n - 1);
+	float dz = depth / (m - 1);
 
-	// Fill in the front face vertex data.
-	v[0] = Vertex(-w2, -h2, -d2, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f);
-	v[1] = Vertex(-w2, +h2, -d2, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-	v[2] = Vertex(+w2, +h2, -d2, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-	v[3] = Vertex(+w2, -h2, -d2, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f);
+	float du = 1.0f / (n - 1);
+	float dv = 1.0f / (m - 1);
 
-	// Fill in the back face vertex data.
-	v[4] = Vertex(-w2, -h2, +d2, 0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f);
-	v[5] = Vertex(-w2, +h2, +d2, 0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f);
-	v[6] = Vertex(+w2, +h2, +d2, 0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-	v[7] = Vertex(+w2, -h2, +d2, 0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+	meshData->Vertices.resize(vertexCount);
+	for (uint32 i = 0; i < m; ++i)
+	{
+		float z = halfDepth - i * dz;
+		for (uint32 j = 0; j < n; ++j)
+		{
+			float x = -halfWidth + j * dx;
 
-	meshData.Vertices.assign(&v[0], &v[8]);
+			meshData->Vertices[i * n + j].Position = Vector3(x, 0.0f, z);
+			meshData->Vertices[i * n + j].Normal = Vector3(0.0f, 1.0f, 0.0f);
+			meshData->Vertices[i * n + j].Tangent = Vector3(1.0f, 0.0f, 0.0f);
+
+			// Stretch texture over grid.
+			meshData->Vertices[i * n + j].UV.X = j * du;
+			meshData->Vertices[i * n + j].UV.Y = i * dv;
+		}
+	}
 
 	//
 	// Create the indices.
 	//
 
-	uint32 i[36] = 
+	meshData->Indices.resize(faceCount * 3); // 3 indices per face
+
+	// Iterate over each quad and compute indices.
+	uint32 k = 0;
+	for (uint32 i = 0; i < m - 1; ++i)
 	{
-		// front face
-		0, 1, 2,
-		0, 2, 3,
+		for (uint32 j = 0; j < n - 1; ++j)
+		{
+			meshData->Indices[k] = i * n + j;
+			meshData->Indices[k + 1] = i * n + j + 1;
+			meshData->Indices[k + 2] = (i + 1) * n + j;
 
-		// back face
-		4, 6, 5,
-		4, 7, 6,
+			meshData->Indices[k + 3] = (i + 1) * n + j;
+			meshData->Indices[k + 4] = i * n + j + 1;
+			meshData->Indices[k + 5] = (i + 1) * n + j + 1;
 
-		// left face
-		4, 5, 1,
-		4, 1, 0,
-
-		// right face
-		3, 2, 6,
-		3, 6, 7,
-
-		// top face
-		1, 5, 6,
-		1, 6, 2,
-
-		// bottom face
-		4, 0, 3,
-		4, 3, 7
-	};
-
-	meshData.Indices.assign(&i[0], &i[36]);
+			k += 6; // next quad
+		}
+	}
 
 	return meshData;
 }

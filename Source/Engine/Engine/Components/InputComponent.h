@@ -14,8 +14,14 @@ namespace DawnEngine
 	public:
 
 		InputComponent(EntityBase* entity);
+
+		void Start() override;
 		
 		void Update() override;
+
+	private:
+
+		void onMouseWheel(const Vector2&, float);
 
 	private:
 

@@ -104,7 +104,7 @@ bool GPUDeviceDX12::Init()
 		}
 		
 		// root parameters
-		D3D12_ROOT_PARAMETER rootParameters[3];
+		D3D12_ROOT_PARAMETER rootParameters[4];
 		{
 			D3D12_ROOT_PARAMETER& rootParam = rootParameters[0];
 			rootParam.ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
@@ -121,6 +121,13 @@ bool GPUDeviceDX12::Init()
 		}
 		{
 			D3D12_ROOT_PARAMETER& rootParam = rootParameters[2];
+			rootParam.ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
+			rootParam.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+			rootParam.Descriptor.ShaderRegister = 2;
+			rootParam.Descriptor.RegisterSpace = 0;
+		}
+		{
+			D3D12_ROOT_PARAMETER& rootParam = rootParameters[3];
 			rootParam.ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
 			rootParam.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
 			rootParam.DescriptorTable.NumDescriptorRanges = 1;

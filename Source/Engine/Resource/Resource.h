@@ -12,9 +12,9 @@ namespace DawnEngine
 	{
 	public:
 
-		static MeshData& LoadMesh(std::string& filePath);
+		static TextureData* LoadTexture(const char* filePath);
 
-		static TextureData& LoadTexture(std::string& filePath);
+		static TextureData* LoadCubeMap(const char* filePath);
 
 		static Model* LoadModel(const char* filePath);
 	};

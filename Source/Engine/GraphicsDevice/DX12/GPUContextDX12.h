@@ -80,6 +80,7 @@ namespace DawnEngine::DX12
 		void SetViewport(const Math::Viewport& viewport) override;
 		void SetScissor(const Math::Rectangle& scissorRect) override;
 		void Clear(GPUTexture* rt, const Color& color) override;
+		void ClearDepth(GPUTexture* depthBuffer, float depthValue) override;
 		void SetRenderTarget(GPUTexture* rt) override;
 		void SetRenderTarget(GPUTexture* rt, GPUTexture* depthBuffer) override;
 		void BindSR(int32 slot, GPUTexture* texture) override;

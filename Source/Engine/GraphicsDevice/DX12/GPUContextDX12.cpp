@@ -133,6 +133,19 @@ void GPUContextDX12::Clear(GPUTexture* rt, const Color& color)
 	}
 }
 
+void GPUContextDX12::ClearDepth(GPUTexture* depthBuffer, float depthValue)
+{
+	auto depthBufferDX12 = static_cast<GPUTextureDX12*>(depthBuffer);
+
+	if (depthBufferDX12)
+	{
+		SetResourceState(depthBufferDX12->GetResourceOwner(), D3D12_RESOURCE_STATE_DEPTH_WRITE);
+		flushRBs();
+
+		m_CommandList->ClearDepthStencilView(depthBufferDX12->DSV(), D3D12_CLEAR_FLAG_DEPTH, depthValue, 0xff, 0, nullptr);
+	}
+}
+
 void GPUContextDX12::SetRenderTarget(GPUTexture* rt)
 {
 	GPUTextureDX12* rtDX12 = static_cast<GPUTextureDX12*>(rt);
@@ -343,7 +356,7 @@ void GPUContextDX12::flushSRVs()
 		D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV
 	);
 
-	m_CommandList->SetGraphicsRootDescriptorTable(2, allocation.GPU);
+	m_CommandList->SetGraphicsRootDescriptorTable(3, allocation.GPU);
 }
 
 void GPUContextDX12::flushRTVs()

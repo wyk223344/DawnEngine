@@ -10,44 +10,49 @@
 #define TINYOBJLOADER_IMPLEMENTATION
 #include "ThirdParty/tiny_obj_loader/tiny_obj_loader.h"
 
+#include "ThirdParty/stb_image/stb_image.h"
+
 using namespace DawnEngine;
 using namespace DawnEngine::Math;
 
-MeshData& Resource::LoadMesh(std::string& filePath)
-{
-	LOG_INFO("[Resource] Start load mesh %s.", filePath);
-    MeshData meshData;
-	tinyobj::attrib_t attrib;
-	std::vector<tinyobj::shape_t> shapes;
-	std::vector<tinyobj::material_t> materials;
-	std::string warn;
-	std::string err;
-	std::string dirPath = filePath;
-	while (!dirPath.empty() && (dirPath.back() != '/'))
-	{
-		dirPath.pop_back();
-	}
-	bool ret = tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, filePath.c_str(), dirPath.c_str(), true);
-	if (!ret)
-	{
-		LOG_ERROR("[Resource] Fail to load mesh %s.", filePath);
-		return meshData;
-	}
-	std::vector<Vertex> vertices;
-	std::vector<uint32> indices;
-	
-	
 
-	LOG_INFO("[Resource] Finish load mesh %s.", filePath);
-    return meshData;
-}
 
-TextureData& Resource::LoadTexture(std::string& filePath)
+TextureData* Resource::LoadTexture(const char* filePath)
 {
 	LOG_INFO("[Resource] Start load texture %s.", filePath);
-    TextureData textureData;
-	LOG_INFO("[Resource] Finish load texture %s.", filePath);
+	TextureData* textureData = New<TextureData>();
+	textureData->Data = stbi_load(
+		filePath,
+		&textureData->Width, 
+		&textureData->Height, 
+		&textureData->Channel, 
+		4);
+	textureData->Channel = 4;
+	LOG_INFO("[Resource] Finish load texture %s. Width: %d , Height: %d, Channel: %d",
+		filePath,
+		textureData->Width,
+		textureData->Height, 
+		textureData->Channel);
     return textureData;
+}
+
+
+TextureData* Resource::LoadCubeMap(const char* filePath)
+{
+	LOG_INFO("[Resource] Start load cubemap %s.", filePath);
+	std::string filePathStr = std::string(filePath);
+	TextureData* textureData = New<TextureData>();
+	textureData->Subresources.push_back(LoadTexture((filePathStr + "right.jpg").c_str()));
+	textureData->Subresources.push_back(LoadTexture((filePathStr + "left.jpg").c_str()));
+	textureData->Subresources.push_back(LoadTexture((filePathStr + "top.jpg").c_str()));
+	textureData->Subresources.push_back(LoadTexture((filePathStr + "bottom.jpg").c_str()));
+	textureData->Subresources.push_back(LoadTexture((filePathStr + "front.jpg").c_str()));
+	textureData->Subresources.push_back(LoadTexture((filePathStr + "back.jpg").c_str()));
+	textureData->Width = textureData->Subresources[0]->Width;
+	textureData->Height = textureData->Subresources[0]->Height;
+	textureData->Channel = textureData->Subresources[0]->Channel;
+	LOG_INFO("[Resource] Finish load cubemap %s.", filePath);
+	return textureData;
 }
 
 

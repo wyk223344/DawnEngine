@@ -441,6 +441,12 @@
     <ClInclude Include="Source\Engine\Engine\Application.h">
       <Filter>Engine\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\Materials\SkyboxMaterial.h">
+      <Filter>Engine\Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\RenderBuffers.h">
+      <Filter>Engine\Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Main\Windows\main.cpp">
@@ -638,6 +644,15 @@
     <ClCompile Include="Source\Engine\Graphics\Shaders\GPUShaderProgram.cpp">
       <Filter>Engine\Graphics\Shaders</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\Materials\SkyboxMaterial.cpp">
+      <Filter>Engine\Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\Materials\MaterialBase.cpp">
+      <Filter>Engine\Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\RenderBuffers.cpp">
+      <Filter>Engine\Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\Common.hlsli">
@@ -649,6 +664,18 @@
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="Assets\Shaders\DefaultPS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Assets\Shaders\SkyboxVS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Assets\Shaders\SkyboxPS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Assets\Shaders\PBRVS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Assets\Shaders\PBRPS.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

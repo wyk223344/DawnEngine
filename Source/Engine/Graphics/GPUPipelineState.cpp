@@ -10,7 +10,7 @@ GPUPipelineState::Description GPUPipelineState::Description::Default =
     // Enable/disable depth test
     true,
     // DepthClipEnable
-    true,
+    false,
     // DepthFunc
     ComparisonFunc::Less,
     // Vertex shader

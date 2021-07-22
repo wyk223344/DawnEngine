@@ -29,6 +29,12 @@ namespace DawnEngine
 
         static Window* CreateWindow(const CreateWindowSettings& settings);
 
+        static int64 DoInterlockedExchange(int64 volatile* dst, int64 exchange);
+        static int32 DoInterlockedCompareExchange(int32 volatile* dst, int32 exchange, int32 comperand);
+        static int64 DoInterlockedCompareExchange(int64 volatile* dst, int64 exchange, int64 comperand);
+        static int64 DoInterlockedIncrement(int64 volatile* dst);
+        static int64 DoInterlockedDecrement(int64 volatile* dst);
+        static int64 DoInterlockedAdd(int64 volatile* dst, int64 value);
         static int32 AtomicRead(int32 volatile* dst);
         static int64 AtomicRead(int64 volatile* dst);
         static void AtomicStore(int32 volatile* dst, int32 value);

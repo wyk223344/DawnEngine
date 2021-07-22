@@ -18,6 +18,10 @@ InputComponent::InputComponent(EntityBase* entity)
 {
 }
 
+void InputComponent::Start()
+{
+	Input::MouseWheel.Bind<InputComponent, &InputComponent::onMouseWheel>(this);
+}
 
 void InputComponent::Update()
 {
@@ -75,4 +79,11 @@ void InputComponent::Update()
 		lookAtPos += transform.GetUp() * deltaPosition.Y * -0.003f;
 		transform.LookAt(lookAtPos);
 	}
+}
+
+
+void InputComponent::onMouseWheel(const Vector2& position, float wheelDelta)
+{
+	Transform& transform = GetEntity()->GetComponent<TransformComponent>()->Transform;
+	transform.Translation += transform.GetForward() * wheelDelta * 0.0001f;
 }

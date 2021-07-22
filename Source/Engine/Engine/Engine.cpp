@@ -23,9 +23,9 @@ int32 Engine::Main()
 		return 0;
 	}
 
-	InitMainScene();
 	EngineService::OnInit();
 	InitMainWindow();
+	InitMainScene();
 	Platform::BeforeRun();
 
 	Application::Init();

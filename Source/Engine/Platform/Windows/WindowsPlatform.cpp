@@ -90,6 +90,37 @@ Window* WindowsPlatform::CreateWindow(const CreateWindowSettings& settings)
 	return New<WindowsWindow>(settings);
 }
 
+int64 WindowsPlatform::DoInterlockedExchange(int64 volatile* dst, int64 exchange)
+{
+	return InterlockedExchange64(dst, exchange);
+}
+
+int32 WindowsPlatform::DoInterlockedCompareExchange(int32 volatile* dst, int32 exchange, int32 comperand)
+{
+	static_assert(sizeof(int32) == sizeof(LONG), "Invalid LONG size.");
+	return _InterlockedCompareExchange((LONG volatile*)dst, exchange, comperand);
+}
+
+int64 WindowsPlatform::DoInterlockedCompareExchange(int64 volatile* dst, int64 exchange, int64 comperand)
+{
+	return InterlockedCompareExchange64(dst, exchange, comperand);
+}
+
+int64 WindowsPlatform::DoInterlockedIncrement(int64 volatile* dst)
+{
+	return InterlockedIncrement64(dst);
+}
+
+int64 WindowsPlatform::DoInterlockedDecrement(int64 volatile* dst)
+{
+	return InterlockedDecrement64(dst);
+}
+
+int64 WindowsPlatform::DoInterlockedAdd(int64 volatile* dst, int64 value)
+{
+	return InterlockedExchangeAdd64(dst, value);
+}
+
 int32 WindowsPlatform::AtomicRead(int32 volatile* dst)
 {
 	static_assert(sizeof(int32) == sizeof(LONG), "Invalid LONG size.");

@@ -57,6 +57,11 @@ namespace DawnEngine::DX12
         {
             return static_cast<DXGI_FORMAT>(format);
         }
+
+        static uint32 CalcsubresourceIndex(uint32 mipIndex, uint32 arrayIndex, uint32 mipLevels)
+        {
+            return mipIndex + arrayIndex * mipLevels;
+        }
     };
 
     namespace InputLayoutDX12

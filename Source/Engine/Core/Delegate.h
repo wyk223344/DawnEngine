@@ -244,7 +244,7 @@ namespace DawnEngine
                 // Find a first free slot
                 for (intptr i = 0; i < size; i++)
                 {
-                    if (Platform::InterlockedCompareExchange((intptr volatile*)&bindings[i].m_Function, (intptr)f.m_Function, 0) == 0)
+                    if (Platform::DoInterlockedCompareExchange((intptr volatile*)&bindings[i].m_Function, (intptr)f.m_Function, 0) == 0)
                     {
                         Platform::AtomicStore((intptr volatile*)&bindings[i].m_Callee, (intptr)f.m_Callee);
                         return;
@@ -262,7 +262,7 @@ namespace DawnEngine
             newBindings[size] = f;
 
             // Set the new list
-            auto oldBindings = (FunctionType*)Platform::InterlockedCompareExchange(&_ptr, (intptr)newBindings, (intptr)bindings);
+            auto oldBindings = (FunctionType*)Platform::DoInterlockedCompareExchange(&_ptr, (intptr)newBindings, (intptr)bindings);
             if (oldBindings != bindings)
             {
                 // Other thread already set the new list so free this list and try again

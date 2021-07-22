@@ -24,3 +24,10 @@ GPUTextureDescription GPUTextureDescription::New2D(int32 width, int32 height, Pi
     desc.DefaultClearColor = Color::Black;
     return desc;
 }
+
+GPUTextureDescription GPUTextureDescription::NewCube(int32 size, PixelFormat format, GPUTextureFlags textureFlags, int32 mipCount)
+{
+    auto desc = New2D(size, size, format, textureFlags, mipCount, 6, MSAALevel::None);
+    desc.Dimensions = TextureDimensions::CubeTexture;
+    return desc;
+}

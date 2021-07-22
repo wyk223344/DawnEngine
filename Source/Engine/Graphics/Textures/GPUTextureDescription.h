@@ -86,6 +86,8 @@ namespace DawnEngine
 
         bool IsVolume() const { return Dimensions == TextureDimensions::VolumeTexture; }
 
+        bool IsCubeMap() const { return Dimensions == TextureDimensions::CubeTexture; }
+
         bool IsMultiSample() const { return MultiSampleLevel > MSAALevel::None; }
 
         bool IsRegularTexture() const { return Flags == GPUTextureFlags::ShaderResource; }
@@ -96,11 +98,18 @@ namespace DawnEngine
 
     public:
 
-        static GPUTextureDescription New2D(int32 width, int32 height, PixelFormat format, GPUTextureFlags textureFlags = GPUTextureFlags::ShaderResource | GPUTextureFlags::RenderTarget)
+        static GPUTextureDescription New2D(int32 width, int32 height, PixelFormat format, GPUTextureFlags textureFlags = GPUTextureFlags::ShaderResource)
         {
             return New2D(width, height, format, textureFlags, 1, 1);
         }
 
         static GPUTextureDescription New2D(int32 width, int32 height, PixelFormat format, GPUTextureFlags textureFlags, int32 mipCount, int32 arraySize, MSAALevel msaaLevel = MSAALevel::None);
+    
+        static GPUTextureDescription NewCube(int32 size, PixelFormat format, GPUTextureFlags textureFlags = GPUTextureFlags::ShaderResource)
+        {
+            return NewCube(size, format, textureFlags, 1);
+        }
+
+        static GPUTextureDescription NewCube(int32 size, PixelFormat format, GPUTextureFlags textureFlags, int32 mipCount);
     };
 }

@@ -17,6 +17,11 @@ bool GPUTextureDX12::OnInit()
 	bool useSRV = m_Desc.IsShaderResource();
 	bool useRTV = m_Desc.IsRenderTarget();
 	bool useDSV = m_Desc.IsDepthStencil();
+	bool isCubeMap = m_Desc.IsCubeMap();
+	bool isVolume = m_Desc.IsVolume();
+	int32 mipLevels = m_Desc.MipLevels;
+	int32 depthOrArraySize = m_Desc.IsVolume() ? m_Desc.Depth : m_Desc.ArraySize;
+
 	DXGI_FORMAT format = RenderToolsDX12::ToDxgiFormat(Format());
 
 	ID3D12Resource* resource;
@@ -24,17 +29,17 @@ bool GPUTextureDX12::OnInit()
 	D3D12_RESOURCE_STATES initialState = D3D12_RESOURCE_STATE_COMMON;
 
 	D3D12_RESOURCE_DESC resourceDesc;
-	resourceDesc.MipLevels = m_Desc.MipLevels;
-	resourceDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	resourceDesc.MipLevels = mipLevels;
+	resourceDesc.Format = format;
 	resourceDesc.Width = Width();
 	resourceDesc.Height = Height();
 	resourceDesc.Flags = D3D12_RESOURCE_FLAG_NONE;
-	resourceDesc.DepthOrArraySize = m_Desc.IsVolume() ? m_Desc.Depth : m_Desc.ArraySize;
+	resourceDesc.DepthOrArraySize = depthOrArraySize;
 	resourceDesc.SampleDesc.Count = static_cast<UINT>(MultiSampleLevel());
 	resourceDesc.SampleDesc.Quality = 0;
 	resourceDesc.Alignment = 0;
 	resourceDesc.Layout = D3D12_TEXTURE_LAYOUT_UNKNOWN;
-	resourceDesc.Dimension = m_Desc.IsVolume() ? D3D12_RESOURCE_DIMENSION_TEXTURE3D : D3D12_RESOURCE_DIMENSION_TEXTURE2D;
+	resourceDesc.Dimension = isVolume ? D3D12_RESOURCE_DIMENSION_TEXTURE3D : D3D12_RESOURCE_DIMENSION_TEXTURE2D;
 	
 	if (useRTV)
 	{
@@ -45,6 +50,7 @@ bool GPUTextureDX12::OnInit()
 	{
 		resourceDesc.Flags |= D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL;
 		initialState = D3D12_RESOURCE_STATE_DEPTH_WRITE;
+		LOG_WARNING("Init Depth Texture");
 	}
 	if (useSRV)
 	{
@@ -58,15 +64,36 @@ bool GPUTextureDX12::OnInit()
 	heapProperties.CreationNodeMask = 1;
 	heapProperties.VisibleNodeMask = 1;
 
-	auto result = m_Device->GetDevice()->CreateCommittedResource(
-		&heapProperties,
-		D3D12_HEAP_FLAG_NONE,
-		&resourceDesc,
-		initialState,
-		nullptr,
-		IID_PPV_ARGS(&resource)
+	
+	if (useDSV)
+	{
+		D3D12_CLEAR_VALUE clearValue;
+		clearValue.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+		clearValue.DepthStencil.Depth = 1.0f;
+		clearValue.DepthStencil.Stencil = 0;
+
+		auto result = m_Device->GetDevice()->CreateCommittedResource(
+			&heapProperties,
+			D3D12_HEAP_FLAG_NONE,
+			&resourceDesc,
+			initialState,
+			&clearValue,
+			IID_PPV_ARGS(&resource)
 		);
-	ThrowIfFailed(result);
+		ThrowIfFailed(result);
+	}
+	else
+	{
+		auto result = m_Device->GetDevice()->CreateCommittedResource(
+			&heapProperties,
+			D3D12_HEAP_FLAG_NONE,
+			&resourceDesc,
+			initialState,
+			nullptr,
+			IID_PPV_ARGS(&resource)
+		);
+		ThrowIfFailed(result);
+	}
 
 	InitResource(resource, initialState);
 
@@ -80,18 +107,38 @@ bool GPUTextureDX12::OnInit()
 	if (useSRV)
 	{
 		D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc;
-		srvDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+		srvDesc.Format = format;
 		srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
-		srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
-		srvDesc.Texture2D.MostDetailedMip = 0;
-		srvDesc.Texture2D.MipLevels = m_Desc.MipLevels;
-		srvDesc.Texture2D.PlaneSlice = 0;
-		srvDesc.Texture2D.ResourceMinLODClamp = 0;
+
+		if (isCubeMap)
+		{
+			srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURECUBE;
+			srvDesc.TextureCube.MostDetailedMip = 0;
+			srvDesc.TextureCube.MipLevels = mipLevels;
+			srvDesc.TextureCube.ResourceMinLODClamp = 0;
+		}
+		else
+		{
+			srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
+			srvDesc.Texture2D.MostDetailedMip = 0;
+			srvDesc.Texture2D.MipLevels = m_Desc.MipLevels;
+			srvDesc.Texture2D.PlaneSlice = 0;
+			srvDesc.Texture2D.ResourceMinLODClamp = 0;
+		}
 
 		SetSRV(&srvDesc);
 	}
 	
-
+	if (useDSV)
+	{
+		D3D12_DEPTH_STENCIL_VIEW_DESC dsvDesc;
+		dsvDesc.Format = format;
+		dsvDesc.Flags = D3D12_DSV_FLAG_NONE;
+		dsvDesc.ViewDimension = D3D12_DSV_DIMENSION_TEXTURE2D;
+		dsvDesc.Texture2D.MipSlice = 0;
+		
+		SetDSV(&dsvDesc);
+	}
 	
 	return true;
 }

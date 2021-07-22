@@ -34,6 +34,8 @@ namespace ForwardPassImpl
 
 	GlobalConstants ConstanInfo;
 	GPUConstantBuffer* ConstantBuffer = nullptr;
+
+	GPUTexture* DepthTexture = nullptr;
 }
 
 
@@ -41,6 +43,11 @@ void ForwardPass::Init()
 {
 	auto constantBuffer = GPUDevice::Instance->CreateConstantBuffer(sizeof(GlobalConstants));
 	ForwardPassImpl::ConstantBuffer = constantBuffer;
+
+	GPUTexture* depthTexture = GPUDevice::Instance->CreateTexture();
+	GPUTextureDescription descTexture = GPUTextureDescription::New2D(Globals::Width, Globals::Height, PixelFormat::D24_UNorm_S8_UInt, GPUTextureFlags::DepthStencil);
+	depthTexture->Init(descTexture);
+	ForwardPassImpl::DepthTexture = depthTexture;
 
 	//// mesh
 	//auto boxMesh = New<Mesh>();
@@ -92,7 +99,9 @@ void ForwardPass::Render(GPUContext* context)
 
 	context->SetViewportAndScissors(Globals::Width, Globals::Height);
 	context->Clear(backBuffer, Color::Gray);
-	context->SetRenderTarget(backBuffer);
+	context->ClearDepth(ForwardPassImpl::DepthTexture);
+	// context->SetRenderTarget(backBuffer);
+	context->SetRenderTarget(backBuffer, ForwardPassImpl::DepthTexture);
 
 	context->UpdateCB(ForwardPassImpl::ConstantBuffer, &ForwardPassImpl::ConstanInfo);
 	context->BindCB(0, ForwardPassImpl::ConstantBuffer);
@@ -103,6 +112,8 @@ void ForwardPass::Render(GPUContext* context)
 	{
 		renderComponents[i]->Render(context);
 	}
+
+	Engine::MainScene->DrawSkybox(context);
 
 	context->FlushState();
 

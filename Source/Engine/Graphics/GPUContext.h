@@ -46,8 +46,11 @@ namespace DawnEngine
 
 	public:
 
-		// 用指定的颜色Clear纹理
+		// 用指定的颜色Clear 渲染目标纹理
 		virtual void Clear(GPUTexture* rt, const Color& color) = 0;
+
+		// 清理深度缓冲纹理
+		virtual void ClearDepth(GPUTexture* depthBuffer, float depthValue = 1.0f) = 0;
 
 		// 设置渲染目标
 		virtual void SetRenderTarget(GPUTexture* rt) = 0;

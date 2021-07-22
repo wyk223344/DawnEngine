@@ -27,7 +27,7 @@ ID3D12PipelineState* GPUPipelineStateDX12::GetState(GPUTextureDX12* depthHandle,
     
     m_PipelineStateDescDX12.NumRenderTargets = 1;
     m_PipelineStateDescDX12.RTVFormats[0] = RenderToolsDX12::ToDxgiFormat(key.RenderTargetFormat);
-    m_PipelineStateDescDX12.DSVFormat = RenderToolsDX12::ToDxgiFormat(PixelFormatExtensions::FindDepthStencilFormat(key.DepthFormat));
+    m_PipelineStateDescDX12.DSVFormat = RenderToolsDX12::ToDxgiFormat(key.DepthFormat);
     m_PipelineStateDescDX12.SampleDesc.Count = 1;
     m_PipelineStateDescDX12.SampleDesc.Quality = 0;
 
@@ -47,8 +47,14 @@ bool GPUPipelineStateDX12::OnInit()
     psDesc.PS = { m_Desc.PS->GetBufferHandle(), m_Desc.PS->GetBufferSize() };
     psDesc.InputLayout = { static_cast<D3D12_INPUT_ELEMENT_DESC*>(m_Desc.VS->GetInputLayoutData()), m_Desc.VS->GetInputLayoutSize() };
     psDesc.RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
+    psDesc.RasterizerState.CullMode = m_Desc.CullMode == CullMode::Normal ? D3D12_CULL_MODE_BACK : 
+        ( m_Desc.CullMode == CullMode::Inverted ? D3D12_CULL_MODE_FRONT : D3D12_CULL_MODE_NONE );
+    psDesc.RasterizerState.FillMode = m_Desc.Wireframe ? D3D12_FILL_MODE_WIREFRAME : D3D12_FILL_MODE_SOLID;
     psDesc.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT);
     psDesc.DepthStencilState = CD3DX12_DEPTH_STENCIL_DESC(D3D12_DEFAULT);
+    psDesc.DepthStencilState.DepthEnable = m_Desc.DepthTestEnable;
+    psDesc.DepthStencilState.DepthWriteMask = m_Desc.DepthWriteEnable ? D3D12_DEPTH_WRITE_MASK_ALL : D3D12_DEPTH_WRITE_MASK_ZERO;
+    psDesc.DepthStencilState.DepthFunc = static_cast<D3D12_COMPARISON_FUNC>(m_Desc.DepthFunc);
     psDesc.SampleMask = UINT_MAX;
     psDesc.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
     m_PipelineStateDescDX12 = psDesc;
