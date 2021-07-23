@@ -5,6 +5,7 @@
 namespace DawnEngine
 {
 	class GPUContext;
+	class RenderContext;
 
 	class ForwardPass : public RenderPassBase<ForwardPass>
 	{
@@ -12,7 +13,7 @@ namespace DawnEngine
 
 		void Init();
 		
-		void Render(GPUContext* context);
+		void Render(RenderContext* renderContext);
 
 		void Dispose();
 	};

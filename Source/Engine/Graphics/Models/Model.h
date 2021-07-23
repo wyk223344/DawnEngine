@@ -19,6 +19,10 @@ namespace DawnEngine
 
 		void AddMeshAndMaterial(MeshData* meshData, MaterialBase* material);
 
+		std::vector<Mesh*>& GetMeshes() { return m_Meshes; }
+
+		std::vector<MaterialBase*>& GetMaterials() { return m_Materials; }
+
 	private:
 
 		std::vector<MeshData*> m_MeshDatas;

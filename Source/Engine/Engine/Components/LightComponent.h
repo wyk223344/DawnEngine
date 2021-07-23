@@ -6,8 +6,19 @@
 
 namespace DawnEngine
 {
+	class DirectionalLight;
+
 	class LightComponent : public ComponentBase
 	{
+	public:
+
+		void CreateDirectionalLight();
+
+		DirectionalLight* GetDirectionalLight();
+
 	private:
+
+		DirectionalLight* m_DirectionalLight;
+
 	};
 }

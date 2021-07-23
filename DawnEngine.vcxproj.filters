@@ -94,6 +94,9 @@
     <Filter Include="ThirdParty\tiny_obj_loader">
       <UniqueIdentifier>{0340a843-4908-445d-8adc-bfd3ce8548dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Graphics\Lights">
+      <UniqueIdentifier>{cbe1663a-1af7-4d26-81a6-a77887b32027}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine\Core\Delegate.h">
@@ -444,7 +447,19 @@
     <ClInclude Include="Source\Engine\Graphics\Materials\SkyboxMaterial.h">
       <Filter>Engine\Graphics\Materials</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\Graphics\RenderBuffers.h">
+    <ClInclude Include="Source\Engine\Graphics\Lights\LightBase.h">
+      <Filter>Engine\Graphics\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\Lights\DirectionalLight.h">
+      <Filter>Engine\Graphics\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\Lights\PointLight.h">
+      <Filter>Engine\Graphics\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\Lights\SpotLight.h">
+      <Filter>Engine\Graphics\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Renderer\RenderContext.h">
       <Filter>Engine\Renderer</Filter>
     </ClInclude>
   </ItemGroup>
@@ -650,7 +665,19 @@
     <ClCompile Include="Source\Engine\Graphics\Materials\MaterialBase.cpp">
       <Filter>Engine\Graphics\Materials</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\Graphics\RenderBuffers.cpp">
+    <ClCompile Include="Source\Engine\Graphics\Lights\LightBase.cpp">
+      <Filter>Engine\Graphics\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\Lights\DirectionalLight.cpp">
+      <Filter>Engine\Graphics\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\Lights\PointLight.cpp">
+      <Filter>Engine\Graphics\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\Lights\SpotLight.cpp">
+      <Filter>Engine\Graphics\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Renderer\RenderContext.cpp">
       <Filter>Engine\Renderer</Filter>
     </ClCompile>
   </ItemGroup>

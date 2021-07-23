@@ -235,6 +235,10 @@
     <ClInclude Include="Source\Engine\Graphics\GPUResourceState.h" />
     <ClInclude Include="Source\Engine\Graphics\GPUSwapChain.h" />
     <ClInclude Include="Source\Engine\Graphics\Graphics.h" />
+    <ClInclude Include="Source\Engine\Graphics\Lights\DirectionalLight.h" />
+    <ClInclude Include="Source\Engine\Graphics\Lights\LightBase.h" />
+    <ClInclude Include="Source\Engine\Graphics\Lights\PointLight.h" />
+    <ClInclude Include="Source\Engine\Graphics\Lights\SpotLight.h" />
     <ClInclude Include="Source\Engine\Graphics\Materials\DefaultMaterial.h" />
     <ClInclude Include="Source\Engine\Graphics\Materials\MaterialBase.h" />
     <ClInclude Include="Source\Engine\Graphics\Materials\PBRMaterial.h" />
@@ -246,7 +250,6 @@
     <ClInclude Include="Source\Engine\Graphics\Models\Vertex.h" />
     <ClInclude Include="Source\Engine\Graphics\PixelFormat.h" />
     <ClInclude Include="Source\Engine\Graphics\PixelFormatExtensions.h" />
-    <ClInclude Include="Source\Engine\Graphics\RenderBuffers.h" />
     <ClInclude Include="Source\Engine\Graphics\Shaders\GPUShader.h" />
     <ClInclude Include="Source\Engine\Graphics\Shaders\GPUShaderProgram.h" />
     <ClInclude Include="Source\Engine\Graphics\Textures\GPUTexture.h" />
@@ -270,6 +273,7 @@
     <ClInclude Include="Source\Engine\Platform\Windows\WindowsPlatform.h" />
     <ClInclude Include="Source\Engine\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="Source\Engine\Renderer\ForwardPass.h" />
+    <ClInclude Include="Source\Engine\Renderer\RenderContext.h" />
     <ClInclude Include="Source\Engine\Renderer\Renderer.h" />
     <ClInclude Include="Source\Engine\Renderer\RendererPassBase.h" />
     <ClInclude Include="Source\Engine\Resource\Resource.h" />
@@ -318,6 +322,10 @@
     <ClCompile Include="Source\Engine\Graphics\GPUDevice.cpp" />
     <ClCompile Include="Source\Engine\Graphics\GPUPipelineState.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Graphics.cpp" />
+    <ClCompile Include="Source\Engine\Graphics\Lights\DirectionalLight.cpp" />
+    <ClCompile Include="Source\Engine\Graphics\Lights\LightBase.cpp" />
+    <ClCompile Include="Source\Engine\Graphics\Lights\PointLight.cpp" />
+    <ClCompile Include="Source\Engine\Graphics\Lights\SpotLight.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Materials\DefaultMaterial.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Materials\MaterialBase.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Materials\PBRMaterial.cpp" />
@@ -326,7 +334,6 @@
     <ClCompile Include="Source\Engine\Graphics\Models\Mesh.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Models\Model.cpp" />
     <ClCompile Include="Source\Engine\Graphics\PixelFormatExtensions.cpp" />
-    <ClCompile Include="Source\Engine\Graphics\RenderBuffers.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Shaders\GPUShaderProgram.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Textures\GPUTexture.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Textures\GPUTextureDescription.cpp" />
@@ -342,6 +349,7 @@
     <ClCompile Include="Source\Engine\Platform\Windows\WindowsPlatform.cpp" />
     <ClCompile Include="Source\Engine\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="Source\Engine\Renderer\ForwardPass.cpp" />
+    <ClCompile Include="Source\Engine\Renderer\RenderContext.cpp" />
     <ClCompile Include="Source\Engine\Renderer\Renderer.cpp" />
     <ClCompile Include="Source\Engine\Resource\Resource.cpp" />
     <ClCompile Include="Source\Game\Game.cpp" />

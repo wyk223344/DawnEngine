@@ -1,8 +1,5 @@
 
-cbuffer GlobalConstants : register(b0)
-{
-	float4x4 ViewProjMatrix;
-};
+#include "Common.hlsli"
 
 struct VertexInput
 {
@@ -16,14 +13,15 @@ struct VertexOutput
 {
 	float4 positionCS  : SV_POSITION;
 	float2 uv		   : TEXCOORD0;
-	float3 color	   : TEXCOORD1;
+	float3 positionWS  : TEXCOORD1;
 };
 
 VertexOutput main(VertexInput input)
 {
 	VertexOutput output;
-	output.positionCS = mul(ViewProjMatrix, float4(input.positionOS, 1.0f));
+	float3 positionWS = mul(WorldMatrix, float4(input.positionOS, 1.0f)).xyz;
+	output.positionCS = mul(ViewProjMatrix, float4(positionWS, 1.0f));
 	output.uv = input.uv;
-	output.color = input.positionOS.xyz + 0.5f;
+	output.positionWS = positionWS;
 	return output;
 }

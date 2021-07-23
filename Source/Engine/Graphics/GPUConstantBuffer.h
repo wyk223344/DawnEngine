@@ -7,6 +7,23 @@ namespace DawnEngine
 {
 	using namespace Math;
 
+	struct LightDataConstant
+	{
+		Vector3 Direction;
+	};
+
+	__declspec(align(256)) struct GlobalConstants
+	{
+		Matrix4x4 ViewProjMatrix;
+		Vector3 CameraPosition;
+		LightDataConstant LightDatas[4];
+	};
+
+	__declspec(align(256)) struct MeshConstants
+	{
+		Matrix4x4 WorldMatrix;
+	};
+
 	__declspec(align(256)) struct DefaultMaterialConstants
 	{
 		Color Color;
@@ -20,16 +37,6 @@ namespace DawnEngine
 	__declspec(align(256)) struct SkyboxMaterialConstants
 	{
 		Vector3 CameraPosition;
-	};
-
-	__declspec(align(256)) struct MeshConstants
-	{
-		Matrix4x4 WorldMatrix;
-	};
-
-	__declspec(align(256)) struct GlobalConstants
-	{
-		Matrix4x4 ViewProjMatrix;
 	};
 
 	class GPUConstantBuffer : public GPUResource

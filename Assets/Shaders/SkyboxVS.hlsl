@@ -1,7 +1,4 @@
-cbuffer GlobalConstants : register(b0)
-{
-	float4x4 ViewProjMatrix;
-};
+#include "Common.hlsli"
 
 struct VertexInput
 {
@@ -14,17 +11,14 @@ struct VertexInput
 struct VertexOutput
 {
 	float4 positionCS  : SV_POSITION;
-	float2 uv		   : TEXCOORD0;
-	float3 color	   : TEXCOORD1;
+	float3 uv		   : TEXCOORD0;
 };
 
 VertexOutput main(VertexInput input)
 {
 	VertexOutput output;
-	float3 positionWS = 5000.0f * input.positionOS;
+	float3 positionWS = 5000.0f * input.positionOS + CameraPosition;
 	output.positionCS = mul(ViewProjMatrix, float4(positionWS, 1.0f)).xyww;
-	// output.positionCS.z -= 0.01f;	// TODO: 不加这个天空盒会被截掉，但是龙书样例里没有这个也正常，奇怪
-	output.uv = input.uv;
-	output.color = input.positionOS.xyz;
+	output.uv = input.positionOS.xyz;
 	return output;
 }

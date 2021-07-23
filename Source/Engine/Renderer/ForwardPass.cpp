@@ -2,7 +2,7 @@
 #include "Engine/Engine/Engine.h"
 #include "Engine/Engine/Scene.h"
 #include "Engine/Engine/Globals.h"
-#include "Engine/Graphics/GPUSwapChain.h"
+// #include "Engine/Graphics/GPUSwapChain.h"
 #include "Engine/Graphics/GPUDevice.h"
 #include "Engine/Graphics/GPUContext.h"
 #include "Engine/Graphics/Models/Mesh.h"
@@ -14,9 +14,11 @@
 #include "Engine/Graphics/GPUBuffer.h"
 #include "Engine/Graphics/GPUConstantBuffer.h"
 #include "Engine/Graphics/Textures/GPUTexture.h"
-#include "Engine/Graphics/Textures/GPUTextureDescription.h"
-#include "Engine/Engine/Entities/CameraEntity.h"
-#include "Engine/Engine/Components/MeshRendererComponent.h"
+#include "Engine/Graphics/Materials/MaterialBase.h"
+// #include "Engine/Graphics/Textures/GPUTextureDescription.h"
+//#include "Engine/Engine/Entities/CameraEntity.h"
+//#include "Engine/Engine/Components/MeshRendererComponent.h"
+#include "RenderContext.h"
 #include "ThirdParty/stb_image/stb_image.h"
 #include <assert.h>
 
@@ -26,28 +28,28 @@ using namespace DawnEngine;
 
 namespace ForwardPassImpl
 {
-	Mesh* BoxMesh = nullptr;
-	GPUPipelineState* PipelineState = nullptr;
-	GPUShader* Shader = nullptr;
-	GPUTexture* Texture = nullptr;
-	CameraEntity* Camera = nullptr;
+	//Mesh* BoxMesh = nullptr;
+	//GPUPipelineState* PipelineState = nullptr;
+	//GPUShader* Shader = nullptr;
+	//GPUTexture* Texture = nullptr;
+	//CameraEntity* Camera = nullptr;
 
-	GlobalConstants ConstanInfo;
-	GPUConstantBuffer* ConstantBuffer = nullptr;
+	//GlobalConstants ConstanInfo;
+	//GPUConstantBuffer* ConstantBuffer = nullptr;
 
-	GPUTexture* DepthTexture = nullptr;
+	//GPUTexture* DepthTexture = nullptr;
 }
 
 
 void ForwardPass::Init()
 {
-	auto constantBuffer = GPUDevice::Instance->CreateConstantBuffer(sizeof(GlobalConstants));
-	ForwardPassImpl::ConstantBuffer = constantBuffer;
+	//auto constantBuffer = GPUDevice::Instance->CreateConstantBuffer(sizeof(GlobalConstants));
+	//ForwardPassImpl::ConstantBuffer = constantBuffer;
 
-	GPUTexture* depthTexture = GPUDevice::Instance->CreateTexture();
-	GPUTextureDescription descTexture = GPUTextureDescription::New2D(Globals::Width, Globals::Height, PixelFormat::D24_UNorm_S8_UInt, GPUTextureFlags::DepthStencil);
-	depthTexture->Init(descTexture);
-	ForwardPassImpl::DepthTexture = depthTexture;
+	//GPUTexture* depthTexture = GPUDevice::Instance->CreateTexture();
+	//GPUTextureDescription descTexture = GPUTextureDescription::New2D(Globals::Width, Globals::Height, PixelFormat::D24_UNorm_S8_UInt, GPUTextureFlags::DepthStencil);
+	//depthTexture->Init(descTexture);
+	//ForwardPassImpl::DepthTexture = depthTexture;
 
 	//// mesh
 	//auto boxMesh = New<Mesh>();
@@ -84,26 +86,38 @@ void ForwardPass::Init()
 	//ForwardPassImpl::Texture = texture;
 }
 
-void ForwardPass::Render(GPUContext* context)
+void ForwardPass::Render(RenderContext* renderContext)
 {
-	Window* window = Engine::MainWindow;
-	auto swapChain = window->GetSwapChain();
-	auto backBuffer = swapChain->GetBackBuffer();
+	GPUContext* context = GPUDevice::Instance->GetMainContext();
 
-	auto rootEntity = Engine::MainScene->GetRootEntity();
-	auto cameraComponent = rootEntity->GetComponentInChildren<CameraComponent>();
-	Matrix4x4 viewMatrix = cameraComponent->GetViewMatrix();
-	Matrix4x4 projMatrix = cameraComponent->GetProjectionMatrix();
-	Matrix4x4 viewProjMatrix = viewMatrix * projMatrix;
-	ForwardPassImpl::ConstanInfo.ViewProjMatrix = viewProjMatrix;
+	//Window* window = Engine::MainWindow;
+	//auto swapChain = window->GetSwapChain();
+	//auto backBuffer = swapChain->GetBackBuffer();
 
-	context->SetViewportAndScissors(Globals::Width, Globals::Height);
-	context->Clear(backBuffer, Color::Gray);
-	context->ClearDepth(ForwardPassImpl::DepthTexture);
-	// context->SetRenderTarget(backBuffer);
-	context->SetRenderTarget(backBuffer, ForwardPassImpl::DepthTexture);
+	auto renderTarget = renderContext->ForwardPassRT;
+	auto depthTexture = renderContext->DepthTexture;
 
-	context->UpdateCB(ForwardPassImpl::ConstantBuffer, &ForwardPassImpl::ConstanInfo);
+	//auto rootEntity = Engine::MainScene->GetRootEntity();
+	//auto cameraComponent = rootEntity->GetComponentInChildren<CameraComponent>();
+	//Matrix4x4 viewMatrix = cameraComponent->GetViewMatrix();
+	//Matrix4x4 projMatrix = cameraComponent->GetProjectionMatrix();
+	//Matrix4x4 viewProjMatrix = viewMatrix * projMatrix;
+	//ForwardPassImpl::ConstanInfo.ViewProjMatrix = viewProjMatrix;
+
+	context->SetViewportAndScissors(renderContext->Width, renderContext->Height);
+	context->Clear(renderTarget, Color::Gray);
+	context->ClearDepth(depthTexture);
+	context->SetRenderTarget(renderTarget, depthTexture);
+
+	for (auto drawCall : renderContext->DrawCallList)
+	{
+		renderContext->MeshConstant.WorldMatrix = drawCall.WorldMatrix;
+		context->UpdateCB(renderContext->MeshConstantBuffer, &renderContext->MeshConstant);
+		drawCall.Material->Draw(context);
+		drawCall.Mesh->Draw(context);
+	}
+
+	/*context->UpdateCB(ForwardPassImpl::ConstantBuffer, &ForwardPassImpl::ConstanInfo);
 	context->BindCB(0, ForwardPassImpl::ConstantBuffer);
 
 	auto renderComponents = rootEntity->GetComponentsInChildren<MeshRendererComponent>();
@@ -113,7 +127,7 @@ void ForwardPass::Render(GPUContext* context)
 		renderComponents[i]->Render(context);
 	}
 
-	Engine::MainScene->DrawSkybox(context);
+	Engine::MainScene->DrawSkybox(context);*/
 
 	context->FlushState();
 

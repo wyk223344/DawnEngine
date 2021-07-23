@@ -24,6 +24,8 @@ namespace DawnEngine
 
 		void Render(GPUContext* context);
 
+		Model* GetModel() const { return m_Model; }
+
 	private:
 
 		Model* m_Model;
