@@ -1,7 +1,10 @@
 
+#include "Engine/Engine/Engine.h"
 #include "Engine/Engine/EngineService.h"
 #include "Engine/Engine/Globals.h"
+#include "Engine/Engine/Scene.h"
 #include "Engine/Graphics/GPUContext.h"
+#include "Engine/Graphics/Enums.h"
 #include "Renderer.h"
 #include "ForwardPass.h"
 #include "RenderContext.h"
@@ -21,7 +24,14 @@ void Renderer::Render(GPUContext* context)
     RenderContext* renderContext = RendererImpl::g_RenderContext;
     renderContext->BeforeDraw();
 
+    context->UpdateCB(renderContext->GlobalConstantBuffer, &renderContext->GlobalConstant);
+    context->BindCB((int32)GPUConstantBufferSlot::Mesh, renderContext->GlobalConstantBuffer);
+    //context->BindCB((int32)GPUConstantBufferSlot::Mesh, renderContext->MeshConstantBuffer);
     ForwardPass::Instance()->Render(renderContext);
+
+    // Engine::MainScene->DrawSkybox(context);
+
+    context->FlushState();
 }
 
 #pragma endregion

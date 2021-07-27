@@ -90,9 +90,9 @@ void ForwardPass::Render(RenderContext* renderContext)
 {
 	GPUContext* context = GPUDevice::Instance->GetMainContext();
 
-	//Window* window = Engine::MainWindow;
-	//auto swapChain = window->GetSwapChain();
-	//auto backBuffer = swapChain->GetBackBuffer();
+	Window* window = Engine::MainWindow;
+	auto swapChain = window->GetSwapChain();
+	auto backBuffer = swapChain->GetBackBuffer();
 
 	auto renderTarget = renderContext->ForwardPassRT;
 	auto depthTexture = renderContext->DepthTexture;
@@ -105,14 +105,15 @@ void ForwardPass::Render(RenderContext* renderContext)
 	//ForwardPassImpl::ConstanInfo.ViewProjMatrix = viewProjMatrix;
 
 	context->SetViewportAndScissors(renderContext->Width, renderContext->Height);
-	context->Clear(renderTarget, Color::Gray);
+	context->Clear(backBuffer, Color::Gray);
 	context->ClearDepth(depthTexture);
-	context->SetRenderTarget(renderTarget, depthTexture);
+	context->SetRenderTarget(backBuffer, depthTexture);
 
 	for (auto drawCall : renderContext->DrawCallList)
 	{
 		renderContext->MeshConstant.WorldMatrix = drawCall.WorldMatrix;
 		context->UpdateCB(renderContext->MeshConstantBuffer, &renderContext->MeshConstant);
+		//context->BindCB(1, renderContext->MeshConstantBuffer);
 		drawCall.Material->Draw(context);
 		drawCall.Mesh->Draw(context);
 	}
@@ -129,7 +130,7 @@ void ForwardPass::Render(RenderContext* renderContext)
 
 	Engine::MainScene->DrawSkybox(context);*/
 
-	context->FlushState();
+	// context->FlushState();
 
 	/*Window* window = Engine::MainWindow;
 	auto swapChain = window->GetSwapChain();
