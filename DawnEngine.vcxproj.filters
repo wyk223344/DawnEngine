@@ -462,6 +462,12 @@
     <ClInclude Include="Source\Engine\Renderer\RenderContext.h">
       <Filter>Engine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine\Renderer\LightPass.h">
+      <Filter>Engine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Renderer\ShadowPass.h">
+      <Filter>Engine\Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Main\Windows\main.cpp">
@@ -678,6 +684,12 @@
       <Filter>Engine\Graphics\Lights</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\Renderer\RenderContext.cpp">
+      <Filter>Engine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Renderer\LightPass.cpp">
+      <Filter>Engine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Renderer\ShadowPass.cpp">
       <Filter>Engine\Renderer</Filter>
     </ClCompile>
   </ItemGroup>

@@ -113,7 +113,6 @@ void ForwardPass::Render(RenderContext* renderContext)
 	{
 		renderContext->MeshConstant.WorldMatrix = drawCall.WorldMatrix;
 		context->UpdateCB(renderContext->MeshConstantBuffer, &renderContext->MeshConstant);
-		//context->BindCB(1, renderContext->MeshConstantBuffer);
 		drawCall.Material->Draw(context);
 		drawCall.Mesh->Draw(context);
 	}

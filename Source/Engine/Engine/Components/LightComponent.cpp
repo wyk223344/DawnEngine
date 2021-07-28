@@ -6,7 +6,7 @@ using namespace DawnEngine;
 
 void LightComponent::CreateDirectionalLight()
 {
-
+	m_DirectionalLight = New<DirectionalLight>();
 }
 
 

@@ -398,7 +398,6 @@ void GPUContextDX12::flushCBs()
 			auto cb = m_ConstantBufferHandles[i];
 			if (cb)
 			{
-				LOG_WARNING("[GPUContextDX12] flushCBs %d", i);
 				assert(cb->GPUAddress != 0);
 				m_CommandList->SetGraphicsRootConstantBufferView(i, cb->GPUAddress);
 			}

@@ -25,11 +25,11 @@ void Renderer::Render(GPUContext* context)
     renderContext->BeforeDraw();
 
     context->UpdateCB(renderContext->GlobalConstantBuffer, &renderContext->GlobalConstant);
-    context->BindCB((int32)GPUConstantBufferSlot::Mesh, renderContext->GlobalConstantBuffer);
-    //context->BindCB((int32)GPUConstantBufferSlot::Mesh, renderContext->MeshConstantBuffer);
+    context->BindCB((int32)GPUConstantBufferSlot::Global, renderContext->GlobalConstantBuffer);
+    context->BindCB((int32)GPUConstantBufferSlot::Mesh, renderContext->MeshConstantBuffer);
     ForwardPass::Instance()->Render(renderContext);
 
-    // Engine::MainScene->DrawSkybox(context);
+    Engine::MainScene->DrawSkybox(context);
 
     context->FlushState();
 }

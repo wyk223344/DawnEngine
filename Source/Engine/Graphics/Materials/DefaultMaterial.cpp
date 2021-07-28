@@ -40,5 +40,5 @@ bool DefaultMaterial::InitGPUResource()
 void DefaultMaterial::Draw(GPUContext* context)
 {
 	context->SetState(m_PipelineState);
-	context->BindCB(1, m_ConstantBuffer);
+	context->BindCB((int32)GPUConstantBufferSlot::Material, m_ConstantBuffer);
 }

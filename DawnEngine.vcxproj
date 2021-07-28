@@ -273,9 +273,11 @@
     <ClInclude Include="Source\Engine\Platform\Windows\WindowsPlatform.h" />
     <ClInclude Include="Source\Engine\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="Source\Engine\Renderer\ForwardPass.h" />
+    <ClInclude Include="Source\Engine\Renderer\LightPass.h" />
     <ClInclude Include="Source\Engine\Renderer\RenderContext.h" />
     <ClInclude Include="Source\Engine\Renderer\Renderer.h" />
     <ClInclude Include="Source\Engine\Renderer\RendererPassBase.h" />
+    <ClInclude Include="Source\Engine\Renderer\ShadowPass.h" />
     <ClInclude Include="Source\Engine\Resource\Resource.h" />
     <ClInclude Include="Source\Game\Game.h" />
     <ClInclude Include="Source\ThirdParty\stb_image\stb_image.h" />
@@ -349,8 +351,10 @@
     <ClCompile Include="Source\Engine\Platform\Windows\WindowsPlatform.cpp" />
     <ClCompile Include="Source\Engine\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="Source\Engine\Renderer\ForwardPass.cpp" />
+    <ClCompile Include="Source\Engine\Renderer\LightPass.cpp" />
     <ClCompile Include="Source\Engine\Renderer\RenderContext.cpp" />
     <ClCompile Include="Source\Engine\Renderer\Renderer.cpp" />
+    <ClCompile Include="Source\Engine\Renderer\ShadowPass.cpp" />
     <ClCompile Include="Source\Engine\Resource\Resource.cpp" />
     <ClCompile Include="Source\Game\Game.cpp" />
     <ClCompile Include="Source\ThirdParty\stb_image\stb_image.cpp" />

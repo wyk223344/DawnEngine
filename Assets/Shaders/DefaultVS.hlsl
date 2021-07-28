@@ -20,7 +20,7 @@ VertexOutput main(VertexInput input)
 {
 	VertexOutput output;
 	float3 positionWS = mul(WorldMatrix, float4(input.positionOS, 1.0f)).xyz;
-	output.positionCS = mul(ViewProjMatrix, float4(input.positionOS, 1.0f));
+	output.positionCS = mul(ViewProjMatrix, float4(positionWS, 1.0f));
 	output.uv = input.uv;
 	output.positionWS = positionWS;
 	return output;

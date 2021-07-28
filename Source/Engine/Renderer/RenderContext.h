@@ -36,6 +36,8 @@ namespace DawnEngine
 		GPUTexture* ForwardPassRT;
 		GPUTexture* DepthTexture;
 
+		GPUTexture* ShadowTexture;
+
 		GlobalConstants GlobalConstant;
 		MeshConstants MeshConstant;
 

@@ -60,7 +60,7 @@ void RenderContext::BeforeDraw()
 
 	for (auto lightComponent : rootEntity->GetComponentsInChildren<LightComponent>())
 	{
-
+		DirectionalLightList.push_back(lightComponent->GetDirectionalLight());
 	}
 
 	for (auto meshRenderComponent : rootEntity->GetComponentsInChildren<MeshRendererComponent>())

@@ -4,7 +4,7 @@ struct LightData
 	float3 Direction;
 };
 
-cbuffer GlobalConstants : register(b1)
+cbuffer GlobalConstants : register(b0)
 {
 	float4x4 ViewProjMatrix;
 	float3 CameraPosition;
@@ -12,7 +12,7 @@ cbuffer GlobalConstants : register(b1)
 };
 
 
-cbuffer MeshConstants : register(b0)
+cbuffer MeshConstants : register(b1)
 {
 	float4x4 WorldMatrix;
 };
