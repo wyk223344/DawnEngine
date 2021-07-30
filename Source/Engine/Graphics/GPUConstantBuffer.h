@@ -9,6 +9,7 @@ namespace DawnEngine
 
 	struct LightDataConstant
 	{
+		Matrix4x4 ViewProjMatrix;
 		Vector3 Direction;
 	};
 
@@ -16,6 +17,7 @@ namespace DawnEngine
 	{
 		Matrix4x4 ViewProjMatrix;
 		Vector3 CameraPosition;
+		int32 DirectionalLightCount;
 		LightDataConstant LightDatas[4];
 	};
 

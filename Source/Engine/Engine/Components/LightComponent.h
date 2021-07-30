@@ -12,6 +12,8 @@ namespace DawnEngine
 	{
 	public:
 
+		LightComponent(EntityBase* entity);
+
 		void CreateDirectionalLight();
 
 		DirectionalLight* GetDirectionalLight();
