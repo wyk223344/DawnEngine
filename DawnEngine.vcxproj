@@ -242,6 +242,7 @@
     <ClInclude Include="Source\Engine\Graphics\Materials\DefaultMaterial.h" />
     <ClInclude Include="Source\Engine\Graphics\Materials\MaterialBase.h" />
     <ClInclude Include="Source\Engine\Graphics\Materials\PBRMaterial.h" />
+    <ClInclude Include="Source\Engine\Graphics\Materials\ShadowMaterial.h" />
     <ClInclude Include="Source\Engine\Graphics\Materials\SkyboxMaterial.h" />
     <ClInclude Include="Source\Engine\Graphics\Models\GeometryGenerator.h" />
     <ClInclude Include="Source\Engine\Graphics\Models\Mesh.h" />
@@ -331,6 +332,7 @@
     <ClCompile Include="Source\Engine\Graphics\Materials\DefaultMaterial.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Materials\MaterialBase.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Materials\PBRMaterial.cpp" />
+    <ClCompile Include="Source\Engine\Graphics\Materials\ShadowMaterial.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Materials\SkyboxMaterial.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Models\GeometryGenerator.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Models\Mesh.cpp" />

@@ -41,7 +41,10 @@ void RenderContext::Init(int32 width, int32 height)
 	forwardPassRT->Init(rtDesc);
 	ForwardPassRT = forwardPassRT;
 
-
+	GPUTexture* shadowTexture = device->CreateTexture();
+	auto shadowDesc = GPUTextureDescription::New2D(width, height, PixelFormat::D24_UNorm_S8_UInt, GPUTextureFlags::DepthStencil);
+	shadowTexture->Init(shadowDesc);
+	ShadowTexture = shadowTexture;
 }
 
 void RenderContext::BeforeDraw()

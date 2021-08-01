@@ -468,6 +468,9 @@
     <ClInclude Include="Source\Engine\Renderer\ShadowPass.h">
       <Filter>Engine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\Materials\ShadowMaterial.h">
+      <Filter>Engine\Graphics\Materials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Main\Windows\main.cpp">
@@ -691,6 +694,9 @@
     </ClCompile>
     <ClCompile Include="Source\Engine\Renderer\ShadowPass.cpp">
       <Filter>Engine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\Materials\ShadowMaterial.cpp">
+      <Filter>Engine\Graphics\Materials</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

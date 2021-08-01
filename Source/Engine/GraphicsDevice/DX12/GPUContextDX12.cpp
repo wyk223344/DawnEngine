@@ -160,8 +160,8 @@ void GPUContextDX12::SetRenderTarget(GPUTexture* rt)
 
 void GPUContextDX12::SetRenderTarget(GPUTexture* rt, GPUTexture* depthBuffer)
 {
-	GPUTextureDX12* rtDX12 = static_cast<GPUTextureDX12*>(rt);
-	auto depthBufferDX12 = static_cast<GPUTextureDX12*>(depthBuffer);
+	GPUTextureDX12* rtDX12 = rt != nullptr ? static_cast<GPUTextureDX12*>(rt) : nullptr;
+	auto depthBufferDX12 = depthBuffer ? static_cast<GPUTextureDX12*>(depthBuffer) : nullptr;
 	if (m_RenderTargetTexture != rtDX12 || m_DepthTexture != depthBuffer)
 	{
 		m_RTDirtyFlag = true;
@@ -365,8 +365,16 @@ void GPUContextDX12::flushRTVs()
 	{
 		m_RTDirtyFlag = false;
 		// Render Target
-		D3D12_CPU_DESCRIPTOR_HANDLE renderTargetCPU = m_RenderTargetTexture->RTV();
-		SetResourceState(m_RenderTargetTexture, D3D12_RESOURCE_STATE_RENDER_TARGET);
+		D3D12_CPU_DESCRIPTOR_HANDLE renderTargetCPU;
+		if (m_RenderTargetTexture)
+		{
+			renderTargetCPU = m_RenderTargetTexture->RTV();
+			SetResourceState(m_RenderTargetTexture, D3D12_RESOURCE_STATE_RENDER_TARGET);
+		}
+		else
+		{
+			renderTargetCPU.ptr = 0;
+		}
 		// Depth Buffer
 		D3D12_CPU_DESCRIPTOR_HANDLE depthBufferCPU;
 		if (m_DepthTexture)
@@ -379,7 +387,7 @@ void GPUContextDX12::flushRTVs()
 			depthBufferCPU.ptr = 0;
 		}
 		// Sumbit command
-		m_CommandList->OMSetRenderTargets(1, &renderTargetCPU, true, depthBufferCPU.ptr != 0 ? &depthBufferCPU : nullptr);
+		m_CommandList->OMSetRenderTargets(1, renderTargetCPU.ptr != 0 ? &renderTargetCPU : nullptr, true, depthBufferCPU.ptr != 0 ? &depthBufferCPU : nullptr);
 	}
 }
 

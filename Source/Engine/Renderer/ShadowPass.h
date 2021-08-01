@@ -9,6 +9,7 @@ namespace DawnEngine
 	class GPUTexture;
 	class RenderContext;
 	class LightBase;
+	class ShadowMaterial;
 
 	class ShadowPass : public RenderPassBase<ShadowPass>
 	{
@@ -19,5 +20,10 @@ namespace DawnEngine
 		void RenderShadow(RenderContext* renderContext, LightBase* light, GPUTexture* renderTarget);
 
 		void Dispose();
+
+	private:
+
+		ShadowMaterial* m_ShadowMaterial;
+
 	};
 }

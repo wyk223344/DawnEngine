@@ -14,7 +14,7 @@ using namespace DawnEngine::DX12;
 ID3D12PipelineState* GPUPipelineStateDX12::GetState(GPUTextureDX12* depthHandle, GPUTextureDX12* rtHandle)
 {
     GPUPipelineStateKeyDX12 key;
-    key.RenderTargetFormat = rtHandle->Format();
+    key.RenderTargetFormat = rtHandle ? rtHandle->Format() : PixelFormat::Unknown;
     key.DepthFormat = depthHandle ? depthHandle->Format() : PixelFormat::Unknown;
     key.MSAA = rtHandle->MultiSampleLevel();
 
@@ -25,7 +25,7 @@ ID3D12PipelineState* GPUPipelineStateDX12::GetState(GPUTextureDX12* depthHandle,
         return iter->second;
     }
     
-    m_PipelineStateDescDX12.NumRenderTargets = 1;
+    m_PipelineStateDescDX12.NumRenderTargets = rtHandle ? 1 : 0;
     m_PipelineStateDescDX12.RTVFormats[0] = RenderToolsDX12::ToDxgiFormat(key.RenderTargetFormat);
     m_PipelineStateDescDX12.DSVFormat = RenderToolsDX12::ToDxgiFormat(key.DepthFormat);
     m_PipelineStateDescDX12.SampleDesc.Count = 1;
