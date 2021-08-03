@@ -471,6 +471,9 @@
     <ClInclude Include="Source\Engine\Graphics\Materials\ShadowMaterial.h">
       <Filter>Engine\Graphics\Materials</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine\Graphics\Materials\CopyLinearMaterial.h">
+      <Filter>Engine\Graphics\Materials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Main\Windows\main.cpp">
@@ -698,6 +701,9 @@
     <ClCompile Include="Source\Engine\Graphics\Materials\ShadowMaterial.cpp">
       <Filter>Engine\Graphics\Materials</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Engine\Graphics\Materials\CopyLinearMaterial.cpp">
+      <Filter>Engine\Graphics\Materials</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\Common.hlsli">
@@ -723,10 +729,16 @@
     <FxCompile Include="Assets\Shaders\PBRPS.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
-    <FxCompile Include="Shaders\ShadowCasterVS.hlsl">
+    <FxCompile Include="Assets\Shaders\CopyLinearPS.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
-    <FxCompile Include="Shaders\ShadowCasterPS.hlsl">
+    <FxCompile Include="Assets\Shaders\CopyLinearVS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Assets\Shaders\ShadowCasterPS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Assets\Shaders\ShadowCasterVS.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

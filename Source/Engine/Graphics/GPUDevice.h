@@ -11,6 +11,8 @@ namespace DawnEngine
     class GPUShader;
     class GPUPipelineState;
     class GPUConstantBuffer;
+    class Mesh;
+    class CopyLinearMaterial;
 
     /*
         GPU Device
@@ -25,6 +27,10 @@ namespace DawnEngine
 
         // 是否正在绘制中
         bool IsRendering() const { return m_IsRendering; }
+
+        Mesh* GetFullScreenQuadMesh();
+
+        CopyLinearMaterial* GetCopyLinearMaterial();
 
     public: // 对外接口虚函数
         
@@ -54,6 +60,9 @@ namespace DawnEngine
         // 初始化
         virtual bool Init();
 
+        // 加载资源
+        virtual bool LoadContent();
+
         // 绘制执行前
         virtual void DrawBegin();
 
@@ -69,6 +78,9 @@ namespace DawnEngine
     protected:
 
         bool m_IsRendering;
+
+        struct PrivateData;
+        PrivateData* m_PrivateData;
     };
 
 }

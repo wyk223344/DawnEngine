@@ -40,6 +40,8 @@ namespace DawnEngine
 		public:
 
 			static Description Default;
+
+			static Description DefaultFullscreenTriangle;
 		};
 
 	public:

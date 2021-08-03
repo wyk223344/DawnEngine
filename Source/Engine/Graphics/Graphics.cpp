@@ -44,6 +44,11 @@ bool GraphicsService::Init()
 
 	GPUDevice::Instance = device;
 
+	if (!device->LoadContent())
+	{
+		return false;
+	}
+
 	return true;
 }
 

@@ -32,17 +32,17 @@ void RenderContext::Init(int32 width, int32 height)
 	MeshConstantBuffer = device->CreateConstantBuffer(sizeof(MeshConstants));
 
 	GPUTexture* depthTexture = device->CreateTexture();
-	auto depthDesc = GPUTextureDescription::New2D(width, height, PixelFormat::D24_UNorm_S8_UInt, GPUTextureFlags::DepthStencil);
+	auto depthDesc = GPUTextureDescription::New2D(width, height, PixelFormat::D24_UNorm_S8_UInt, GPUTextureFlags::DepthStencil | GPUTextureFlags::ShaderResource);
 	depthTexture->Init(depthDesc);
 	DepthTexture = depthTexture;
 
 	GPUTexture* forwardPassRT = device->CreateTexture();
-	auto rtDesc = GPUTextureDescription::New2D(width, height, PixelFormat::R8G8B8A8_UNorm);
+	auto rtDesc = GPUTextureDescription::New2D(width, height, PixelFormat::R8G8B8A8_UNorm, GPUTextureFlags::ShaderResource | GPUTextureFlags::RenderTarget);
 	forwardPassRT->Init(rtDesc);
 	ForwardPassRT = forwardPassRT;
 
 	GPUTexture* shadowTexture = device->CreateTexture();
-	auto shadowDesc = GPUTextureDescription::New2D(width, height, PixelFormat::D24_UNorm_S8_UInt, GPUTextureFlags::DepthStencil);
+	auto shadowDesc = GPUTextureDescription::New2D(width, height, PixelFormat::D24_UNorm_S8_UInt, GPUTextureFlags::DepthStencil | GPUTextureFlags::ShaderResource);
 	shadowTexture->Init(shadowDesc);
 	ShadowTexture = shadowTexture;
 }
@@ -60,7 +60,7 @@ void RenderContext::BeforeDraw()
 	Matrix4x4 viewProjMatrix = viewMatrix * projMatrix;
 	GlobalConstant.ViewProjMatrix = viewProjMatrix;
 	GlobalConstant.CameraPosition = cameraComponent->GetEntity()->GetComponent<TransformComponent>()->Transform.Translation;
-
+	CameraViewProjMatrix = viewProjMatrix;
 	int index = 0;
 	for (auto lightComponent : rootEntity->GetComponentsInChildren<LightComponent>())
 	{

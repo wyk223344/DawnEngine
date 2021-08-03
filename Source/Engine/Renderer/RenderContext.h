@@ -15,7 +15,7 @@ namespace DawnEngine
 	{
 		Mesh* Mesh;
 		MaterialBase* Material;
-		Matrix4x4 WorldMatrix;
+		Math::Matrix4x4 WorldMatrix;
 	};
 
 	class RenderContext
@@ -47,6 +47,8 @@ namespace DawnEngine
 		std::vector<DirectionalLight*> DirectionalLightList;
 
 		std::vector<DrawCall> DrawCallList;
+
+		Math::Matrix4x4 CameraViewProjMatrix;
 
 	};
 }

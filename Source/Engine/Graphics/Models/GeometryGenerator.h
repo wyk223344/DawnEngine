@@ -18,6 +18,8 @@ namespace DawnEngine
 
 		static MeshData* CreatePlane(float width, float depth, uint32 m, uint32 n);
 
+		static MeshData* CreateQuad(float x, float y, float w, float h, float depth);
+
 		static void Subdivide(MeshData& meshData);
 
 		static Vertex MidPoint(const Vertex& v0, const Vertex& v1);

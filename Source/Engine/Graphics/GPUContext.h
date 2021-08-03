@@ -21,6 +21,10 @@ namespace DawnEngine
 	{
 	public:
 
+		GPUContext(GPUDevice* device);
+
+	public:
+
 		// 开始新的一帧的绘制
 		virtual void FrameBegin();
 
@@ -92,6 +96,12 @@ namespace DawnEngine
 		/// <param name="startInstance">实例化技术相关，暂时为0</param>
 		virtual void DrawIndexedInstanced(uint32 indicesCount, uint32 instanceCount, int32 startIndex = 0, int32 startVertex = 0, int32 startInstance = 0) = 0;
 
+		// 进行全屏绘制
+		void DrawFullscreenTriangle();
+
+		// 绘制纹理
+		void Draw(GPUTexture* srcRT);
+
 		// 设置PipelineState
 		virtual void SetState(GPUPipelineState* state) = 0;
 
@@ -109,6 +119,10 @@ namespace DawnEngine
 
 		// 测试函数
 		// virtual void DoTestDraw() = 0;
+
+	private:
+
+		GPUDevice* m_Device;
 	};
 
 }

@@ -52,7 +52,7 @@ bool GPUTextureDX12::OnInit()
 		initialState = D3D12_RESOURCE_STATE_DEPTH_WRITE;
 		LOG_WARNING("Init Depth Texture");
 	}
-	if (useSRV)
+	else if (useSRV)
 	{
 		initialState = D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE | D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE;
 	}
@@ -101,7 +101,12 @@ bool GPUTextureDX12::OnInit()
 
 	if (useRTV)
 	{
-
+		D3D12_RENDER_TARGET_VIEW_DESC rtDesc;
+		rtDesc.Format = format;
+		rtDesc.ViewDimension = D3D12_RTV_DIMENSION_TEXTURE2D;
+		rtDesc.Texture2D.MipSlice = 0;
+		rtDesc.Texture2D.PlaneSlice = 0;
+		SetRTV(&rtDesc);
 	}
 
 	if (useSRV)
@@ -109,6 +114,11 @@ bool GPUTextureDX12::OnInit()
 		D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc;
 		srvDesc.Format = format;
 		srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+
+		if (useDSV)
+		{
+			srvDesc.Format = DXGI_FORMAT_R24_UNORM_X8_TYPELESS;
+		}
 
 		if (isCubeMap)
 		{

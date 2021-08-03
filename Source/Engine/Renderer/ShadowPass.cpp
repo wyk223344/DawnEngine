@@ -18,9 +18,13 @@ void ShadowPass::Init()
 	m_ShadowMaterial = New<ShadowMaterial>();
 }
 
-void ShadowPass::RenderShadow(RenderContext* renderContext, LightBase* light, GPUTexture* renderTarget)
+void ShadowPass::RenderShadow(RenderContext* renderContext, DirectionalLight* light, GPUTexture* renderTarget)
 {
 	GPUContext* context = GPUDevice::Instance->GetMainContext();
+
+	renderContext->GlobalConstant.ViewProjMatrix = light->GetViewMatrix() * light->GetProjectionMatrix();
+	context->UpdateCB(renderContext->GlobalConstantBuffer, &renderContext->GlobalConstant);
+
 	context->SetViewportAndScissors(renderTarget->Width(), renderTarget->Height());
 	context->ClearDepth(renderTarget);
 	context->SetRenderTarget(nullptr, renderTarget);

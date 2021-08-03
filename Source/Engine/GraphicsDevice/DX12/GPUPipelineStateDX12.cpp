@@ -16,7 +16,7 @@ ID3D12PipelineState* GPUPipelineStateDX12::GetState(GPUTextureDX12* depthHandle,
     GPUPipelineStateKeyDX12 key;
     key.RenderTargetFormat = rtHandle ? rtHandle->Format() : PixelFormat::Unknown;
     key.DepthFormat = depthHandle ? depthHandle->Format() : PixelFormat::Unknown;
-    key.MSAA = rtHandle->MultiSampleLevel();
+    key.MSAA = rtHandle ? rtHandle->MultiSampleLevel() : MSAALevel::None;
 
     uint32 hashKey = GetHash(key);
     auto iter = m_PSOCache.find(hashKey);

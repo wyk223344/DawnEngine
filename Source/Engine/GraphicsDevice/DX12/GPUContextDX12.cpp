@@ -21,7 +21,8 @@ using namespace DawnEngine::DX12;
 
 
 GPUContextDX12::GPUContextDX12(GPUDeviceDX12* device, D3D12_COMMAND_LIST_TYPE type)
-	: m_Device(device)
+	: GPUContext(device)
+	, m_Device(device)
 	, m_CommandList(nullptr)
 	, m_CurrentAllocator(nullptr)
 	, m_ResourceBarrierNum(0)
@@ -387,7 +388,7 @@ void GPUContextDX12::flushRTVs()
 			depthBufferCPU.ptr = 0;
 		}
 		// Sumbit command
-		m_CommandList->OMSetRenderTargets(1, renderTargetCPU.ptr != 0 ? &renderTargetCPU : nullptr, true, depthBufferCPU.ptr != 0 ? &depthBufferCPU : nullptr);
+		m_CommandList->OMSetRenderTargets(renderTargetCPU.ptr != 0 ? 1 : 0, renderTargetCPU.ptr != 0 ? &renderTargetCPU : nullptr, renderTargetCPU.ptr != 0 ? true : false, depthBufferCPU.ptr != 0 ? &depthBufferCPU : nullptr);
 	}
 }
 

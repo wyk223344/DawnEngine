@@ -9,6 +9,12 @@
 using namespace DawnEngine;
 
 
+ShadowMaterial::ShadowMaterial()
+{
+
+}
+
+
 bool ShadowMaterial::InitGPUResource()
 {
 	GPUDevice* device = GPUDevice::Instance;
@@ -23,6 +29,7 @@ bool ShadowMaterial::InitGPUResource()
 	psoDesc.PS = shader->CreateShaderProgramPS(g_ShaderShadowCasterPS, sizeof(g_ShaderShadowCasterPS));
 	pipelineState->Init(psoDesc);
 	m_PipelineState = pipelineState;
+	return true;
 }
 
 void ShadowMaterial::Draw(GPUContext* context)

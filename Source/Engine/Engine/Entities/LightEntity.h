@@ -8,6 +8,8 @@ namespace DawnEngine
 {
 	class LightEntity : public EntityBase
 	{
+	public:
+
 		LightEntity()
 			: EntityBase()
 		{

@@ -267,6 +267,54 @@ MeshData* GeometryGenerator::CreatePlane(float width, float depth, uint32 m, uin
 	return meshData;
 }
 
+
+MeshData* GeometryGenerator::CreateQuad(float x, float y, float w, float h, float depth)
+{
+	float halfWidth = w / 2;
+	float halfHeight = h / 2;
+
+	MeshData* meshData = New<MeshData>();
+
+	meshData->Vertices.resize(4);
+	meshData->Indices.resize(6);
+
+	meshData->Vertices[0] = Vertex(
+		x - halfWidth, y - halfHeight, depth,
+		0.0f, 1.0f,
+		0.0f, 0.0f, -1.0f,
+		1.0f, 0.0f, 0.0f
+	);
+	meshData->Vertices[1] = Vertex(
+		x - halfWidth, y + halfHeight, depth,
+		0.0f, 0.0f,
+		0.0f, 0.0f, -1.0f,
+		1.0f, 0.0f, 0.0f
+	);
+	meshData->Vertices[2] = Vertex(
+		x + halfWidth, y + halfHeight, depth,
+		1.0f, 0.0f,
+		0.0f, 0.0f, -1.0f,
+		1.0f, 0.0f, 0.0f
+	);
+	meshData->Vertices[3] = Vertex(
+		x + halfWidth, y - halfHeight, depth,
+		1.0f, 1.0f,
+		0.0f, 0.0f, -1.0f,
+		1.0f, 0.0f, 0.0f
+	);
+
+	meshData->Indices[0] = 0;
+	meshData->Indices[1] = 1;
+	meshData->Indices[2] = 2;
+
+	meshData->Indices[3] = 0;
+	meshData->Indices[4] = 2;
+	meshData->Indices[5] = 3;
+
+	return meshData;
+}
+
+
 void GeometryGenerator::Subdivide(MeshData& meshData)
 {
 	// Save a copy of the input geometry.

@@ -7,6 +7,7 @@
 #include "Engine/Graphics/Enums.h"
 #include "Renderer.h"
 #include "ForwardPass.h"
+#include "LightPass.h"
 #include "RenderContext.h"
 
 using namespace DawnEngine;
@@ -24,12 +25,21 @@ void Renderer::Render(GPUContext* context)
     RenderContext* renderContext = RendererImpl::g_RenderContext;
     renderContext->BeforeDraw();
 
-    context->UpdateCB(renderContext->GlobalConstantBuffer, &renderContext->GlobalConstant);
     context->BindCB((int32)GPUConstantBufferSlot::Global, renderContext->GlobalConstantBuffer);
     context->BindCB((int32)GPUConstantBufferSlot::Mesh, renderContext->MeshConstantBuffer);
+
+    // LightPass::Instance()->Render(renderContext);
+
     ForwardPass::Instance()->Render(renderContext);
 
-    Engine::MainScene->DrawSkybox(context);
+    Window* window = Engine::MainWindow;
+    auto swapChain = window->GetSwapChain();
+    auto backBuffer = swapChain->GetBackBuffer();
+
+    context->SetViewportAndScissors(renderContext->Width, renderContext->Height);
+    context->Clear(backBuffer, Color::Gray);
+    context->SetRenderTarget(backBuffer);
+    context->Draw(renderContext->DepthTexture);
 
     context->FlushState();
 }

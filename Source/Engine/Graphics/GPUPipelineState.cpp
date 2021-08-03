@@ -24,6 +24,27 @@ GPUPipelineState::Description GPUPipelineState::Description::Default =
 };
 
 
+GPUPipelineState::Description GPUPipelineState::Description::DefaultFullscreenTriangle =
+{
+    // Enable/disable depth write
+    false,
+    // Enable/disable depth test
+    false,
+    // DepthClipEnable
+    false,
+    // DepthFunc
+    ComparisonFunc::Less,
+    // Vertex shader
+    nullptr,
+    // Pixel shader
+    nullptr,
+    // True if use wireframe rendering
+    false,
+    // Primitives culling mode
+    CullMode::TwoSided,
+};
+
+
 bool GPUPipelineState::Init(Description& desc)
 {
 	ReleaseGPU();
