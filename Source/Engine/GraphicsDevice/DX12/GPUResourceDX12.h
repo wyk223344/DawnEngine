@@ -75,6 +75,8 @@ namespace DawnEngine::DX12
 
 	public:
 
+		virtual bool IsDepthStencilResource() const = 0;
+
 		virtual D3D12_CPU_DESCRIPTOR_HANDLE SRV() const = 0;
 
 		virtual D3D12_CPU_DESCRIPTOR_HANDLE UAV() const = 0;

@@ -39,7 +39,7 @@ void Renderer::Render(GPUContext* context)
     context->SetViewportAndScissors(renderContext->Width, renderContext->Height);
     context->Clear(backBuffer, Color::Gray);
     context->SetRenderTarget(backBuffer);
-    context->Draw(renderContext->DepthTexture);
+    context->Draw(renderContext->ForwardPassRT);
 
     context->FlushState();
 }

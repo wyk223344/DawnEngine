@@ -44,13 +44,13 @@ void InitSkyBox()
 
 void InitTestScene1()
 {
-	// init cube
-	MeshData* cubeMesh = GeometryGenerator::CreateBox(1.0f, 1.0f, 1.0f);
+	// init sphere
+	MeshData* sphereMesh = GeometryGenerator::CreateSphere(1.0f, 20, 20);
 	DefaultMaterial* material = New<DefaultMaterial>(Color::Black);
 	Model* model = New<Model>();
-	model->AddMeshAndMaterial(cubeMesh, material);
+	model->AddMeshAndMaterial(sphereMesh, material);
 	auto cubeEntity = New<RenderEntity>(model);
-	cubeEntity->GetComponent<TransformComponent>()->SetPosition(Vector3(0.0f, 0.5f, 0.0f));
+	cubeEntity->GetComponent<TransformComponent>()->SetPosition(Vector3(0.0f, 1.0f, 0.0f));
 	// init plane
 	MeshData* planeMesh = GeometryGenerator::CreatePlane(5.0f, 5.0f, 5, 5);
 	DefaultMaterial* planeMaterial = New<DefaultMaterial>(Color::Black);
@@ -73,11 +73,39 @@ void InitTestScene2()
 }
 
 
+void InitTestScene3()
+{
+	// init sphere
+	MeshData* sphereMesh = GeometryGenerator::CreateSphere(1.0f, 20, 20);
+	PBRMaterial* sphereMaterial = New<PBRMaterial>(Color::White);
+	sphereMaterial->AlbedoTexture = Resource::LoadTexture("Assets/Textures/PBR/rusted_iron/albedo.png");
+	sphereMaterial->NormalTexture = Resource::LoadTexture("Assets/Textures/PBR/rusted_iron/normal.png");
+	sphereMaterial->MetallicTexture = Resource::LoadTexture("Assets/Textures/PBR/rusted_iron/metallic.png");
+	sphereMaterial->RoughnessTexture = Resource::LoadTexture("Assets/Textures/PBR/rusted_iron/roughness.png");
+	sphereMaterial->AOTexture = Resource::LoadTexture("Assets/Textures/PBR/rusted_iron/ao.png");
+	Model* sphereModel = New<Model>();
+	sphereModel->AddMeshAndMaterial(sphereMesh, sphereMaterial);
+	auto sphereEntity = New<RenderEntity>(sphereModel);
+	sphereEntity->GetComponent<TransformComponent>()->SetPosition(Vector3(0.0f, 1.0f, 0.0f));
+	// init plane
+	//MeshData* planeMesh = GeometryGenerator::CreatePlane(5.0f, 5.0f, 5, 5);
+	//DefaultMaterial* planeMaterial = New<DefaultMaterial>(Color::Black);
+	//Model* planeModel = New<Model>();
+	//planeModel->AddMeshAndMaterial(planeMesh, planeMaterial);
+	//auto planeEntity = New<RenderEntity>(planeModel);
+	// init light
+	auto lightEntity = New<LightEntity>();
+	lightEntity->GetComponent<LightComponent>()->CreateDirectionalLight();
+	lightEntity->GetComponent<TransformComponent>()->SetPosition(Vector3(1.0f, 1.0f, -1.0f));
+	lightEntity->GetComponent<TransformComponent>()->LookAt(Vector3::Zero);
+}
+
+
 bool Game::Init()
 {
 	InitCamera();
 	InitSkyBox();
-	InitTestScene1();
+	InitTestScene3();
 	// InitTestScene2();
 
 	return true;

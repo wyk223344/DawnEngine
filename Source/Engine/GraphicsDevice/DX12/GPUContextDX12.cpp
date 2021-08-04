@@ -337,6 +337,11 @@ void GPUContextDX12::flushSRVs()
 			srcDescriptorRangeStarts[i] = handle->SRV();
 			D3D12_RESOURCE_STATES state = D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE | D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE;
 
+			if (handle->IsDepthStencilResource())
+			{
+				state |= D3D12_RESOURCE_STATE_DEPTH_READ;
+			}
+
 			SetResourceState(handle->GetResourceOwner(), state);
 		}
 		else
@@ -387,6 +392,7 @@ void GPUContextDX12::flushRTVs()
 		{
 			depthBufferCPU.ptr = 0;
 		}
+		flushRBs();
 		// Sumbit command
 		m_CommandList->OMSetRenderTargets(renderTargetCPU.ptr != 0 ? 1 : 0, renderTargetCPU.ptr != 0 ? &renderTargetCPU : nullptr, renderTargetCPU.ptr != 0 ? true : false, depthBufferCPU.ptr != 0 ? &depthBufferCPU : nullptr);
 	}

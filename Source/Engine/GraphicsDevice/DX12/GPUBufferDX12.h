@@ -53,6 +53,8 @@ namespace DawnEngine::DX12
 
 	public:
 
+		bool IsDepthStencilResource() const override { return false; }
+
 		D3D12_CPU_DESCRIPTOR_HANDLE SRV() const override { return m_SRV.CPU(); }
 
 		D3D12_CPU_DESCRIPTOR_HANDLE UAV() const override { return m_UAV.CPU(); }

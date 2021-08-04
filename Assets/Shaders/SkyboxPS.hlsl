@@ -1,7 +1,7 @@
 #include "Common.hlsli"
 
 TextureCube SkyboxTexture  : register(t0);
-SamplerState SamplerLinear  : register(s0);
+
 
 struct VertexOutput
 {
@@ -11,6 +11,6 @@ struct VertexOutput
 
 float4 main(VertexOutput input) : SV_TARGET
 {
-	float4 diffuseAlbedo = SkyboxTexture.Sample(SamplerLinear, input.uv);
+	float4 diffuseAlbedo = SkyboxTexture.Sample(SamplerLinearClamp, input.uv);
 	return float4(diffuseAlbedo.xyz, 1.0f);
 }

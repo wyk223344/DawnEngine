@@ -68,7 +68,7 @@ namespace DawnEngine::DX12
 
 		GPUResourceOwnerDX12* GetResourceOwner() const override { return (GPUResourceOwnerDX12*)this; }
 
-		bool IsDepthStencilResource() const { return m_DSV.IsValid(); }
+		bool IsDepthStencilResource() const override { return m_DSV.IsValid(); }
 
 		void CreateFromSwapChain(ID3D12Resource* resource, GPUSwapChainDX12* swapChain);
 
