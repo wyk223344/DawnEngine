@@ -50,6 +50,10 @@ bool GPUTextureDX12::OnInit()
 	{
 		resourceDesc.Flags |= D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL;
 		initialState = D3D12_RESOURCE_STATE_DEPTH_WRITE;
+		if (!useSRV)
+		{
+			resourceDesc.Flags |= D3D12_RESOURCE_FLAG_DENY_SHADER_RESOURCE;
+		}
 		LOG_WARNING("Init Depth Texture");
 	}
 	else if (useSRV)

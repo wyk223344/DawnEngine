@@ -77,6 +77,7 @@ void GPUContextDX12::SetResourceState(GPUResourceOwnerDX12* resource, D3D12_RESO
 	if (GPUResourceStateDX12::IsTransitionNeeded(before, after))
 	{
 		addResourceBarrier(resource->GetResource(), before, after);
+		state.Initialize(after);
 	}
 }
 
