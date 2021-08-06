@@ -27,6 +27,9 @@ bool ShadowMaterial::InitGPUResource()
 	auto psoDesc = GPUPipelineState::Description::Default;
 	psoDesc.VS = shader->CreateShaderProgramVS(g_ShaderShadowCasterVS, sizeof(g_ShaderShadowCasterVS));
 	psoDesc.PS = shader->CreateShaderProgramPS(g_ShaderShadowCasterPS, sizeof(g_ShaderShadowCasterPS));
+	psoDesc.DepthBias = 500;
+	psoDesc.DepthBiasClamp = 0.0f;
+	psoDesc.SlopeScaledDepthBias = 1.0f;
 	pipelineState->Init(psoDesc);
 	m_PipelineState = pipelineState;
 	return true;

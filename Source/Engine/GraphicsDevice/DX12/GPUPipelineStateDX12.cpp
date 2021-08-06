@@ -50,6 +50,9 @@ bool GPUPipelineStateDX12::OnInit()
     psDesc.RasterizerState.CullMode = m_Desc.CullMode == CullMode::Normal ? D3D12_CULL_MODE_BACK : 
         ( m_Desc.CullMode == CullMode::Inverted ? D3D12_CULL_MODE_FRONT : D3D12_CULL_MODE_NONE );
     psDesc.RasterizerState.FillMode = m_Desc.Wireframe ? D3D12_FILL_MODE_WIREFRAME : D3D12_FILL_MODE_SOLID;
+    psDesc.RasterizerState.DepthBias = m_Desc.DepthBias;
+    psDesc.RasterizerState.DepthBiasClamp = m_Desc.DepthBiasClamp;
+    psDesc.RasterizerState.SlopeScaledDepthBias = m_Desc.SlopeScaledDepthBias;
     psDesc.BlendState = CD3DX12_BLEND_DESC(D3D12_DEFAULT);
     psDesc.DepthStencilState = CD3DX12_DEPTH_STENCIL_DESC(D3D12_DEFAULT);
     psDesc.DepthStencilState.DepthEnable = m_Desc.DepthTestEnable;

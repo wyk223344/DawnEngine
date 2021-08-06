@@ -21,6 +21,12 @@ GPUPipelineState::Description GPUPipelineState::Description::Default =
     false,
     // Primitives culling mode
     CullMode::Normal,
+    // DepthBias
+    0,
+    // DepthBiasClamp
+    0.0f,
+    // SlopeScaledDepthBias
+    0.0f,
 };
 
 
@@ -42,6 +48,12 @@ GPUPipelineState::Description GPUPipelineState::Description::DefaultFullscreenTr
     false,
     // Primitives culling mode
     CullMode::TwoSided,
+    // DepthBias
+    0,
+    // DepthBiasClamp
+    0.0f,
+    // SlopeScaledDepthBias
+    0.0f,
 };
 
 

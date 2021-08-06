@@ -16,6 +16,7 @@ using namespace DawnEngine;
 void ShadowPass::Init()
 {
 	m_ShadowMaterial = New<ShadowMaterial>();
+	m_ShadowMaterial->InitGPUResource();
 }
 
 void ShadowPass::RenderShadow(RenderContext* renderContext, DirectionalLight* light, GPUTexture* renderTarget)
@@ -28,11 +29,11 @@ void ShadowPass::RenderShadow(RenderContext* renderContext, DirectionalLight* li
 	context->SetViewportAndScissors(renderTarget->Width(), renderTarget->Height());
 	context->ClearDepth(renderTarget);
 	context->SetRenderTarget(nullptr, renderTarget);
+	m_ShadowMaterial->Draw(context);
 	for (auto drawCall : renderContext->DrawCallList)
 	{
 		renderContext->MeshConstant.WorldMatrix = drawCall.WorldMatrix;
 		context->UpdateCB(renderContext->MeshConstantBuffer, &renderContext->MeshConstant);
-		drawCall.Material->Draw(context);
 		drawCall.Mesh->Draw(context);
 	}
 }

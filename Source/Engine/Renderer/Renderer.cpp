@@ -28,7 +28,9 @@ void Renderer::Render(GPUContext* context)
     context->BindCB((int32)GPUConstantBufferSlot::Global, renderContext->GlobalConstantBuffer);
     context->BindCB((int32)GPUConstantBufferSlot::Mesh, renderContext->MeshConstantBuffer);
 
-    // LightPass::Instance()->Render(renderContext);
+    LightPass::Instance()->Render(renderContext);
+
+    context->BindSR(10, renderContext->ShadowTexture);
 
     ForwardPass::Instance()->Render(renderContext);
 
@@ -70,6 +72,7 @@ bool RendererService::Init()
     renderContext->Init(Globals::Width, Globals::Height);
     RendererImpl::g_RenderContext = renderContext;
     ForwardPass::Instance()->Init();
+    LightPass::Instance()->Init();
     return true;
 }
 

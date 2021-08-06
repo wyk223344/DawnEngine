@@ -96,13 +96,6 @@ void ForwardPass::Render(RenderContext* renderContext)
 	auto renderTarget = renderContext->ForwardPassRT;
 	auto depthTexture = renderContext->DepthTexture;
 
-	//auto rootEntity = Engine::MainScene->GetRootEntity();
-	//auto cameraComponent = rootEntity->GetComponentInChildren<CameraComponent>();
-	//Matrix4x4 viewMatrix = cameraComponent->GetViewMatrix();
-	//Matrix4x4 projMatrix = cameraComponent->GetProjectionMatrix();
-	//Matrix4x4 viewProjMatrix = viewMatrix * projMatrix;
-	//ForwardPassImpl::ConstanInfo.ViewProjMatrix = viewProjMatrix;
-
 	context->SetViewportAndScissors(renderContext->Width, renderContext->Height);
 	context->Clear(renderTarget, Color::Gray);
 	context->ClearDepth(depthTexture);

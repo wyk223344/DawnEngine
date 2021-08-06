@@ -365,6 +365,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\Common.hlsli" />
+    <None Include="Assets\Shaders\Lighting.hlsli" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shaders\CopyLinearPS.hlsl">

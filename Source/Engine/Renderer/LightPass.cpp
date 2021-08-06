@@ -9,7 +9,7 @@ using namespace DawnEngine;
 
 void LightPass::Init()
 {
-
+	ShadowPass::Instance()->Init();
 }
 
 void LightPass::Render(RenderContext* renderContext)

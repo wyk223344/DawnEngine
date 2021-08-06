@@ -37,6 +37,12 @@ namespace DawnEngine
 			// cull mode
 			CullMode CullMode;
 
+			int DepthBias;
+
+			float DepthBiasClamp;
+
+			float SlopeScaledDepthBias;
+
 		public:
 
 			static Description Default;

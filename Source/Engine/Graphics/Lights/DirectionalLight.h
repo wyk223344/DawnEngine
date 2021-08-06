@@ -9,12 +9,13 @@ namespace DawnEngine
 	{
 	public:
 
-		Math::Matrix4x4& GetProjectionMatrix();
+		Math::Matrix4x4 GetProjectionMatrix();
 
-		Math::Matrix4x4& GetViewMatrix();
+		Math::Matrix4x4 GetViewMatrix();
 
 	public:
 
 		Math::Transform Transform;
+		Color LightColor;
 	};
 }

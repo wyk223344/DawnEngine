@@ -15,6 +15,7 @@ LightComponent::LightComponent(EntityBase* entity)
 void LightComponent::CreateDirectionalLight()
 {
 	m_DirectionalLight = New<DirectionalLight>();
+	m_DirectionalLight->LightColor = Color::White;
 }
 
 

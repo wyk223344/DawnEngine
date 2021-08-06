@@ -709,6 +709,9 @@
     <None Include="Assets\Shaders\Common.hlsli">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="Assets\Shaders\Lighting.hlsli">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shaders\DefaultVS.hlsl">

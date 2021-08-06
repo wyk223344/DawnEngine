@@ -15,9 +15,9 @@ namespace DawnEngine
 
 		CameraComponent(EntityBase* entity, float fov, float aspect, float zNear = 0.1f, float zFar = 10000.0f);
 
-		Matrix4x4& GetProjectionMatrix();
+		Matrix4x4 GetProjectionMatrix();
 
-		Matrix4x4& GetViewMatrix();
+		Matrix4x4 GetViewMatrix();
 
 	private:
 

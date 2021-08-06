@@ -62,12 +62,17 @@ void RenderContext::BeforeDraw()
 	GlobalConstant.CameraPosition = cameraComponent->GetEntity()->GetComponent<TransformComponent>()->Transform.Translation;
 	CameraViewProjMatrix = viewProjMatrix;
 	int index = 0;
+	Matrix4x4 temp(0.5f, 0.0f, 0.0f, 0.0f,
+		0.0f, -0.5f, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f, 0.0f,
+		0.5f, 0.5f, 0.0f, 1.0f);
 	for (auto lightComponent : rootEntity->GetComponentsInChildren<LightComponent>())
 	{
 		auto directionalLight = lightComponent->GetDirectionalLight();
 		DirectionalLightList.push_back(directionalLight);
 		GlobalConstant.LightDatas[index].Direction = directionalLight->Transform.GetForward();
-		GlobalConstant.LightDatas[index].ViewProjMatrix = directionalLight->GetViewMatrix() * directionalLight->GetProjectionMatrix();
+		GlobalConstant.LightDatas[index].ViewProjMatrix = directionalLight->GetViewMatrix() * directionalLight->GetProjectionMatrix() * temp;
+		GlobalConstant.LightDatas[index].Color = directionalLight->LightColor;
 		index++;
 	}
 	GlobalConstant.DirectionalLightCount = index;

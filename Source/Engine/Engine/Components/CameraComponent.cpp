@@ -17,7 +17,7 @@ CameraComponent::CameraComponent(EntityBase* entity, float fov, float aspect, fl
 {
 }
 
-Matrix4x4& CameraComponent::GetProjectionMatrix()
+Matrix4x4 CameraComponent::GetProjectionMatrix()
 {
 	Matrix4x4 result;
 	Matrix4x4::PerspectiveFov(m_FOV, m_AspectRatio, m_NearClip, m_FarClip, result);
@@ -25,7 +25,7 @@ Matrix4x4& CameraComponent::GetProjectionMatrix()
 	return result;
 }
 
-Matrix4x4& CameraComponent::GetViewMatrix()
+Matrix4x4 CameraComponent::GetViewMatrix()
 {
 	auto transformComponent = GetEntity()->GetComponent<TransformComponent>();
 	auto result = transformComponent->Transform.GetWorldMatrix();

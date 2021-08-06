@@ -11,6 +11,7 @@ namespace DawnEngine
 	{
 		Matrix4x4 ViewProjMatrix;
 		Vector3 Direction;
+		Color Color;
 	};
 
 	__declspec(align(256)) struct GlobalConstants
