@@ -148,3 +148,24 @@ Color Color::YellowGreen = FromRGB(0x9ACD32);
 
 
 #pragma endregion
+
+
+uint32 Color::ToRGBA() const
+{
+    // return 0xFFFFFFFF;
+    return (static_cast<uint32>(R * 255)) +
+        (static_cast<uint32>(G * 255) << 8) +
+        (static_cast<uint32>(B * 255) << 16) +
+        (static_cast<uint32>(A * 255) << 24);
+}
+
+
+uint32 Color::GetHashCode() const
+{
+    const int32 range = 100000;
+    int32 hashCode = (int32)R * range;
+    hashCode = hashCode * 397 ^ (int32)(G * range);
+    hashCode = hashCode * 397 ^ (int32)(B * range);
+    hashCode = hashCode * 397 ^ (int32)(A * range);
+    return hashCode;
+}

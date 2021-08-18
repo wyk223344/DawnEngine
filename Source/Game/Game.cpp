@@ -16,6 +16,7 @@
 #include "Engine/Graphics/Materials/SkyboxMaterial.h"
 #include "Engine/Resource/Resource.h"
 #include "Engine/Graphics/Textures/TextureData.h"
+#include "Engine/Renderer/Renderer.h"
 
 using namespace DawnEngine;
 
@@ -40,8 +41,11 @@ void InitSkyBox()
 	SkyboxMaterial* material = New<SkyboxMaterial>();
 	material->CubeMap = textureData;
 	Engine::MainScene->SetSkyboxMaterial(material);
+
+	material->PreIntegrateCubemap(Renderer::GetRenderContext(), Engine::MainScene->m_SkyboxMesh);
 }
 
+// “ı”∞≤‚ ‘≥°æ∞
 void InitTestScene1()
 {
 	// init sphere
@@ -64,7 +68,7 @@ void InitTestScene1()
 	lightEntity->GetComponent<TransformComponent>()->LookAt(Vector3::Zero);
 }
 
-
+// º”‘ÿƒ£–Õ≤‚ ‘≥°æ∞
 void InitTestScene2()
 {
 	// init model
@@ -72,7 +76,7 @@ void InitTestScene2()
 	auto modelEntity = New<RenderEntity>(model);
 }
 
-
+// pbr≤‚ ‘≥°æ∞
 void InitTestScene3()
 {
 	// init sphere
@@ -88,16 +92,27 @@ void InitTestScene3()
 	auto sphereEntity = New<RenderEntity>(sphereModel);
 	sphereEntity->GetComponent<TransformComponent>()->SetPosition(Vector3(0.0f, 1.0f, 0.0f));
 	// init plane
-	MeshData* planeMesh = GeometryGenerator::CreatePlane(5.0f, 5.0f, 5, 5);
+	/*MeshData* planeMesh = GeometryGenerator::CreatePlane(5.0f, 5.0f, 5, 5);
 	DefaultMaterial* planeMaterial = New<DefaultMaterial>(Color::White);
 	Model* planeModel = New<Model>();
 	planeModel->AddMeshAndMaterial(planeMesh, planeMaterial);
-	auto planeEntity = New<RenderEntity>(planeModel);
+	auto planeEntity = New<RenderEntity>(planeModel);*/
 	// init light
 	auto lightEntity = New<LightEntity>();
 	lightEntity->GetComponent<LightComponent>()->CreateDirectionalLight();
 	lightEntity->GetComponent<TransformComponent>()->SetPosition(Vector3(5.0f, 3.0f, 5.0f));
 	lightEntity->GetComponent<TransformComponent>()->LookAt(Vector3::Zero);
+}
+
+// ibl≤‚ ‘≥°æ∞
+void InitTestScene4()
+{
+	MeshData* cubeMesh = GeometryGenerator::CreateBox(1.0f, 1.0f, 1.0f);
+	PBRMaterial* cubeMaterial = New<PBRMaterial>(Color::White);
+	cubeMaterial->AlbedoTexture = Resource::LoadTexture("Assets/Textures/HDR/newport_loft.hdr");
+	Model* cubeModel = New<Model>();
+	cubeModel->AddMeshAndMaterial(cubeMesh, cubeMaterial);
+	auto cubeEntity = New<RenderEntity>(cubeModel);
 }
 
 

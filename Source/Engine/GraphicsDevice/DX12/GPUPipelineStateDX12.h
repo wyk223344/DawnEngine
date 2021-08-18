@@ -12,6 +12,7 @@
 namespace DawnEngine::DX12
 {
 	class GPUTextureDX12;
+	class GPUTextureViewDX12;
 
 	struct GPUPipelineStateKeyDX12
 	{
@@ -44,7 +45,7 @@ namespace DawnEngine::DX12
 			m_PSOCache.clear();
 		}
 
-		ID3D12PipelineState* GetState(GPUTextureDX12* depthHandle, GPUTextureDX12* rtHandle);
+		ID3D12PipelineState* GetState(GPUTextureViewDX12* depthHandle, GPUTextureViewDX12* rtHandle);
 
 	protected:
 

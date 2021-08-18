@@ -28,7 +28,7 @@ namespace DawnEngine
 		// »æÖÆÌì¿ÕºÐ
 		void DrawSkybox(GPUContext* context);
 
-	private:
+	public:
 
 		EntityBase* m_RootEntity;
 

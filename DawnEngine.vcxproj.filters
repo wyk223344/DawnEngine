@@ -744,5 +744,11 @@
     <FxCompile Include="Assets\Shaders\ShadowCasterVS.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
+    <FxCompile Include="Assets\Shaders\IrradianceCubemapPS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Assets\Shaders\PrefilterCubemapPS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

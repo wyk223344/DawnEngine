@@ -11,6 +11,7 @@ namespace DawnEngine
     class GPUShader;
     class GPUPipelineState;
     class GPUConstantBuffer;
+    class GPUTexture;
     class Mesh;
     class CopyLinearMaterial;
 
@@ -31,6 +32,8 @@ namespace DawnEngine
         Mesh* GetFullScreenQuadMesh();
 
         CopyLinearMaterial* GetCopyLinearMaterial();
+
+        GPUTexture* GetColorTexture(Color color);
 
     public: // 对外接口虚函数
         

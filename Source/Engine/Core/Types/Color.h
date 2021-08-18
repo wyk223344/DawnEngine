@@ -45,6 +45,10 @@ namespace DawnEngine
         {
         }
 
+        uint32 ToRGBA() const;
+
+        uint32 GetHashCode() const;
+
 	public:
         // Initializes from values in range [0;255].
         static Color FromBytes(byte r, byte g, byte b, byte a = 255)

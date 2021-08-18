@@ -4,7 +4,9 @@
 #include "Engine/Engine/Globals.h"
 #include "Engine/Engine/Scene.h"
 #include "Engine/Graphics/GPUContext.h"
+#include "Engine/Graphics/GPUDevice.h"
 #include "Engine/Graphics/Enums.h"
+#include "Engine/Graphics/Textures/GPUTexture.h"
 #include "Renderer.h"
 #include "ForwardPass.h"
 #include "LightPass.h"
@@ -30,7 +32,7 @@ void Renderer::Render(GPUContext* context)
 
     LightPass::Instance()->Render(renderContext);
 
-    context->BindSR(10, renderContext->ShadowTexture);
+    context->BindSR(10, renderContext->ShadowTexture->View());
 
     ForwardPass::Instance()->Render(renderContext);
 
@@ -39,11 +41,16 @@ void Renderer::Render(GPUContext* context)
     auto backBuffer = swapChain->GetBackBuffer();
 
     context->SetViewportAndScissors(renderContext->Width, renderContext->Height);
-    context->Clear(backBuffer, Color::Gray);
-    context->SetRenderTarget(backBuffer);
+    context->Clear(backBuffer->View(), Color::Gray);
+    context->SetRenderTarget(backBuffer->View());
     context->Draw(renderContext->ForwardPassRT);
-
+    //context->Draw(GPUDevice::Instance->GetColorTexture(Color::Blue));
     context->FlushState();
+}
+
+RenderContext* Renderer::GetRenderContext()
+{
+    return RendererImpl::g_RenderContext;
 }
 
 #pragma endregion

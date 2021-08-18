@@ -1,4 +1,7 @@
 
+#ifndef _COMMON_HLSLI
+#define _COMMON_HLSLI
+
 struct LightData
 {
 	float4x4 ViewProjMatrix;
@@ -85,3 +88,6 @@ float3 NormalSampleToWorldSpace(float3 normalMapSample, float3 unitNormalW, floa
 
     return bumpedNormalW;
 }
+
+
+#endif

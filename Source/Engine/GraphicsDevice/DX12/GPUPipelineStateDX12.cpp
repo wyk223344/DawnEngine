@@ -11,12 +11,12 @@
 using namespace DawnEngine::DX12;
 
 
-ID3D12PipelineState* GPUPipelineStateDX12::GetState(GPUTextureDX12* depthHandle, GPUTextureDX12* rtHandle)
+ID3D12PipelineState* GPUPipelineStateDX12::GetState(GPUTextureViewDX12* depthHandle, GPUTextureViewDX12* rtHandle)
 {
     GPUPipelineStateKeyDX12 key;
-    key.RenderTargetFormat = rtHandle ? rtHandle->Format() : PixelFormat::Unknown;
-    key.DepthFormat = depthHandle ? depthHandle->Format() : PixelFormat::Unknown;
-    key.MSAA = rtHandle ? rtHandle->MultiSampleLevel() : MSAALevel::None;
+    key.RenderTargetFormat = rtHandle ? rtHandle->GetFormat() : PixelFormat::Unknown;
+    key.DepthFormat = depthHandle ? depthHandle->GetFormat() : PixelFormat::Unknown;
+    key.MSAA = rtHandle ? rtHandle->GetMSAA() : MSAALevel::None;
 
     uint32 hashKey = GetHash(key);
     auto iter = m_PSOCache.find(hashKey);

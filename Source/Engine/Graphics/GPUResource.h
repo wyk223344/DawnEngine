@@ -31,13 +31,13 @@ namespace DawnEngine
 		uint64 m_MemoryUsage = 0;
 	};
 
-	///*
-	//	资源视图
-	//*/
-	//class GPUResourceView : Object
-	//{
-	//public:
-	//};
+	/*
+		资源视图，资源描述符的持有者
+	*/
+	class GPUResourceView : Object
+	{
+	public:
+	};
 
 	/*
 		持有device引用的资源。主要为图形api层使用

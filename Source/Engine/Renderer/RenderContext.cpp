@@ -7,6 +7,7 @@
 #include "Engine/Graphics/Models/Model.h"
 #include "Engine/Graphics/Models/Mesh.h"
 #include "Engine/Graphics/Materials/MaterialBase.h"
+#include "Engine/Graphics/Materials/SkyboxMaterial.h"
 #include "Engine/Graphics/Lights/DirectionalLight.h"
 #include "Engine/Graphics/GPUDevice.h"
 #include "Engine/Engine/Engine.h"
@@ -45,6 +46,11 @@ void RenderContext::Init(int32 width, int32 height)
 	auto shadowDesc = GPUTextureDescription::New2D(width, height, PixelFormat::D24_UNorm_S8_UInt, GPUTextureFlags::DepthStencil | GPUTextureFlags::ShaderResource);
 	shadowTexture->Init(shadowDesc);
 	ShadowTexture = shadowTexture;
+
+	/*Scene* scene = Engine::MainScene;
+	Mesh* skyMesh = scene->m_SkyboxMesh;
+	SkyboxMaterial* skyboxMaterial = static_cast<SkyboxMaterial*>(scene->m_SkyboxMaterial);
+	skyboxMaterial->PreIntegrateCubemap(this, skyMesh);*/
 }
 
 void RenderContext::BeforeDraw()

@@ -2,6 +2,26 @@
 
 using namespace DawnEngine;
 
+#pragma region GPUTextureView
+
+GPUTexture* GPUTextureView::GetParent() const
+{
+	return m_Parent;
+}
+
+PixelFormat GPUTextureView::GetFormat() const
+{
+	return m_Parent->Format();
+}
+
+MSAALevel GPUTextureView::GetMSAA() const
+{
+	return m_Parent->MultiSampleLevel();
+}
+
+#pragma endregion
+
+#pragma region GPUTexture
 
 GPUTexture::GPUTexture()
 {
@@ -19,3 +39,5 @@ bool GPUTexture::Init(const GPUTextureDescription& desc)
 	}
 	return true;
 }
+
+#pragma endregion

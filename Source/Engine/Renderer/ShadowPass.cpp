@@ -27,8 +27,8 @@ void ShadowPass::RenderShadow(RenderContext* renderContext, DirectionalLight* li
 	context->UpdateCB(renderContext->GlobalConstantBuffer, &renderContext->GlobalConstant);
 
 	context->SetViewportAndScissors(renderTarget->Width(), renderTarget->Height());
-	context->ClearDepth(renderTarget);
-	context->SetRenderTarget(nullptr, renderTarget);
+	context->ClearDepth(renderTarget->View());
+	context->SetRenderTarget(nullptr, renderTarget->View());
 	m_ShadowMaterial->Draw(context);
 	for (auto drawCall : renderContext->DrawCallList)
 	{

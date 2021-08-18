@@ -42,6 +42,7 @@ namespace DawnEngine::DX12
 {
 	class GPUDeviceDX12;
 	class GPUTextureDX12;
+	class GPUTextureViewDX12;
 	class GPUPipelineStateDX12;
 	class GPUResourceOwnerDX12;
 	class GPUConstantBufferDX12;
@@ -79,11 +80,11 @@ namespace DawnEngine::DX12
 		void FrameEnd() override;
 		void SetViewport(const Math::Viewport& viewport) override;
 		void SetScissor(const Math::Rectangle& scissorRect) override;
-		void Clear(GPUTexture* rt, const Color& color) override;
-		void ClearDepth(GPUTexture* depthBuffer, float depthValue) override;
-		void SetRenderTarget(GPUTexture* rt) override;
-		void SetRenderTarget(GPUTexture* rt, GPUTexture* depthBuffer) override;
-		void BindSR(int32 slot, GPUTexture* texture) override;
+		void Clear(GPUTextureView* rt, const Color& color) override;
+		void ClearDepth(GPUTextureView* depthBuffer, float depthValue) override;
+		void SetRenderTarget(GPUTextureView* rt) override;
+		void SetRenderTarget(GPUTextureView* rt, GPUTextureView* depthBuffer) override;
+		void BindSR(int32 slot, GPUTextureView* view) override;
 		void BindVB(GPUBuffer* vertexBuffer) override;
 		void BindIB(GPUBuffer* indexBuffer) override;
 		void BindCB(int32 slot, GPUConstantBuffer* cb) override;
@@ -100,7 +101,7 @@ namespace DawnEngine::DX12
 	private:
 
 		// 添加资源屏障
-		void addResourceBarrier(ID3D12Resource* resource, const D3D12_RESOURCE_STATES before, const D3D12_RESOURCE_STATES after);
+		void addResourceBarrier(ID3D12Resource* resource, const D3D12_RESOURCE_STATES before, const D3D12_RESOURCE_STATES after, const int32 subresourceIndex);
 
 		// 当要调用绘制指令时
 		void onDrawCall();
@@ -140,8 +141,8 @@ namespace DawnEngine::DX12
 		GPUBufferDX12* m_VertexBufferHandle;
 		GPUBufferDX12* m_IndexBufferHandle;
 
-		GPUTextureDX12* m_RenderTargetTexture;
-		GPUTextureDX12* m_DepthTexture;
+		GPUTextureViewDX12* m_RenderTargetHandle;
+		GPUTextureViewDX12* m_DepthTextureHandle;
 
 		bool m_RTDirtyFlag = false;
 		bool m_PSDirtyFlag = false;

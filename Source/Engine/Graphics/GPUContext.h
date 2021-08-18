@@ -10,6 +10,7 @@ namespace DawnEngine
 	class GPUDevice;
 	class GPUBuffer;
 	class GPUTexture;
+	class GPUTextureView;
 	class GPUResource;
 	class GPUPipelineState;
 	class GPUConstantBuffer;
@@ -51,19 +52,19 @@ namespace DawnEngine
 	public:
 
 		// 用指定的颜色Clear 渲染目标纹理
-		virtual void Clear(GPUTexture* rt, const Color& color) = 0;
+		virtual void Clear(GPUTextureView* rt, const Color& color) = 0;
 
 		// 清理深度缓冲纹理
-		virtual void ClearDepth(GPUTexture* depthBuffer, float depthValue = 1.0f) = 0;
+		virtual void ClearDepth(GPUTextureView* depthBuffer, float depthValue = 1.0f) = 0;
 
 		// 设置渲染目标
-		virtual void SetRenderTarget(GPUTexture* rt) = 0;
+		virtual void SetRenderTarget(GPUTextureView* rt) = 0;
 
 		// 设置渲染目标和深度缓冲区
-		virtual void SetRenderTarget(GPUTexture* rt, GPUTexture* depthBuffer) = 0;
+		virtual void SetRenderTarget(GPUTextureView* rt, GPUTextureView* depthBuffer) = 0;
 
 		// 绑定纹理到着色器资源
-		virtual void BindSR(int32 slot, GPUTexture* texture) = 0;
+		virtual void BindSR(int32 slot, GPUTextureView* view) = 0;
 
 		// 绑定顶点缓冲区, vertex buffer
 		virtual void BindVB(GPUBuffer* vertexBuffer) = 0;

@@ -51,8 +51,8 @@ void GPUContextDX12::Reset()
 	m_PSDirtyFlag = false;
 	m_CBDirtyFlag = false;
 	m_SRDirtyMask = 0;
-	m_RenderTargetTexture = nullptr;
-	m_DepthTexture = nullptr;
+	m_RenderTargetHandle = nullptr;
+	m_DepthTextureHandle = nullptr;
 	m_VertexBufferHandle = nullptr;
 	m_IndexBufferHandle = nullptr;
 	Platform::MemoryClear(&m_ConstantBufferHandles, sizeof(m_ConstantBufferHandles));
@@ -73,11 +73,28 @@ void GPUContextDX12::SetResourceState(GPUResourceOwnerDX12* resource, D3D12_RESO
 		return;
 	}
 	auto& state = resource->State;
-	const D3D12_RESOURCE_STATES before = state.GetState();
-	if (GPUResourceStateDX12::IsTransitionNeeded(before, after))
+
+	if (subresourceIndex == D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES && !state.IsAllSubresourcesSame())
 	{
-		addResourceBarrier(resource->GetResource(), before, after);
-		state.Initialize(after);
+		const uint32 subresourceCount = state.GetSubresourcesCount();
+		for (uint32 i = 0; i < subresourceCount; i++)
+		{
+			const D3D12_RESOURCE_STATES before = state.GetSubresourceState(i);
+			if (before != after)
+			{
+				addResourceBarrier(resource->GetResource(), before, after, i);
+				state.SetSubresourceState(i, after);
+			}
+		}
+	}
+	else
+	{
+		const D3D12_RESOURCE_STATES before = state.GetSubresourceState(subresourceIndex);
+		if (GPUResourceStateDX12::IsTransitionNeeded(before, after))
+		{
+			addResourceBarrier(resource->GetResource(), before, after, subresourceIndex);
+			state.SetSubresourceState(subresourceIndex, after);
+		}
 	}
 }
 
@@ -124,20 +141,20 @@ void GPUContextDX12::SetScissor(const Math::Rectangle& scissorRect)
 	m_CommandList->RSSetScissorRects(1, &rect);
 }
 
-void GPUContextDX12::Clear(GPUTexture* rt, const Color& color)
+void GPUContextDX12::Clear(GPUTextureView* rt, const Color& color)
 {
-	auto rtDX12 = static_cast<GPUTextureDX12*>(rt);
+	auto rtDX12 = static_cast<GPUTextureViewDX12*>(rt);
 	if (rtDX12)
 	{
-		SetResourceState(rtDX12, D3D12_RESOURCE_STATE_RENDER_TARGET);
+		SetResourceState(rtDX12->GetResourceOwner(), D3D12_RESOURCE_STATE_RENDER_TARGET, rtDX12->SubresourceIndex);
 		flushRBs();
 		m_CommandList->ClearRenderTargetView(rtDX12->RTV(), color.Raw, 0, nullptr);
 	}
 }
 
-void GPUContextDX12::ClearDepth(GPUTexture* depthBuffer, float depthValue)
+void GPUContextDX12::ClearDepth(GPUTextureView* depthBuffer, float depthValue)
 {
-	auto depthBufferDX12 = static_cast<GPUTextureDX12*>(depthBuffer);
+	auto depthBufferDX12 = static_cast<GPUTextureViewDX12*>(depthBuffer);
 
 	if (depthBufferDX12)
 	{
@@ -148,35 +165,35 @@ void GPUContextDX12::ClearDepth(GPUTexture* depthBuffer, float depthValue)
 	}
 }
 
-void GPUContextDX12::SetRenderTarget(GPUTexture* rt)
+void GPUContextDX12::SetRenderTarget(GPUTextureView* rt)
 {
-	GPUTextureDX12* rtDX12 = static_cast<GPUTextureDX12*>(rt);
-	if (m_RenderTargetTexture != rtDX12 || m_DepthTexture != nullptr)
+	GPUTextureViewDX12* rtDX12 = static_cast<GPUTextureViewDX12*>(rt);
+	if (m_RenderTargetHandle != rtDX12 || m_DepthTextureHandle != nullptr)
 	{
 		m_RTDirtyFlag = true;
 		m_PSDirtyFlag = true;
-		m_RenderTargetTexture = rtDX12;
-		m_DepthTexture = nullptr;
+		m_RenderTargetHandle = rtDX12;
+		m_DepthTextureHandle = nullptr;
 	}
 }
 
-void GPUContextDX12::SetRenderTarget(GPUTexture* rt, GPUTexture* depthBuffer)
+void GPUContextDX12::SetRenderTarget(GPUTextureView* rt, GPUTextureView* depthBuffer)
 {
-	GPUTextureDX12* rtDX12 = rt != nullptr ? static_cast<GPUTextureDX12*>(rt) : nullptr;
-	auto depthBufferDX12 = depthBuffer ? static_cast<GPUTextureDX12*>(depthBuffer) : nullptr;
-	if (m_RenderTargetTexture != rtDX12 || m_DepthTexture != depthBuffer)
+	auto rtDX12 = rt != nullptr ? static_cast<GPUTextureViewDX12*>(rt) : nullptr;
+	auto depthBufferDX12 = depthBuffer ? static_cast<GPUTextureViewDX12*>(depthBuffer) : nullptr;
+	if (m_RenderTargetHandle != rtDX12 || m_DepthTextureHandle != depthBuffer)
 	{
 		m_RTDirtyFlag = true;
 		m_PSDirtyFlag = true;
-		m_RenderTargetTexture = rtDX12;
-		m_DepthTexture = depthBufferDX12;
+		m_RenderTargetHandle = rtDX12;
+		m_DepthTextureHandle = depthBufferDX12;
 	}
 }
 
-void GPUContextDX12::BindSR(int32 slot, GPUTexture* texture)
+void GPUContextDX12::BindSR(int32 slot, GPUTextureView* view)
 {
 	ASSERT(slot >= 0 && slot < DX12_MAX_SR_BINDED);
-	const auto texDX12 = static_cast<GPUTextureDX12*>(texture);
+	const auto texDX12 = static_cast<GPUTextureViewDX12*>(view);
 	if (m_ShaderResourceHandles[slot] != texDX12)
 	{
 		m_SRDirtyMask |= 1 << slot;
@@ -301,7 +318,7 @@ void GPUContextDX12::Flush()
 	Reset();
 }
 
-void GPUContextDX12::addResourceBarrier(ID3D12Resource* resource, const D3D12_RESOURCE_STATES before, const D3D12_RESOURCE_STATES after)
+void GPUContextDX12::addResourceBarrier(ID3D12Resource* resource, const D3D12_RESOURCE_STATES before, const D3D12_RESOURCE_STATES after, const int32 subresourceIndex)
 {
 	D3D12_RESOURCE_BARRIER& barrier = m_ResourceBarrierBuffers[m_ResourceBarrierNum];
 	barrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
@@ -309,7 +326,7 @@ void GPUContextDX12::addResourceBarrier(ID3D12Resource* resource, const D3D12_RE
 	barrier.Transition.pResource = resource;
 	barrier.Transition.StateBefore = before;
 	barrier.Transition.StateAfter = after;
-	barrier.Transition.Subresource = D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES;
+	barrier.Transition.Subresource = subresourceIndex;
 	m_ResourceBarrierNum++;
 }
 
@@ -373,10 +390,10 @@ void GPUContextDX12::flushRTVs()
 		m_RTDirtyFlag = false;
 		// Render Target
 		D3D12_CPU_DESCRIPTOR_HANDLE renderTargetCPU;
-		if (m_RenderTargetTexture)
+		if (m_RenderTargetHandle)
 		{
-			renderTargetCPU = m_RenderTargetTexture->RTV();
-			SetResourceState(m_RenderTargetTexture, D3D12_RESOURCE_STATE_RENDER_TARGET);
+			renderTargetCPU = m_RenderTargetHandle->RTV();
+			SetResourceState(m_RenderTargetHandle->GetResourceOwner(), D3D12_RESOURCE_STATE_RENDER_TARGET, m_RenderTargetHandle->SubresourceIndex);
 		}
 		else
 		{
@@ -384,10 +401,10 @@ void GPUContextDX12::flushRTVs()
 		}
 		// Depth Buffer
 		D3D12_CPU_DESCRIPTOR_HANDLE depthBufferCPU;
-		if (m_DepthTexture)
+		if (m_DepthTextureHandle)
 		{
-			depthBufferCPU = m_DepthTexture->DSV();
-			SetResourceState(m_DepthTexture, D3D12_RESOURCE_STATE_DEPTH_WRITE);
+			depthBufferCPU = m_DepthTextureHandle->DSV();
+			SetResourceState(m_DepthTextureHandle->GetResourceOwner(), D3D12_RESOURCE_STATE_DEPTH_WRITE, m_DepthTextureHandle->SubresourceIndex);
 		}
 		else
 		{
@@ -436,7 +453,7 @@ void GPUContextDX12::flushPS()
 	{
 		m_PSDirtyFlag = false;
 
-		m_CommandList->SetPipelineState(m_CurrentState->GetState(m_DepthTexture, m_RenderTargetTexture));
+		m_CommandList->SetPipelineState(m_CurrentState->GetState(m_DepthTextureHandle, m_RenderTargetHandle));
 		m_CommandList->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	}
 }

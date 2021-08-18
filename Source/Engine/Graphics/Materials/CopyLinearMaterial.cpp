@@ -2,6 +2,7 @@
 #include "Engine/Graphics/GPUDevice.h"
 #include "Engine/Graphics/GPUPipelineState.h"
 #include "Engine/Graphics/Shaders/GPUShader.h"
+#include "Engine/Graphics/Textures/GPUTexture.h"
 #include "CompiledShaders/CopyLinearVS.h"
 #include "CompiledShaders/CopyLinearPS.h"
 
@@ -39,5 +40,5 @@ void CopyLinearMaterial::Draw(GPUContext* context)
 		return;
 	}
 	context->SetState(m_PipelineState);
-	context->BindSR(0, SrcTexture);
+	context->BindSR(0, SrcTexture->View());
 }

@@ -97,9 +97,9 @@ void ForwardPass::Render(RenderContext* renderContext)
 	auto depthTexture = renderContext->DepthTexture;
 
 	context->SetViewportAndScissors(renderContext->Width, renderContext->Height);
-	context->Clear(renderTarget, Color::Gray);
-	context->ClearDepth(depthTexture);
-	context->SetRenderTarget(renderTarget, depthTexture);
+	context->Clear(renderTarget->View(), Color::Gray);
+	context->ClearDepth(depthTexture->View());
+	context->SetRenderTarget(renderTarget->View(), depthTexture->View());
 
 	for (auto drawCall : renderContext->DrawCallList)
 	{

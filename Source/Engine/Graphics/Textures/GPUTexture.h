@@ -8,31 +8,29 @@
 
 namespace DawnEngine
 {
-	//class GPUTextureView : GPUResourceView
-	//{
-	//public:
+	class GPUTexture;
 
-	//	GPUResource* GetParent() const { return m_Parent; }
+	class GPUTextureView : GPUResourceView
+	{
+	public:
 
-	//	PixelFormat GetFormat() const { return m_Format; }
+		GPUTexture* GetParent() const;
 
-	//	MSAALevel GetMSAA() const { return m_Msaa; }
+		PixelFormat GetFormat() const;
 
-	//protected:
+		MSAALevel GetMSAA() const;
 
-	//	void Init(GPUResource* parent, PixelFormat format, MSAALevel msaa)
-	//	{
-	//		m_Parent = parent;
-	//		m_Format = format;
-	//		m_Msaa = msaa;
-	//	}
+	protected:
 
-	//protected:
+		void Init(GPUTexture* parent)
+		{
+			m_Parent = parent;
+		}
 
-	//	GPUResource* m_Parent = nullptr;
-	//	PixelFormat m_Format = PixelFormat::Unknown;
-	//	MSAALevel m_Msaa = MSAALevel::None;
-	//};
+	protected:
+
+		GPUTexture* m_Parent = nullptr;
+	};
 
 	class GPUTexture : GPUResource
 	{
@@ -51,6 +49,16 @@ namespace DawnEngine
 		PixelFormat Format() const { return m_Desc.Format; }
 
 		MSAALevel MultiSampleLevel() const { return m_Desc.MultiSampleLevel; }
+
+	public:
+
+		GPUTextureView* View() const { return View(0); }
+
+		virtual GPUTextureView* View(int32 arrayOrDepthIndex) const = 0;
+
+		// virtual GPUTextureView* View(int32 arrayOrDepthIndex, int32 mipMapIndex) const = 0;
+
+		virtual GPUTextureView* ViewArray() const = 0;
 
 	public:
 

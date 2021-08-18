@@ -35,6 +35,8 @@ namespace DawnEngine
 	__declspec(align(256)) struct PBRMaterialConstants
 	{
 		Color Color;
+		float Metallic;
+		float Roughness;
 	};
 
 	__declspec(align(256)) struct SkyboxMaterialConstants

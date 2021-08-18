@@ -12,5 +12,6 @@ namespace DawnEngine
 	public:
 		static void Render(GPUContext* context);
 
+		static RenderContext* GetRenderContext();
 	};
 }

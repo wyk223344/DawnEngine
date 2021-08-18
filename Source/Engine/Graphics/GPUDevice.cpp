@@ -5,7 +5,10 @@
 #include "Engine/Graphics/Materials/CopyLinearMaterial.h"
 #include "Engine/Graphics/Models/Mesh.h"
 #include "Engine/Graphics/Models/GeometryGenerator.h"
+#include "Engine/Graphics/Textures/GPUTexture.h"
 
+#include <vector>
+#include <map>
 
 using namespace DawnEngine;
 
@@ -17,6 +20,7 @@ struct GPUDevice::PrivateData
 {
 	CopyLinearMaterial* CopyLinearMaterial = nullptr;
 	Mesh* QuadMesh = nullptr;
+	std::map<uint32, GPUTexture*> ColorTextureDict;
 };
 
 
@@ -30,6 +34,7 @@ bool GPUDevice::Init()
 
 bool GPUDevice::LoadContent()
 {
+	GPUContext* context = GetMainContext();
 	// init quad
 	MeshData* quadMeshData = GeometryGenerator::CreateQuad(0.0f, 0.0f, 2.0f, 2.0f, 0.0f);
 	Mesh* quadMesh = New<Mesh>();
@@ -37,6 +42,18 @@ bool GPUDevice::LoadContent()
 	m_PrivateData->QuadMesh = quadMesh;
 	m_PrivateData->CopyLinearMaterial = New<CopyLinearMaterial>();
 	m_PrivateData->CopyLinearMaterial->InitGPUResource();
+	// init color texture
+	std::vector<Color> colorList = { Color::White, Color::Black, Color::Gray, Color::Red, Color::Green, Color::Blue };
+	auto colorTextureDesc = GPUTextureDescription::New2D(1, 1, PixelFormat::R8G8B8A8_UNorm);
+	uint32 arrayColorData[1] = { 0 };
+	for each (Color color in colorList)
+	{
+		arrayColorData[0] = color.ToRGBA();
+		GPUTexture* colorTexture = CreateTexture();
+		colorTexture->Init(colorTextureDesc);
+		context->UpdateTexture(colorTexture, 0, 0, arrayColorData, 4, 4);
+		m_PrivateData->ColorTextureDict[color.GetHashCode()] = colorTexture;
+	}
 	return true;
 }
 
@@ -83,4 +100,9 @@ Mesh* GPUDevice::GetFullScreenQuadMesh()
 CopyLinearMaterial* GPUDevice::GetCopyLinearMaterial()
 {
 	return m_PrivateData->CopyLinearMaterial;
+}
+
+GPUTexture* GPUDevice::GetColorTexture(Color color)
+{
+	return m_PrivateData->ColorTextureDict[color.GetHashCode()];
 }

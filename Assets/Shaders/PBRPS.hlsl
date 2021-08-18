@@ -1,6 +1,14 @@
 #include "Common.hlsli"
 #include "Lighting.hlsli"
 
+cbuffer MaterialConstants : register(b2)
+{
+	float4 MainColor;
+	float Metallic;
+	float Roughness;
+};
+
+
 struct VertexOutput
 {
 	float4 positionCS  : SV_POSITION;
@@ -18,13 +26,13 @@ Texture2D AOMap : register(t4);
 
 
 
-
-
 float4 main(VertexOutput input) : SV_TARGET
 {
-	float3 albedo = AlbedoMap.Sample(SamplerLinearClamp, input.uv).rgb;
-	float metallic = MetallicMap.Sample(SamplerLinearClamp, input.uv).r;
-	float roughness = RoughnessMap.Sample(SamplerLinearClamp, input.uv).r;
+	// return float4(AlbedoMap.Sample(SamplerLinearClamp, input.positionWS.).rgb, 1.0f);
+
+	float3 albedo = AlbedoMap.Sample(SamplerLinearClamp, input.uv).rgb * MainColor.rgb;
+	float metallic = MetallicMap.Sample(SamplerLinearClamp, input.uv).r * Metallic;
+	float roughness = RoughnessMap.Sample(SamplerLinearClamp, input.uv).r * Roughness;
 	float ao = AOMap.Sample(SamplerLinearClamp, input.uv).r;
 	// TODO: 法线贴图的采样器有些问题，之后待调整
 	float4 normalMapSample = NormalMap.Sample(SamplerLinearClamp, input.uv);

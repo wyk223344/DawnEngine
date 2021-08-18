@@ -27,6 +27,7 @@ namespace DawnEngine::DX12
 
 		GPUResourceOwnerDX12()
 			: m_Resource(nullptr)
+			, m_SubresourceCount(0)
 		{
 		}
 
@@ -38,12 +39,15 @@ namespace DawnEngine::DX12
 
 		ID3D12Resource* GetResource() const { return m_Resource; }
 
+		uint32 GetSubresourcesCount() const { return m_SubresourceCount; }
+
 		D3D12_GPU_VIRTUAL_ADDRESS GetLocation() const { return m_Resource->GetGPUVirtualAddress(); }
 
-		void InitResource(ID3D12Resource* resource, const D3D12_RESOURCE_STATES initialState)
+		void InitResource(ID3D12Resource* resource, const D3D12_RESOURCE_STATES initialState, const uint32 subresourceCount = 1)
 		{
 			m_Resource = resource;
-			State.Initialize(initialState);
+			m_SubresourceCount = subresourceCount;
+			State.Initialize(subresourceCount, initialState);
 		}
 
 		void ReleaseResource()
@@ -62,6 +66,7 @@ namespace DawnEngine::DX12
 	protected:
 
 		ID3D12Resource* m_Resource;
+		uint32 m_SubresourceCount;
 
 	};
 
@@ -70,8 +75,13 @@ namespace DawnEngine::DX12
 	public:
 
 		IShaderResourceDX12()
+			: SubresourceIndex(0)
 		{
 		}
+
+	public:
+
+		int32 SubresourceIndex;
 
 	public:
 

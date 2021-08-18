@@ -117,6 +117,8 @@ DynamicAllocation UploadBufferDX12::Allocate(uint64 size, uint64 align)
 
     //LOG_WARNING("[UploadBufferDX12] Allocate CurPage CPUAddress %u Offset %u Size %u PageSize %u AlignSize %u", m_CurrentPage->CPUAddress, m_CurrentOffset, size, m_CurrentPage->Size, alignedSize);
 
+    // LOG_WARNING("CurGeneration %d", m_CurrentGeneration);
+
     return result;
 }
 
@@ -217,6 +219,8 @@ void UploadBufferDX12::BeginGeneration(uint64 generation)
             Delete(page);
         }
     }
+
+    m_CurrentGeneration = generation;
 }
 
 UploadBufferPageDX12* UploadBufferDX12::requestPage(uint64 size)

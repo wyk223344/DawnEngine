@@ -20,6 +20,7 @@ using namespace DawnEngine::Math;
 TextureData* Resource::LoadTexture(const char* filePath)
 {
 	LOG_INFO("[Resource] Start load texture %s.", filePath);
+
 	TextureData* textureData = New<TextureData>();
 	textureData->Data = stbi_load(
 		filePath,

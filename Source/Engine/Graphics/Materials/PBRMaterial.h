@@ -23,6 +23,9 @@ namespace DawnEngine
 		TextureData* NormalTexture;
 		TextureData* RoughnessTexture;
 
+		float Metallic;
+		float Roughness;
+
 	private:
 
 		PBRMaterialConstants m_ConstantInfo;

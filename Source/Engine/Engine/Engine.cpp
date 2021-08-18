@@ -24,8 +24,8 @@ int32 Engine::Main()
 	}
 
 	EngineService::OnInit();
-	InitMainWindow();
 	InitMainScene();
+	InitMainWindow();
 	Platform::BeforeRun();
 
 	Application::Init();

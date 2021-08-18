@@ -1,12 +1,14 @@
+#ifndef _LIGHTING_HLSLI
+#define _LIGHTING_HLSLI
 
 const float PI = 3.14159265359;
 
 
 /*
-   D项：正态分布函数
+   D项：法线分布函数  Normal Distribution Function
    估算在受到表面粗糙度的影响下，取向方向与中间向量一致的微平面的数量。这是用来估算微平面的主要函数。
 */
-// Trowbridge-Reitz GGX正态分布函数
+// Trowbridge-Reitz GGX法线分布函数
 float DistributionGGX(float3 N, float3 H, float roughness)
 {
     float a = roughness * roughness;
@@ -57,3 +59,5 @@ float3 FresnelSchlick(float NdotV, float3 F0)
 {
 	return F0 + (1.0 - F0) * pow(max(1.0f - NdotV, 0.0f), 5.0f);
 }
+
+#endif
