@@ -5,6 +5,7 @@
 #include "CompiledShaders/SkyboxPS.h"
 #include "CompiledShaders/IrradianceCubemapPS.h"
 #include "CompiledShaders/PrefilterCubemapPS.h"
+#include "Engine/Engine/Globals.h"
 #include "Engine/Graphics/GPUDevice.h"
 #include "Engine/Graphics/GPUPipelineState.h"
 #include "Engine/Graphics/Shaders/GPUShader.h"
@@ -13,6 +14,7 @@
 #include "Engine/Graphics/Textures/GPUTextureDescription.h"
 #include "Engine/Graphics/Textures/TextureData.h"
 #include "Engine/Graphics/Models/Mesh.h"
+#include "Engine/Graphics/Models/GeometryGenerator.h"
 
 #include "Engine/Renderer/RenderContext.h"
 
@@ -89,13 +91,23 @@ void SkyboxMaterial::Draw(GPUContext* context)
 	context->BindSR(0, m_IrradianceTexture->ViewArray());
 }
 
-
+/// <summary>
+/// TODO: 环境贴图的预处理，计算Irradiance预积分和Prefilter Map积分。临时放在这里，待重构
+/// </summary>
+/// <param name="renderContext"></param>
+/// <param name="skyMesh"></param>
 void SkyboxMaterial::PreIntegrateCubemap(RenderContext* renderContext, Mesh* skyMesh)
 {
 	GPUDevice* device = GPUDevice::Instance;
 	GPUContext* context = device->GetMainContext();
 
 	context->FrameBegin();
+
+	MeshData* cubeMeshData = GeometryGenerator::CreateBox(2.0f, 2.0f, 2.0f);
+	Mesh* cubMesh = New<Mesh>();
+	cubMesh->Init(*cubeMeshData);
+
+	float test = Math::Tan(45.0f * DegreesToRadians);
 
 	// draw irradiance texture
 	Transform tempTransform;
@@ -107,23 +119,40 @@ void SkyboxMaterial::PreIntegrateCubemap(RenderContext* renderContext, Mesh* sky
 		Math::Vector3::Forward,
 		Math::Vector3::Backward
 	};
+	std::vector<Math::Vector3> lookUpDirs = {
+		Math::Vector3::Up,
+		Math::Vector3::Up,
+		Math::Vector3::Backward,
+		Math::Vector3::Forward,
+		Math::Vector3::Up,
+		Math::Vector3::Up
+	};
+	renderContext->GlobalConstant.CameraPosition = Vector3(0.0f, 0.0f, 0.0f);
+	context->BindCB((int32)GPUConstantBufferSlot::Global, renderContext->GlobalConstantBuffer);
+	// context->BindCB((int32)GPUConstantBufferSlot::Mesh, renderContext->MeshConstantBuffer);
 	Matrix4x4 projMatrix;
-	Matrix4x4::Ortho(1.0f, 1.0f, 0.01f, 1000.0f, projMatrix);
-	//context->SetState(m_IrradiancePSO);
-	//context->BindSR(0, m_GPUTexture->ViewArray());
+	// Matrix4x4::Ortho(m_IrradianceTexture->Width(), m_IrradianceTexture->Height(), 0.01f, 1000.0f, projMatrix);
+	Matrix4x4::PerspectiveFov(90.0f * DegreesToRadians, (float)m_IrradianceTexture->Width() / m_IrradianceTexture->Height(), 0.1f, 100.0f, projMatrix);
+	context->SetState(m_IrradiancePSO);
+	context->BindSR(0, m_GPUTexture->ViewArray());
 	int index = 0;
 	for each (Math::Vector3 dir in lookAtPositions)
 	{
-		tempTransform.LookAt(dir);
-		// auto viewMatrix = tempTransform.GetWorldMatrix();
-		//viewMatrix.Invert();
-		//renderContext->GlobalConstant.ViewProjMatrix = viewMatrix * projMatrix;
-		// context->UpdateCB(renderContext->GlobalConstantBuffer, &renderContext->GlobalConstant);
+		tempTransform.LookAt(dir, lookUpDirs[index]);
+		auto viewMatrix = tempTransform.GetWorldMatrix();
+		viewMatrix.Invert();
+		renderContext->GlobalConstant.ViewProjMatrix = viewMatrix * projMatrix;
+		context->UpdateCB(renderContext->GlobalConstantBuffer, &renderContext->GlobalConstant);
+		
+		context->SetViewportAndScissors(m_IrradianceTexture->Width(), m_IrradianceTexture->Height());
+		context->Clear(m_IrradianceTexture->View(index), Color::Black);
 		context->SetRenderTarget(m_IrradianceTexture->View(index));
 
-		context->Draw(GPUDevice::Instance->GetColorTexture(Color::White));
+		// context->Draw(GPUDevice::Instance->GetColorTexture(Color::White));
 
-		// skyMesh->Draw(context);
+		// cubMesh->Draw(context);
+
+		skyMesh->Draw(context);
 
 		index++;
 	}

@@ -7,10 +7,10 @@
 using namespace DawnEngine::Math;
 
 
-void Transform::LookAt(const Vector3& target)
+void Transform::LookAt(const Vector3& target, const Vector3& up)
 {
 	Matrix4x4 matrix;
-	Matrix4x4::LookAt(Translation, target, Vector3::Up, matrix);
+	Matrix4x4::LookAt(Translation, target, up, matrix);
 	matrix.Invert();
 	Quaternion::RotationMatrix(matrix, Rotation);
 
