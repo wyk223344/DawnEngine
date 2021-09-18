@@ -97,6 +97,12 @@
     <Filter Include="Engine\Graphics\Lights">
       <UniqueIdentifier>{cbe1663a-1af7-4d26-81a6-a77887b32027}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Gui">
+      <UniqueIdentifier>{dad5f15f-4d78-4ed0-b061-ddb5a46b8598}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\imgui">
+      <UniqueIdentifier>{a28c7307-4f04-48cc-8e9e-82f96019a6d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine\Core\Delegate.h">
@@ -474,6 +480,27 @@
     <ClInclude Include="Source\Engine\Graphics\Materials\CopyLinearMaterial.h">
       <Filter>Engine\Graphics\Materials</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine\Gui\ImGuiHelper.h">
+      <Filter>Engine\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ThirdParty\imgui\imconfig.h">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ThirdParty\imgui\imgui.h">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ThirdParty\imgui\imgui_internal.h">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ThirdParty\imgui\imstb_rectpack.h">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ThirdParty\imgui\imstb_textedit.h">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ThirdParty\imgui\imstb_truetype.h">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\Main\Windows\main.cpp">
@@ -703,6 +730,24 @@
     </ClCompile>
     <ClCompile Include="Source\Engine\Graphics\Materials\CopyLinearMaterial.cpp">
       <Filter>Engine\Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Gui\ImGuiHelper.cpp">
+      <Filter>Engine\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThirdParty\imgui\imgui.cpp">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_demo.cpp">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_draw.cpp">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_tables.cpp">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_widgets.cpp">
+      <Filter>ThirdParty\imgui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

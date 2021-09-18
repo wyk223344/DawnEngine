@@ -11,6 +11,7 @@
 #include "ForwardPass.h"
 #include "LightPass.h"
 #include "RenderContext.h"
+#include "Engine/Gui/ImGuiHelper.h"
 
 using namespace DawnEngine;
 
@@ -43,7 +44,8 @@ void Renderer::Render(GPUContext* context)
     context->SetViewportAndScissors(renderContext->Width, renderContext->Height);
     context->Clear(backBuffer->View(), Color::Gray);
     context->SetRenderTarget(backBuffer->View());
-    context->Draw(renderContext->ForwardPassRT);
+    // context->Draw(renderContext->ForwardPassRT);
+    ImGuiHelper::Instance()->Draw(context);
     //context->Draw(GPUDevice::Instance->GetColorTexture(Color::Blue));
     context->FlushState();
 }
@@ -80,6 +82,7 @@ bool RendererService::Init()
     RendererImpl::g_RenderContext = renderContext;
     ForwardPass::Instance()->Init();
     LightPass::Instance()->Init();
+    
     return true;
 }
 

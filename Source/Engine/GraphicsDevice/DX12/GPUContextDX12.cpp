@@ -123,7 +123,7 @@ void GPUContextDX12::FrameBegin()
 void GPUContextDX12::FrameEnd()
 {
 	GPUContext::FrameEnd();
-	Execute();
+	Execute(true);
 }
 
 void GPUContextDX12::SetViewport(const Math::Viewport& viewport)

@@ -17,6 +17,7 @@
 #include "Engine/Resource/Resource.h"
 #include "Engine/Graphics/Textures/TextureData.h"
 #include "Engine/Renderer/Renderer.h"
+#include "Engine/Gui/ImGuiHelper.h"
 
 using namespace DawnEngine;
 
@@ -42,7 +43,10 @@ void InitSkyBox()
 	material->CubeMap = textureData;
 	Engine::MainScene->SetSkyboxMaterial(material);
 
-	material->PreIntegrateCubemap(Renderer::GetRenderContext(), Engine::MainScene->m_SkyboxMesh);
+	// material->PreIntegrateCubemap(Renderer::GetRenderContext(), Engine::MainScene->m_SkyboxMesh);
+
+
+	ImGuiHelper::Instance()->Init();
 }
 
 // “ı”∞≤‚ ‘≥°æ∞

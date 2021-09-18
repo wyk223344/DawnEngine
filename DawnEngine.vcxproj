@@ -257,6 +257,7 @@
     <ClInclude Include="Source\Engine\Graphics\Textures\GPUTexture.h" />
     <ClInclude Include="Source\Engine\Graphics\Textures\GPUTextureDescription.h" />
     <ClInclude Include="Source\Engine\Graphics\Textures\TextureData.h" />
+    <ClInclude Include="Source\Engine\Gui\ImGuiHelper.h" />
     <ClInclude Include="Source\Engine\Input\Enums.h" />
     <ClInclude Include="Source\Engine\Input\Input.h" />
     <ClInclude Include="Source\Engine\Input\InputDevice.h" />
@@ -282,6 +283,12 @@
     <ClInclude Include="Source\Engine\Renderer\ShadowPass.h" />
     <ClInclude Include="Source\Engine\Resource\Resource.h" />
     <ClInclude Include="Source\Game\Game.h" />
+    <ClInclude Include="Source\ThirdParty\imgui\imconfig.h" />
+    <ClInclude Include="Source\ThirdParty\imgui\imgui.h" />
+    <ClInclude Include="Source\ThirdParty\imgui\imgui_internal.h" />
+    <ClInclude Include="Source\ThirdParty\imgui\imstb_rectpack.h" />
+    <ClInclude Include="Source\ThirdParty\imgui\imstb_textedit.h" />
+    <ClInclude Include="Source\ThirdParty\imgui\imstb_truetype.h" />
     <ClInclude Include="Source\ThirdParty\stb_image\stb_image.h" />
     <ClInclude Include="Source\ThirdParty\tiny_obj_loader\tiny_obj_loader.h" />
   </ItemGroup>
@@ -344,6 +351,7 @@
     <ClCompile Include="Source\Engine\Graphics\Textures\GPUTexture.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Textures\GPUTextureDescription.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Textures\TextureData.cpp" />
+    <ClCompile Include="Source\Engine\Gui\ImGuiHelper.cpp" />
     <ClCompile Include="Source\Engine\Input\Input.cpp" />
     <ClCompile Include="Source\Engine\Input\Keyboard.cpp" />
     <ClCompile Include="Source\Engine\Input\Mouse.cpp" />
@@ -361,6 +369,11 @@
     <ClCompile Include="Source\Engine\Renderer\ShadowPass.cpp" />
     <ClCompile Include="Source\Engine\Resource\Resource.cpp" />
     <ClCompile Include="Source\Game\Game.cpp" />
+    <ClCompile Include="Source\ThirdParty\imgui\imgui.cpp" />
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_demo.cpp" />
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_draw.cpp" />
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_tables.cpp" />
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\ThirdParty\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
