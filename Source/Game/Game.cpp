@@ -43,10 +43,6 @@ void InitSkyBox()
 	material->CubeMap = textureData;
 	Engine::MainScene->SetSkyboxMaterial(material);
 
-	// material->PreIntegrateCubemap(Renderer::GetRenderContext(), Engine::MainScene->m_SkyboxMesh);
-
-
-	ImGuiHelper::Instance()->Init();
 }
 
 // “ı”∞≤‚ ‘≥°æ∞

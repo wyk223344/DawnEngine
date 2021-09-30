@@ -7,6 +7,7 @@
 #include "Engine/Platform/CreateWindowSettings.h"
 #include "Engine/Engine/Scene.h"
 #include "Engine/Renderer/ForwardPass.h"
+#include "Engine/Gui/ImGuiHelper.h"
 #include "Application.h"
 
 using namespace DawnEngine;
@@ -26,6 +27,9 @@ int32 Engine::Main()
 	EngineService::OnInit();
 	InitMainScene();
 	InitMainWindow();
+
+	ImGuiHelper::Instance()->Init();
+
 	Platform::BeforeRun();
 
 	Application::Init();

@@ -49,7 +49,7 @@ namespace DawnEngine::DX12
 	class GPUBufferDX12;
 	class IShaderResourceDX12;
 
-	class GPUContextDX12 : GPUContext
+	class GPUContextDX12 : public GPUContext
 	{
 	public:
 

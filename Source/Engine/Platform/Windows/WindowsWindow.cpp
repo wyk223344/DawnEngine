@@ -19,14 +19,16 @@ WindowsWindow::WindowsWindow(const CreateWindowSettings& settings)
 	RECT R = { 0, 0, m_Width, m_Height };
 	AdjustWindowRect(&R, WS_OVERLAPPEDWINDOW, false);
 	std::wstring mMainWndCaption = L"d3d App";
+	int width = R.right - R.left;
+	int height = R.bottom - R.top;
 	HWND handle = CreateWindowW(
 		L"MainWnd",
 		L"DawnEngine",
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
-		m_Width,
-		m_Height,
+		width,
+		height,
 		0,
 		0,
 		(HINSTANCE)Platform::InstanceHandle,

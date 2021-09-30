@@ -44,8 +44,11 @@ void Renderer::Render(GPUContext* context)
     context->SetViewportAndScissors(renderContext->Width, renderContext->Height);
     context->Clear(backBuffer->View(), Color::Gray);
     context->SetRenderTarget(backBuffer->View());
-    // context->Draw(renderContext->ForwardPassRT);
-    ImGuiHelper::Instance()->Draw(context);
+    context->Draw(renderContext->ForwardPassRT);
+
+    ImGuiHelper::Instance()->BeforeDraw(renderContext);
+    ImGuiHelper::Instance()->Draw(renderContext);
+    ImGuiHelper::Instance()->AfterDraw(renderContext);
     //context->Draw(GPUDevice::Instance->GetColorTexture(Color::Blue));
     context->FlushState();
 }
@@ -82,7 +85,6 @@ bool RendererService::Init()
     RendererImpl::g_RenderContext = renderContext;
     ForwardPass::Instance()->Init();
     LightPass::Instance()->Init();
-    
     return true;
 }
 

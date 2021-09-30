@@ -77,6 +77,8 @@ namespace DawnEngine::DX12
 		// Null Descriptor
 		DescriptorHeapWithSlotsDX12::Slot Null_SRV;
 
+		Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> ImGui_Heap_Srv;
+
 	private:
 
 		ID3D12Device* m_Device;

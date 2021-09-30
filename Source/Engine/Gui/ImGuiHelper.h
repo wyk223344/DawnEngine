@@ -7,6 +7,7 @@ namespace DawnEngine
 	class CopyLinearMaterial;
 	class GPUTexture;
 	class GPUContext;
+	class RenderContext;
 
 	class ImGuiHelper : public Singleton<ImGuiHelper>
 	{
@@ -18,7 +19,13 @@ namespace DawnEngine
 
 		bool Init();
 
-		void Draw(GPUContext* context);
+		void SetDisplaySize(int width, int height, float scaleX = 1.0f, float scaleY = 1.0f);
+
+		void BeforeDraw(RenderContext* renderContext);
+
+		void AfterDraw(RenderContext* renderContext);
+
+		void Draw(RenderContext* renderContext);
 
 	private:
 

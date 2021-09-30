@@ -7,7 +7,7 @@
 #include "Engine/Core/Memory/Memory.h"
 #include "WindowsInput.h"
 #include "Engine/Platform/WindowsManager.h"
-
+#include "ThirdParty/imgui/imgui_impl_win32.h"
 #include <string>
 
 using namespace DawnEngine;
@@ -15,10 +15,11 @@ using namespace DawnEngine;
 
 void* WindowsPlatform::InstanceHandle = nullptr;
 
-
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+	ImGui_ImplWin32_WndProcHandler(hwnd, msg, wParam, lParam);
 	if (hwnd != nullptr)
 	{
 		// Find window by handle

@@ -18,6 +18,32 @@ namespace DawnEngine
 		Math::Matrix4x4 WorldMatrix;
 	};
 
+	struct LightSettings
+	{
+		float SunLightIntensity;
+		Math::Vector3 SunLightDirection;
+		Color SunLightColor;
+		float IBLIntensity;
+		float IBLRotation;
+	};
+
+	struct CameraSettings
+	{
+
+	};
+
+	struct PostProcessSettings
+	{
+
+	};
+
+	struct RenderSettings
+	{
+		LightSettings Light;
+		CameraSettings Camera;
+		PostProcessSettings PostProcess;
+	};
+
 	class RenderContext
 	{
 	public:
@@ -32,6 +58,8 @@ namespace DawnEngine
 
 		int32 Width;
 		int32 Height;
+
+		RenderSettings Settings;
 
 		GPUTexture* ForwardPassRT;
 		GPUTexture* DepthTexture;

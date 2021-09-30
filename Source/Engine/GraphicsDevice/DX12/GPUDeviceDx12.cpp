@@ -76,6 +76,13 @@ bool GPUDeviceDX12::Init()
 	{
 		return false;
 	}
+	D3D12_DESCRIPTOR_HEAP_DESC imguiSrvHeapDesc;
+	imguiSrvHeapDesc.NumDescriptors = 1;
+	imguiSrvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+	imguiSrvHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+	imguiSrvHeapDesc.NodeMask = 0;
+	ThrowIfFailed(m_Device->CreateDescriptorHeap(
+		&imguiSrvHeapDesc, IID_PPV_ARGS(ImGui_Heap_Srv.GetAddressOf())));
 
 	// Create empty views
 	{

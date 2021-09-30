@@ -257,6 +257,7 @@
     <ClInclude Include="Source\Engine\Graphics\Textures\GPUTexture.h" />
     <ClInclude Include="Source\Engine\Graphics\Textures\GPUTextureDescription.h" />
     <ClInclude Include="Source\Engine\Graphics\Textures\TextureData.h" />
+    <ClInclude Include="Source\Engine\Gui\ImGuiExtensions.h" />
     <ClInclude Include="Source\Engine\Gui\ImGuiHelper.h" />
     <ClInclude Include="Source\Engine\Input\Enums.h" />
     <ClInclude Include="Source\Engine\Input\Input.h" />
@@ -285,6 +286,8 @@
     <ClInclude Include="Source\Game\Game.h" />
     <ClInclude Include="Source\ThirdParty\imgui\imconfig.h" />
     <ClInclude Include="Source\ThirdParty\imgui\imgui.h" />
+    <ClInclude Include="Source\ThirdParty\imgui\imgui_impl_dx12.h" />
+    <ClInclude Include="Source\ThirdParty\imgui\imgui_impl_win32.h" />
     <ClInclude Include="Source\ThirdParty\imgui\imgui_internal.h" />
     <ClInclude Include="Source\ThirdParty\imgui\imstb_rectpack.h" />
     <ClInclude Include="Source\ThirdParty\imgui\imstb_textedit.h" />
@@ -351,6 +354,7 @@
     <ClCompile Include="Source\Engine\Graphics\Textures\GPUTexture.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Textures\GPUTextureDescription.cpp" />
     <ClCompile Include="Source\Engine\Graphics\Textures\TextureData.cpp" />
+    <ClCompile Include="Source\Engine\Gui\ImGuiExtensions.cpp" />
     <ClCompile Include="Source\Engine\Gui\ImGuiHelper.cpp" />
     <ClCompile Include="Source\Engine\Input\Input.cpp" />
     <ClCompile Include="Source\Engine\Input\Keyboard.cpp" />
@@ -372,6 +376,8 @@
     <ClCompile Include="Source\ThirdParty\imgui\imgui.cpp" />
     <ClCompile Include="Source\ThirdParty\imgui\imgui_demo.cpp" />
     <ClCompile Include="Source\ThirdParty\imgui\imgui_draw.cpp" />
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_impl_dx12.cpp" />
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="Source\ThirdParty\imgui\imgui_tables.cpp" />
     <ClCompile Include="Source\ThirdParty\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\ThirdParty\stb_image\stb_image.cpp" />
