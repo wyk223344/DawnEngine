@@ -19,13 +19,13 @@ namespace DawnEngine
 
 		Scene();
 
-		// 获取根节点
+		// ????????
 		EntityBase* GetRootEntity() const { return m_RootEntity; }
 
-		// 设置天空盒材质
+		// ???????в???
 		void SetSkyboxMaterial(MaterialBase* material);
 
-		// 绘制天空盒
+		// ????????
 		void DrawSkybox(GPUContext* context);
 
 	public:

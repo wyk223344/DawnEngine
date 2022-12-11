@@ -23,7 +23,7 @@ float4 main(VertexOutput input) : SV_TARGET
 	float3 right = normalize(cross(up, normal));
 	up = normalize(cross(normal, right));
 
-	float sampleDelta = 0.01f;
+	float sampleDelta = 0.04f;
 	float numSamples = 0.0f;
 
 	// 在半球上采样

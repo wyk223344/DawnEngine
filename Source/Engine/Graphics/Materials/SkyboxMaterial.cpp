@@ -87,8 +87,8 @@ bool SkyboxMaterial::InitGPUResource()
 void SkyboxMaterial::Draw(GPUContext* context)
 {
 	context->SetState(m_PipelineState);
-	context->BindSR(0, m_GPUTexture->ViewArray());
-	//context->BindSR(0, m_IrradianceTexture->ViewArray());
+	//context->BindSR(0, m_GPUTexture->ViewArray());
+	context->BindSR(0, m_IrradianceTexture->ViewArray());
 }
 
 /// <summary>
