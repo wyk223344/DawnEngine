@@ -1,0 +1,8 @@
+target("Engine")
+    set_kind("static")
+    add_deps("imgui")
+    add_deps("stb_image")
+    add_deps("tiny_obj_loader")
+    add_includedirs("../", {public=true})
+    add_headerfiles("**.h")
+    add_files("**.cpp")
