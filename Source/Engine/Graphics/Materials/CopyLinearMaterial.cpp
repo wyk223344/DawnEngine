@@ -3,8 +3,8 @@
 #include "Engine/Graphics/GPUPipelineState.h"
 #include "Engine/Graphics/Shaders/GPUShader.h"
 #include "Engine/Graphics/Textures/GPUTexture.h"
-#include "CompiledShaders/CopyLinearVS.h"
-#include "CompiledShaders/CopyLinearPS.h"
+#include "CopyLinearVS.h"
+#include "CopyLinearPS.h"
 
 using namespace DawnEngine;
 

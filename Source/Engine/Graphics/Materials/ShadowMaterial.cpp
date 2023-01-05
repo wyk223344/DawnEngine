@@ -3,8 +3,8 @@
 #include "Engine/Graphics/GPUContext.h"
 #include "Engine/Graphics/GPUPipelineState.h"
 #include "Engine/Graphics/Shaders/GPUShader.h"
-#include "CompiledShaders/ShadowCasterVS.h"
-#include "CompiledShaders/ShadowCasterPS.h"
+#include "ShadowCasterVS.h"
+#include "ShadowCasterPS.h"
 
 using namespace DawnEngine;
 

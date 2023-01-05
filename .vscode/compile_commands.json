@@ -1,1 +1,426 @@
 [
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\stb_image.pdb", "/Od", "/std:c++17", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\stb_image\\windows\\x64\\debug\\Source\\ThirdParty\\stb_image\\stb_image.cpp.obj", "Source\\ThirdParty\\stb_image\\stb_image.cpp"],
+  "file": "Source\\ThirdParty\\stb_image\\stb_image.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Core\\Log.cpp.obj", "Source\\Engine\\Core\\Log.cpp"],
+  "file": "Source\\Engine\\Core\\Log.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Core\\Math\\Common.cpp.obj", "Source\\Engine\\Core\\Math\\Common.cpp"],
+  "file": "Source\\Engine\\Core\\Math\\Common.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Core\\Math\\Matrix3x3.cpp.obj", "Source\\Engine\\Core\\Math\\Matrix3x3.cpp"],
+  "file": "Source\\Engine\\Core\\Math\\Matrix3x3.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Core\\Math\\Matrix4x4.cpp.obj", "Source\\Engine\\Core\\Math\\Matrix4x4.cpp"],
+  "file": "Source\\Engine\\Core\\Math\\Matrix4x4.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Core\\Math\\Quaternion.cpp.obj", "Source\\Engine\\Core\\Math\\Quaternion.cpp"],
+  "file": "Source\\Engine\\Core\\Math\\Quaternion.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Core\\Math\\Transform.cpp.obj", "Source\\Engine\\Core\\Math\\Transform.cpp"],
+  "file": "Source\\Engine\\Core\\Math\\Transform.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Core\\Math\\Vector2.cpp.obj", "Source\\Engine\\Core\\Math\\Vector2.cpp"],
+  "file": "Source\\Engine\\Core\\Math\\Vector2.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Core\\Math\\Vector3.cpp.obj", "Source\\Engine\\Core\\Math\\Vector3.cpp"],
+  "file": "Source\\Engine\\Core\\Math\\Vector3.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Core\\Math\\Vector4.cpp.obj", "Source\\Engine\\Core\\Math\\Vector4.cpp"],
+  "file": "Source\\Engine\\Core\\Math\\Vector4.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Core\\Types\\Color.cpp.obj", "Source\\Engine\\Core\\Types\\Color.cpp"],
+  "file": "Source\\Engine\\Core\\Types\\Color.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Engine\\Base\\ComponentBase.cpp.obj", "Source\\Engine\\Engine\\Base\\ComponentBase.cpp"],
+  "file": "Source\\Engine\\Engine\\Base\\ComponentBase.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Engine\\Base\\EntityBase.cpp.obj", "Source\\Engine\\Engine\\Base\\EntityBase.cpp"],
+  "file": "Source\\Engine\\Engine\\Base\\EntityBase.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Engine\\Components\\CameraComponent.cpp.obj", "Source\\Engine\\Engine\\Components\\CameraComponent.cpp"],
+  "file": "Source\\Engine\\Engine\\Components\\CameraComponent.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Engine\\Components\\InputComponent.cpp.obj", "Source\\Engine\\Engine\\Components\\InputComponent.cpp"],
+  "file": "Source\\Engine\\Engine\\Components\\InputComponent.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Engine\\Components\\LightComponent.cpp.obj", "Source\\Engine\\Engine\\Components\\LightComponent.cpp"],
+  "file": "Source\\Engine\\Engine\\Components\\LightComponent.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Engine\\Components\\MeshRendererComponent.cpp.obj", "Source\\Engine\\Engine\\Components\\MeshRendererComponent.cpp"],
+  "file": "Source\\Engine\\Engine\\Components\\MeshRendererComponent.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Engine\\Components\\TransformComponent.cpp.obj", "Source\\Engine\\Engine\\Components\\TransformComponent.cpp"],
+  "file": "Source\\Engine\\Engine\\Components\\TransformComponent.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Engine\\Engine.cpp.obj", "Source\\Engine\\Engine\\Engine.cpp"],
+  "file": "Source\\Engine\\Engine\\Engine.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Engine\\EngineService.cpp.obj", "Source\\Engine\\Engine\\EngineService.cpp"],
+  "file": "Source\\Engine\\Engine\\EngineService.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Engine\\Globals.cpp.obj", "Source\\Engine\\Engine\\Globals.cpp"],
+  "file": "Source\\Engine\\Engine\\Globals.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Engine\\Scene.cpp.obj", "Source\\Engine\\Engine\\Scene.cpp"],
+  "file": "Source\\Engine\\Engine\\Scene.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\GPUBuffer.cpp.obj", "Source\\Engine\\Graphics\\GPUBuffer.cpp"],
+  "file": "Source\\Engine\\Graphics\\GPUBuffer.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\GPUBufferDescription.cpp.obj", "Source\\Engine\\Graphics\\GPUBufferDescription.cpp"],
+  "file": "Source\\Engine\\Graphics\\GPUBufferDescription.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\GPUContext.cpp.obj", "Source\\Engine\\Graphics\\GPUContext.cpp"],
+  "file": "Source\\Engine\\Graphics\\GPUContext.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\GPUDevice.cpp.obj", "Source\\Engine\\Graphics\\GPUDevice.cpp"],
+  "file": "Source\\Engine\\Graphics\\GPUDevice.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\GPUPipelineState.cpp.obj", "Source\\Engine\\Graphics\\GPUPipelineState.cpp"],
+  "file": "Source\\Engine\\Graphics\\GPUPipelineState.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\Graphics.cpp.obj", "Source\\Engine\\Graphics\\Graphics.cpp"],
+  "file": "Source\\Engine\\Graphics\\Graphics.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\Lights\\DirectionalLight.cpp.obj", "Source\\Engine\\Graphics\\Lights\\DirectionalLight.cpp"],
+  "file": "Source\\Engine\\Graphics\\Lights\\DirectionalLight.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\Lights\\LightBase.cpp.obj", "Source\\Engine\\Graphics\\Lights\\LightBase.cpp"],
+  "file": "Source\\Engine\\Graphics\\Lights\\LightBase.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\Lights\\PointLight.cpp.obj", "Source\\Engine\\Graphics\\Lights\\PointLight.cpp"],
+  "file": "Source\\Engine\\Graphics\\Lights\\PointLight.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\Lights\\SpotLight.cpp.obj", "Source\\Engine\\Graphics\\Lights\\SpotLight.cpp"],
+  "file": "Source\\Engine\\Graphics\\Lights\\SpotLight.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\Materials\\CopyLinearMaterial.cpp.obj", "Source\\Engine\\Graphics\\Materials\\CopyLinearMaterial.cpp"],
+  "file": "Source\\Engine\\Graphics\\Materials\\CopyLinearMaterial.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\Materials\\DefaultMaterial.cpp.obj", "Source\\Engine\\Graphics\\Materials\\DefaultMaterial.cpp"],
+  "file": "Source\\Engine\\Graphics\\Materials\\DefaultMaterial.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\Materials\\MaterialBase.cpp.obj", "Source\\Engine\\Graphics\\Materials\\MaterialBase.cpp"],
+  "file": "Source\\Engine\\Graphics\\Materials\\MaterialBase.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\Materials\\PBRMaterial.cpp.obj", "Source\\Engine\\Graphics\\Materials\\PBRMaterial.cpp"],
+  "file": "Source\\Engine\\Graphics\\Materials\\PBRMaterial.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\Materials\\ShadowMaterial.cpp.obj", "Source\\Engine\\Graphics\\Materials\\ShadowMaterial.cpp"],
+  "file": "Source\\Engine\\Graphics\\Materials\\ShadowMaterial.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\Materials\\SkyboxMaterial.cpp.obj", "Source\\Engine\\Graphics\\Materials\\SkyboxMaterial.cpp"],
+  "file": "Source\\Engine\\Graphics\\Materials\\SkyboxMaterial.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\Models\\GeometryGenerator.cpp.obj", "Source\\Engine\\Graphics\\Models\\GeometryGenerator.cpp"],
+  "file": "Source\\Engine\\Graphics\\Models\\GeometryGenerator.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\Models\\Mesh.cpp.obj", "Source\\Engine\\Graphics\\Models\\Mesh.cpp"],
+  "file": "Source\\Engine\\Graphics\\Models\\Mesh.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\Models\\Model.cpp.obj", "Source\\Engine\\Graphics\\Models\\Model.cpp"],
+  "file": "Source\\Engine\\Graphics\\Models\\Model.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\PixelFormatExtensions.cpp.obj", "Source\\Engine\\Graphics\\PixelFormatExtensions.cpp"],
+  "file": "Source\\Engine\\Graphics\\PixelFormatExtensions.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\Shaders\\GPUShaderProgram.cpp.obj", "Source\\Engine\\Graphics\\Shaders\\GPUShaderProgram.cpp"],
+  "file": "Source\\Engine\\Graphics\\Shaders\\GPUShaderProgram.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\Textures\\GPUTexture.cpp.obj", "Source\\Engine\\Graphics\\Textures\\GPUTexture.cpp"],
+  "file": "Source\\Engine\\Graphics\\Textures\\GPUTexture.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\Textures\\GPUTextureDescription.cpp.obj", "Source\\Engine\\Graphics\\Textures\\GPUTextureDescription.cpp"],
+  "file": "Source\\Engine\\Graphics\\Textures\\GPUTextureDescription.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Graphics\\Textures\\TextureData.cpp.obj", "Source\\Engine\\Graphics\\Textures\\TextureData.cpp"],
+  "file": "Source\\Engine\\Graphics\\Textures\\TextureData.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\GraphicsDevice\\DX12\\CommandAllocatorPoolDX12.cpp.obj", "Source\\Engine\\GraphicsDevice\\DX12\\CommandAllocatorPoolDX12.cpp"],
+  "file": "Source\\Engine\\GraphicsDevice\\DX12\\CommandAllocatorPoolDX12.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\GraphicsDevice\\DX12\\CommandQueueDX12.cpp.obj", "Source\\Engine\\GraphicsDevice\\DX12\\CommandQueueDX12.cpp"],
+  "file": "Source\\Engine\\GraphicsDevice\\DX12\\CommandQueueDX12.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\GraphicsDevice\\DX12\\DescriptorHeapDX12.cpp.obj", "Source\\Engine\\GraphicsDevice\\DX12\\DescriptorHeapDX12.cpp"],
+  "file": "Source\\Engine\\GraphicsDevice\\DX12\\DescriptorHeapDX12.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\GraphicsDevice\\DX12\\GPUBufferDX12.cpp.obj", "Source\\Engine\\GraphicsDevice\\DX12\\GPUBufferDX12.cpp"],
+  "file": "Source\\Engine\\GraphicsDevice\\DX12\\GPUBufferDX12.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\GraphicsDevice\\DX12\\GPUContextDX12.cpp.obj", "Source\\Engine\\GraphicsDevice\\DX12\\GPUContextDX12.cpp"],
+  "file": "Source\\Engine\\GraphicsDevice\\DX12\\GPUContextDX12.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\GraphicsDevice\\DX12\\GPUDeviceDx12.cpp.obj", "Source\\Engine\\GraphicsDevice\\DX12\\GPUDeviceDx12.cpp"],
+  "file": "Source\\Engine\\GraphicsDevice\\DX12\\GPUDeviceDx12.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\GraphicsDevice\\DX12\\GPUPipelineStateDX12.cpp.obj", "Source\\Engine\\GraphicsDevice\\DX12\\GPUPipelineStateDX12.cpp"],
+  "file": "Source\\Engine\\GraphicsDevice\\DX12\\GPUPipelineStateDX12.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\GraphicsDevice\\DX12\\GPUShaderDX12.cpp.obj", "Source\\Engine\\GraphicsDevice\\DX12\\GPUShaderDX12.cpp"],
+  "file": "Source\\Engine\\GraphicsDevice\\DX12\\GPUShaderDX12.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\GraphicsDevice\\DX12\\GPUShaderProgramDX12.cpp.obj", "Source\\Engine\\GraphicsDevice\\DX12\\GPUShaderProgramDX12.cpp"],
+  "file": "Source\\Engine\\GraphicsDevice\\DX12\\GPUShaderProgramDX12.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\GraphicsDevice\\DX12\\GPUSwapChainDX12.cpp.obj", "Source\\Engine\\GraphicsDevice\\DX12\\GPUSwapChainDX12.cpp"],
+  "file": "Source\\Engine\\GraphicsDevice\\DX12\\GPUSwapChainDX12.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\GraphicsDevice\\DX12\\GPUTextureDX12.cpp.obj", "Source\\Engine\\GraphicsDevice\\DX12\\GPUTextureDX12.cpp"],
+  "file": "Source\\Engine\\GraphicsDevice\\DX12\\GPUTextureDX12.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\GraphicsDevice\\DX12\\UploadBufferDX12.cpp.obj", "Source\\Engine\\GraphicsDevice\\DX12\\UploadBufferDX12.cpp"],
+  "file": "Source\\Engine\\GraphicsDevice\\DX12\\UploadBufferDX12.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Gui\\ImGuiExtensions.cpp.obj", "Source\\Engine\\Gui\\ImGuiExtensions.cpp"],
+  "file": "Source\\Engine\\Gui\\ImGuiExtensions.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Gui\\ImGuiHelper.cpp.obj", "Source\\Engine\\Gui\\ImGuiHelper.cpp"],
+  "file": "Source\\Engine\\Gui\\ImGuiHelper.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Input\\Input.cpp.obj", "Source\\Engine\\Input\\Input.cpp"],
+  "file": "Source\\Engine\\Input\\Input.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Input\\Keyboard.cpp.obj", "Source\\Engine\\Input\\Keyboard.cpp"],
+  "file": "Source\\Engine\\Input\\Keyboard.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Input\\Mouse.cpp.obj", "Source\\Engine\\Input\\Mouse.cpp"],
+  "file": "Source\\Engine\\Input\\Mouse.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Main\\Windows\\main.cpp.obj", "Source\\Engine\\Main\\Windows\\main.cpp"],
+  "file": "Source\\Engine\\Main\\Windows\\main.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Platform\\Base\\PlatformBase.cpp.obj", "Source\\Engine\\Platform\\Base\\PlatformBase.cpp"],
+  "file": "Source\\Engine\\Platform\\Base\\PlatformBase.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Platform\\Base\\WindowBase.cpp.obj", "Source\\Engine\\Platform\\Base\\WindowBase.cpp"],
+  "file": "Source\\Engine\\Platform\\Base\\WindowBase.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Platform\\Windows\\WindowsInput.cpp.obj", "Source\\Engine\\Platform\\Windows\\WindowsInput.cpp"],
+  "file": "Source\\Engine\\Platform\\Windows\\WindowsInput.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Platform\\Windows\\WindowsPlatform.cpp.obj", "Source\\Engine\\Platform\\Windows\\WindowsPlatform.cpp"],
+  "file": "Source\\Engine\\Platform\\Windows\\WindowsPlatform.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Platform\\Windows\\WindowsWindow.cpp.obj", "Source\\Engine\\Platform\\Windows\\WindowsWindow.cpp"],
+  "file": "Source\\Engine\\Platform\\Windows\\WindowsWindow.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Platform\\WindowsManager.cpp.obj", "Source\\Engine\\Platform\\WindowsManager.cpp"],
+  "file": "Source\\Engine\\Platform\\WindowsManager.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Renderer\\ForwardPass.cpp.obj", "Source\\Engine\\Renderer\\ForwardPass.cpp"],
+  "file": "Source\\Engine\\Renderer\\ForwardPass.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Renderer\\LightPass.cpp.obj", "Source\\Engine\\Renderer\\LightPass.cpp"],
+  "file": "Source\\Engine\\Renderer\\LightPass.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Renderer\\RenderContext.cpp.obj", "Source\\Engine\\Renderer\\RenderContext.cpp"],
+  "file": "Source\\Engine\\Renderer\\RenderContext.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Renderer\\Renderer.cpp.obj", "Source\\Engine\\Renderer\\Renderer.cpp"],
+  "file": "Source\\Engine\\Renderer\\Renderer.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Renderer\\ShadowPass.cpp.obj", "Source\\Engine\\Renderer\\ShadowPass.cpp"],
+  "file": "Source\\Engine\\Renderer\\ShadowPass.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\Engine.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Engine\\windows\\x64\\debug\\Source\\Engine\\Resource\\Resource.cpp.obj", "Source\\Engine\\Resource\\Resource.cpp"],
+  "file": "Source\\Engine\\Resource\\Resource.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\imgui.pdb", "/Od", "/std:c++17", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\imgui\\windows\\x64\\debug\\Source\\ThirdParty\\imgui\\imgui.cpp.obj", "Source\\ThirdParty\\imgui\\imgui.cpp"],
+  "file": "Source\\ThirdParty\\imgui\\imgui.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\imgui.pdb", "/Od", "/std:c++17", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\imgui\\windows\\x64\\debug\\Source\\ThirdParty\\imgui\\imgui_demo.cpp.obj", "Source\\ThirdParty\\imgui\\imgui_demo.cpp"],
+  "file": "Source\\ThirdParty\\imgui\\imgui_demo.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\imgui.pdb", "/Od", "/std:c++17", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\imgui\\windows\\x64\\debug\\Source\\ThirdParty\\imgui\\imgui_draw.cpp.obj", "Source\\ThirdParty\\imgui\\imgui_draw.cpp"],
+  "file": "Source\\ThirdParty\\imgui\\imgui_draw.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\imgui.pdb", "/Od", "/std:c++17", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\imgui\\windows\\x64\\debug\\Source\\ThirdParty\\imgui\\imgui_impl_dx12.cpp.obj", "Source\\ThirdParty\\imgui\\imgui_impl_dx12.cpp"],
+  "file": "Source\\ThirdParty\\imgui\\imgui_impl_dx12.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\imgui.pdb", "/Od", "/std:c++17", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\imgui\\windows\\x64\\debug\\Source\\ThirdParty\\imgui\\imgui_impl_win32.cpp.obj", "Source\\ThirdParty\\imgui\\imgui_impl_win32.cpp"],
+  "file": "Source\\ThirdParty\\imgui\\imgui_impl_win32.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\imgui.pdb", "/Od", "/std:c++17", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\imgui\\windows\\x64\\debug\\Source\\ThirdParty\\imgui\\imgui_tables.cpp.obj", "Source\\ThirdParty\\imgui\\imgui_tables.cpp"],
+  "file": "Source\\ThirdParty\\imgui\\imgui_tables.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\imgui.pdb", "/Od", "/std:c++17", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\imgui\\windows\\x64\\debug\\Source\\ThirdParty\\imgui\\imgui_widgets.cpp.obj", "Source\\ThirdParty\\imgui\\imgui_widgets.cpp"],
+  "file": "Source\\ThirdParty\\imgui\\imgui_widgets.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\compile.Game.pdb", "/Od", "/std:c++17", "/ISource", "/IShaders\\generated", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\Game\\windows\\x64\\debug\\Source\\Game\\Game.cpp.obj", "Source\\Game\\Game.cpp"],
+  "file": "Source\\Game\\Game.cpp"
+},
+{
+  "directory": "d:\\WorkSpace\\DawnEngine",
+  "arguments": ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/Zi", "/FS", "/Fdbuild\\windows\\x64\\debug\\tiny_obj_loader.pdb", "/Od", "/std:c++17", "/D_WINDOWS", "/D_WIN64", "/DPLATFORM_WINDOWS", "/DUNICODE", "/D_UNICODE", "/DGRAPHICS_API_DIRECTX12", "/DPROJECT_SOURCE_ROOT=R\"(d:\\WorkSpace\\DawnEngine)\"", "/EHsc", "/Fobuild\\.objs\\tiny_obj_loader\\windows\\x64\\debug\\Source\\ThirdParty\\tiny_obj_loader\\tiny_obj_loader.cpp.obj", "Source\\ThirdParty\\tiny_obj_loader\\tiny_obj_loader.cpp"],
+  "file": "Source\\ThirdParty\\tiny_obj_loader\\tiny_obj_loader.cpp"
+}]

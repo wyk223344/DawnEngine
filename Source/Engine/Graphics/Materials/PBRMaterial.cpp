@@ -7,8 +7,8 @@
 #include "Engine/Graphics/Textures/GPUTexture.h"
 #include "Engine/Graphics/Textures/GPUTextureDescription.h"
 #include "Engine/Graphics/Textures/TextureData.h"
-#include "CompiledShaders/PBRVS.h"
-#include "CompiledShaders/PBRPS.h"
+#include "PBRVS.h"
+#include "PBRPS.h"
 
 using namespace DawnEngine;
 

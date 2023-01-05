@@ -1,6 +1,6 @@
 #include "DefaultMaterial.h"
-#include "CompiledShaders/DefaultVS.h"
-#include "CompiledShaders/DefaultPS.h"
+#include "DefaultVS.h"
+#include "DefaultPS.h"
 #include "Engine/Graphics/GPUDevice.h"
 #include "Engine/Graphics/GPUPipelineState.h"
 #include "Engine/Graphics/Shaders/GPUShader.h"

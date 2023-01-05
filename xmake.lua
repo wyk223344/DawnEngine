@@ -6,6 +6,7 @@ set_languages("c11", "cxx17")
 
 if (is_os("windows")) then 
     add_defines("_WINDOWS")
+    add_defines("_WIN64")
     add_defines("PLATFORM_WINDOWS")
     add_defines("UNICODE")
     add_defines("_UNICODE")
@@ -14,7 +15,9 @@ end
 
 add_defines("PROJECT_SOURCE_ROOT=R\"($(projectdir))\"", {public = true})
 
-
+includes("xmake/dxc.lua")
+includes("xmake/find_sdk.lua")
+includes("Shaders/xmake.lua")
 includes("Source/xmake.lua")
 
 -- target("DawnEngine")
