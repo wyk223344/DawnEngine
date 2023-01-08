@@ -118,6 +118,8 @@ void InitTestScene4()
 
 bool Game::Init()
 {
+	LOG_INFO("Game::Init");
+	LOG_INFO(PROJECT_SOURCE_ROOT);
 	InitCamera();
 	InitSkyBox();
 	InitTestScene3();

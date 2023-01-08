@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Engine/Engine/Base/ApplicationBase.h"
+#include "Engine/Engine/Application.h"
 
 
 
-class Game : public ApplicationBase
+class Game : public DawnEngine::Application
 {
 public:
 

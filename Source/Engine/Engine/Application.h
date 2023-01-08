@@ -1,6 +1,16 @@
 #pragma once
 
+#include "Engine/Core/Types/BaseTypes.h"
 
-#include "Game/Game.h"
+namespace DawnEngine
+{
+    class Application
+	{
+	public:
 
-typedef Game Application;
+        static bool Init() { return false;}
+
+		// Ö÷º¯Êý
+	    static int32 Main();
+    };
+}

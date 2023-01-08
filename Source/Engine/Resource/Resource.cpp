@@ -19,18 +19,22 @@ using namespace DawnEngine::Math;
 
 TextureData* Resource::LoadTexture(const char* filePath)
 {
-	LOG_INFO("[Resource] Start load texture %s.", filePath);
+	std::string projectPath = std::string(PROJECT_SOURCE_ROOT);
+	std::string filePathStr = std::string(filePath);
+	const char* finalPath = (projectPath + "\\" + filePathStr).c_str();
+
+	LOG_INFO("[Resource] Start load texture %s.", finalPath);
 
 	TextureData* textureData = New<TextureData>();
 	textureData->Data = stbi_load(
-		filePath,
+		finalPath,
 		&textureData->Width, 
 		&textureData->Height, 
 		&textureData->Channel, 
 		4);
 	textureData->Channel = 4;
 	LOG_INFO("[Resource] Finish load texture %s. Width: %d , Height: %d, Channel: %d",
-		filePath,
+		finalPath,
 		textureData->Width,
 		textureData->Height, 
 		textureData->Channel);
@@ -40,6 +44,7 @@ TextureData* Resource::LoadTexture(const char* filePath)
 
 TextureData* Resource::LoadCubeMap(const char* filePath)
 {
+	//std::string projectPath = std::string(PROJECT_SOURCE_ROOT);
 	LOG_INFO("[Resource] Start load cubemap %s.", filePath);
 	std::string filePathStr = std::string(filePath);
 	TextureData* textureData = New<TextureData>();

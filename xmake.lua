@@ -18,6 +18,7 @@ add_defines("PROJECT_SOURCE_ROOT=R\"($(projectdir))\"", {public = true})
 includes("xmake/dxc.lua")
 includes("xmake/find_sdk.lua")
 includes("Shaders/xmake.lua")
+
 includes("Source/xmake.lua")
 
 -- target("DawnEngine")

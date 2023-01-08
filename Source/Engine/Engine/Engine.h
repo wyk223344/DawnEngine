@@ -14,6 +14,8 @@ namespace DawnEngine
 	{
 	public:
 
+		static bool Init();
+
 		// Ö÷º¯Êý
 		static int32 Main();
 

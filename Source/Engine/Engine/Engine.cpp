@@ -8,7 +8,7 @@
 #include "Engine/Engine/Scene.h"
 #include "Engine/Renderer/ForwardPass.h"
 #include "Engine/Gui/ImGuiHelper.h"
-#include "Application.h"
+
 
 using namespace DawnEngine;
 
@@ -16,12 +16,12 @@ Window* Engine::MainWindow = nullptr;
 Scene* Engine::MainScene = nullptr;
 uint64 Engine::FrameCount = 0;
 
-int32 Engine::Main()
+bool Engine::Init()
 {
 	if (!Platform::Init())
 	{
 		LOG_ERROR("Fail to init platform!!!");
-		return 0;
+		return false;
 	}
 
 	EngineService::OnInit();
@@ -32,7 +32,26 @@ int32 Engine::Main()
 
 	Platform::BeforeRun();
 
-	Application::Init();
+	return true;
+}
+
+int32 Engine::Main()
+{
+	// if (!Platform::Init())
+	// {
+	// 	LOG_ERROR("Fail to init platform!!!");
+	// 	return 0;
+	// }
+
+	// EngineService::OnInit();
+	// InitMainScene();
+	// InitMainWindow();
+
+	// ImGuiHelper::Instance()->Init();
+
+	// Platform::BeforeRun();
+
+	// Application::Init();
 
 	while (!Globals::IsRequestingExit)
 	{

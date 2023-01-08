@@ -52,6 +52,8 @@ EngineService::EngineService(const Char* name, int32 order)
 	Name = name;
 	Order = order;
 
+	LOG_INFO("EngineService:  %ls %d", name, order);
+
 	auto& services = GetServices();
 	services.push_back(this);
 	if (services[0]->IsInitialized)
