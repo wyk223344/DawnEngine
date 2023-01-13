@@ -19,12 +19,26 @@ using namespace DawnEngine::Math;
 
 TextureData* Resource::LoadTexture(const char* filePath)
 {
-	std::string projectPath = std::string(PROJECT_SOURCE_ROOT);
+	//std::string projectPath = std::string(PROJECT_SOURCE_ROOT);
+	std::string projectPath = std::string("D:/WorkSpace/DawnEngine/");
 	std::string filePathStr = std::string(filePath);
-	const char* finalPath = (projectPath + "\\" + filePathStr).c_str();
+	std::string tempStr = projectPath + filePathStr;
+	const char* finalPath = tempStr.c_str();
 
 	LOG_INFO("[Resource] Start load texture %s.", finalPath);
 
+	FILE* f;
+	int fResult = fopen_s(&f, finalPath, "rb");
+	if (!f || fResult != 0)
+	{
+		LOG_ERROR("Can't load file! %d", fResult);
+		f = 0;
+	}
+	else
+	{
+		fclose(f);
+	}
+	std::cout << finalPath << std::endl;
 	TextureData* textureData = New<TextureData>();
 	textureData->Data = stbi_load(
 		finalPath,
@@ -32,12 +46,15 @@ TextureData* Resource::LoadTexture(const char* filePath)
 		&textureData->Height, 
 		&textureData->Channel, 
 		4);
-	textureData->Channel = 4;
-	LOG_INFO("[Resource] Finish load texture %s. Width: %d , Height: %d, Channel: %d",
-		finalPath,
+	
+	std::cout << finalPath << std::endl;
+	LOG_INFO("[Resource] Finish load texture %s.", finalPath);
+	LOG_INFO("[Resource] Finish load texture Width: %d , Height: %d, Channel: %d",
 		textureData->Width,
-		textureData->Height, 
+		textureData->Height,
 		textureData->Channel);
+
+	textureData->Channel = 4;
     return textureData;
 }
 

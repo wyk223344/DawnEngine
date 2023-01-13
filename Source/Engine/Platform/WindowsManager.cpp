@@ -5,20 +5,8 @@
 
 using namespace DawnEngine;
 
-class WindowsManagerService : public EngineService
-{
-public:
-	WindowsManagerService() : EngineService(TEXT("Windows Manager"), -30)
-	{
-	}
-
-	void Update() override;
-	void Dispose() override;
-};
-
-
 std::vector<Window*> WindowsManager::Windows;
-WindowsManagerService WindowsManagerServiceInstance;
+
 
 Window* WindowsManager::GetByNativePtr(void* handle)
 {
@@ -42,6 +30,11 @@ void WindowsManager::Register(Window* win)
 void WindowsManager::Unregister(Window* win)
 {
 	
+}
+
+
+WindowsManagerService::WindowsManagerService() : EngineService(TEXT("Windows Manager"), -30)
+{
 }
 
 void WindowsManagerService::Update()

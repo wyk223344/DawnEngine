@@ -7,6 +7,7 @@
 #include "Engine/Graphics/GPUDevice.h"
 #include "Engine/Graphics/GPUContext.h"
 #include "Engine/Renderer/RenderContext.h"
+#include "Engine/Gui/UIBase.h"
 
 #ifdef PLATFORM_WINDOWS
 #include "ThirdParty/imgui/imgui_impl_win32.h"
@@ -47,7 +48,17 @@ bool ImGuiHelper::Init()
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+	io.ConfigDockingAlwaysTabBar = true;
+	io.ConfigWindowsMoveFromTitleBarOnly = true;
 	ImGui::StyleColorsDark();
+
+	ImGuiStyle& style = ImGui::GetStyle();
+	style.WindowPadding = ImVec2(1.0, 0);
+	style.FramePadding = ImVec2(14.0, 2.0f);
+	style.ChildBorderSize = 0.0f;
+	style.FrameRounding = 5.0f;
+	style.FrameBorderSize = 1.5f;
 
 #ifdef PLATFORM_WINDOWS
 	ImGui_ImplWin32_Init(Engine::MainWindow->GetNativePtr());
@@ -75,31 +86,37 @@ void ImGuiHelper::SetDisplaySize(int width, int height, float scaleX, float scal
 
 void ImGuiHelper::Draw(RenderContext* renderContext)
 {
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
 
-	// Disable rounding and draw a fixed-height ImGui window that looks like a sidebar.
-	ImGui::GetStyle().WindowRounding = 0;
-	ImGui::SetNextWindowPos(ImVec2(0, 0));
-
-	const float width = ImGui::GetIO().DisplaySize.x;
-	const float height = ImGui::GetIO().DisplaySize.y;
-	ImGui::SetNextWindowSize(ImVec2(200, height), ImGuiCond_Once);
-	ImGui::SetNextWindowSizeConstraints(ImVec2(20, height), ImVec2(width, height));
-
-	ImGui::Begin("DawnEngine", nullptr, ImGuiWindowFlags_NoTitleBar);
-
-	auto& lightSettings = renderContext->Settings.Light;
-	if (ImGui::CollapsingHeader("Light"))
+	for each (UIBase * uiBase in m_UIVector)
 	{
-		ImGui::Indent();
-		if (ImGui::CollapsingHeader("Sunlight"))
-		{
-			ImGui::SliderFloat("Sun intensity", &lightSettings.SunLightIntensity, 50000.0, 150000.0f);
-			
-			//ImGuiExt::DirectionWidget("Sun direction", light.sunlightDirection.v);
-		}
-		ImGui::Unindent();
+		uiBase->Draw();
 	}
+
+	//ImGuiIO& io = ImGui::GetIO(); (void)io;
+
+	//// Disable rounding and draw a fixed-height ImGui window that looks like a sidebar.
+	//ImGui::GetStyle().WindowRounding = 0;
+	//ImGui::SetNextWindowPos(ImVec2(0, 0));
+
+	//const float width = ImGui::GetIO().DisplaySize.x;
+	//const float height = ImGui::GetIO().DisplaySize.y;
+	//ImGui::SetNextWindowSize(ImVec2(200, height), ImGuiCond_Once);
+	//ImGui::SetNextWindowSizeConstraints(ImVec2(20, height), ImVec2(width, height));
+
+	//ImGui::Begin("DawnEngine", nullptr, ImGuiWindowFlags_NoTitleBar);
+
+	//auto& lightSettings = renderContext->Settings.Light;
+	//if (ImGui::CollapsingHeader("Light"))
+	//{
+	//	ImGui::Indent();
+	//	if (ImGui::CollapsingHeader("Sunlight"))
+	//	{
+	//		ImGui::SliderFloat("Sun intensity", &lightSettings.SunLightIntensity, 50000.0, 150000.0f);
+	//		
+	//		//ImGuiExt::DirectionWidget("Sun direction", light.sunlightDirection.v);
+	//	}
+	//	ImGui::Unindent();
+	//}
 
 	//static int counter = 0;
 
@@ -117,7 +134,7 @@ void ImGuiHelper::Draw(RenderContext* renderContext)
 	//ImGui::Text("io.DisplayFramebufferScale: %.2f,%.2f", io.DisplayFramebufferScale.x, io.DisplayFramebufferScale.y);
 	//ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 
-	ImGui::End();
+	//ImGui::End();
 }
 
 
@@ -145,4 +162,10 @@ void ImGuiHelper::AfterDraw(RenderContext* renderContext)
 	contextDX12->GetCommandList()->SetDescriptorHeaps(1, deviceDX12->ImGui_Heap_Srv.GetAddressOf());
 	ImGui_ImplDX12_RenderDrawData(ImGui::GetDrawData(), contextDX12->GetCommandList());
 #endif
+}
+
+
+void ImGuiHelper::AddUI(UIBase* ui)
+{
+	m_UIVector.push_back(ui);
 }

@@ -99,3 +99,16 @@ void EngineService::OnDispose()
 		}
 	}
 }
+
+
+
+#include "Engine/Graphics/Graphics.h"
+#include "Engine/Engine/Scene.h"
+#include "Engine/Input/Input.h"
+#include "Engine/Renderer/Renderer.h"
+#include "Engine/Platform/WindowsManager.h"
+GraphicsService GraphicsServiceInstance;
+SceneService SceneServiceInstance;
+InputService InputServiceInstance;
+RendererService RendererServiceInstance;
+WindowsManagerService WindowsManagerServiceInstance;

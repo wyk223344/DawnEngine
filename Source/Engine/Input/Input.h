@@ -2,6 +2,7 @@
 
 
 #include "Engine/Core/Include.h"
+#include "Engine/Engine/EngineService.h"
 #include "Enums.h"
 
 namespace DawnEngine
@@ -42,5 +43,15 @@ namespace DawnEngine
 	public:
 
 		static Vector2 GetMousePosition();
+	};
+
+
+	class InputService : public EngineService
+	{
+	public:
+
+		InputService();
+
+		void Update() override;
 	};
 }

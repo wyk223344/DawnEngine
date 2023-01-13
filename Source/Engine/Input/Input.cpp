@@ -29,19 +29,11 @@ namespace InputImpl
     InputDevice::EventQueue InputEvents;
 }
 
-class InputService : public EngineService
+
+InputService::InputService() : EngineService(TEXT("Input"), -60)
 {
-public:
+}
 
-    InputService()
-        : EngineService(TEXT("Input"), -60)
-    {
-    }
-
-    void Update() override;
-};
-
-InputService InputServiceInstance;
 
 void InputService::Update()
 {

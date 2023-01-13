@@ -8,9 +8,8 @@ namespace DawnEngine
 	{
 	public:
 
-        static bool Init() { return false;}
+		virtual bool Init();
 
-		// Ö÷º¯Êý
-	    static int32 Main();
+	    virtual int32 Main();
     };
 }

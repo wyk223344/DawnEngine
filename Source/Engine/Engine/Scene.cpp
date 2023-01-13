@@ -13,22 +13,11 @@ using namespace DawnEngine;
 
 #pragma region SceneService
 
-class SceneService : public EngineService
+
+SceneService::SceneService() : EngineService(TEXT("Scene"), 40)
 {
-public:
+}
 
-    SceneService()
-        : EngineService(TEXT("Scene"), 40)
-    {
-    }
-
-    bool Init() override;
-    void Update() override;
-    void LateUpdate() override;
-    void Dispose() override;
-};
-
-SceneService SceneServiceInstance;
 
 bool SceneService::Init()
 {

@@ -3,16 +3,13 @@
 
 using namespace DawnEngine;
 
+bool Application::Init()
+{
+    return Engine::Init();
+}
+
+
 int32 Application::Main()
 {
-    Engine::Init();
-    
-    if (!Init())
-    {
-        LOG_ERROR("Init Application Error!!");
-        return 0;
-    }
-
     return Engine::Main();
-
 }

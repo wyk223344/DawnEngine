@@ -7,6 +7,8 @@
 class Game : public DawnEngine::Application
 {
 public:
+	bool Init() override;
 
-	static bool Init();
+
+
 };

@@ -31,9 +31,9 @@ int main()
     Platform::PreInit(hInstance);
     __try
     {
-        DawnEngine::Engine::Init();
-        Game::Init();
-        return DawnEngine::Engine::Main();
+        Game* game = new Game();
+        game->Init();
+        return game->Main();
     }
     __except (EXCEPTION_EXECUTE_HANDLER)
     {

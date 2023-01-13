@@ -8,6 +8,7 @@ namespace DawnEngine
 	class GPUTexture;
 	class GPUContext;
 	class RenderContext;
+	class UIBase;
 
 	class ImGuiHelper : public Singleton<ImGuiHelper>
 	{
@@ -27,9 +28,12 @@ namespace DawnEngine
 
 		void Draw(RenderContext* renderContext);
 
+		void AddUI(UIBase* ui);
+
 	private:
 
 		CopyLinearMaterial* m_RenderMaterial;
 		GPUTexture* m_FontTexture;
+		std::vector<UIBase*> m_UIVector;
 	};
 }
