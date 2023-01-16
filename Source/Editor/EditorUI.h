@@ -11,6 +11,12 @@ public:
 
 private:
 
-	void DrawHierachy();
-	void DrawInspect();
+	void DrawHierachyWindow();
+	void DrawInspectWindow();
+	void DrawGameWindow();
+
+private:
+
+	std::size_t m_SelectID;
+
 };

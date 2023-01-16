@@ -39,6 +39,12 @@ namespace DawnEngine
 		template<typename T, typename = enable_if_is_component_t<T>>
 		std::vector<T*> GetComponentsInChildren();
 
+		void SetName(std::string name) { m_Name = name; }
+
+		const std::string& GetName() { return m_Name; }
+
+		std::size_t GetID() { return m_ID; }
+
 	public: // 生命周期相关
 
 		virtual void Update();
@@ -49,6 +55,9 @@ namespace DawnEngine
 
 		TypeMap<ComponentBase*> m_Components;
 
+		std::string m_Name;
+
+		std::size_t m_ID;
 	};
 
 	/*模板的声明和定义要放到一个文件里*/

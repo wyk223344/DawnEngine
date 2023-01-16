@@ -56,6 +56,7 @@ void InitTestScene3()
 	sphereModel->AddMeshAndMaterial(sphereMesh, sphereMaterial);
 	auto sphereEntity = New<RenderEntity>(sphereModel);
 	sphereEntity->GetComponent<TransformComponent>()->SetPosition(Vector3(0.0f, 1.0f, 0.0f));
+	sphereEntity->SetName("Sphere");
 	// init plane
 	//MeshData* planeMesh = GeometryGenerator::CreatePlane(5.0f, 5.0f, 5, 5);
 	//DefaultMaterial* planeMaterial = New<DefaultMaterial>(Color::White);
@@ -67,6 +68,7 @@ void InitTestScene3()
 	lightEntity->GetComponent<LightComponent>()->CreateDirectionalLight();
 	lightEntity->GetComponent<TransformComponent>()->SetPosition(Vector3(5.0f, 3.0f, 5.0f));
 	lightEntity->GetComponent<TransformComponent>()->LookAt(Vector3::Zero);
+	lightEntity->SetName("Directional Light");
 }
 
 

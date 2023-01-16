@@ -8,8 +8,22 @@
 
 using namespace DawnEngine;
 
+
+namespace EntityBaseImpl
+{
+	std::size_t g_EntiyID = 0;
+
+	std::size_t AllocateEntityID()
+	{
+		g_EntiyID++;
+		return g_EntiyID;
+	}
+}
+
+
 EntityBase::EntityBase()
 {
+	m_ID = EntityBaseImpl::AllocateEntityID();
 	if (Engine::MainScene == nullptr)
 	{
 		return;
@@ -24,6 +38,7 @@ EntityBase::EntityBase()
 EntityBase::EntityBase(EntityBase* parent)
 	: Node(parent)
 {
+	m_ID = EntityBaseImpl::AllocateEntityID();
 }
 
 void EntityBase::Update()
