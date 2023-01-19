@@ -1,0 +1,6 @@
+target("json11")
+    set_group("ThirdParty")
+    set_kind("static")
+    add_headerfiles("*.h")
+    add_headerfiles("*.hpp")
+    add_files("*.cpp")

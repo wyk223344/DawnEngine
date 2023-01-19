@@ -1,0 +1,8 @@
+target("meta_parser")
+    set_group("Tools")
+    set_kind("binary")
+    add_includedirs("./parser", {public=true})
+    add_includedirs("./3rd_party/LLVM/include", {public=true})
+    add_includedirs("./3rd_party/mustache", {public=true})
+    add_headerfiles("**.h")
+    add_files("**.cpp")
