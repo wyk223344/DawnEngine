@@ -3,7 +3,7 @@
 #include "Quaternion.h"
 
 
-using namespace DawnEngine::Math;
+using namespace DawnEngine;
 
 const Vector3 Vector3::Zero(0.0f);
 const Vector3 Vector3::One(1.0f);

@@ -2,7 +2,7 @@
 
 #include "Common.h"
 
-namespace DawnEngine::Math
+namespace DawnEngine
 {
 	struct Matrix4x4;
 

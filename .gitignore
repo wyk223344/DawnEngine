@@ -403,3 +403,4 @@ xmake.log
 /SDKs/*.zip
 /SDKs/*.ttf
 /Shaders/generated
+/Source/_generated

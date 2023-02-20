@@ -1,5 +1,5 @@
+includes("Tools/xmake.lua")
 includes("ThirdParty/xmake.lua")
 includes("Engine/xmake.lua")
 includes("Editor/xmake.lua")
-includes("Game/xmake.lua")
-includes("Tools/xmake.lua")
+--includes("Game/xmake.lua")

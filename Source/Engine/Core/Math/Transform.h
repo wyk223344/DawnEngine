@@ -3,14 +3,18 @@
 
 #include "Vector3.h"
 #include "Quaternion.h"
+#include "Engine/Core/Meta/Reflection/Reflection.h"
 
 
-namespace DawnEngine::Math
+namespace DawnEngine
 {
 	struct Matrix4x4;
 
-	struct Transform
+	REFLECTION_TYPE(Transform)
+	CLASS(Transform, Fields)
 	{
+		REFLECTION_BODY(Transform);
+
 	public:
 
 		Vector3 Translation;

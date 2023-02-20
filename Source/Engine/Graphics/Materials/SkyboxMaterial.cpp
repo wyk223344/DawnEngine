@@ -111,21 +111,21 @@ void SkyboxMaterial::PreIntegrateCubemap(RenderContext* renderContext, Mesh* sky
 
 	// draw irradiance texture
 	Transform tempTransform;
-	std::vector<Math::Vector3> lookAtPositions = {
-		Math::Vector3::Right,
-		Math::Vector3::Left,
-		Math::Vector3::Up,
-		Math::Vector3::Down,
-		Math::Vector3::Forward,
-		Math::Vector3::Backward
+	std::vector<Vector3> lookAtPositions = {
+		Vector3::Right,
+		Vector3::Left,
+		Vector3::Up,
+		Vector3::Down,
+		Vector3::Forward,
+		Vector3::Backward
 	};
-	std::vector<Math::Vector3> lookUpDirs = {
-		Math::Vector3::Up,
-		Math::Vector3::Up,
-		Math::Vector3::Backward,
-		Math::Vector3::Forward,
-		Math::Vector3::Up,
-		Math::Vector3::Up
+	std::vector<Vector3> lookUpDirs = {
+		Vector3::Up,
+		Vector3::Up,
+		Vector3::Backward,
+		Vector3::Forward,
+		Vector3::Up,
+		Vector3::Up
 	};
 	renderContext->GlobalConstant.CameraPosition = Vector3(0.0f, 0.0f, 0.0f);
 	context->BindCB((int32)GPUConstantBufferSlot::Global, renderContext->GlobalConstantBuffer);
@@ -136,7 +136,7 @@ void SkyboxMaterial::PreIntegrateCubemap(RenderContext* renderContext, Mesh* sky
 	context->SetState(m_IrradiancePSO);
 	context->BindSR(0, m_GPUTexture->ViewArray());
 	int index = 0;
-	for each (Math::Vector3 dir in lookAtPositions)
+	for each (Vector3 dir in lookAtPositions)
 	{
 		tempTransform.LookAt(dir, lookUpDirs[index]);
 		auto viewMatrix = tempTransform.GetWorldMatrix();

@@ -1,7 +1,7 @@
 #include "Quaternion.h"
 #include "Matrix4x4.h"
 
-using namespace DawnEngine::Math;
+using namespace DawnEngine;
 
 Quaternion Quaternion::Zero(0);
 Quaternion Quaternion::One(1);

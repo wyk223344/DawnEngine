@@ -9,8 +9,11 @@ namespace DawnEngine
 
 	class EntityBase;
 
-	class TransformComponent : public ComponentBase
+	REFLECTION_TYPE(TransformComponent)
+	CLASS(TransformComponent : public ComponentBase)
 	{
+		REFLECTION_BODY(TransformComponent);
+
 	public:
 
 		TransformComponent(EntityBase* entity);
@@ -27,6 +30,7 @@ namespace DawnEngine
 
 	public:
 
+		META(Enable)
 		Transform Transform;
 	};
 }

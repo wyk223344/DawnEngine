@@ -37,17 +37,17 @@ namespace DawnEngine
 		// 设置视口和裁剪矩形
 		void SetViewportAndScissors(float width, float height)
 		{
-			const Math::Viewport viewport(0.0f, 0.0f, width, height);
+			const Viewport viewport(0.0f, 0.0f, width, height);
 			SetViewport(viewport);
-			const Math::Rectangle scissorRect(0.0f, 0.0f, width, height);
+			const Rectangle scissorRect(0.0f, 0.0f, width, height);
 			SetScissor(scissorRect);
 		}
 
 		// 设置视口
-		virtual void SetViewport(const Math::Viewport& viewport) = 0;
+		virtual void SetViewport(const Viewport& viewport) = 0;
 
 		// 设置裁剪矩形
-		virtual void SetScissor(const Math::Rectangle& scissorRect) = 0;
+		virtual void SetScissor(const Rectangle& scissorRect) = 0;
 
 	public:
 

@@ -15,8 +15,11 @@ end
 
 add_defines("PROJECT_SOURCE_ROOT=R\"($(projectdir))\"", {public = true})
 
-includes("xmake/dxc.lua")
-includes("xmake/find_sdk.lua")
+--includes("xmake/find_sdk.lua")
+--includes("xmake/rules/dxc.lua")
+add_moduledirs("xmake/modules")
+includes("xmake/xmake.lua")
+
 includes("Shaders/xmake.lua")
 
 includes("Source/xmake.lua")

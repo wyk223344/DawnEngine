@@ -6,6 +6,8 @@
 #include "generator/serializer_generator.h"
 
 #include "parser.h"
+#include <iostream>
+#include <io.h>
 
 #define RECURSE_NAMESPACES(kind, cursor, method, namespaces) \
     { \
@@ -80,25 +82,58 @@ void MetaParser::finish(void)
     }
 }
 
+void getFiles(std::string path, std::vector<std::string>& files)
+{
+    intptr_t   hFile = 0;//intptr_t和uintptr_t的类型:typedef long int； typedef unsigned long int
+    struct _finddata_t fileinfo;
+    std::string pathp;
+    if ((hFile = _findfirst(pathp.assign(path).append("\\*").c_str(), &fileinfo)) != -1)
+    {
+        do
+        {
+            if ((fileinfo.attrib & _A_SUBDIR))
+            {
+                if (strcmp(fileinfo.name, ".") != 0 && strcmp(fileinfo.name, "..") != 0)
+                {
+                    getFiles(pathp.assign(path).append("//").append(fileinfo.name), files);
+                }
+            }
+            else
+            {
+                std::string filestr = fileinfo.name;
+                if (strcmp(fileinfo.name, ".h") != 0)
+                {
+                    files.push_back(pathp.assign(path).append("//").append(filestr));
+                }
+            }
+        } while (_findnext(hFile, &fileinfo) == 0);
+        _findclose(hFile);
+    }
+}
+
 bool MetaParser::parseProject()
 {
     bool result = true;
     std::cout << "Parsing project file: " << m_project_input_file << std::endl;
 
-    std::fstream include_txt_file(m_project_input_file, std::ios::in);
+    std::vector<std::string> include_files;
 
-    if (include_txt_file.fail())
-    {
-        std::cout << "Could not load file: " << m_project_input_file << std::endl;
-        return false;
-    }
+    getFiles(m_project_input_file, include_files);
 
-    std::stringstream buffer;
-    buffer << include_txt_file.rdbuf();
+    //std::fstream include_txt_file(m_project_input_file, std::ios::in);
 
-    std::string context = buffer.str();
+    //if (include_txt_file.fail())
+    //{
+    //    std::cout << "Could not load file: " << m_project_input_file << std::endl;
+    //    return false;
+    //}
 
-    auto         inlcude_files = Utils::split(context, ";");
+    //std::stringstream buffer;
+    //buffer << include_txt_file.rdbuf();
+
+    //std::string context = buffer.str();
+
+    //auto         inlcude_files = Utils::split(context, ";");
     std::fstream include_file;
 
     include_file.open(m_source_include_file_name, std::ios::out);
@@ -125,7 +160,7 @@ bool MetaParser::parseProject()
     include_file << "#ifndef __" << output_filename << "__" << std::endl;
     include_file << "#define __" << output_filename << "__" << std::endl;
 
-    for (auto include_item : inlcude_files)
+    for (auto include_item : include_files)
     {
         std::string temp_string(include_item);
         Utils::replace(temp_string, '\\', '/');
@@ -136,6 +171,8 @@ bool MetaParser::parseProject()
     include_file.close();
     return result;
 }
+
+
 
 int MetaParser::parse(void)
 {

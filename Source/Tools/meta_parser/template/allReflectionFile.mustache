@@ -1,11 +1,11 @@
 #pragma once
-#include "runtime/core/meta/reflection/reflection.h"
+#include "Engine/Core/Meta/Reflection/Reflection.h"
 #include "_generated/serializer/all_serializer.h"
 {{#include_headfiles}}
 #include "{{headfile_name}}"
 {{/include_headfiles}}
 
-namespace Piccolo{
+namespace DawnEngine{
 namespace Reflection{
     void TypeMetaRegister::Register(){
     {{#class_defines}}TypeWrappersRegister::{{class_name}}();

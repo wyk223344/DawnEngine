@@ -31,9 +31,9 @@ namespace DawnEngine
 		{
 		}
 
-		Math::Vector3 Position;
-		Math::Vector2 UV;
-		Math::Vector3 Normal;
-		Math::Vector3 Tangent;
+		Vector3 Position;
+		Vector2 UV;
+		Vector3 Normal;
+		Vector3 Tangent;
 	};
 }

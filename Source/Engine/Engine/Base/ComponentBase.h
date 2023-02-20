@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Engine/Core/Object.h"
+#include "Engine/Core/Meta/Reflection/Reflection.h"
 
 
 namespace DawnEngine

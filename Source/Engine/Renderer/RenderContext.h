@@ -15,13 +15,13 @@ namespace DawnEngine
 	{
 		Mesh* Mesh;
 		MaterialBase* Material;
-		Math::Matrix4x4 WorldMatrix;
+		Matrix4x4 WorldMatrix;
 	};
 
 	struct LightSettings
 	{
 		float SunLightIntensity;
-		Math::Vector3 SunLightDirection;
+		Vector3 SunLightDirection;
 		Color SunLightColor;
 		float IBLIntensity;
 		float IBLRotation;
@@ -76,7 +76,7 @@ namespace DawnEngine
 
 		std::vector<DrawCall> DrawCallList;
 
-		Math::Matrix4x4 CameraViewProjMatrix;
+		Matrix4x4 CameraViewProjMatrix;
 
 	};
 }

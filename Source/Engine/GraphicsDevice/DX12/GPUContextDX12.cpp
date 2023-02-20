@@ -126,12 +126,12 @@ void GPUContextDX12::FrameEnd()
 	Execute(true);
 }
 
-void GPUContextDX12::SetViewport(const Math::Viewport& viewport)
+void GPUContextDX12::SetViewport(const Viewport& viewport)
 {
 	m_CommandList->RSSetViewports(1, (D3D12_VIEWPORT*)&viewport);
 }
 
-void GPUContextDX12::SetScissor(const Math::Rectangle& scissorRect)
+void GPUContextDX12::SetScissor(const Rectangle& scissorRect)
 {
 	D3D12_RECT rect;
 	rect.left = (LONG)scissorRect.GetLeft();

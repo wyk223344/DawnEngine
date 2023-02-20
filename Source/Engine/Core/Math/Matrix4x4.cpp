@@ -1,7 +1,7 @@
 #include "Matrix4x4.h"
 #include "Vector3.h"
 
-using namespace DawnEngine::Math;
+using namespace DawnEngine;
 
 const Matrix4x4 Matrix4x4::Zero(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
 const Matrix4x4 Matrix4x4::Identity(

@@ -2,7 +2,7 @@
 
 #include "Vector2.h"
 
-namespace DawnEngine::Math
+namespace DawnEngine
 {
 	struct Rectangle
 	{

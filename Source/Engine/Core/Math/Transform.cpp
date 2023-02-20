@@ -4,7 +4,7 @@
 #include "Vector3.h"
 #include "Quaternion.h"
 
-using namespace DawnEngine::Math;
+using namespace DawnEngine;
 
 
 void Transform::LookAt(const Vector3& target, const Vector3& up)

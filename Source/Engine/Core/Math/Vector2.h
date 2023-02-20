@@ -2,7 +2,7 @@
 
 #include "Common.h"
 
-namespace DawnEngine::Math
+namespace DawnEngine
 {
 	struct Vector3;
 	struct Vector4;

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace DawnEngine::Math
+namespace DawnEngine
 {
 	struct Viewport
 	{

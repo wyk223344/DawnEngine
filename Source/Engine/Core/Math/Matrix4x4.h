@@ -6,7 +6,7 @@
 #include <assert.h>
 
 
-namespace DawnEngine::Math
+namespace DawnEngine
 {
 	struct Transform;
 

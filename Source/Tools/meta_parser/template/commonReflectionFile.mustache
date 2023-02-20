@@ -3,7 +3,7 @@
 #include "{{headfile_name}}"
 {{/include_headfiles}}
 
-namespace Piccolo{
+namespace DawnEngine{
     {{#class_defines}}class {{class_name}};
     {{/class_defines}}
 namespace Reflection{
@@ -11,13 +11,13 @@ namespace Reflection{
     class Type{{class_name}}Operator{
     public:
         static const char* getClassName(){ return "{{class_name}}";}
-        static void* constructorWithJson(const PJson& json_context){
+        static void* constructorWithJson(const Json& json_context){
             {{class_name}}* ret_instance= new {{class_name}};
-            PSerializer::read(json_context, *ret_instance);
+            Serializer::read(json_context, *ret_instance);
             return ret_instance;
         }
-        static PJson writeByName(void* instance){
-            return PSerializer::write(*({{class_name}}*)instance);
+        static Json writeByName(void* instance){
+            return Serializer::write(*({{class_name}}*)instance);
         }
         // base class
         static int get{{class_name}}BaseClassReflectionInstanceList(ReflectionInstance* &out_list, void* instance){
@@ -96,4 +96,4 @@ namespace TypeWrappersRegister{
 }//namespace TypeWrappersRegister
 
 }//namespace Reflection
-}//namespace Piccolo
+}//namespace DawnEngine

@@ -1,17 +1,20 @@
 #pragma once
 
-
+#include "Engine/Core/Meta/Reflection/Reflection.h"
 #include "Common.h"
 
-namespace DawnEngine::Math
+namespace DawnEngine
 {
 	struct Vector2;
 	struct Vector4;
     struct Quaternion;
     struct Matrix4x4;
 
-	struct Vector3
+    REFLECTION_TYPE(Vector3)
+	STRUCT(Vector3, Fields)
 	{
+        REFLECTION_BODY(Vector3);
+
 	public:
 		union
 		{

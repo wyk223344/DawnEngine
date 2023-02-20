@@ -78,8 +78,8 @@ namespace DawnEngine::DX12
 
 		void FrameBegin() override;
 		void FrameEnd() override;
-		void SetViewport(const Math::Viewport& viewport) override;
-		void SetScissor(const Math::Rectangle& scissorRect) override;
+		void SetViewport(const Viewport& viewport) override;
+		void SetScissor(const Rectangle& scissorRect) override;
 		void Clear(GPUTextureView* rt, const Color& color) override;
 		void ClearDepth(GPUTextureView* depthBuffer, float depthValue) override;
 		void SetRenderTarget(GPUTextureView* rt) override;
